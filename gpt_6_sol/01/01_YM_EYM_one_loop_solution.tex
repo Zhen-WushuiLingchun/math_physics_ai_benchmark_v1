@@ -1,0 +1,209 @@
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage[margin=23mm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,booktabs}
+\usepackage[colorlinks=true,urlcolor=blue]{hyperref}
+\newcommand{\ag}[2]{\langle #1\,#2\rangle}
+\newcommand{\sq}[2]{[#1\,#2]}
+\newcommand{\Cy}{\mathcal C_x}
+\newcommand{\ii}{\mathrm i}
+\title{题一解答：\(n=3\) 的局域共线核不存在一圈提升}
+\author{}
+\date{2026 年 9 月 23 日}
+\begin{document}
+\maketitle
+\begin{abstract}
+对题面规定的同一套、helicity 无关、Mandelstam 一次齐次且无分母的核，\(n=3\) 已经给出否定答案。本文写出一个树级代表及其精确一圈缺陷，并构造排除全部六个排序、十二个核系数的函数域证书。一个 \(14\times14\) 增广子式在 \(x=1/3\) 等于 \(-2720977920\neq0\)；它是有理函数子式的非零特化，因而不是单点数值秩猜测。\(n=4\) 与修正关系不在已证结论中。
+\end{abstract}
+
+\section{排序、变量与树级校准}
+令 \(p_a=xP,\ p_b=(1-x)P\)。固定硬腿循环顺序和首位 \(1\) 后，
+\begin{align}
+\sigma_1&=(1,a,2,b,3),&\sigma_2&=(1,b,2,a,3),&
+\sigma_3&=(1,a,2,3,b),\nonumber\\
+\sigma_4&=(1,b,2,3,a),&\sigma_5&=(1,2,a,3,b),&
+\sigma_6&=(1,2,b,3,a).
+\end{align}
+由 \(s_{12}+s_{23}+s_{13}=0\) 及 \(s_{iP}=-\sum_{j\ne i}s_{ij}\)，一般允许核为
+\begin{equation}
+K_\sigma=\alpha_\sigma(x)s_{12}+\beta_\sigma(x)s_{23},
+\qquad \alpha_\sigma,\beta_\sigma\in\mathbb Q(x).
+\label{eq:K}
+\end{equation}
+共有十二个未知系数函数。Stieberger--Taylor 的任意 \(x\) 树级公式在题面耦合剥离后给出代表 \cite{ST}
+\begin{equation}
+K^{\rm tree}_{\sigma_2}=x(1-x)s_{2P},\qquad K^{\rm tree}_{\sigma\ne\sigma_2}=0.
+\label{eq:K0}
+\end{equation}
+例如用五胶子 Parke--Taylor 式直接代入 \(a,b\) 的共线 spinor，
+\begin{equation}
+M^{(0)}(1^-,2^-,3^+;P^{+2})
+=\ii s_{2P}
+\frac{\ag12^4}{\ag1P\ag P2\ag2P\ag P3\ag31}\ne0.
+\label{eq:tree}
+\end{equation}
+四个含 \(a,b\) 的分母给出 \(x(1-x)\)，恰好抵消 \eqref{eq:K0} 的同一因子。负 helicity 引力子的树级校准使用两个负 helicity 的 \(a,b\)；\cite{ST} 的公式对一般 \(x\) 成立。
+
+\section{一圈输入与代表缺陷}
+记 \(L=\ii/(48\pi^2)\)。若排序为 \(q=(q_1,\ldots,q_5)\)，五胶子 all-plus 振幅 \(A^{(1)}_5=L\Psi_q\)，其中 \cite{NPT}
+\begin{equation}
+\Psi_q=
+\frac{\displaystyle\sum_{r<s<t<u}
+\ag{q_r}{q_s}\sq{q_s}{q_t}\ag{q_t}{q_u}\sq{q_u}{q_r}}
+{\prod_{r=1}^5\ag{q_r}{q_{r+1}}},\qquad q_6=q_1.
+\label{eq:YMplus}
+\end{equation}
+五胶子 single-minus 振幅 \(A^{(1)}_5=L\Phi_q\) 采用 Bern--Dixon--Kosower 式 (7) \cite{BDK}。循环旋转使负腿为 \(q_1\) 时，
+\begin{align}
+\Phi_q={1\over\ag{q_3}{q_4}^{\,2}}\left[
+{\sq{q_2}{q_5}^{\,3}\over\sq{q_1}{q_2}\sq{q_5}{q_1}}
++{\ag{q_1}{q_4}^{\,3}\sq{q_4}{q_5}\ag{q_3}{q_5}
+ \over\ag{q_1}{q_2}\ag{q_2}{q_3}\ag{q_4}{q_5}^{\,2}}
+-{\ag{q_1}{q_3}^{\,3}\sq{q_3}{q_2}\ag{q_4}{q_2}
+ \over\ag{q_1}{q_5}\ag{q_5}{q_4}\ag{q_3}{q_2}^{\,2}}
+\right].
+\label{eq:YMminus}
+\end{align}
+所有六个排序的 \(a,b\) 不相邻，所用极限没有相邻腿的 \(1/\ag ab\) 项。
+
+指定的 \(\kappa g^3\) 阶，胶子在圈内传播的四点 EYM 结果为 \cite{NPT}
+\begin{align}
+M^{(1)}(1^+,2^+,3^+;P^{+2})&=0,\label{eq:Eplus}\\
+M^{(1)}(i^-,j^+,k^+;P^{+2})&=L\,\mathcal E_i,\nonumber\\
+\mathcal E_i&={1\over2}
+{\sq{j}{P}\sq{k}{P}\over\ag{j}{P}\ag{k}{P}}\,
+{s_{ij}^{\,2}+s_{ik}^{\,2}\over
+\ag{j}{k}\sq{j}{i}\sq{k}{i}},
+\qquad (i,j,k)\text{ 按 }(1,2,3)\text{ 循环选取}.
+\label{eq:Eminus}
+\end{align}
+共同的颜色、耦合及圈因子按题面剥离。后面的证书还容许 \(\mathcal E_i\) 前乘任意共同常数，因此不依赖可能的共同归一化差异。
+
+对于 \eqref{eq:K0}，缺陷的精确表达式为
+\begin{align}
+\Delta_{+++;++}&=-L\,x(1-x)s_{2P}\,\Cy\Psi_{\sigma_2},\label{eq:Dplus}\\
+\Delta_{i-;++}&=L\left(\mathcal E_i-x(1-x)s_{2P}\,
+\Cy\Phi_{\sigma_2}^{(i-)}\right).
+\label{eq:Dminus}
+\end{align}
+这里的 YM 函数已由 \eqref{eq:YMplus}、\eqref{eq:YMminus} 完整给出。
+
+为得到更易核查的有理式，取四点在壳图表
+\begin{align}
+&\lambda_1=(1,0),\quad\lambda_2=(0,1),\quad
+\lambda_3=(1,1),\quad\lambda_P=(1,z),\nonumber\\
+&\widetilde\lambda_1=(-1,-1),\quad
+\widetilde\lambda_2=(-1,-z),\quad
+\widetilde\lambda_3=(1,0),\quad
+\widetilde\lambda_P=(0,1).
+\label{eq:chart}
+\end{align}
+它满足 \(\sum_i\lambda_i\widetilde\lambda_i=0\)，且
+\(s_{12}=1-z,\ s_{23}=z,\ s_{13}=-1,\ s_{2P}=-1\)。
+直接简化 \eqref{eq:Dplus}--\eqref{eq:Dminus} 得
+\begin{align}
+{\Delta_{+++;++}\over L}
+&=-{x^2-2xz+z\over z(z-1)},\label{eq:Dplusrat}\\
+{\Delta_{1-;++}\over L}
+&=-
+{2x^2z^2-4x^2z+2x^2-6xz^2+8xz-4x
++3z^2-6z+4\over2(z-1)^2}.
+\label{eq:Dminusrat}
+\end{align}
+在 \(x=1/3,z=2\) 分别为 \(-7/18\) 和 \(-1/9\)。
+一个独立的 all-plus 校验来自 \cite{NPT} 的式 (4.9)：排序
+\((1,b,2,a,3)\) 的分子
+\(-s_{1b}s_{b2}-s_{13}s_{a3}
++\ag{b}{2}\ag{a}{3}\sq{2}{a}\sq{3}{b}\)
+在 \eqref{eq:chart} 上恰是 \(x^2-2xz+z\)，与 \eqref{eq:YMplus} 五项迹和相符。
+
+\section{全部允许核的不可解性证书}
+树级 \(n=3\) 只有两种非零 helicity 结构：\(P^{+2}\) 与两个负硬腿，或 \(P^{-2}\) 与一个负硬腿。各自改变负硬腿位置只改变与排序无关的四次 spinor 分子。令
+\[
+f_\sigma^+={1\over\prod_r\ag{q_r}{q_{r+1}}},\qquad
+f_\sigma^-={1\over\prod_r\sq{q_r}{q_{r+1}}}.
+\]
+把 \eqref{eq:K} 代入全部树级方程，在图表 \eqref{eq:chart} 上清分母并取 \(z\) 的多项式系数，恰得四个独立约束。因此
+\begin{equation}
+\dim_{\mathbb Q(x)}\mathcal N_3=12-4=8.
+\label{eq:null}
+\end{equation}
+
+为了否定整个八维树级零空间的修正能力，已经足够使用树级 \(P^+\) 一组、一圈 all-plus，以及负硬腿在 \(1,2\) 的两个 single-minus 组。对每组 \(r\)，写
+\begin{equation}
+\sum_{\sigma=1}^{6}
+\bigl[\alpha_\sigma(1-z)+\beta_\sigma z\bigr]F_\sigma^{(r)}
+=T^{(r)},\quad
+\begin{array}{c|c|c}
+r&F_\sigma^{(r)}&T^{(r)}\\ \hline
+0&f_\sigma^+&-x(1-x)f_{\sigma_2}^+\\
++&\Cy\Psi_\sigma&0\\
+1,2&\Cy\Phi_\sigma^{(i-)}&\eta\mathcal E_i
+\end{array}
+\label{eq:system}
+\end{equation}
+并暂将一圈 EYM 与 YM 的共同相对归一化 \(\eta\) 也作为未知数；真实约定为 \(\eta=1\)。
+在 \(x=1/3\)，把每组 \eqref{eq:system} 十二个系数函数和右端分母的多项式最小公倍式乘入，再取 \(z^k\) 系数。增广矩阵的列顺序为
+\[
+(\alpha_1,\beta_1,\ldots,\alpha_6,\beta_6,\eta,T).
+\]
+以下十四行的子式为
+\begin{center}
+\begin{tabular}{lc}
+\toprule
+组 & 取出的 \(z\) 次数 \(k\)\\
+\midrule
+树级 \(0\) & \(0,1,2,3\)\\
+一圈 all-plus \(+\) & \(0,1,2\)\\
+一圈 single-minus \(i=1\) & \(1,2,3,4,5\)\\
+一圈 single-minus \(i=2\) & \(0,2\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+\begin{equation}
+\boxed{\det=-2720977920\ne0.}
+\label{eq:cert}
+\end{equation}
+精确消元给出前十三列秩 \(13\)，加入右端列后秩 \(14\)。
+所以即使任意调整共同归一化 \(\eta\)，也没有允许的核。
+
+这里没有把单点数值秩冒充函数域证明：
+\eqref{eq:YMplus}、\eqref{eq:YMminus}、\eqref{eq:Eminus} 均在
+\(\mathbb Q(x,z)\) 中；清分母子式是 \(x\) 的有理函数，原始函数在 \(x=1/3\) 无极点。其非零特化证明它在 \(\mathbb Q(x)\) 上非零，无论待求核系数是否在孤立 \(x\) 值有极点。作为额外检验，独立的 \(x=2/5\) 精确矩阵给出固定归一化秩 \(12/13\)。因此 \textbf{\(n=3\) 的完整指定核类已被排除}。
+
+\section{D 维来源与结论边界}
+四维 all-plus cut 为零，不能由此删掉有理项。写
+\(\ell^\mu=\bar\ell^\mu+\ell_\perp^\mu\), \(\mu^2=-\ell_\perp^2\)。
+\cite{NPT} 从给定 EYM 作用量的 \(D\) 维 massive-scalar cut 得到
+\(\mu^4\) box 与 triangle；其积分约定下
+\[
+I_4[\mu^4;s,t]=-\frac16+O(\epsilon),\qquad
+I_3[\mu^4;s]=\frac{s}{24}+O(\epsilon).
+\]
+all-plus 的一个循环项是
+\(\frac{st}{2}I_4[\mu^4;s,t]-sI_3[\mu^4;s]\)，积分后为
+\(-st/12-s^2/24\)。三个循环项之和正比于
+\[
+2(st+tu+us)+(s^2+t^2+u^2)=(s+t+u)^2=0.
+\]
+这给出 \eqref{eq:Eplus} 的另一条积分基核验。它是积分后
+\(\epsilon^0\) 的取消；单项 integrand 与 \(D\) 维 cut 不为零，
+而四维 cut 看不到 \(\mu^4\) 项。single-minus 的完整计算还含
+\(\mu^2,\mu^4\) box、triangle、bubble。
+
+\textbf{已经证明：}按题面的核类，\(n=3\) 不存在同一套核同时满足树级及两个指定一圈扇区；\eqref{eq:Dplusrat}、\eqref{eq:Dminusrat} 是选定树级代表的精确缺陷。
+\textbf{方法边界：}五胶子与四点 EYM 一圈公式取自所列原始文献；本文独立完成其精确共线代入、树级零空间计算和不可解性证书，没有重新从费曼图计算 single-minus EYM 振幅。
+\textbf{仍未闭合：}\(n=4\) 的独立核空间、有限 \(\mu^{2r}\) 扩张的普适因子化规则。若继续研究修正关系，下一步应先限定
+\(\{\mu^2,\mu^4\}\) 的 box/triangle/bubble 基，并以给定作用量的 massive-scalar cut 独立定系数，再检验 \(n=4\) 的因子化通道；目前不把 \(\Delta_n\) 改名为已证修正项。题面明确允许已证明的低点 no-go 作为终点。
+
+\section*{复现}
+同目录的 \texttt{check\_q1.py} 只需 SymPy。
+\texttt{python check\_q1.py --certificate} 重建选行、行列式与秩；
+\texttt{python check\_q1.py} 检查 \(x=1/3,2/5,1/2\) 及符号 \(x\)。
+脚本从 spinor 括号及公开的振幅公式做有理式运算。
+
+\begin{thebibliography}{9}
+\bibitem{ST} S.~Stieberger and T.~R.~Taylor, Subleading Terms in the Collinear Limit of Yang--Mills Amplitudes, Phys.\ Lett.\ B \textbf{750} (2015), \href{https://arxiv.org/abs/1508.01116}{arXiv:1508.01116}, eqs.\ (8),(10).
+\bibitem{NPT} D.~Nandan, J.~Plefka and G.~Travaglini, All rational one-loop Einstein--Yang--Mills amplitudes at four points, JHEP \textbf{09} (2018) 011, \href{https://arxiv.org/abs/1803.08497}{arXiv:1803.08497}, eqs.\ (1.2),(1.6),(3.13),(4.9),(A.7).
+\bibitem{BDK} Z.~Bern, L.~Dixon and D.~A.~Kosower, The Five Gluon Amplitude and One-Loop Integrals, \href{https://arxiv.org/abs/hep-ph/9212237}{hep-ph/9212237}, eq.\ (7).
+\end{thebibliography}
+\end{document}

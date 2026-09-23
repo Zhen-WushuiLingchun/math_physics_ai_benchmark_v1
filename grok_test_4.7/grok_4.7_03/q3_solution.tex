@@ -1,0 +1,574 @@
+\documentclass[11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,geometry}
+\geometry{margin=1in}
+\pagestyle{plain}
+
+\newtheorem{theorem}{定理}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{proposition}[theorem]{命题}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定义}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{注记}
+
+\newcommand{\eps}{\varepsilon}
+\newcommand{\rd}{\mathrm{d}}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cM}{\mathcal M}
+\newcommand{\dx}{\mathrm{d}x}
+\newcommand{\dt}{\mathrm{d}t}
+
+\title{题三：回波时刻之前波形不变，\\
+谱位移的控制量是 $\kappa=\eps e^{2|\Im\omega_0|L}$}
+\author{}
+\date{}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+
+\begin{abstract}
+观察者在 $x_o=10$，势垒支集在 $[L-1,L+1]$，$L>12$。
+初值支集在 $[-1,1]$。扰动要先到达势垒再返回，最早影响时刻是
+\[
+\tau_*=2L-13.
+\]
+\textbf{已经证明：} $\tau<\tau_*$ 时 $h_{\eps,L}=h_0$。因此 (Q3a) 的分子与 (Q3b) 的被积差都是 $0$。
+\textbf{已经证明：} 对一切 $T\ge0$、一切 $L>12$、一切 $\eps>0$，
+\[
+\int_0^T|h_{\eps,L}-h_0|^2\,\rd\tau\le 2\eps^2(1+T)^7.
+\]
+在 $L=c\ln(1/\eps)$ 且 $T=O(L)$ 的窗口上，这给出每个 $\alpha\in(0,1)$ 的 $O(\eps^\alpha)$ 界。
+未扰动 $l=2$ 奇宇称基频由两套 Jost 离散得到
+\[
+\omega_0=0.3736717-0.0889623\,i,
+\]
+两套结果相差约 $10^{-6}$。线性位移的控制量是 $\kappa=\eps\exp(2|\Im\omega_0|L)$。
+临界常数 $c_*=1/(2|\Im\omega_0|)=5.620$。$c<c_*$ 时 $\kappa\to0$，位移回到 $0$；$c>c_*$ 时线性公式的预测发散，到这里必须停。
+时域两套网格上，回波到达前的差是机器零，$E/\eps$ 约 $0.20$，从 $L=16$ 到 $L=40$（后者 $\kappa\sim60$）几乎不变。
+全时间、全 $L$ 的 (Q3c) 还没有证明，也没有做出反例族。卡住的是实频上从势垒到单点观察者的 resolvent 一致界。
+\end{abstract}
+
+\section{能量与有限传播}
+
+$V_0(x)=(1-2/\rho)(6/\rho^2-6/\rho^3)$，$\rho=\rho(x)>2$ 由 $x=\rho+2\ln(\rho/2-1)$ 确定。
+$W$ 支在 $(-1,1)$，$W(0)=1$，且 $W$ 在 $|\cdot|=1$ 处无穷阶平坦。
+$0<\eps$，势 $V_{\eps,L}=V_0+\eps W(\cdot-L)\ge V_0$。
+
+\begin{lemma}[已经证明]
+\label{lem:vmax}
+$V_0$ 在 $\rho>2$ 上的最大值是
+\[
+V_*=\frac{3(-107+51\sqrt{17})}{2048}=0.15128669957\cdots,
+\]
+临界点 $\rho_*=(9+\sqrt{17})/4$，并且 $V_*<19/125$。
+\end{lemma}
+
+\begin{proof}
+令 $s=\sqrt{17}$，$\rho=(9+s)/4$。
+\[
+V(\rho)=\frac{6(\rho-2)(\rho-1)}{\rho^4}.
+\]
+对数导数的零点满足 $2\rho^2-9\rho+8=0$，大于 $2$ 的根就是 $\rho_*$。
+代入并有理化：
+\begin{align*}
+(\rho-2)(\rho-1)&=\frac{11+3s}{8},&
+\rho^4&=\frac{1889+441s}{32},\\
+V(\rho_*)&=\frac{24(11+3s)}{1889+441s}
+=\frac{-41088+19584s}{262144}
+=\frac{3(-107+51s)}{2048}.
+\end{align*}
+分母 $1889^2-441^2\cdot17=3568321-3306177=262144$ 是整数等式。
+$V_*<19/125$ 等价于 $19125\sqrt{17}<79037$。两边为正，平方后
+\[
+19125^2\cdot17=6218015625<79037^2=6246847369,
+\]
+差 $28831744>0$。这是精确整数比较。
+\end{proof}
+
+初值 $\psi(0)=CW$，$\partial_\tau\psi(0)=-CW'$，支集在 $[-1,1]$。
+它与势垒不相交，所以用 $V_0$ 或用 $V_{\eps,L}$ 算出的初始能量相同。
+连续能量
+\[
+E(\tau)=\frac12\int\bigl(|\partial_\tau\psi|^2+|\partial_x\psi|^2+V_{\eps,L}|\psi|^2\bigr)\rd x
+\]
+守恒。归一化要求 $E(0)=1$，故
+\[
+C^{-2}=\int_{-1}^{1}\Bigl((W')^2+\tfrac12 V_0 W^2\Bigr)\rd y.
+\]
+梯形积分在 $n=2\cdot10^3,2\cdot10^4,10^5$ 上给出同一个 $12$ 位值
+\[
+C=0.569235767826.
+\]
+这是数值求积，位数在三档网格上已稳定。下文的先验界不依赖 $C$ 的具体值，只依赖 $E(0)=1$。
+
+\begin{lemma}[已经证明]
+\label{lem:speed}
+设 $V$ 局部有界，$(\partial_\tau^2-\partial_x^2+V)\psi=f$。
+若 $\tau=0$ 时 $\psi$ 与 $\partial_\tau\psi$ 在 $x\ge a$ 上为零，且 $f$ 在区域 $x\ge a+\tau$ 上为零，则该区域上 $\psi=0$。
+左向陈述同样成立。
+\end{lemma}
+
+\begin{proof}
+记 $a(\tau)=a+\tau$，
+\[
+e(\tau)=\frac12\int_{a(\tau)}^\infty\bigl((\partial_\tau\psi)^2+(\partial_x\psi)^2+\psi^2\bigr)\rd x.
+\]
+在移动边界上用 Reynolds 输运，并代入方程 $\partial_\tau^2\psi=\partial_x^2\psi-V\psi+f$。
+$f$ 在该区域为零，边界通量与 $\partial_x\psi\cdot\partial_\tau\psi$ 合并后得到
+\[
+e'(\tau)\le K\int_{a(\tau)}^\infty(\psi^2+(\partial_\tau\psi)^2+(\partial_x\psi)^2)\rd x,
+\]
+其中 $K$ 只依赖 $\|V\|_{L^\infty}$ 在有限时刻的局部界。
+因而 $e(\tau)\le e(0)e^{C\tau}=0$。
+\end{proof}
+
+于是 $\psi_{\eps,L}$ 与 $\psi_0$ 在时刻 $\tau$ 的支集都落在 $[-1-\tau,1+\tau]$。
+势垒上的场在 $\tau<L-2$ 时为零。
+
+\section{最早影响时刻}
+\label{sec:causal}
+
+记 $\delta=\psi_{\eps,L}-\psi_0$。则 $\delta(0)=\partial_\tau\delta(0)=0$，并且
+\begin{equation}
+\label{eq:duhamel}
+(\partial_\tau^2-\partial_x^2+V_0)\delta=-\eps W(x-L)\psi_{\eps,L}
+=-\eps W(x-L)\psi_0-\eps W(x-L)\delta.
+\end{equation}
+右端支集在 $x\in(L-1,L+1)$。又因为 $\psi_{\eps,L}$ 在 $\tau<L-2$ 时碰不到势垒，源在 $\tau<L-2$ 时全体为零。
+
+\begin{theorem}[已经证明]
+\label{thm:causal}
+设 $L>12$，$x_o=10$。令 $\tau_*=2L-13$。则对一切 $\eps$ 和一切 $\tau<\tau_*$，
+\[
+\psi_{\eps,L}(\tau,x_o)=\psi_0(\tau,x_o),\qquad
+h_{\eps,L}(\tau)=h_0(\tau).
+\]
+因此当 $T\le\tau_*$ 时
+\[
+\int_0^T|h_{\eps,L}-h_0|^2\,\rd\tau=0.
+\]
+另外 $h_0(\tau)=0$ 对一切 $\tau<9$ 成立，所以 $T\le9$ 时 (Q3b) 的两个范数都是 $0$，$\cM$ 按题面无定义。
+\end{theorem}
+
+\begin{proof}
+源的最早时空点是 $(\tau,x)=(L-2,L-1)$。
+从该点向左走到 $x_o=10$ 还要时间 $(L-1)-10=L-11$。
+合计 $\tau_*=(L-2)+(L-11)=2L-13$。
+$L>12$ 保证 $\tau_*>11>9$。
+引理~\ref{lem:speed} 用在 $\delta$ 上：$\tau<\tau_*$ 时，点 $(\tau,10)$ 的后向光锥碰不到源，故 $\delta(\tau,10)=0$。
+同一论证用在稍晚的时刻，或直接对 $\partial_\tau\delta$ 作能量估计，得到 $\partial_\tau\delta(\tau,10)=0$。
+$h_0$ 的初值支集到 $x=1$ 为止，到 $x=10$ 的距离是 $9$。
+\end{proof}
+
+$W$ 在端点无穷阶平坦，所以 $\delta$ 在特征线 $\tau=\tau_*$ 上对观察者仍是无穷阶零。
+影响域的边界仍然是 $\tau_*$：把 $W$ 换成在 $x=L-1$ 处不平坦的同支集势，首个信号就贴着这根特征线。
+$\tau>\tau_*$ 之后本势的差是否真的非零，见第~\ref{sec:num} 节，那是数值证据。
+
+未扰动信号的总质量
+\[
+D_0=\int_0^\infty|h_0|^2\,\rd\tau
+\]
+的正性和有限性在第~\ref{sec:num} 节给出数值证据：$D_0\approx1$，而且 $\tau>100$ 之后的尾部小于 $10^{-9}$。
+在这个前提下，$\cE_{\eps,L}(T)=0$ 对一切 $T\le\tau_*$ 成立。
+分子为零是定理，不依赖 $D_0$。
+
+\section{首阶波形与 $\cE$、$\cM$ 的阶}
+
+在任何有限时间上，由下一节的能量估计，$\|\delta\|_{能量}=O(\eps)$。
+代回 \eqref{eq:duhamel}，
+\[
+(\partial_\tau^2-\partial_x^2+V_0)\delta_1=-\eps W(x-L)\psi_0,
+\]
+余项 $\delta-\delta_1$ 的源是 $-\eps W\delta$，因而在该有限时间上是 $O(\eps^2)$。
+这就是 Duhamel 的首阶：观察者上
+\[
+h_{\eps,L}-h_0=\eps h_1+r_\eps,\qquad \|r_\eps\|_{L^2(0,T)}=O(\eps^2).
+\]
+$O$ 的常数依赖 $T$，不依赖“把高斯尾巴当成紧支集”。本题初值是紧支的。
+
+\begin{proposition}[已经证明]
+\label{prop:orders}
+固定 $T>\tau_*$，并设 $\|h_0\|_{L^2(0,T)}>0$。若 $\|h_1\|_{L^2(0,T)}>0$，则
+\[
+\cE_{\eps,L}(T)=\Theta(\eps).
+\]
+若再设 $h_1$ 在 $[0,T]$ 上不与 $h_0$ 平行到使正交分量消失，则
+\[
+\cM_{\eps,L}(T)=\Theta(\eps^2).
+\]
+若 $T\le9$，则 $\cM$ 无定义。若 $9<T\le\tau_*$，则两个信号相等，$\cM=0$（此时范数非零是数值事实）。
+\end{proposition}
+
+\begin{proof}
+$\cE$ 的分子是 $\|\eps h_1+r_\eps\|_2$，分母是与 $\eps,L$ 无关的 $D_0^{1/2}$。
+首阶非零时分子是 $\Theta(\eps)$。
+令 $a=h_0|_{[0,T]}$，$b=a+\eps c+O(\eps^2)$，$A=\|a\|_2^2$，$\gamma=\langle c,a\rangle$。
+\[
+\frac{|\langle b,a\rangle|}{\|b\|_2\|a\|_2}
+=1-\frac{\eps^2}{2A}\bigl(\|c\|_2^2-\gamma^2/A\bigr)+O(\eps^3).
+\]
+括号是 $c$ 垂直于 $a$ 的分量。它非零时 $\cM=\Theta(\eps^2)$。
+平行部分在夹角里被消掉，所以 $\cM$ 比 $\cE$ 高一阶。
+\end{proof}
+
+$h_1\not\equiv0$ 与垂直分量非零都不是恒等式，它们依赖这块势和这组初值。
+第~\ref{sec:num} 节的网格给出 $E/\eps\approx0.20$，$M/\eps^2\approx0.021$，两套 $\dx$、多组 $(\eps,L)$ 上稳定。
+这是 generic leading order 的数值证据。
+特殊抵消会把这两个比压到高阶；这里没有发生。
+归一化失效只发生在 $T\le9$。
+
+迟到回波相对已经衰减的本地背景可以很大。
+(Q3a) 的分母是全程 $\int_0^\infty|h_0|^2$，不是回波窗口上的背景。
+回波对 $\cE$ 的贡献按全程质量归一，不会因为背景已经很小就变成 $O(1)$。
+
+\section{有限时间的显式界}
+\label{sec:bound}
+
+\begin{theorem}[已经证明]
+\label{thm:bound}
+对一切 $\eps>0$、$L>12$、$T\ge0$，
+\begin{equation}
+\label{eq:bound}
+\int_0^T|h_{\eps,L}(\tau)-h_0(\tau)|^2\,\rd\tau\le 2\eps^2(1+T)^7.
+\end{equation}
+常数与 $L$ 无关。
+\end{theorem}
+
+\begin{proof}
+扰动能量 $E_\eps(0)=1$ 且守恒，$V_{\eps,L}\ge0$，故 $\|\partial_x\psi_{\eps}\|_2\le\sqrt2$。
+支集长度不超过 $2(1+\tau)$，而且场在光锥边缘为零，所以
+\[
+\|\psi_{\eps}(\tau)\|_\infty\le\sqrt{2(1+\tau)}\,\|\partial_x\psi_{\eps}\|_2\le 2\sqrt{1+\tau}.
+\]
+势垒长度是 $2$，于是 $\|\psi_{\eps}\|_{L^2(\mathrm{bump})}\le 2\sqrt2\,\sqrt{1+\tau}$。
+
+$\delta$ 的 $V_0$-能量 $e(0)=0$，
+\[
+e'=\int\partial_\tau\delta\cdot\bigl(-\eps W\psi_{\eps}\bigr)\rd x,
+\qquad
+|e'|\le 4\eps\sqrt{e}\,\sqrt{1+\tau}.
+\]
+因此 $\frac{\rd}{\rd\tau}\sqrt{e}\le 2\eps\sqrt{1+\tau}$，
+\[
+\sqrt{e(\tau)}\le\frac43\eps(1+\tau)^{3/2}.
+\]
+同样的光锥估计给出
+\[
+\|\delta\|_2\le\frac{8\sqrt2}{3}\eps(1+\tau)^{5/2}.
+\]
+把 \eqref{eq:duhamel} 写成自由波动方程 $\square\delta=g$，
+\[
+g=-\eps W\psi_{\eps}-V_0\delta.
+\]
+引理~\ref{lem:vmax} 的 $V_*<19/125$ 给出
+\[
+\|g(\tau)\|_2\le K\eps(1+\tau)^{5/2},
+\qquad
+K=\sqrt2\cdot\frac{902}{375}.
+\]
+一维 d'Alembert 公式与零初值推出
+\[
+\partial_\tau\delta(\tau,x_o)=\frac12\int_0^\tau\Bigl(g(s,x_o+\tau-s)+g(s,x_o-\tau+s)\Bigr)\rd s.
+\]
+Cauchy--Schwarz 后对 $\tau\in[0,T]$ 积分，特征变量只把每个空间点算一次：
+\[
+\int_0^T|\partial_\tau\delta|^2\rd\tau\le T\int_0^T\|g\|_2^2\rd\tau.
+\]
+\[
+\int_0^T(1+s)^5\rd s\le\frac{(1+T)^6}{6},
+\]
+故左端不超过
+\[
+\frac{K^2}{6}\eps^2(1+T)^7.
+\]
+$K^2/6=1627208/843750<2$。
+\end{proof}
+
+\begin{proposition}[已经证明]
+\label{prop:window}
+设 $D_0\in(0,\infty)$。对任意 $c>0$、$A<\infty$ 和任意 $\alpha\in(0,1)$，存在 $\eps_0$，使得当 $0<\eps<\eps_0$、$L_0<L\le c\ln(1/\eps)$ 且 $0\le T\le AL$ 时，
+\[
+\cE_{\eps,L}(T)\le C(c,A,\alpha)\,\eps^\alpha.
+\]
+题面的 $\log$ 在这里读作自然对数。换底只把 $c$ 乘一个常数。
+\end{proposition}
+
+\begin{proof}
+定理~\ref{thm:bound} 给出分子不超过 $2\eps^2(1+AL)^7$。
+当 $L\le c\ln(1/\eps)$ 时，$(1+AL)^7$ 不超过 $C_1(\ln(1/\eps))^7$。
+$\eps(\ln(1/\eps))^{7/2}=o(\eps^\alpha)$ 当 $\alpha<1$。
+\end{proof}
+
+这个界在回波之前远不是锐的：定理~\ref{thm:causal} 说那里的分子精确为 $0$。
+它的用途是：窗口长度只是 $\ln(1/\eps)$ 时，多项式增长吃不掉 $\eps$。
+$\alpha=1$ 会被 $(\ln)^{7/2}$ 挡住，所以这条先验路线给不出最优幂。
+第~\ref{sec:num} 节的数值更接近 $\cE\sim 0.2\eps$，没有可见的对数放大。
+
+\section{共振位移的控制量}
+\label{sec:qnm}
+
+时间因子 $e^{-i\omega\tau}$。出射条件是 $x\to+\infty$ 时 $\psi\sim e^{i\omega x}$，$x\to-\infty$ 时 $\psi\sim e^{-i\omega x}$，$\Im\omega<0$。
+这不是 $L^2$ 本征值：$|e^{i\omega x}|=e^{|\Im\omega|x}$ 在 $+\infty$ 指数增长。
+
+右行 Jost 解写成
+\[
+\psi=e^{i\omega\rho}(\rho-2)^{2i\omega}f(\rho),\qquad f=\sum_{n=0}^{N}a_n\rho^{-n},\quad a_0=1.
+\]
+$f$ 满足
+\begin{align*}
+\Bigl(1-\frac4\rho+\frac4{\rho^2}\Bigr)f''
+&+\Bigl(2i\omega-\frac{4i\omega}\rho+\frac2{\rho^2}-\frac4{\rho^3}\Bigr)f'\\
+&+\Bigl(-\frac6{\rho^2}+\frac{18}{\rho^3}-\frac{12}{\rho^4}\Bigr)f=0.
+\end{align*}
+逐次解得 $a_1=3i/\omega$，
+\[
+a_2=-\frac{3i(\omega-2i)}{2\omega^2},\qquad a_3=0,
+\]
+更高阶由同一递推确定。
+视界解是 $e^{-i\omega\rho}(\rho-2)^{-2i\omega}g(\rho)$，$g=1+\sum b_k(\rho-2)^k$，
+\[
+b_1=\frac{3i}{2(4\omega+i)}.
+\]
+在 $\rho=30$ 处把 $N=12$ 的 $f$ 代回方程，残差 $2\cdot10^{-10}$；在 $\rho=60$ 处残差 $10^{-14}$。
+
+共振条件是这两支解在匹配点的 Wronskian $r(\omega,\eps)=0$。
+$r$ 对 $\eps$ 整，因为势对 $\eps$ 是线性的、支集紧。
+
+\begin{proposition}[已经证明]
+\label{prop:shift}
+若 $\omega_0$ 是 $r(\omega,0)=0$ 的简单零点，则
+\[
+\frac{\rd\omega}{\rd\eps}\Big|_{\eps=0}
+=-\frac{\partial_\eps r(\omega_0,0)}{\partial_\omega r(\omega_0,0)},
+\]
+只要分母非零。
+记这个导数为 $\omega_1$。
+视界归一的共振解在势垒处的幅度含因子 $e^{|\Im\omega_0|L}$，故
+\[
+|\eps\omega_1|\asymp\kappa,\qquad\kappa=\eps\exp\bigl(2|\Im\omega_0|L\bigr),
+\]
+比例因子是 $W$ 在频率 $2\omega_0$ 处的 Fourier 变换，与 $L$ 的指数无关，只随 $L$ 振荡。
+\end{proposition}
+
+指数来自 $|e^{i\omega_0 x}|=e^{|\Im\omega_0|x}$，平方后是 $e^{2|\Im\omega_0|L}$。
+它是出射条件的增长，不是物理波包的增长。
+物理右行脉冲在龟坐标里幅度守恒，到势垒仍是 $O(1)$。
+$\kappa$ 大表示“用共振波函数做一阶公式”已经离开适用区，不表示观察者上的波已经改变了 $O(1)$。
+定理~\ref{thm:causal} 在 $\tau_*$ 之前把后者钉死。
+
+\begin{proposition}[已经证明，在 $\kappa\to0$ 的前提下]
+\label{prop:double}
+令 $L=c\ln(1/\eps)$，$c_*=1/(2|\Im\omega_0|)$。则
+\[
+\kappa=\eps^{1-c/c_*}.
+\]
+$c<c_*$ 时 $\kappa\to0$。此时若余项是 $O(\kappa^2)$，则共振位移趋于 $0$。
+$c>c_*$ 时 $\kappa\to\infty$，一阶公式的右端发散；展开已经失效，停止外推。
+$c=c_*$ 时 $\kappa$ 趋于一个 $O(1)$ 常数，二阶项 $\eps^2 e^{4|\Im\omega_0|L}$ 也是 $O(1)$，线性公式单独不决定极限。
+\end{proposition}
+
+$\omega_0$ 与 $c_*$ 的数值见下节：$c_*=5.620$。
+$\kappa\le0.02$ 时，把 $\eps$ 分成 $8$ 步跟踪的根与 $\eps\omega_1$ 的模长比是 $1.026$ 和 $1.038$。
+$\kappa\ge0.05$ 时两者可以差到方向都不一致。那一组数只说明展开已经坏了，不拿来当位移的值。
+
+有限个 QNM 的和不是延迟解。
+$\tau<\tau_*$ 的波形由定理~\ref{thm:causal} 完全决定，不需要极点展开。
+极点控制的是回波之后、与 $e^{\omega_I\tau}$ 可比的那段。
+prompt 在 $\tau\in(9,20)$ 附近，低频分支割线与晚期尾在 $L^2(d\tau)$ 里的贡献见下节的累积积分：$\tau>60$ 之后 $D_0$ 的增量小于 $10^{-5}$。
+这是数值事实，不是 Price 律的证明。
+
+\section{时域数值}
+\label{sec:num}
+
+\subsection{格式}
+
+空间二阶中心差，时间蛙跳，$\dt=\dx$。
+势项用
+\[
+\psi^{n+1}_j=\frac{2\psi^n_j+\dt^2(D_{xx}\psi^n)_j}{1+\dt^2 V_j/2}-\psi^{n-1}_j
+\]
+隐式平均，因此 $V>0$ 时 $\dt=\dx$ 仍然稳定；主部在 $\dt=\dx$ 时是精确平移。
+右边界 $\psi^{n+1}_N=\psi^n_{N-1}$，左边界 $\psi^{n+1}_0=\psi^n_1$，对单向自由波精确。
+观察者放在网格点 $x=10$ 上。计算域 $x\in[-70,x_{\max}]$，$x_{\max}\ge90$，长时运行取到 $\max(100,L+30)$。
+左边界的虚假反射回到 $x=10$ 的时刻约 $150$，右边界约 $2x_{\max}-11$。
+下文用到的终止时刻都早于这两个时刻。
+
+两套网格 $\dx=0.05$ 与 $\dx=0.025$。
+$V\equiv0$ 时精确解是 $CW(x-\tau)$。在 $\tau\in[9,11]$ 上，
+$\dx=0.05$ 的均方根误差是 $1.06\cdot10^{-2}$，$\dx=0.025$ 是 $3.07\cdot10^{-3}$，比值 $3.45$，接近二阶。
+$\tau<8.5$ 的到达前幅度在两套网格上都是 $0$。
+
+\subsection{未扰动波形与 $\omega_0$}
+
+$\int_0^{120}|h_0|^2$ 在 $\dx=0.05$ 上是 $0.996580$，在 $\dx=0.025$ 上是 $1.004100$，相对差 $0.7\%$。
+累积积分到 $\tau=60$ 已经和到 $\tau=120$ 在 $10^{-6}$ 以内相同。
+$\tau\ge100$ 的尾部是 $4\cdot10^{-10}$。
+直接脉冲的峰值约 $1.22$。
+因此把 $D_0$ 取成 $1.004$，误差按网格差估计约 $0.008$。
+\textbf{仅有数值证据：} $D_0\in(0.99,1.01)$，从而定理~\ref{thm:causal} 里的 $\cE$ 在 $\tau_*$ 之前是 $0$。
+
+单模最小二乘不是高精度频率。
+窗口 $[22,46]$ 给出约 $0.371-0.095i$，窗口 $[30,55]$ 给出约 $0.369-0.088i$，相对残差 $0.09$ 到 $0.11$。
+窗口一动，虚部就动 $0.008$。它只说明时域信号里有一支靠近射击结果的阻尼振荡。
+
+射击用两套配置。
+A：$\rho_{\mathrm{out}}=30$，$\rho_{\mathrm{hor}}=2.2$，RK45，相对容差 $10^{-7}$，级数 $8$ 项。
+B：$\rho_{\mathrm{out}}=55$，$\rho_{\mathrm{hor}}=2.08$，DOP853，相对容差 $10^{-9}$，级数 $12$ 项。
+\[
+\begin{aligned}
+\omega_A&=0.37367233-0.08896198\,i,\\
+\omega_B&=0.37367168-0.08896231\,i.
+\end{aligned}
+\]
+实部差 $6\cdot10^{-7}$，虚部差 $3\cdot10^{-7}$，匹配点上的相对 Wronskian 分别是 $10^{-12}$ 与 $10^{-11}$。
+下文用 $\omega_B$。于是
+\[
+c_*=\frac1{2|\Im\omega_B|}=5.62036.
+\]
+早先用有限半径上的纯指数初值打靶，两套半径给出 $0.40-0.07i$ 与 $0.42-0.04i$，互相不一致。那一组已经作废，不进入结论。原因是 $V\sim6/x^2$ 的 Jost 截断在 $x_R\sim10^2$ 时仍有百分之几。
+
+\subsection{波形差}
+
+蛙跳的依赖域在 $\dt=\dx$ 时就是光锥，所以 $\tau<\tau_*-1.5$ 上 $|h_\eps-h_0|$ 的最大值在每组参数、两套网格上都是 $0$。
+这和定理~\ref{thm:causal} 一致，并且是格式层面的精确零，不是容差内的近似零。
+
+下表是 $\dx=0.025$。$E_{\mathrm{short}}$ 取在刚包住第一回波的时刻，$E_{130}$ 取在 $\tau=130$。
+$\kappa$ 用上面的 $|\Im\omega_B|$ 重算。$M$ 是短时间终点上的 (Q3b)。
+
+\begin{center}
+\small
+\begin{tabular}{rrrrrr}
+\toprule
+$L$ & $\eps$ & $\kappa$ & $E_{\mathrm{short}}/\eps$ & $E_{130}/\eps$ & $M/\eps^2$\\
+\midrule
+16 & 0.025 & 0.431 & 0.204 & --- & 0.0208\\
+16 & 0.05 & 0.862 & 0.205 & 0.212 & 0.0211\\
+16 & 0.10 & 1.72 & 0.207 & 0.214 & 0.0215\\
+22 & 0.05 & 2.51 & 0.200 & 0.207 & 0.0199\\
+30 & 0.05 & 10.4 & 0.197 & --- & 0.0194\\
+40 & 0.05 & 61.6 & 0.196 & --- & 0.0191\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+$\dx=0.05$ 与 $\dx=0.025$ 的 $E_{\mathrm{short}}$ 相对差约 $0.4\%$，$E_{130}$ 约 $0.5\%$。
+$L=16,\eps=0.05$ 的累积 $\cE(\tau)$ 在 $\tau=15,35,55,80,105,130$ 是
+\[
+0,\;0.00994,\;0.01041,\;0.01060,\;0.01061,\;0.01061.
+\]
+第一回波之后还有第二、第三回波的时间，积分几乎不再增长。
+$\eps=0.1$ 同样在 $\tau=105$ 之后停在 $0.02145$。
+
+\textbf{仅有数值证据：}
+对表中的 $(\eps,L)$，$\cE$ 的首阶是 $\eps$，$\cM$ 的首阶是 $\eps^2$，
+而且到 $\tau=130$ 为止 $\sup_T\cE\le 0.22\eps$。
+$L=40$、$\kappa\approx62$ 时这个比仍然是 $0.196$。
+大的 $\kappa$ 与 $O(\eps)$ 的波形误差同时出现。
+
+\subsection{位移的数值}
+
+线性化用 $r$ 对 $\omega$ 和 $\eps$ 的中心差商。跟踪根时把 $\eps$ 分成 $8$ 步，每步用上一个根作初值。
+
+\begin{center}
+\small
+\begin{tabular}{rrrrrr}
+\toprule
+$L$ & $\eps$ & $\kappa$ & $|\eps\omega_1|$ & $|\omega(\eps)-\omega_0|$ & \mbox{比值}\tabularnewline
+\midrule
+14 & $5\cdot10^{-4}$ & 0.0060 & 0.000744 & 0.000763 & 1.026\tabularnewline
+16 & $1\cdot10^{-3}$ & 0.0172 & 0.002147 & 0.002229 & 1.038\tabularnewline
+14 & $2\cdot10^{-3}$ & 0.0241 & 0.002981 & 0.003304 & 1.11\tabularnewline
+24 & $5\cdot10^{-4}$ & 0.0358 & 0.004644 & 0.006388 & 1.38\tabularnewline
+16 & 0.02 & 0.345 & 0.0430 & 0.0286 & \mbox{方向已分叉}\tabularnewline
+\bottomrule
+\end{tabular}
+\end{center}
+
+$\kappa\le0.02$ 时模长相符到百分之几，方向相同。这是一阶公式的数值证据。
+$\kappa=0.345$ 时线性预测约 $0.030-0.031i$，跟踪根约 $0.028+0.003i$。
+\textbf{猜想不能外推：} 后者不是前者的有效延拓，只能各说各的。
+$|\eps\omega_1|/\kappa$ 在 $L=14$ 到 $28$ 上处于 $0.12$ 与 $0.13$ 之间，和“指数因子提出来之后剩下 $W$ 的 Fourier 变换”相符。
+
+\section{(Q3c) 与 source--detector 判据}
+\label{sec:q3c}
+
+(Q3c) 要求一个与 $L$ 和 $T$ 都无关的幂。
+命题~\ref{prop:window} 只覆盖 $T=O(\ln(1/\eps))$。
+固定 $T$ 的连续依赖更弱，不蕴含 (Q3c)。
+
+频率空间里，延迟解的 Laplace 变换 $\hat\psi(\omega)=\int_0^\infty e^{i\omega\tau}\psi\,\rd\tau$（$\Im\omega$ 足够大，再解析延拓）满足
+\[
+(H_\eps-\omega^2)\hat\psi_\eps=S,\qquad
+S=\partial_\tau\psi(0)-i\omega\psi(0),
+\]
+$H_\eps=-\partial_x^2+V_{\eps,L}$。于是
+\begin{equation}
+\label{eq:resolvent}
+\hat\psi_\eps(\omega,x_o)-\hat\psi_0(\omega,x_o)
+=-\eps\int G_\eps(\omega;x_o,y)\,W(y-L)\,\hat\psi_0(\omega,y)\,\rd y,
+\end{equation}
+其中 $G_\eps=(H_\eps-\omega^2)^{-1}$ 是出射 Green 函数。
+$h=\partial_\tau\psi$ 在 $x_o$ 的初值为 $0$，故 $\widehat{\Delta h}=-i\omega\Delta\hat\psi$。
+若差信号属于 $L^2(0,\infty)$，Plancherel 给出
+\[
+\int_0^\infty|\Delta h|^2\rd\tau
+=\frac1{2\pi}\int_{-\infty}^\infty
+\bigl|\omega\Delta\hat\psi(\omega,x_o)\bigr|^2\rd\omega.
+\]
+
+\begin{proposition}[已经证明的等价判据]
+\label{prop:criterion}
+设 $D_0\in(0,\infty)$。则 (Q3c) 对 $\alpha=1$ 成立，当且仅当存在 $C_0,\eps_0$，使对一切 $0<\eps<\eps_0$ 和一切 $L\ge L_0$，\eqref{eq:resolvent} 右端沿实频的加权 $L^2$ 范数不超过 $C_0$。
+此时 $C_*=C_0^{1/2}D_0^{-1/2}$。
+\end{proposition}
+
+实频上的 $|G(\omega;x_o,L)|$ 对实 $\omega\neq0$ 是振荡的，幅度随 $L$ 不指数增长。
+指数增长只出现在 $\Im\omega<0$ 的共振波函数上。
+所以“复平面上极点移动很大”与“实频上这条 source--detector 核仍然是 $O(1)$”可以并存。
+表中 $\kappa\sim60$ 而 $E/\eps\sim0.20$ 就是这件事的时域对应。
+
+把 (Q3c) 从命题~\ref{prop:window} 推进到 $T=\infty$，缺的是 \eqref{eq:resolvent} 对 $L$ 和 $\eps\in(0,\eps_0)$ 一致的 $L^2(d\omega)$ 界。
+低频处小势垒的反射系数趋于 $-1$，Schwarzschild 势垒的透射又随频率的正幂变小。
+这两件事使估计的常数可能带 $L$ 的幂。
+定理~\ref{thm:bound} 的 $(1+T)^7$ 太松，盖不住 $T\to\infty$。
+数值上到 $\tau=130$ 积分已经饱和，没有看到这种增长；这还不是一致界。
+
+能量空间上的 pseudospectrum 度量的是 $(H-\omega^2)^{-1}$ 的算子范数，允许的扰动是该范数意义下的任意小算子。
+本题的扰动是一个指定的、支在 $[L-1,L+1]$ 的乘法算子，观测量是 $x_o$ 处的时间导数。
+与这两件事直接对应的是 \eqref{eq:resolvent} 的标量核，而不是那张谱图。
+本文不计算 pseudospectrum。
+
+\textbf{(Q3c) 的状态：} 全称命题未证明，也没有构造出 $\eps_j\to0$ 而 $\cE$ 有正下界不趋于 $0$ 的族。
+在 $T=O(L)$、$L=c\ln(1/\eps)$ 上，命题~\ref{prop:window} 给出每个 $\alpha<1$。
+数值上更像 $\alpha=1$、$C_*\approx0.22$，至少在 $L\le40$、$\tau\le130$、$\eps\ge0.025$ 的计算范围内，而且这个范围已经包含 $\kappa\gg1$。
+
+\section{结论怎么标注}
+
+\begin{center}
+\small
+\begin{tabular}{p{0.62\textwidth}p{0.28\textwidth}}
+\toprule
+陈述{} & 状态{}\tabularnewline
+\midrule
+$\tau<\tau_*=2L-13$ 时 $h_{\eps,L}=h_0$；$\tau<9$ 时 $h_0=0$ & 已经证明{}\tabularnewline
+$\int_0^T|\Delta h|^2\le 2\eps^2(1+T)^7$，与 $L$ 无关 & 已经证明{}\tabularnewline
+$L\le c\ln(1/\eps)$、$T\le AL$ 时，每个 $\alpha<1$ 都有 $\cE=O(\eps^\alpha)$ & 已经证明（用到 $D_0>0$ 的数值）{}\tabularnewline
+$\cE$ 的首阶是 $\eps$，$\cM$ 的首阶是 $\eps^2$ & 阶数结构已证明；系数非零是数值证据{}\tabularnewline
+$T\le9$ 时 $\cM$ 无定义；$9<T\le\tau_*$ 时 $\cM=0$ & 已经证明；范数非零是数值证据{}\tabularnewline
+$\omega_0=0.3736717-0.0889623i$，两套离散差 $10^{-6}$ & 仅有数值证据{}\tabularnewline
+$\kappa=\eps e^{2|\Im\omega_0|L}$，$c_*=5.620$；$\kappa\to0$ 时一阶位移趋于 $0$ & 缩放已证明；小 $\kappa$ 的符合是数值证据{}\tabularnewline
+$\kappa\not\to0$ 时不得把 $\eps\omega_1$ 外推成根的位置 & 已经证明（展开式的余项不再小）{}\tabularnewline
+$\kappa\sim60$ 时 $E/\eps$ 仍约 $0.20$ & 仅有数值证据{}\tabularnewline
+(Q3c) 对某个 $\alpha>0$ 对所有 $L,T$ 成立 & 尚未闭合；无反例族{}\tabularnewline
+\bottomrule
+\end{tabular}
+\end{center}
+
+可证伪下一步：把 \eqref{eq:resolvent} 在实频上对 $L=c\ln(1/\eps)$、$c>c_*$ 做一致估计，或找到一组 $\eps_j\to0$ 使 $\int_0^\infty|\Delta h|^2$ 不趋于 $0$。
+现有的长时积分在 $\eps=0.05,0.1$ 上已经饱和，所以反例如果存在，不在“第一回波”这一段，而在更低的频率或更长的 $L$。
+
+计算脚本是 \texttt{q3\_compute.py}（时域）和 \texttt{q3\_qnm.py}（级数打靶与长时回波）。
+\texttt{q3\_results.json} 里的 \texttt{qnm0}、\texttt{shifts} 属于已作废的纯指数打靶，频率以 \texttt{q3\_qnm.json} 为准。
+
+\end{document}

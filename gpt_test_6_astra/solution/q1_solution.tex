@@ -1,0 +1,512 @@
+% !TeX program = xelatex
+\documentclass[UTF8,a4paper,11pt,fontset=fandol]{ctexart}
+\usepackage[margin=23mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,array,longtable}
+\usepackage{xcolor,hyperref,fancyhdr,enumitem}
+\definecolor{ink}{HTML}{172D45}
+\definecolor{accent}{HTML}{146C80}
+\hypersetup{colorlinks=true,linkcolor=accent,urlcolor=accent,citecolor=accent,pdftitle={题一解答：一圈YM到EYM共线重构的低点不可解性}}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small YM $\longrightarrow$ EYM：精确低点解答}\fancyhead[R]{\small 2026-09-17}\fancyfoot[C]{\thepage}
+\setlength{\parindent}{2em}\setlength{\parskip}{3pt}
+\setlist{nosep,leftmargin=2em}
+\newcommand{\ang}[1]{\langle #1\rangle}
+\newcommand{\sq}[1]{[#1]}
+\newcommand{\Cx}{\mathcal C_x}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\PT}{\operatorname{PT}}
+\newcommand{\trm}{\operatorname{tr}_{-}}
+\newcommand{\coeff}[2]{[z^{#1}]#2}
+\newcommand{\proved}{\textbf{已经证明}}
+\newcommand{\openpart}{\textbf{尚未闭合}}
+\newtheorem{theorem}{定理}
+\newtheorem{lemma}{引理}
+\setcounter{tocdepth}{1}
+\title{\color{ink}\bfseries 题一解答\\[5pt]\Large 树级 YM$\to$EYM 共线重构的一圈障碍\\[4pt]\large $n=3$ 全部局域一次核的函数域不可解性证书}
+\author{计算与推导记录}
+\date{2026 年 9 月 17 日}
+\begin{document}
+\maketitle
+\begin{abstract}
+在题面允许的六个非相邻排序上取任意
+$K_\sigma=\alpha_\sigma(x)s+\beta_\sigma(x)t$，
+$\alpha_\sigma,\beta_\sigma\in\QQ(x)$。
+本文给出一个显式多项式左零向量证书，证明这些核不能同时重构
+$n=3$ 的全正一圈 EYM 振幅和三个单负一圈 EYM 振幅。
+因此题设 (Q1) 已在最低要求的 $n=3$ 处失败；失败涉及整个允许核空间，
+并非只涉及一个树级代表。
+此外，完整求出树级零核空间的维数为 $8$，给出循环对称树级代表及其四个一圈缺陷，
+并解释 $D$ 维积分中的 $\mu^4$、$\mu^2$ 项。
+物理振幅以明确列出的标准文献公式为输入；新的核空间结论在本文中直接证明。
+\end{abstract}
+
+\noindent\textbf{交付边界。}
+\proved：$n=3$ 的核空间与不可解性；相应精确式及代数证书。
+\textbf{精确计算复核}：558 项断言、12 组未参与证书构造的有理运动学点。
+\openpart：$n=4$ 的独立判定、最小扩张的唯一性与任意多重数归纳证明。
+没有把有限点检验、文献存在或一次计算运行当作这些未完成命题的证明。
+
+\tableofcontents
+\newpage
+\section{约定与物理输入}
+
+所有动量出射，记 $4=P$，并取
+\begin{equation}
+ s=s_{12}=s_{3P},\qquad t=s_{23}=s_{1P},\qquad
+ u=s_{13}=s_{2P}=-s-t,\qquad s_{ij}=\ang{ij}\sq{ji}.
+\end{equation}
+因此核空间中只有两个独立 Mandelstam 变量，不能把六个 $s_{ij}$ 当成独立未知量。
+下文树级除去公共相位 $i$，一圈除去公共因子
+\begin{equation}
+ L=\frac{i}{48\pi^2}.
+\end{equation}
+耦合、leading-color 公共颜色因子按题面剥离。
+为使约定可复核，树级相对相位固定为式 \eqref{eq:single-kernel}，
+一圈采用 Nandan--Plefka--Travaglini（简称 NPT）单迹约定；
+外部引力张量是题面规定的同号极化矢量之积。
+如把引力振幅及树核整体改乘一个非零常数，本文的不可解性证书只整体缩放，结论不变。
+这使主结论也不依赖文献之间的整体引力耦合或色迹换算。
+
+\subsection{需要的实际一圈 EYM 振幅}
+记去掉 $L$ 后的一圈振幅为 $E$。在题面要求的纯胶子圈、$\kappa g^3$ 阶，
+\begin{align}
+ E_+&=0,\label{eq:eymplus}\\
+ E_1&=\frac{\sq{2P}\sq{3P}}{\ang{2P}\ang{3P}}
+       \frac{s^2+u^2}{2\ang{23}\sq{21}\sq{31}},\label{eq:eymminus}
+\end{align}
+$E_2,E_3$ 由硬腿循环置换得到，负 helicity 所在腿随之移动。
+式 \eqref{eq:eymplus}--\eqref{eq:eymminus} 是 NPT
+式 (3.12)、(4.31) 的重写\cite{NPT}，并非本文从零重新计算全部费曼图的结果。
+第 \ref{sec:mu} 节将独立代入维数平移积分的常数项，复核其积分后结果。
+
+这些扇区的树振幅为零，一圈结果有限。
+从四维内部极化计数换成 HV 的 $D-2$ 个内部胶子极化，差异为
+$O(\epsilon)$ 的标量态贡献；相应标量振幅在这里有限，故不改变所取的
+$\epsilon^0$ 系数。这个说明只用于本题这些有限有理扇区，不能照搬到一般红外发散振幅。
+用标量圈作计算代理不意味着给目标理论加入物质；不会包含更高 $\kappa$ 阶的引力圈。
+
+\subsection{需要的 YM 公式及其可取极限性}
+对排序 $o=(o_1,\ldots,o_5)$，令
+\begin{equation}
+ \PT(o)=\prod_{j=1}^5\ang{o_j o_{j+1}},\qquad o_6=o_1.
+\end{equation}
+树级 MHV 振幅为 $\ang{ij}^4/\PT(o)$。
+一圈全正振幅的去因子表达式采用\cite{NPT}
+\begin{equation}
+ F_+(o)=\frac{\displaystyle\sum_{r_1<r_2<r_3<r_4}
+ \ang{o_{r_1}o_{r_2}}\sq{o_{r_2}o_{r_3}}
+ \ang{o_{r_3}o_{r_4}}\sq{o_{r_4}o_{r_1}}}{\PT(o)}.
+\label{eq:plusformula}
+\end{equation}
+对于负腿循环移到首位的 $(i^-,j^+,l^+,m^+,n^+)$，取\cite{BDKsoft}
+\begin{align}
+ F_-(i,j,l,m,n)=\frac1{\ang{lm}^2}\bigg[
+ -\frac{\sq{jn}^3}{\sq{ij}\sq{ni}}
+ +\frac{\ang{im}^3\sq{mn}\ang{ln}}{\ang{ij}\ang{jl}\ang{mn}^2}
+ -\frac{\ang{il}^3\sq{lj}\ang{mj}}{\ang{in}\ang{nm}\ang{lj}^2}
+ \bigg].\label{eq:minusformula}
+\end{align}
+该式与 BDK 原始五胶子式 (4)\cite{BDK93} 在所用运动学上逐式比对。
+所有分母只含该排序相邻两腿的括号；$a,b$ 不相邻，故一般硬运动学下没有
+$\ang{ab}$ 或 $\sq{ab}$ 分母。这直接保证本题的 $\Cx$ 是合法代入，
+没有丢掉任何相邻共线极点，也不需要指定接近共线的路径。
+
+\section{A：低点排序、树级校准与一圈缺陷}
+
+\subsection{全部六个排序}
+把腿 $1$ 放在排序首位，完整集合为
+\begin{equation}
+\begin{array}{lll}
+ \sigma_1=(1,b,2,a,3),&\sigma_2=(1,a,2,b,3),\\
+ \sigma_3=(1,2,b,3,a),&\sigma_4=(1,2,a,3,b),\\
+ \sigma_5=(1,a,2,3,b),&\sigma_6=(1,b,2,3,a).
+\end{array}\label{eq:orders}
+\end{equation}
+这是在三个硬腿间隙中分别放入 $a,b$，共 $3\cdot2=6$ 种选择。
+没有将 $a\leftrightarrow b$ 当成等价关系；二者的一圈结果通常不同。
+
+\subsection{一个覆盖一般不变量的精确运动学参数化}
+取两个独立变量 $k,z$：
+\begin{equation}
+\begin{array}{c|rrrr}
+ i&1&2&3&P\\\hline
+ \lambda_i&(1,0)&(0,1)&(1,1)&(1,z)\\
+ \widetilde\lambda_i&(-1,-k)&(-1,-kz)&(1,0)&(0,k)
+\end{array}\label{eq:spinors}
+\end{equation}
+直接相加可得 $\sum_i\lambda_i\widetilde\lambda_i^{\mathsf T}=0$，且
+\begin{equation}
+ s=k(1-z),\qquad t=kz,\qquad u=-k.
+\end{equation}
+取 $kz(z-1)\ne0$。这不是选一个随机运动学点，而是在两个独立不变量上保留符号变量。
+证明不存在核时，甚至只需它是一族合法运动学；一个普遍恒等式必须在这族上成立。
+
+为避免在脚本中运算平方根，可以先用
+$\lambda_a=\lambda_b=\lambda_P$、
+$\widetilde\lambda_a=x\widetilde\lambda_P$、
+$\widetilde\lambda_b=(1-x)\widetilde\lambda_P$。
+随后对两个正 helicity 辅助腿乘 $1/[x(1-x)]$，对两个负 helicity 辅助腿乘
+$x(1-x)$，恰好恢复题面的对称自旋量分配。这只是 little-group 变换。
+
+以下简记
+\begin{equation}
+ y=1-x,\quad h=x^2-x+1,\quad D=xz(x-1)(z-1).
+\end{equation}
+对于任意两个负 helicity 硬腿 $i,j$，六个树级结果为
+\begin{equation}
+ \Cx A^{(0)}(\sigma_r)=\ang{ij}^4 T_r,\qquad
+ (T_1,\ldots,T_6)=\frac1D
+ \left(1,1,\frac1{z-1},\frac1{z-1},-\frac1z,-\frac1z\right).
+\label{eq:tree-vector}
+\end{equation}
+
+\subsection{标准代表及非零校准}
+Stieberger--Taylor 的最低点代表\cite{ST}是
+\begin{equation}
+ K^{\rm ST}_1=xyu,\qquad K^{\rm ST}_{r\ne1}=0.
+\label{eq:single-kernel}
+\end{equation}
+为展示循环对称的缺陷，本文实际采用它的硬腿循环平均：
+\begin{equation}
+ \boxed{K^{\rm tree}=\frac{xy}{3}(u,0,s,0,t,0).}
+\label{eq:tree-kernel}
+\end{equation}
+每个被平均的项都给出相同树振幅，因此平均不改变校准。
+例如在 \eqref{eq:spinors} 中，
+\begin{equation}
+ \boxed{M^{(0)}_{3;1}(1^-,2^-,3^+;P^{++})
+ =\sum_r K^{\rm tree}_r T_r=\frac{k}{z(z-1)}\ne0.}
+\label{eq:calibration}
+\end{equation}
+其它两个非零正引力 helicity 校准，只需乘相应 $\ang{ij}^4$。
+负引力 helicity 由 parity 得到。所有其它树级配置，要么属于消失的 helicity 扇区，
+要么五胶子 MHV/反 MHV 分子含 $\ang{ab}^4$ 或 $\sq{ab}^4$，共线后为零。
+因此这里确实处理了全部树级 helicity，而不是只挑一个 MHV 测试。
+
+\subsection{实际一圈函数与四个精确缺陷}
+在 \eqref{eq:spinors} 上，式 \eqref{eq:eymminus} 及其循环像给出
+\begin{equation}
+ (E_1,E_2,E_3)=-\frac{k^2}{2}
+ \left(\frac{z^2-2z+2}{(z-1)^2},\
+ \frac{2z^2-2z+1}{z^2(z-1)^2},\
+ \frac{z^2+1}{z^2}\right).
+\label{eq:eym-vector}
+\end{equation}
+全正 YM 共线向量可以写成
+\begin{equation}
+ \Cx A^{(1)}_+(\sigma_r)=\frac{k^2}{D}q_r,\qquad
+ \begin{aligned}
+ q_1&=x^2(1-z)+y^2z,&q_2&=y^2(1-z)+x^2z,\\
+ q_3&=x^2z-y^2,&q_4&=y^2z-x^2,\\
+ q_5&=y^2(1-z)-x^2,&q_6&=x^2(1-z)-y^2.
+ \end{aligned}\label{eq:q-vector}
+\end{equation}
+单负 YM 向量由 \eqref{eq:minusformula} 逐一代入六个排序定义；
+例如负腿为 $1$ 时前两项是
+\begin{equation}
+ \frac{k}{xy(z-1)^2}
+ \left(h(z-1)^2+x(2z-1),\quad h(z-1)^2+y(2z-1)\right).
+\end{equation}
+其余项的完整精确表达由随附脚本直接生成，无须任何拟合。
+
+对于式 \eqref{eq:tree-kernel}，缺陷为
+\begin{align}
+ \boxed{\Delta_+=-\frac{k^3(2h-1)(z^2-z+1)}{3z(z-1)}}\,,\label{eq:dplus}\\
+ \Delta_1&=\frac{k^2\big[(2h-1)(z^2-2z+2)+4(z-1)\big]}{6(z-1)^2},\\
+ \Delta_2&=\frac{k^2\big[(2h-1)(2z^2-2z+1)-4z(z-1)\big]}{6z^2(z-1)^2},\\
+ \Delta_3&=\frac{k^2\big[(2h-1)(z^2+1)-4z\big]}{6z^2}.
+\label{eq:dminus}
+\end{align}
+这些式子使用已剥离的振幅；恢复所选公共一圈因子时统一乘 $L$。
+这里不同 helicity 的 $k$ 次数不同，是 \eqref{eq:spinors} 中 little-group
+规范选择的结果，不是物理质量量纲冲突。
+
+\textbf{独立代数校验。}
+全正公式用五点的另一种表达式交叉计算；单负公式与 BDK 1993 年式 (4) 交叉计算。
+再换到未用于构造证书的 12 组一般四点有理自旋量，验证两种表达相等和八个树零核的正、负引力 helicity 零值。
+物理 EYM 输入的有限部分另由第 \ref{sec:mu} 节的积分常数复核。
+这些是不同表示与积分极限的检查，不宣称是另一次完整费曼图计算。
+
+\section{B：完整树零核空间与整个允许类的反证}
+
+\subsection{\texorpdfstring{$\mathcal N_3$}{N3} 的完整描述}
+一般允许核写为
+\begin{equation}
+ K_r=\alpha_r s+\beta_r t,\qquad
+ \alpha_r,\beta_r\in\QQ(x),\qquad r=1,\ldots,6.
+\end{equation}
+定义成对和
+\begin{equation}
+ A_j=\alpha_{2j-1}+\alpha_{2j},\qquad
+ B_j=\beta_{2j-1}+\beta_{2j},\quad j=1,2,3.
+\end{equation}
+由 \eqref{eq:tree-vector}，树零核条件等价于
+\begin{equation}
+ \big[A_1(1-z)+B_1z\big]
+ +\frac{A_2(1-z)+B_2z}{z-1}
+ -\frac{A_3(1-z)+B_3z}{z}=0.
+\end{equation}
+先比较 $z=0,1$ 的留数，再比较常数及一次项，得到必要且充分的四个条件：
+\begin{equation}
+ \boxed{A_3=0,\qquad B_2=0,\qquad B_1=A_1,\qquad A_1-A_2-B_3=0.}
+\label{eq:nullspace}
+\end{equation}
+负引力 helicity 的平方括号表达给出同样的条件，故
+\begin{equation}
+ \boxed{\dim_{\QQ(x)}\mathcal N_3=12-4=8.}
+\end{equation}
+所有树级重构核为 $K^{\rm tree}+\mathcal N_3$。
+在非齐次条件中，仅将 \eqref{eq:nullspace} 最后一式的右端改成 $-xy$。
+
+\textbf{为何“一个树代表失败”还不够。}
+把全正一圈的零目标条件加入树级条件后，系数矩阵及增广矩阵的函数域秩都是 $7$，
+故仍有 $5$ 维解族。这证明树零核确实能修补本节之前看到的全正缺陷。
+这些秩是在 $\QQ(x)$ 上精确求得；在 $x=1/2$ 等特殊值可能降秩，不能用一次特殊值计算代替函数域结论。
+
+\subsection{无需树级条件的一圈不可解性}
+以下定理更强：只保留题面指定的一圈目标，允许类就已经不够大。
+
+\begin{theorem}\label{thm:nogo}
+对 $n=3$，不存在六个局域一次核
+$K_r=\alpha_r(x)s+\beta_r(x)t$，能够同时把六个非相邻共线 YM 一圈振幅重构成
+全正 EYM 振幅以及负 helicity 分别位于 $1,2,3$ 的三个单负 EYM 振幅。
+因此不存在满足 (Q1) 的同一套树级与一圈核。
+\end{theorem}
+
+\begin{proof}
+只需在 \eqref{eq:spinors} 的 $k=1$ 切片上反证。设
+\begin{equation}
+ w_r(z)=\alpha_r(1-z)+\beta_rz.
+\end{equation}
+令 $V_{0r}=\Cx A^{(1)}_+(\sigma_r)|_{k=1}$，
+$V_{jr}=\Cx A^{(1)}_{j^-}(\sigma_r)|_{k=1}$，$e_j=E_j|_{k=1}$。
+这些函数由 \eqref{eq:minusformula}、\eqref{eq:eym-vector}、\eqref{eq:q-vector} 完全确定。
+定义四个残差的清分母多项式：
+\begin{align}
+ P_0(z)&=xz(x-1)(z-1)\sum_{r=1}^6w_rV_{0r},\\
+ P_1(z)&=2xz(x-1)(z-1)^3\left(\sum_rw_rV_{1r}-e_1\right),\\
+ P_2(z)&=2xz^3(x-1)(z-1)^3\left(\sum_rw_rV_{2r}-e_2\right),\\
+ P_3(z)&=2xz^3(x-1)(z-1)\left(\sum_rw_rV_{3r}-e_3\right).
+\label{eq:polys}
+\end{align}
+这里清去的分母在所选一般区域非零，并未改变恒等式问题。
+$\deg P_0\le2$，$\deg P_j\le5$，故所有要求都是有限个线性系数约束。
+
+令 $d=x(x-1)$，$h=x^2-x+1$。直接代入上述振幅并比较系数，得到
+\begin{align}
+ &-2dh\,\coeff{2}{P_0}
+ +d(3h-1)\,\coeff{5}{P_1}
+ +h(2h-1)\,\coeff{4}{P_1}\notag\\
+ &\hspace{14mm}
+ +h^2\,\coeff{3}{P_1}
+ -h^2\,\coeff{4}{P_2}
+ -h^2\,\coeff{3}{P_3}
+ =-dh(2h+1).
+\label{eq:certificate}
+\end{align}
+关键在于右端不含任何 $\alpha_r,\beta_r$。
+换言之，这六行线性约束的相应组合把全部 $12$ 个未知系数逐一消掉了。
+式 \eqref{eq:certificate} 是可直接逐项展开检查的多项式恒等式，
+完整矩阵及左零向量也保存在\allowbreak\nolinkurl{certificate.json} 中。
+
+若四个目标全都成立，则 $P_0=P_1=P_2=P_3=0$，左端为零。
+而在函数域 $\QQ(x)$ 上
+\begin{equation}
+ -dh(2h+1)
+ =x(1-x)(x^2-x+1)(2x^2-2x+3)\ne0.
+\end{equation}
+事实上对每个实数 $0<x<1$，它都严格为正。矛盾。
+\end{proof}
+
+\textbf{证书的强度与限制。}
+这是一个函数域反证，不是浮点秩猜测，也不依赖任何有限点训练。
+写成 $A c=b$ 后，证书为 $vA=0$、$vb=dh(2h+1)\ne0$。
+全部一圈约束的精确秩为 $9$，增广秩为 $10$，但定理只需要
+\eqref{eq:certificate}，并不依赖软件的秩报告。
+给所有单负 EYM 振幅乘同一非零归一化常数，右端同步缩放，矛盾仍在。
+全正 YM 公式整体变号也只改变第一项证书的符号。
+
+这排除了题面全部 $\mathcal N_3$ 修正，以及任何不满足树级校准但仍属于同一局域一次类的核。
+它不排除带 Mandelstam 分母的核、依赖 helicity 的核、额外 building blocks，
+也不证明某个固定 $n=4$ 问题自身不可解。
+由于一套适用于所有 $n$ 的 (Q1) 必须包含 $n=3$，本题总候选命题已被否定。
+
+\section{C：\texorpdfstring{$D$}{D} 维来源与一个有限的修复方向}\label{sec:mu}
+
+\subsection{为何四维 cuts 不能决定这些量}
+分解圈动量为
+\begin{equation}
+ \ell=\bar\ell+\ell_\perp,\qquad
+ \mu^2=-\ell_\perp^2,\qquad
+ D_j=(\bar\ell-q_j)^2-\mu^2.
+\end{equation}
+在严格四维 cuts 中设 $\mu=0$，相关有理信息不可见；
+但在 $D$ 维 cuts 中，内部线可作为质量平方为 $\mu^2$ 的四维标量线处理，
+其与外部胶子、引力子的树振幅保留 $\mu$ 依赖。
+这些树 building blocks 由最小耦合作用量固定，而不是拟合 $\Delta$ 得来。
+
+用积分约定
+\begin{equation}
+ \int\frac{d^{4-2\epsilon}\ell}{(2\pi)^{4-2\epsilon}}
+ \frac{\mu^{2r}}{D_0\cdots D_{m-1}}
+ =\frac{i}{(4\pi)^{2-\epsilon}}I_m[\mu^{2r}]
+\end{equation}
+时，维数平移关系及所需常数为\cite{NPT}
+\begin{align}
+ I_m^{4-2\epsilon}[\mu^{2r}]&=
+ -\epsilon(1-\epsilon)\cdots(r-1-\epsilon)I_m^{4+2r-2\epsilon}[1],\\
+ I_4[\mu^4;s,t]&=-\frac16+O(\epsilon),&
+ I_3[\mu^4;s]&=\frac{s}{24}+O(\epsilon),\\
+ I_3[\mu^2;s]&=\frac12+O(\epsilon),&
+ I_2[\mu^2;s]&=-\frac{s}{6}+O(\epsilon),\\
+ I_4[\mu^2;s,t]&=O(\epsilon).
+\label{eq:integrals}
+\end{align}
+有限常数来自维数平移后的 UV 极点与显式 $\epsilon$ 因子的乘积。
+用 Feynman 参数单纯形矩
+\begin{equation}
+ \int_{a_i\ge0}da_1\cdots da_m\,
+ \delta(1-\textstyle\sum a_i)\prod_i a_i^{n_i}
+ =\frac{\prod_i n_i!}{(m-1+\sum_i n_i)!}
+\end{equation}
+可独立得到盒的 $1/6$、三角形的 $1/2$ 与 $1/24$、泡的 $1/6$。
+脚本没有仅把最终 EYM 振幅作为自身校验目标。
+
+\subsection{全正扇区的第一个障碍：盒与三角形抵消}
+对一个循环拓扑，完整的 $D$ 维 cut 合并与张量积分约化给出的标量积分组合是\cite{NPT}
+\begin{equation}
+ \mathcal B(s,t)=\frac12 I_4[\mu^4;s,t]
+ +\frac1tI_3[\mu^4;t]+\frac1sI_3[\mu^4;s].
+\label{eq:boxtriangle}
+\end{equation}
+外部自旋量系数非零；但
+\begin{equation}
+ \mathcal B(s,t)\big|_{\epsilon^0}
+ =-\frac1{12}+\frac1{24}+\frac1{24}=0.
+\end{equation}
+每个循环拓扑即已抵消，从而得到 $E_+=0$。
+若只保留盒的 $\mu^4$ 部分，便会丢掉决定性的有限三角形项。
+不过不能由此宣称任意共线核的失败都只对应“漏掉某一个三角形”；
+整个核类的否定仍需要第 \ref{thm:nogo} 定理。
+
+三角形项的 cut 来源也可显式看见。
+对 $(1,2,3,P)$ 拓扑取
+$D_0=\bar\ell^2-\mu^2$、$D_3=(\bar\ell+P)^2-\mu^2$，自旋量恒等式为
+\begin{equation}
+ \frac{\langle3|\bar\ell|P]}{\ang{3P}}
+ =\frac{\langle1|\bar\ell|P]}{\ang{1P}}
+ +\frac{\sq{2P}}{\sq{32}\ang{3P}}(D_3-D_0).
+\end{equation}
+在 $D_0=0$ 的 cut 上，补项与一个传播子相消，生成三角形。
+因此这一结构由两条不同的 $D$ 维 cut 之间的一致性固定，
+不是把积分后缺陷重新命名为修正项。
+
+\subsection{单负扇区的有限部分复核}
+将 NPT 的完整积分式 (4.30) 按四类分组，取出共同前因子后，
+并以 $t=-s-u$ 化简，可得到下表。
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+积分类型&有限部分对花括号的贡献\\\midrule
+$\mu^4$ 盒&$-(3s^2+7su+3u^2)/12$\\
+$\mu^4$ 三角形&$su/12$\\
+$\mu^2$ 三角形&$(s^2+su+u^2)/2$\\
+$\mu^2$ 泡&$-(s^2+u^2)/6$\\\midrule
+总和&$(s^2+u^2)/12$\\\bottomrule
+\end{tabular}
+\end{center}
+再恢复该式的 $-2i$ 前因子并使用 $\sq{12}=-\sq{21}$，即得到
+\eqref{eq:eymminus}。这也表明仅加全正扇区所需的 $\mu^4$ 三角形，
+还不能声称解决单负扇区。
+
+\subsection{事先限定的扩张与尚缺的最小性证明}
+一个具体、有限且可从作用量确定的扩张，是允许如下四点积分 building blocks：
+\begin{equation}
+ \mathfrak B_4=\left\{
+ I_4[\mu^4;a,b],I_4[\mu^2;a,b],
+ I_3[\mu^4;a],I_3[\mu^2;a],I_2[\mu^2;a]
+ \right\}_{a,b\in\{s,t,u\},\ a\ne b}.
+\end{equation}
+这里只有三个不同盒拓扑及三个通道的三角形、泡。
+系数必须由最小作用量的 massive-scalar 树 building blocks 做 $D$ 维 cuts 固定，
+不允许由外部运动学逐点拟合，也不允许添加自由的 $\Delta$ 型函数。
+式 \eqref{eq:boxtriangle} 已展示该扩张如何处理全正扇区的第一个障碍；
+上一小节展示了同一有限基中单负有限部分的复核。
+
+不依赖拟合的延伸规则应为：用作用量生成带两个内部 massive-scalar 端点的树流，
+对所有允许的 $D$ 维 generalized cuts 做态求和并缝合，
+按积分秩及传播子结构约化，再以同一 cut 在不同拓扑中的一致性约束系数。
+物理因子化极点上，剩余量应与低点树振幅乘低点一圈振幅及相应圈分裂项相符。
+一般复运动学中的单负有理振幅还可能含双极点，不能只套用简单树级留数归纳。
+
+\openpart：这里没有证明 $\mathfrak B_4$ 在所有意义下“最小”，
+也没有构造一个对所有 helicity 通用的新共线核。
+任意多重数的无切割有理接触项、所有内部态及递归边界项的闭合，仍需独立处理。
+因此本节是一条由 cuts 限定、在首个障碍上有实际计算支持的扩张方向，
+不算题设研究层的全 $n$ 解答。题目明确允许低点 no-go 作为有效终点，
+本文的已完成终点是第 \ref{thm:nogo} 定理。
+
+\section{可复现性与结果清单}
+\begin{center}
+\begin{tabular}{p{0.40\textwidth}p{0.49\textwidth}}
+\toprule
+项目&状态与证据\\\midrule
+六排序与两独立不变量&解析枚举；动量守恒逐分量检查\\
+全部树级零核&四个必要充分条件；维数 $8$；parity 复核\\
+标准树代表的一圈缺陷&四个符号精确式，见 \eqref{eq:dplus}--\eqref{eq:dminus}\\
+整个允许类的判定&多项式恒等式 \eqref{eq:certificate}；函数域不可解\\
+软件复核&SymPy 1.14.0；558 项精确断言；12 组额外运动学点\\
+一圈物理输入&标准振幅文献；独立积分常数与有限部分复核\\
+$n=4$、一般 $n$、最小新核&未完成；不声称成立或不存在\\\bottomrule
+\end{tabular}
+\end{center}
+
+在题目所在目录执行：
+\begin{verbatim}
+python solution/checks/verify_q1.py
+xelatex -interaction=nonstopmode -halt-on-error \
+  -output-directory=output/pdf solution/q1_solution.tex
+\end{verbatim}
+第二条在 PowerShell 中请写成一行；目录中同时提供了避免换行差异的
+\nolinkurl{solution/build.ps1}，会编译三遍以稳定目录和交叉引用。
+检查输出为以下两个文件：
+\begin{itemize}
+\item \nolinkurl{solution/build/verification.json}；
+\item \nolinkurl{solution/build/certificate.json}。
+\end{itemize}
+文献下载地址、原件 SHA-256 与页数保存在
+\nolinkurl{solution/sources/manifest.json}；研究原件与解答分开放置。
+
+本稿所附正式验证脚本均已运行，无 \texttt{NOT\_RUN} 代码。
+探索过程中一个较慢的通用符号零空间求解被主动停止，随后使用函数域算法和显式证书完成计算；
+该探索过程不作为成功运行证据。
+正式检查的通过只说明所列代数实现与证书相符，不能代替物理输入的独立审查。
+
+\paragraph{下一步最有区分力的检验。}
+若继续研究，先独立计算 $n=4$ 的完整有理目标与 $D$ 维 cuts，
+然后检验上述扩张在五点因子化极点与非标准双极点上的留数。
+任一留数不符便能证伪所提出的延伸规则；不能靠重新拟合四点缺陷来回避该检验。
+
+\begin{thebibliography}{9}
+\bibitem{NPT}
+D. Nandan, J. Plefka and G. Travaglini,
+\emph{All rational one-loop Einstein--Yang--Mills amplitudes at four points},
+JHEP \textbf{09} (2018) 011.
+\href{https://arxiv.org/abs/1803.08497}{arXiv:1803.08497}.
+使用的确切位置：式 (1.2)、(3.9)--(3.12)、(4.30)--(4.31)、(11.9)、(A.6)--(A.7)。
+\bibitem{ST}
+S. Stieberger and T. R. Taylor,
+\emph{Subleading Terms in the Collinear Limit of Yang--Mills Amplitudes},
+Phys. Lett. B \textbf{750} (2015) 587--590.
+\href{https://arxiv.org/abs/1508.01116}{arXiv:1508.01116}，式 (10)。
+\bibitem{BDK93}
+Z. Bern, L. Dixon and D. A. Kosower,
+\emph{One-Loop Corrections to Five-Gluon Amplitudes},
+Phys. Rev. Lett. \textbf{70} (1993) 2677--2680.
+\href{https://arxiv.org/abs/hep-ph/9302280}{arXiv:hep-ph/9302280}，式 (4) 的单负表达。
+\bibitem{BDKsoft}
+Z. Bern, S. Davies and J. Nohle,
+\emph{On Loop Corrections to Subleading Soft Behavior of Gluons and Gravitons},
+Phys. Rev. D \textbf{90} (2014) 085015.
+\href{https://arxiv.org/abs/1405.1015}{arXiv:1405.1015}，式 (3.12)。
+\end{thebibliography}
+\end{document}

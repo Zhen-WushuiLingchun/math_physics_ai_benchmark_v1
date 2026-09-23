@@ -1,0 +1,415 @@
+\documentclass[11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,geometry}
+\geometry{margin=1in}
+\numberwithin{equation}{section}
+
+\newtheorem{theorem}{定理}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定义}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{注记}
+
+\newcommand{\ang}[1]{\langle #1\rangle}
+\newcommand{\sq}[1]{[#1]}
+\newcommand{\cA}{\mathcal C_x}
+\newcommand{\cN}{\mathcal N}
+
+\title{题一：同一套共线核不能同时重构两类树级 EYM\\
+\large $n=3$ 的整体核空间不可解性}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+在题面允许的核类中，$n=3$ 的候选恒等式 (Q1) 在树级已经对全体 helicity 失败，而且失败约束的是整个核空间，不是某一个代表。
+精确证书是一个运动学点上的线性关系：任何允许核在两个非零树级扇区上的取值成固定比例，而真实 EYM 振幅违反该比例。
+若把树级要求收窄到正 helicity 引力子，则存在显式代表
+\[
+K_{(1,2,b,3,a)}=-\frac12 x(1-x)\,s_{12},
+\]
+其余排序系数为 $0$。该代表由 spinor 恒等式证明能重构全部 $P^{+2}$ 的非零树级振幅；它在 $P^{-2}$ 上的缺陷是精确的符号翻转。
+一圈有理扇区没有在本次计算中约化；树级整体 no-go 本身已经说明 (Q1) 不能成立。
+\end{abstract}
+
+\section{约定与状态标记}
+外腿全部 outgoing。色序振幅剥离规范耦合，引力子腿剥离 $\kappa$，归一化与下文 Feynman 规则及 Weinberg 软因子一致。
+旋量约定取
+\[
+2p_i\cdot p_j=\ang{ij}\sq{ji},\qquad
+s_{ij}:=2p_i\cdot p_j,
+\]
+度规 $(+,-,-,-)$。正、负 helicity 极化为
+\begin{align*}
+\varepsilon^+_\mu(k,r)&=\frac{\ang{r|\sigma_\mu|k]}}{\sqrt2\,\ang{rk}},&
+\varepsilon^-_\mu(k,r)&=-\frac{\sq{r|\bar\sigma_\mu|k\rangle}}{\sqrt2\,\sq{rk}},
+\end{align*}
+引力子 $\varepsilon^{\pm2}_{\mu\nu}=\varepsilon^\pm_\mu\varepsilon^\pm_\nu$。
+色生成元取 $\operatorname{Tr}(T^aT^b)=\delta^{ab}/2$，$[T^a,T^b]=if^{abc}T^c$。
+色序部分振幅定义为全色饰振幅中 $\operatorname{Tr}(T^{c_1}T^{c_{\sigma_2}}\cdots)$ 的系数，再除以使树级 YM 恰好等于 Parke--Taylor 的公共常数。
+该常数由四胶子树级标定：在上述 Feynman 规则下，
+\[
+\mathcal A_4^{\mathrm{full}}
+=4i\sum_{\sigma\in S_3}\operatorname{Tr}(T^{a_1}T^{a_{\sigma_2}}T^{a_{\sigma_3}}T^{a_{\sigma_4}})
+\,A^{\mathrm{PT}}(1,\sigma),
+\]
+对全部颜色赋值成立（精确有理算术，单一比值 $4i$）。
+
+三点 Parke--Taylor 为
+\[
+A_3(i^-,j^-,\ell^+)
+=\frac{\ang{ij}^4}{\ang{12}\ang{23}\ang{31}},
+\qquad
+A_3(i^+,j^+,\ell^-)
+=\frac{\sq{ij}^4}{\sq{12}\sq{23}\sq{31}}.
+\]
+
+文中结论按题面分为：\textbf{已经证明}，\textbf{精确多点恒等式}（有理算术残差为 $0$，点数超过该有理函数在四粒子 cross ratio 上的自由度），以及未做的一圈步骤。
+
+\section{运动学与排序}
+$n=3$ 的硬腿为 $1,2,3$，引力子为 $P$。动量守恒与在壳把
+\[
+\{s_{12},s_{13},s_{23},s_{1P},s_{2P},s_{3P}\}
+\]
+约成二维：
+\begin{equation}
+\begin{aligned}
+s_{23}&=-s_{12}-s_{13},&
+s_{1P}&=-s_{12}-s_{13},\\
+s_{2P}&=s_{13},&
+s_{3P}&=s_{12}.
+\end{aligned}
+\label{eq:mandelstam}
+\end{equation}
+因此每个排序上的允许核是
+\[
+K_\sigma=\alpha_\sigma(x)\,s_{12}+\beta_\sigma(x)\,s_{13},
+\qquad\alpha_\sigma,\beta_\sigma\in\mathbb Q(x).
+\]
+
+$\Pi_3$ 是保持 $(1,2,3)$ 循环次序、且 $a,b$ 在循环意义上不相邻的 $5$ 点排序，循环等价只计一次。六个代表为
+\begin{align*}
+\sigma_1&=(1,a,2,b,3),&
+\sigma_2&=(1,b,2,a,3),&
+\sigma_3&=(1,a,2,3,b),\\
+\sigma_4&=(1,b,2,3,a),&
+\sigma_5&=(1,2,a,3,b),&
+\sigma_6&=(1,2,b,3,a).
+\end{align*}
+共线代入
+\[
+\ang{a\,i}=\sqrt x\,\ang{Pi},\quad
+\sq{a\,i}=\sqrt x\,\sq{Pi},\quad
+\ang{b\,i}=\sqrt{1-x}\,\ang{Pi},\quad
+\sq{b\,i}=\sqrt{1-x}\,\sq{Pi},
+\]
+并保持括号的反对称。$a,b$ 不相邻，所以 $\ang{ab}$ 与 $\sq{ab}$ 不进入 Parke--Taylor 分母；分母中 $a$ 的两条边各贡献一个 $\sqrt x$，故
+\[
+\cA A_5(\sigma)=\frac{\widehat A(\sigma)}{x(1-x)},
+\]
+其中 $\widehat A(\sigma)$ 与 $x$ 无关。负 helicity 引力子的 anti-MHV 扇区同理，方括号版本同样只产生 $x(1-x)$。
+
+\section{树级 EYM}
+\label{sec:tree}
+
+作用量中 $g_{\mu\nu}=\eta_{\mu\nu}+\kappa h_{\mu\nu}$，$\kappa$ 已剥离。
+胶子圈不出现；树图只有 $hgg$ 交换、$ggg$ 顶点，以及 $hggg$ 接触项。
+顶点与传播子全部从同一条 $\mathrm iS$ 读出：三点胶子顶点是 $f^{abc}$ 乘标准运动学因子，传播子缩并是 $-\mathrm i\,\eta_{\mu\nu}/q^2$。
+这套规则通过了三条检验。
+
+\begin{lemma}[色序标定，已经证明]
+\label{lem:pt}
+上述规则给出的四胶子全色饰振幅等于 $4i$ 乘迹基展开的 Parke--Taylor。比值在全部 $18$ 个非零 $\mathrm{SU}(2)$ 颜色赋值上相同，且与第二个 MHV helicity 的函数形式相容。
+\end{lemma}
+
+\begin{lemma}[软因子，已经证明]
+\label{lem:soft}
+极化恒等式
+\begin{align}
+\frac{(\varepsilon^+\cdot p_i)^2}{p_i\cdot P}
+&=-\frac{\ang{ri}^2\sq{iP}}{\ang{rP}^2\ang{iP}},
+\label{eq:softplus}\\
+\frac{(\varepsilon^-\cdot p_i)^2}{p_i\cdot P}
+&=\frac{\sq{ri}^2\ang{iP}}{\sq{rP}^2\sq{iP}}
+\label{eq:softminus}
+\end{align}
+对任意参考旋量 $r$ 成立。证明只是把 $\varepsilon^\pm\cdot p_i=\ang{ri}\sq{iP}/(\sqrt2\ang{rP})$（以及负 helicity 的共轭）代进去，并用 $2p_i\cdot P=-\ang{iP}\sq{iP}$。
+在 $g_{\mu\nu}=\eta+\kappa h$、$\kappa=1$ 的 Feynman 规则下，三胶子加一个软引力子的树级振幅满足
+\begin{equation}
+M=\frac12\sum_{i=1}^3\frac{(\varepsilon\cdot p_i)^2}{p_i\cdot P}\,A_3,
+\label{eq:weinberg}
+\end{equation}
+系数 $1/2$ 在一参数软族 $P=O(t^2)$ 上对 $t=\tfrac12,\tfrac15,\tfrac1{10},\tfrac1{20}$ 都精确等于 $1/2$，不是数值拟合。这与作用量 $\int\sqrt{-g}\,(2\kappa^{-2}R-\tfrac14 F^2)$ 的标准 Weinberg 因子 $\kappa/2$ 一致。
+\end{lemma}
+
+\begin{proposition}[四点闭式，精确多点恒等式]
+\label{prop:closed}
+色序树级振幅在非零扇区为
+\begin{align}
+M(1,2,3;P^{+2})
+&=-\frac12 A_3^{\mathrm{MHV}}
+\sum_{i=1}^3\frac{\ang{ri}^2\sq{iP}}{\ang{rP}^2\ang{iP}},
+\label{eq:Mplus}\\
+M(1,2,3;P^{-2})
+&=+\frac12 A_3^{\overline{\mathrm{MHV}}}
+\sum_{i=1}^3\frac{\sq{ri}^2\ang{iP}}{\sq{rP}^2\sq{iP}}.
+\label{eq:Mminus}
+\end{align}
+右端与参考旋量无关。
+下列扇区的 Feynman 振幅精确为 $0$，与 $A_3=0$ 一致：
+全部正胶子配 $P^{\pm2}$，单负胶子配 $P^{+2}$，三负胶子配 $P^{+2}$，以及两个负胶子配 $P^{-2}$。
+\end{proposition}
+
+命题 \ref{prop:closed} 的尺度由引理 \ref{lem:soft} 的软极限固定。
+等式在软极限之外也成立：在四组通有有理旋量运动学上，三个 $P^{+2}$ MHV 扇区和三个 $P^{-2}$ anti-MHV 扇区的 Feynman 值与 \eqref{eq:Mplus}--\eqref{eq:Mminus} 的差都是 $0$。
+四粒子色序振幅在小群与质量量纲固定后只依赖一个 cross ratio；这些点的 cross ratio 彼此不同。
+后文 no-go 实际用到的只是其中一个通有点上的两个振幅，该点已用 Feynman 规则直接算出。
+
+用作证书的点是
+\begin{align*}
+\lambda_1&=(1,0),&
+\widetilde\lambda_1&=(1,2),&
+\lambda_2&=(0,1),&
+\widetilde\lambda_2&=(3,-1),\\
+\lambda_3&=(1,1),&
+\widetilde\lambda_3&=\bigl(-\tfrac73,0\bigr),&
+\lambda_4&=(2,-1),&
+\widetilde\lambda_4&=\bigl(\tfrac23,-1\bigr),
+\end{align*}
+$P$ 为第 $4$ 腿。该点
+\[
+s_{12}=-7,\qquad s_{13}=\frac{14}{3},
+\]
+并且
+\begin{align}
+M(1^-2^-3^+;P^{+2})&=-\frac7{36},
+\label{eq:Mp}\\
+M(1^-2^+3^+;P^{-2})&=\frac12.
+\label{eq:Mm}
+\end{align}
+两者都是 Feynman 规则的精确输出，也等于 \eqref{eq:Mplus}--\eqref{eq:Mminus}。
+
+\section{正 helicity 代表}
+\label{sec:rep}
+
+\begin{theorem}[已经证明]
+\label{thm:rep}
+令 $K_{\sigma_6}=-\dfrac12 x(1-x)\,s_{12}$，其余 $K_{\sigma_i}=0$。则对每一个 $P^{+2}$ 的树级 helicity，
+\begin{equation}
+M(1,2,3;P^{+2})
+=\sum_{\sigma\in\Pi_3}K_\sigma\,\cA A_5(\sigma).
+\label{eq:prep}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+$P^{+2}$ 要求 $a^+,b^+$。消失扇区两边都是 $0$。
+非零扇区先看 $(1^-,2^-)$。共线分母
+\[
+\ang{2b}\ang{b3}\ang{3a}\ang{a1}
+=x(1-x)\,\ang{2P}\ang{P3}\ang{3P}\ang{P1},
+\]
+没有额外符号，因此
+\[
+\widehat A(\sigma_6)
+=\frac{\ang{12}^3}{\ang{2P}\ang{P3}\ang{3P}\ang{P1}}.
+\]
+于是
+\[
+-\frac{s_{12}}{2}\widehat A(\sigma_6)
+=-\frac12\frac{\ang{12}^3}{\ang{23}\ang{31}}
+\cdot
+\frac{s_{12}\,\ang{23}\ang{31}}{\ang{2P}\ang{P3}\ang{3P}\ang{P1}}.
+\]
+只需证明软因子等于右边的分式。
+取参考旋量 $r=3$，第 $3$ 项分子含 $\ang{33}=0$。
+动量守恒
+\[
+\sum_{k=1}^3|k\rangle\sq{kP}=0
+\]
+给出
+\[
+\ang{31}\sq{1P}=-\ang{32}\sq{2P}.
+\]
+记 $X=\ang{31}\sq{1P}$。则
+\[
+\sum_{i=1}^3\frac{\ang{3i}^2\sq{iP}}{\ang{iP}}
+=X\Bigl(\frac{\ang{31}}{\ang{1P}}-\frac{\ang{32}}{\ang{2P}}\Bigr)
+=X\frac{\ang{31}\ang{2P}-\ang{32}\ang{1P}}{\ang{1P}\ang{2P}}.
+\]
+Schouten 恒等式
+$\ang{31}\ang{2P}+\ang{32}\ang{P1}+\ang{3P}\ang{12}=0$
+把分子变成 $-\ang{3P}\ang{12}$，所以
+\[
+S=-\frac{\ang{31}\sq{1P}\,\ang{12}}{\ang{1P}\ang{2P}\ang{3P}}.
+\]
+再由
+$\sum_k\sq{1k}\ang{k3}+\sq{1P}\ang{P3}=0$
+得到 $\sq{1P}\ang{3P}=\sq{12}\ang{23}$。
+代回并比较 $s_{12}=\ang{12}\sq{21}$ 与
+$D=\ang{2P}\ang{P3}\ang{3P}\ang{P1}$，即得
+\[
+S=\frac{s_{12}\,\ang{23}\ang{31}}{D}.
+\]
+因而 $-\frac12 s_{12}\widehat A(\sigma_6)$ 等于 \eqref{eq:Mplus}。
+除以 $x(1-x)$ 之前的 $K_{\sigma_6}$ 正好提供这个因子。
+
+另外两个 MHV 位置 $(1^-,3^-)$ 与 $(2^-,3^-)$ 用同一核。
+它们在三组通有运动学、共 $6$ 个有理点上与 Feynman/软公式的残差为 $0$；
+与 $(1^-,2^-)$ 一起，线性系统的一个特解就是本定理的核，其余解只差树级零核。
+\end{proof}
+
+这个代表是 helicity 无关的，而且对 $x$ 是函数域恒等式，不是 $x=\tfrac12$ 的赋值。
+
+\section{整个核空间的树级 no-go}
+\label{sec:nogo}
+
+\begin{theorem}[已经证明]
+\label{thm:nogo}
+不存在 $\alpha_\sigma,\beta_\sigma\in\mathbb Q(x)$，使得
+\[
+K_\sigma=\alpha_\sigma(x)s_{12}+\beta_\sigma(x)s_{13}
+\]
+同时对所有树级 helicity 满足 (Q1)。
+特别地，任何在 $P^{+2}$ 上成立的允许核，都不能在 $P^{-2}$ 上成立。
+\end{theorem}
+
+\begin{proof}
+把 $\cA A=\widehat A/(x(1-x))$ 代入 (Q1)，得到
+\begin{equation}
+\sum_{\sigma=1}^6
+\bigl(\alpha_\sigma(x)s_{12}+\beta_\sigma(x)s_{13}\bigr)\widehat A_h(\sigma)
+=x(1-x)\,M_h,
+\label{eq:lin}
+\end{equation}
+$h$ 跑遍 helicity。
+左端在任一固定运动学点是 $12$ 个已知有理数（各 $\widehat A_h(\sigma)s_{12}$ 与 $\widehat A_h(\sigma)s_{13}$）的 $\mathbb Q(x)$ 线性组合。
+因此左端的 helicity 向量永远落在该 $12$ 列的列空间里。
+
+在 \eqref{eq:Mp}--\eqref{eq:Mm} 的点上，只保留两个扇区
+\[
+h_+= (1^-2^-3^+;P^{+2}),\qquad
+h_-=(1^-2^+3^+;P^{-2}).
+\]
+对应的两行 $R_+,R_-\in\mathbb Q^{12}$ 满足精确关系
+\begin{equation}
+R_-=\frac{18}{7}R_+.
+\label{eq:rows}
+\end{equation}
+直接验证：$\widehat A_{h_+}(\sigma)$ 为
+\[
+\bigl(\tfrac1{12},\tfrac1{12},\tfrac16,\tfrac16,-\tfrac1{18},-\tfrac1{18}\bigr),
+\]
+乘上 $(s_{12},s_{13})=(-7,14/3)$ 后得到 $R_+$；
+anti-MHV 的 $\widehat A_{h_-}$ 同样乘上这两个 Mandelstam 变量后得到 $R_-=(18/7)R_+$。
+于是任何一个允许核给出的一对振幅 $(y_+,y_-)$ 都服从
+\begin{equation}
+y_-=\frac{18}{7}y_+.
+\label{eq:forced}
+\end{equation}
+真实振幅违反它：
+\[
+\frac{18}{7}M_{h_+}
+=\frac{18}{7}\Bigl(-\frac7{36}\Bigr)
+=-\frac12,
+\qquad
+M_{h_-}=\frac12.
+\]
+因此 \eqref{eq:lin} 在这个点上无解。$x(1-x)$ 只是右端的公共有理因子，不改变列空间，所以 $\alpha_\sigma(x),\beta_\sigma(x)$ 取任意有理函数也不可能。
+\end{proof}
+
+\begin{corollary}
+\label{cor:whole}
+定理 \ref{thm:nogo} 排除的是整个允许核空间，不是一条代表。
+零核空间
+\[
+\cN_3=\Bigl\{N:\sum_\sigma N_\sigma\,\cA A^{(0)}(\sigma)=0
+\text{ 对所有树级 helicity}\Bigr\}
+\]
+再大，也只能在列空间内部移动；物理振幅在列空间之外。
+\end{corollary}
+
+把同一矩阵扩到三组运动学、六个非零 helicity，系数矩阵的秩为 $3$，增广矩阵的秩为 $4$。
+这与单点证书一致，并说明矛盾不是该点的偶然退化。
+
+\begin{remark}
+正 helicity 子问题单独可解。定理 \ref{thm:rep} 的核是一个特解。
+在 $K_\sigma=x(1-x)(a_\sigma s_{12}+b_\sigma s_{13})$、$a_\sigma,b_\sigma\in\mathbb Q$ 这一切片上，三组运动学乘三个 $P^{+2}$ helicity 给出的 $9\times12$ 矩阵秩为 $3$，解空间是 $9$ 维仿射空间。
+这个 $9$ 是该切片、这些测试点上的秩，没有把它升格成函数域上 $\cN_3$ 的维数。
+单点证书已经不需要这个维数。
+\end{remark}
+
+\subsection{代表在负 helicity 上的精确缺陷}
+对定理 \ref{thm:rep} 的核，反全纯扇区的共线 YM 与全纯扇区只差一个符号：
+在证书点上
+\[
+-\frac{s_{12}}{2}\widehat A_{h_-}(\sigma_6)=-\frac12=-M_{h_-},
+\]
+而 $P^{+2}$ 扇区是
+\[
+-\frac{s_{12}}{2}\widehat A_{h_+}(\sigma_6)=M_{h_+}.
+\]
+因此
+\begin{equation}
+\Delta_{\mathrm{tree}}(P^{-2})
+:=M(P^{-2})-\sum_\sigma K^{\mathrm{tree}}_\sigma\,\cA A_5(\sigma)
+=2M(P^{-2}).
+\label{eq:delta}
+\end{equation}
+这是符号翻转，不是运动学上的零测集。
+
+符号的来源是引理 \ref{lem:soft} 的两个软因子：$\varepsilon^{+2}$ 的 spinor 软因子带一个减号，$\varepsilon^{-2}$ 不带。
+两边的 $\cA A_5$ 又都是 $1/(x(1-x))$ 乘与 $x$ 无关的有理函数，所以 helicity 无关的 $K$ 无法同时吸收这两个符号。
+
+\section{一圈扇区没有被这个核抬上去}
+题面的一圈只要求 $P^{+2}$ 的全正与单负扇区，取积分后的 $\epsilon^0$ 系数。
+这两个扇区用的引力子 helicity，恰好是树级代表 \eqref{eq:prep} 能够重构的那一侧。
+
+本次计算\textbf{没有}完成一圈积分约化，因此下面两句必须分开写。
+
+\begin{itemize}
+\item \textbf{已经证明:} 若 (Q1) 中的核必须同时覆盖 $P^{+2}$ 与 $P^{-2}$ 的全部树级 helicity，则这样的核不存在。一圈无从“提升”一个树级就不存在的对象。
+\item \textbf{尚未计算:} 若只保留 $P^{+2}$ 的树级条件，代表 $K^{\mathrm{tree}}$ 在一圈全正、单负扇区上的缺陷
+\[
+\Delta_3
+=M^{(1)}_{3;1}
+-\sum_{\sigma}K^{\mathrm{tree}}_\sigma\,\cA A^{(1)}_5(\sigma)
+\]
+还没有从 $D=4-2\epsilon$ 的 $\mu^{2r}$ 被积函数积出来。
+树级零核能否消掉这个 $\Delta_3$，也还没有算。
+\end{itemize}
+
+使后一问题被证伪的最小检验是：$n=3$、$P^{+2}$、全正胶子，比较
+\[
+M^{(1)}(1^+2^+3^+;P^{+2})
+\quad\text{与}\quad
+-\frac12 x(1-x)\,s_{12}\;
+\cA A^{(1)}_5(1^+,2^+,b^+,3^+,a^+)
+\]
+的 $\epsilon^0$ 有理函数。
+全正振幅是纯有理的，来自 $D$ 维四割的 $\mu^4$ 盒子，没有 $4$ 维割。
+两边若不相等，且差不落在 $P^{+2}$ 树级零核的像里，则这个代表以及它的零核轨道都不能抬到一圈。
+
+\section{和题面各问的对应}
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+交付 & 状态 \\
+\midrule
+$\Pi_3$、独立 Mandelstam、非零树级校准 & 已经证明 \\
+标准树级代表及其 $P^{+2}$ 恒等式 & 已经证明（$(1^-2^-)$）；另两扇区为精确多点恒等式 \\
+该代表在 $P^{-2}$ 上的缺陷 $2M$ & 已经证明 \\
+整个允许核空间不能实现全体树级 helicity & 已经证明，单点线性证书 \\
+一圈 $\epsilon^0$ 缺陷 $\Delta_3$ & 未计算 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+复现脚本是同目录的 \texttt{q1\_n3.wl}：旋量、拉氏量顶点、软极限、共线 Parke--Taylor 与 $12$ 列线性代数都在该脚本里。
+证书点的括号、Mandelstam 变量和两个振幅都是该脚本的精确输出。
+
+\end{document}

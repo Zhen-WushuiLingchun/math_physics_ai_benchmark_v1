@@ -1,0 +1,230 @@
+\section{B 部分：同一系统的极点迁移}
+\label{sec:B}
+
+\subsection{Jost 解、精确 Wronskian 恒等式与首阶位移}
+
+设 $\psi_L(\omega,\cdot)$ 为满足 $\psi_L\sim e^{-\ii\omega x}\,(x\to-\infty)$ 的 Jost 解，
+$\psi_R(\omega,\cdot)$ 为满足 $\psi_R\sim e^{+\ii\omega x}\,(x\to+\infty)$ 的 Jost 解。
+QNM 条件为 Wronskian 零点
+\begin{equation}
+W(\omega):=[\psi_L,\psi_R]:=\psi_L\psi_R'-\psi_L'\psi_R=0 .
+\end{equation}
+记扰动后 $V_\varepsilon=V_0+\delta V$，$\delta V=\varepsilon W(\cdot-L)$，
+相应的扰动 Jost 解为 $\psi_L^\varepsilon,\psi_R^\varepsilon$，$W_\varepsilon=[\psi_L^\varepsilon,\psi_R^\varepsilon]$。
+
+\begin{proposition}[Wronskian 恒等式；已证明]\label{prop:wronsk}
+对任意 $\omega$，
+\begin{equation}
+W_\varepsilon(\omega)=W(\omega)-\int_{\mathbb R}\delta V(x)\,\psi_L(x)\psi_R(x)\dd x+O(\delta V^2)
+=W(\omega)-\varepsilon\, I(\omega)+O(\varepsilon^2),
+\qquad
+I(\omega):=\int_{-1}^{1}W(y)\,\psi_L(L+y)\psi_R(L+y)\dd y .
+\label{eq:Wid}
+\end{equation}
+\end{proposition}
+\begin{proof}
+记 $\delta\psi_L=\psi_L^\varepsilon-\psi_L$（在 $x\to-\infty$ 保持归一化 $e^{-\ii\omega x}$），
+它满足 $[\partial_x^2+\omega^2-V_0]\delta\psi_L=\delta V\psi_L+O(\delta V^2)$。
+由 $\dfrac{\dd}{\dd x}[\delta\psi_L,\psi_R]=\delta V\,\psi_L\psi_R+O(\delta V^2)$ 且
+$[\delta\psi_L,\psi_R](-\infty)=0$ 得 $[\delta\psi_L,\psi_R](+\infty)=\int\delta V\psi_L\psi_R\,$；
+类似地 $[\psi_L,\delta\psi_R]$ 在 $-\infty$ 端为零。两者之和等于常数
+$W_\varepsilon-W+O(\delta V^2)$，故 \eqref{eq:Wid} 成立（符号由数值直接核验：见下文）。
+\end{proof}
+
+\begin{proposition}[首阶极点位移；已证明（首阶）]\label{prop:shift}
+设 $\omega_0$ 为 $W$ 的单零点。则
+\begin{equation}
+\boxed{\ \delta\omega=\varepsilon\,\frac{I(\omega_0)}{W'(\omega_0)}+O(\varepsilon^2)\ }
+\qquad W'(\omega_0):=\frac{\dd W}{\dd\omega}\Big|_{\omega_0}.
+\label{eq:domega}
+\end{equation}
+\end{proposition}
+\begin{proof}
+$0=W_\varepsilon(\omega_0+\delta\omega)=W(\omega_0)+\delta\omega W'(\omega_0)-\varepsilon I(\omega_0)+O(\varepsilon^2)$，而 $W(\omega_0)=0$。
+\end{proof}
+
+\paragraph{精确的 delta 模型（用于全阶重求和）.}
+把光滑 bump 换成 $\delta V=\varepsilon_\delta\,\delta(x-L)$ 时，共振方程可以精确求出。在 $x<L$ 取
+$\psi_L$，在 $x>L$ 取线性组合 $\alpha\psi_L+\beta\psi_R$，匹配
+$\psi'(L^+)-\psi'(L^-)=\varepsilon_\delta\psi(L)$ 得
+$\alpha=1-\varepsilon_\delta\psi_L(L)\psi_R(L)/W(\omega)$。出射条件（$+\infty$ 端无 $e^{-\ii\omega x}$ 分量）给
+\begin{equation}
+W(\omega)=\varepsilon_\delta\,\psi_L(L;\omega)\,\psi_R(L;\omega)
+\qquad\text{（精确，对一切 }\varepsilon_\delta\text{）}.
+\label{eq:deltaexact}
+\end{equation}
+它在 $\varepsilon_\delta\to0$ 时化为 \eqref{eq:domega}（因 $\psi_L(L)\psi_R(L)=I$ 的 delta 极限）。
+
+\paragraph{数值：首阶公式的检验与 $L$-标度.}
+\textbf{【数值】}取 $\omega_0=0.3736728-0.0889633\ii$（第 1 节）与精确匹配法得
+\begin{equation}
+W'(\omega_0)=-1.71088-7.83522\,\ii,\qquad |W'|=8.0198 .
+\end{equation}
+对 $L=12\!-\!56$ 计算 $I(L)$，得
+\begin{equation}
+\Big|\frac{I(L)}{W'(\omega_0)}\Big|=\big(0.98\!-\!1.12\big)\cdot\frac{e^{2|\Imw_0|L}}{8.0198}
+\simeq (0.122\!-\!0.140)\,e^{2|\Imw_0|L}.
+\label{eq:K1}
+\end{equation}
+即\textbf{首阶位移随 $L$ 指数放大}：$\delta\omega\sim\varepsilon\,e^{2|\Imw_0|L}\times O(1)$。
+图 \ref{fig:ps} 给出 $|\delta\omega_1|/\varepsilon$ 与 $e^{2|\Imw_0|L}$ 的对比（对数坐标，斜率吻合）。
+
+用真实光滑 bump 做精确匹配（把 $\varepsilon W(x-L)$ 直接加入位势，求 $W_\varepsilon$ 的零点），
+在小 $\varepsilon$ 下的精确位移与 \eqref{eq:domega} 对比：
+\begin{center}\small
+\begin{tabular}{ccccc}
+\toprule
+$(\varepsilon,L)$ & {首阶预言 $\delta\omega$}& {精确 $\delta\omega$}& {比值}& {相对偏差}\\
+\midrule
+$(10^{-4},16)$ & {$1.5084-1.5347\,\ii$（$\times10^{-4}$）}& {$1.5244-1.5305\,\ii$（$\times10^{-4}$）}& $1.004+0.007\ii$ & $0.8\%$\\
+$(10^{-4},24)$ & {$0.3939-9.2923\,\ii$（$\times10^{-4}$）}& {$0.5370-9.7637\,\ii$（$\times10^{-4}$）}& $1.051+0.013\ii$ & $5\%$\\
+$(10^{-4},32)$ & {$-1.8067-3.5347\,\ii$（$\times10^{-3}$）}& {$-3.4042-4.3812\,\ii$（$\times10^{-3}$）}& $1.373-0.261\ii$ & $37\%$\\
+$(10^{-3},16)$ & {$1.5084-1.5347\,\ii$（$\times10^{-3}$）}& {$1.6711-1.4749\,\ii$（$\times10^{-3}$）}& $1.033+0.073\ii$ & $3.3\%$\\
+$(10^{-3},24)$ & {$0.3939-9.2923\,\ii$（$\times10^{-3}$）}& {$10.07-12.16\,\ii$（$\times10^{-3}$）}& $1.35+1.03\ii$ & $-\!\!$\\
+\bottomrule
+\end{tabular}
+\end{center}
+可见首阶公式的适用窗口窄于朴素的 $\mu:=\varepsilon e^{2|\Imw_0|L}\ll1$：修正量数值上更接近
+$O(\varepsilon e^{4|\Imw_0|L})$（例如 $L=24$：$\varepsilon=10^{-4}$ 时 $\varepsilon e^{4|\Imw_0|L}=0.51$，
+偏差 $5\%$；$\varepsilon=10^{-3}$ 时 $=5.1$，偏差数十至百）。这是极点 $\varepsilon$-展开\emph{收敛半径小}的表现：
+在 $L=24$ 的首阶公式以外，新极点已在 $\mu\sim10^{-2}$ 尺度出现（见 \S\ref{sec:resum}），
+中间态求和带来的增强使二阶系数比量纲估计大 $1\!-\!2$ 个量级。
+
+\subsection{双重极限 $L=c\log(1/\varepsilon)$：阈值与三种区域}
+\label{sec:double}
+
+定义无量纲控制参数
+\begin{equation}
+\mu:=\varepsilon\,e^{2|\Imw_0|L}.
+\end{equation}
+沿 $L=c\log(1/\varepsilon)$：
+\begin{equation}
+|\delta\omega_1|\simeq (0.13)\,|K|\,\varepsilon\,e^{2|\Imw_0|L}
+=(0.13|K|)\,\varepsilon^{\,1-2c|\Imw_0|},
+\end{equation}
+其中 $|K|=|I|e^{-2|\Imw_0|L}/|W'|\cdot 8.02\approx1$ 的 $O(1)$ 系数（含随 $L$ 缓慢旋转的相位
+$e^{2\ii\,\mathrm{Re}\,\omega_0L}$）。于是：
+
+\begin{center}\small
+\begin{tabular}{lll}
+\toprule
+{区域}& {条件}& {极点位移行为}\\
+\midrule
+{(a) 稳定区}& $c<c_*:=\frac1{2|\Imw_0|}=5.6204$ & {$|\delta\omega|\sim\varepsilon^{\alpha_c}\to0$，}
+{$\alpha_c=1-2c|\Imw_0|>0$（如 $c=3$：$\alpha_c=0.466$）}\\
+{(b) 临界}& $c=c_*$ & {$|\delta\omega|=O(\varepsilon^0)=O(1)\times|K|$：不消失的位移}\\
+{(c) 强不稳定区}& $c>c_*$ & {$|\delta\omega|$ 先按 $\varepsilon^{\alpha_c}$\emph{发散}（$\alpha_c<0$），}
+{$\mu\gtrsim1$ 后首阶失效，进入重求和区：极点重排为新分支}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{【数值】双重极限表}（$\varepsilon=10^{-3}$；$\omega_0$、$W'$ 同上；精确位移用真实光滑 bump 的精确匹配；
+$\mathcal E/\varepsilon$ 用同一 $(\varepsilon,L)$ 的时域 PDE 计算）：
+\begin{center}\small
+\begin{tabular}{cccccc}
+\toprule
+$c$ & $L=c\log(1/\varepsilon)$ & $\mu$ & {首阶 $|\delta\omega|/|\omega_0|$}& {精确 $|\delta\omega|/|\omega_0|$}& {$\mathcal E/\varepsilon$ （时域）}\\
+\midrule
+$3.00$ & $20.72$ & $3.99\times10^{-2}$ & $1.33\%$ & $1.17\%$ & $\mathbf{0.2034}$\\
+$5.62$ & $38.83$ & $1.001$ & $35.4\%$ & $11.6\%$ & $\mathbf{0.1984}$\\
+$8.00$ & $55.27$ & $18.6$ & $676\%$ & $384\%$ & $\mathbf{0.1974}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+关键对照：$c=8$ 时精确极点相对原位置移动 $\approx3.8|\omega_0|$（即极点谱被完全重排，
+$|\delta\omega|$ 为"位移 $>$ 距离本身"），而同一 $(\varepsilon,L)$ 下的归一化波形误差
+$\mathcal E/\varepsilon$ 几乎不动（$0.197$）。这正是本题的核心结论之一（见 C 部分）。
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{fig4_pole_shift.pdf}
+\caption{首阶极点位移的 $L$-标度：$|\delta\omega_1|/\varepsilon=|I(L)/W'(\omega_0)|$ 与
+$0.130\,e^{2|\Imw_0|L}$（虚线）。竖点线为 $\varepsilon=10^{-3}$ 的临界长度 $L_*=c_*\log(1/\varepsilon)=38.8$。}
+\label{fig:ps}
+\end{figure}
+
+\subsection{首阶失效与重求和：新共振分支}
+\label{sec:resum}
+
+$\mu\gtrsim10^{-2}$ 后极点方程必须全阶处理。对 \eqref{eq:deltaexact}，在 $\omega_0$ 邻域写
+$\psi_L(L;\omega)\psi_R(L;\omega)\simeq K_0e^{2\ii(\omega-\omega_0)L}$、$W(\omega)\simeq W'(\omega_0)(\omega-\omega_0)$，
+令 $\delta=\omega-\omega_0$、$Z=\varepsilon_\delta K_0/W'(\omega_0)$（即首阶位移），得模型方程
+\begin{equation}
+\delta=Z\,e^{2\ii L\delta}
+\quad\Longrightarrow\quad
+\delta=\frac{\ii}{2L}\,W_k\!\big(-2\ii LZ\big),\qquad k\in\mathbb Z ,
+\label{eq:lambert}
+\end{equation}
+$W_k$ 为 Lambert-$W$ 的第 $k$ 支。$|2LZ|\ll1$ 时只有 $k=0$ 一支在近旁（首阶区）；
+$|2LZ|\gtrsim1$ 时相邻支出现，新根大致沿虚方向间隔 $\pi/L$ 排布：
+\textbf{新共振分支的产生条件为 $2L\mu\gtrsim1$}（注意含 $L$ 因子），而非 $\mu\gtrsim1$。
+
+\textbf{【数值】}(i) delta 模型、$L=24$，沿 $\varepsilon_\delta$ 连续追踪原极点
+（$\mu=\varepsilon_\delta|K_0|/|W'|\approx0.116\,\varepsilon_\delta e^{2|\Imw_0|L}$）：
+$\varepsilon_\delta=10^{-3}\to10$ 时极点自 $0.38062-0.10146\,\ii$ 平滑移动并"饱和"到
+$0.46073-0.02606\,\ii$（图 \ref{fig:dp} 左），与 Lambert 结构一致。
+(ii) 新分支扫描：在区域 $\mathrm{Re}\,\omega\in[0.18,0.52]$、$\mathrm{Im}\,\omega\in[-0.30,-0.01]$ 内，
+未扰动谱只有 $n=0,1$ 两个极点；取 $\varepsilon=0.03$、$L=24$（$\mu\simeq153$）时，
+\textbf{真实光滑 bump} 与 delta 模型各自给出 4 个极点：
+\begin{center}\small
+\begin{tabular}{lll}
+\toprule
+ & {光滑 bump $\varepsilon=0.03,L=24$}& delta $\varepsilon_\delta=0.03,L=24$\\
+\midrule
+{新极点 1}& $0.2125-0.0519\,\ii$ & $0.2122-0.0563\,\ii$\\
+{新极点 2}& $0.3349-0.0493\,\ii$ & $0.3350-0.0519\,\ii$\\
+{基模后裔}& $0.4187-0.0653\,\ii$ & $0.4179-0.0674\,\ii$\\
+{overtone 区极点}& $0.4609-0.2372\,\ii$ & $0.4609-0.2372\,\ii$\\
+\bottomrule
+\end{tabular}
+\end{center}
+即真实问题的 bump 扰动确实产生与 delta 模型几乎相同的新分支（图 \ref{fig:br}），
+定量证实"谱不稳定性=极点重排"，且其触发尺度是 $\mu\times2L\gtrsim1$。
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{fig5_branches.pdf}
+\caption{复 $\omega$ 平面：未扰动基模（$\star$）与 $n=1$ overtone（$\triangle$）；
+$\varepsilon=0.03,L=24$ 时光滑 bump（$\circ$）与 delta 模型（$\square$）各自的新极点。
+扫描区域（框内）由 2 个极点增殖为 4 个；基模后裔整体上移且左移。}
+\label{fig:br}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\textwidth]{fig6_delta_path.pdf}
+\caption{左：delta 模型 $L=24$ 沿 $\varepsilon_\delta=10^{-3}\to10$ 追踪的极点轨迹（$\star$ 为未扰动位置）。
+右：$|\delta\omega|$ 对 $\mu$ 的双对数图；$\mu\ll1$ 与首阶直线 $0.116\mu$ 吻合，
+$\mu\gtrsim1$ 进入重求和区（饱和到腔共振零点）。}
+\label{fig:dp}
+\end{figure}
+
+\subsection{与时域信号的对照；各成分的作用与适用时间窗}
+
+对同一 $(\varepsilon,L)$（$L=20,24$，$\varepsilon=10^{-3}$；见上表与图 \ref{fig:wf}）：
+极点位移可达 $|\delta\omega|\sim10^{-3}\!-\!10^{-2}$（相对 $|\omega_0|$ 为 $0.3\%\!-\!3\%$，
+离 $c_*$ 越近越大），而 $\mathcal E=\varepsilon\times0.20$。
+
+各成分的正确分工（本题时间窗内）：
+\begin{itemize}\itemsep2pt
+\item \textbf{prompt（直接脉冲）}：到达 $\tau\in[x_o-1,x_o+1]$。它不被扰动修改（因果定理）。
+\item \textbf{ringdown（QNM 振铃）}：$\tau\gtrsim12$ 起显著。扰动后振铃"相位/频率"的确按
+$\delta\omega$ 改变，但（i）有效描述只在 $\tau\gtrsim2L-13$ 之后可与未扰动解分离（因果），
+（ii）此时未扰动振铃已按 $e^{-\tau|\Imw_0|}$ 衰减；极点位移对波形的贡献
+$\propto\tau\,\delta\omega\,e^{-\tau|\Imw_0|}$ 在 $[2L-13,\infty)$ 上的最大值 $\sim2L|\delta\omega|e^{-2L|\Imw_0|}$
+$\sim\varepsilon L$（含对数），仍 $\ll\varepsilon\,e^{2|\Imw_0|L}$ 的"裸"放大因子，且被下面第 (iii) 条的
+留数补偿抵消到 $O(\varepsilon)$。
+\item \textbf{residues（留数）}：极点移动的同时，留数
+$R_n=\psi_n(x_o)\psi_n(x')/W'(\omega_n)$ 改变，改变量同样含 $e^{2|\Imw_0|L}$ 因子；
+留数变化引起的波形变化与 \eqref{eq:duhamel} 的"源-传播子"结构一一对应，
+两者之和给出严格因果且 $O(\varepsilon)$ 的 $\delta h$。\textbf{任何只保留"频率移动"而忽略留数补偿的
+有限 QNM 和都是不完整表示}，不得直接外推。
+\item \textbf{支割线/晚期尾}：$\omega=0$ 支点决定 Price 尾（$l=2$：$\psi\sim\tau^{-7}$，$h\sim\tau^{-8}$）。
+bump 对低频反射系数 $\propto\varepsilon\,\omega\to0$，故尾部只被 $O(\varepsilon)$ 修改；
+在 $\tau\lesssim200$ 的窗口内尾部相对振铃可忽略（交叉约在 $\tau\sim10^2\!-\!10^3$，
+与 $L$ 无关）。若强行把有限 QNM 和推广到尾部主导区，误差来源是支割线而非极点。
+\item \textbf{时间窗}：本文所有精确数值都覆盖 $\tau\in[0,2L+40]$，含第一、第二回波与振铃区；
+$\delta h$ 的首阶光锥式 \eqref{eq:lc} 仅在该窗口内的第一回波部分被验证（$20\%$ 级），
+不作为全时域表示。
+\end{itemize}

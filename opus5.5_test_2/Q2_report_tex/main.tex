@@ -1,0 +1,828 @@
+\documentclass[11pt,a4paper,UTF8]{ctexart}
+
+\usepackage[a4paper,top=2.3cm,bottom=2.3cm,left=2.2cm,right=2.2cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array,tabularx,makecell}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black,citecolor=blue!55!black,
+            bookmarksnumbered=true]{hyperref}
+
+% ---------- 记号 ----------
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\tTr}{\widetilde{\operatorname{Tr}}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Frec}{F_{\rm rec}}
+\newcommand{\Salg}{S_{\rm alg}}
+\newcommand{\Sqtr}{S_{\rm qtr}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+% ---------- 状态标记 ----------
+\definecolor{cP}{RGB}{0,115,60}
+\definecolor{cPs}{RGB}{0,90,150}
+\definecolor{cE}{RGB}{125,85,0}
+\definecolor{cN}{RGB}{170,70,0}
+\definecolor{cC}{RGB}{170,0,45}
+\newcommand{\tagP}{\texorpdfstring{\textcolor{cP}{\textbf{[证明]}}}{[证明]}}
+\newcommand{\tagPs}{\texorpdfstring{\textcolor{cPs}{\textbf{[证明*]}}}{[证明*]}}
+\newcommand{\tagE}{\texorpdfstring{\textcolor{cE}{\textbf{[精确低阶]}}}{[精确低阶]}}
+\newcommand{\tagN}{\texorpdfstring{\textcolor{cN}{\textbf{[数值]}}}{[数值]}}
+\newcommand{\tagC}{\texorpdfstring{\textcolor{cC}{\textbf{[猜想]}}}{[猜想]}}
+
+\setlist{itemsep=2pt,topsep=3pt}
+\captionsetup{font=small,labelfont=bf}
+\renewcommand{\arraystretch}{1.15}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small 题二研究报告}
+\fancyhead[R]{\small Fibonacci 融合约束下的 Page 转折与信息恢复}
+\fancyfoot[C]{\small \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\title{\textbf{题二研究报告}\\[6pt]
+  \large Fibonacci 融合约束下，Page 转折是否意味着量子信息可恢复？}
+\author{Claude（Opus 5.5）}
+\date{2026 年 9 月 23 日}
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+
+\noindent 所有代码在 \code{q2\_work/} 中，\textbf{均已实际运行}，文中数值来自这些运行，见 \S\ref{sec:repro} 的清单。
+
+\medskip
+\noindent\textbf{状态标记}
+\begin{itemize}[leftmargin=2em]
+  \item \tagP\ 已经证明；
+  \item \tagPs\ 已证明，但依赖所引标准定理（出处和适用条件已注明）；
+  \item \tagE\ 仅有精确低阶检验；
+  \item \tagN\ 仅有数值证据；
+  \item \tagC\ 猜想或尚未闭合的步骤。
+\end{itemize}
+
+\noindent\textbf{记号}：$\varphi=d_\tau$，$\Delta=N_R-N_B$，$\Xi=\Delta-\log_\varphi k$，$c:=\varphi^{-\Xi}=k\varphi^{-\Delta}$，
+$\mathcal D^2=\sum_a d_a^2=1+\varphi^2=\sqrt5\,\varphi$，$d_R=\varphi^{N_R}$，$d_B=\varphi^{N_B}$。
+$F_n$ 为 Fibonacci 数（$F_0=0$，$F_1=1$），$H_n$ 为调和数，熵一律取自然对数。
+
+\tableofcontents
+
+\setcounter{section}{-1}
+% =====================================================================
+\section{结论摘要}\label{sec:summary}
+
+\begin{enumerate}[leftmargin=*,label=\textbf{\arabic*.}]
+\item \textbf{维数与 F-符号} \tagP。$m_1=F_{N_R-1}$，$m_\tau=F_{N_R}$，$n_1=F_{N_B-1}$，$n_\tau=F_{N_B}$，$D_N=F_{N-1}$。
+F-矩阵只用来具体实现 $\mathcal A_R$，已用数值精确核验。任何 Haar 平均量以及任一给定 $V$ 的可观测结论都不依赖 F-符号：
+不改变切分的基底变换恰好是 $\bigoplus_a W^R_a\otimes W^B_a$。
+
+\item \textbf{A 部分} \tagP。
+\begin{itemize}
+  \item $(p_1,p_\tau)\sim\mathrm{Dirichlet}(M_1,M_\tau)$，其中 $M_a=m_an_a$。
+  \item 逐点恒等式 $\Sqtr=\Salg+p_\tau\ln\varphi$。
+  \item 两种熵均值都有精确有限维公式。
+  \item 在 $N\to\infty$、$\Delta$ 固定时：
+  \begin{align*}
+  \E\Sqtr&=\min(N_R,N_B)\ln\varphi-\tfrac12\varphi^{-|\Delta|}+\tfrac{\sqrt5\varphi}{2}\big(1+\tfrac13\varphi^{-|\Delta|}\big)\varphi^{-N}+O(\varphi^{-2N}),\\
+  \E\Salg&=\E\Sqtr-\tfrac{\varphi}{\sqrt5}\ln\varphi
+     +\tfrac{\varphi\ln\varphi}{\sqrt5}\big[(-1)^{N_B}\varphi^{\Delta}+(-1)^{N_R}\varphi^{-\Delta}\big]\varphi^{-N}+O(\varphi^{-2N}).
+  \end{align*}
+  \item 两种约定的 Rényi-$n$ replica moment 在平面主阶上精确地等于“以量子维数 $d_R,d_B$ 代替 Hilbert 维数”的 Page moment：
+  qtr 约定无前因子，alg 约定带常数因子 $\kappa_n=\sum_ap_ad_a^{n-1}$。
+\end{itemize}
+
+\item \textbf{B 部分} \tagP。精确有限维平均为
+\[
+\boxed{\ \E\Tr C_{QB}^2=\Big(1-\frac1{k^2}\Big)\sum_a\frac{m_an_a\,(n_a-m_a/D)}{D^2-1}\ }
+\]
+并且各扇区分别成立。对每个 $V$ 都有 $(1-\delta)^2\le\Frec\le1-\delta^2/4$。由精确二阶矩还得到两个有限 $N$ 下界：
+\begin{itemize}
+  \item 解耦下界：$\E\Frec\ge(1-\bar\delta)^2$，其中 $\bar\delta\to\frac12\sqrt{1-k^{-2}}\,\varphi^{-\Xi/2}$；
+  \item 碰撞（Rényi-2）下界：$\displaystyle\E\Frec\ge\sum_a\frac{(M_a/D)^3}{kn_a\,\E\Tr(\rho^{(a)}_{QB})^2}\to\frac{1}{1+\varphi^{-\Xi}}$。
+\end{itemize}
+扇区标签的泄露有精确二阶矩：$\E\big\|Q_a-\tfrac{\Tr Q_a}{k}I\big\|_2^2=(k^2-1)M_a(D-M_a)/(D(D^2-1))$，随 $N$ 指数小。
+
+\item \textbf{C 部分的结构定理} \tagP。
+\begin{itemize}
+  \item 最优解码自动按扇区进行，$\Frec=\sum_aq_aF_a=e^{-H_{\min}(Q|R)}/k$。
+  \item \textbf{扇区约化}：Fibonacci 码恰为“每个扇区一个普通 Haar 码”，前面接一个 $k\times k$ 滤波器，且二者独立。由此
+  \[
+  \Big|\E F^{\rm Fib}_{\rm rec}-\sum_ap_a\,\bar F^{\rm Haar}_k(m_a,n_a)\Big|
+  \le\sum_a\sqrt{\frac{(k^2-1)M_a(D-M_a)}{kD(D^2-1)}}=O\big(\sqrt{k/D}\big).
+  \]
+  \item 两个扇区的有效比值 $c_a=kn_a/m_a$ 都趋于同一个 $\varphi^{-\Xi}$，所以 \textbf{$\Xi$ 是正确的临界变量，且没有依赖 $d_a$ 的常数偏移}，扇区权重也从极限中消失。
+  \item 对固定 $k$，\textbf{只依赖 $\Xi$ 的上下界} \tagPs：
+  \begin{multline*}
+  \max\Big\{\tfrac1{k^2},\ \tfrac1{1+\varphi^{-\Xi}},\ \big(\E_{{\rm MP}(\varphi^{-\Xi})}\sqrt\lambda\big)^2\Big\}
+  \ \le\ \liminf\E\Frec\\
+  \le\ \limsup\E\Frec\ \le\ \min\Big\{1,\ \big(\varphi^{\Xi/2}+\tfrac1k\big)^2\Big\}.
+  \end{multline*}
+  \item $\Frec$ 以 $\exp(-c\,kDt^2)$ 的速度集中，极限分布是点质量。
+\end{itemize}
+
+\item \textbf{数值} \tagN。$k=2$ 沿 $\Delta$ 固定的整数子序列，$\Frec$ 收敛到仅依赖 $\Xi$ 的值（\S\ref{ss:C-k2} 表），
+在 $c$ 精确匹配的点上与普通 Haar 码的差 $\le2.5\times10^{-4}$，与统计误差相当。另有两条渐近律：
+\[
+1-\Frec\simeq\tfrac14(1-k^{-2})\,\varphi^{-\Xi}\quad(\Xi\gg1),\qquad
+\Frec-\tfrac1{k^2}\simeq\tfrac{s_k}{k}\,\varphi^{\Xi/2}\quad(\Xi\ll0),
+\]
+其中 $s_2\approx1.00$。第一条有启发式推导，第二条中 $s_k$ 被化为一个 GUE-SDP 常数。
+
+\item \textbf{$k\to\infty$} \tagC（有强数值与证明概要）。
+\[
+\Frec\to f_\infty(\varphi^{-\Xi}),\qquad
+f_\infty(c)=\Big(\E_{{\rm MP}(c)}\sqrt\lambda\Big)^2
+=\Big[\frac{\beta}{3\pi c}\big((\alpha^2+\beta^2)E(\kappa^2)-2\alpha^2K(\kappa^2)\big)\Big]^2,
+\]
+其中 $\alpha=|1-\sqrt c|$，$\beta=1+\sqrt c$，$\kappa^2=1-\alpha^2/\beta^2$。特别地 $\Frec(\Xi=0)\to 64/(9\pi^2)\approx0.7205$。
+在 $\Xi\gtrsim-1$ 处偏差数值上约为 $O(k^{-2})$。
+
+\item \textbf{对题目追问的回答}（见 \S\ref{sec:answers}--\S\ref{sec:island}）。
+\begin{itemize}
+  \item 两种熵的 Page 转折\textbf{不能}单独决定恢复转折。
+  \item $d_\tau$ 只通过融合重数的 Perron--Frobenius 增长进入（即 $\log_\varphi$）。
+  \item $\tTr$ 中的 $\log d_a$ 是一个中心项，只改变熵约定，在一切条件熵以及 $H_{\min}(Q|R)$ 中精确抵消，因而不改变信道。
+  \item 扇区权重只以 $F=\sum q_aF_a$ 的混合权重进入，并在极限中消失。
+  \item 融合重数本身定义了信道。
+\end{itemize}
+\end{enumerate}
+
+% =====================================================================
+\section{融合空间、可观测代数与基底}\label{sec:basis}
+
+\subsection{维数 \tagP}\label{ss:dims}
+设 $f_a(n)=\dim\operatorname{Hom}(a,\tau^{\otimes n})$。由 $\tau\otimes\tau=1\oplus\tau$ 得递推
+$f_1(n+1)=f_\tau(n)$，$f_\tau(n+1)=f_1(n)+f_\tau(n)$，初值 $f_1(1)=0$，$f_\tau(1)=1$。于是 $f_\tau(n)=F_n$，$f_1(n)=F_{n-1}$，从而
+\begin{gather*}
+m_1=F_{N_R-1},\quad m_\tau=F_{N_R},\quad n_1=F_{N_B-1},\quad n_\tau=F_{N_B},\\
+D_N=F_{N_R-1}F_{N_B-1}+F_{N_R}F_{N_B}=F_{N-1},
+\end{gather*}
+最后一步用了恒等式 $F_{a+b}=F_aF_{b+1}+F_{a-1}F_b$。另有 $\sum_am_ad_a=\varphi^{N_R}$（即 $\tau^{\otimes N_R}$ 的量子维数），以及
+$m_a=d_a\varphi^{N_R-1}/\sqrt5\,\big(1+O(\varphi^{-2N_R})\big)=\frac{d_ad_R}{\mathcal D^2}(1+\dots)$，$D=\frac{d_Rd_B}{\mathcal D^2}(1+\dots)$。
+
+\subsection{\texorpdfstring{$\mathcal A_R$}{A\_R} 由 R-局域算符生成 \tagE}\label{ss:AR}
+（\code{fib\_basis.py}）在标准左到右融合树基底中，用给定的 $F^{\tau\tau\tau}_\tau$（已核验 $F=F^T=F^{-1}$）构造相邻两 anyon 的融合道投影 $\Pi^{(i)}_1$。
+对以下 8 个切分核验了四件事：
+\[(N_R,N_B)\in\{(2,2),(2,3),(3,2),(3,3),(4,2),(3,4),(4,4),(5,3)\}.\]
+\begin{itemize}
+  \item $\{\Pi^{(i)}_1\}_{i<N_R}\cup\{P_1\}$ 生成的 $*$-代数维数恰为 $\sum_am_a^2$；
+  \item B 侧同理，维数为 $\sum_an_a^2$；
+  \item R-局域算符与 B-局域算符对易到 $10^{-16}$；
+  \item 跨越切分的 $\Pi^{(N_R)}_1$ 混合扇区（矩阵元 0.486）。
+\end{itemize}
+这说明题设的 $\mathcal A_R=\bigoplus_a\operatorname{End}(\mathcal H_R^a)\otimes I$ 正是 R 上局域可观测量生成的代数，其中心为 $\mathrm{span}\{P_a\}=Z(\mathcal A_B)$。
+
+\subsection{基底无关性 \tagP}\label{ss:basis-indep}
+任何不改变物理切分的正交融合树基底变换，都由 R 内部的 F-move、B 内部的 F-move，以及把 R 的总荷 $a$ 作为旁观者的重耦合组成，
+因此都保持中心投影 $P_a$ 不变（$P_a$ 是 R 的总荷，与树的选择无关），形如 $W=\bigoplus_aW_a^R\otimes W_a^B$。由此：
+\begin{itemize}
+  \item Haar 测度在 $V\mapsto WV$ 下不变；
+  \item $\Salg$、$\Sqtr$、所有谱、$\delta(V)$ 以及 $\Frec(V)$ 在扇区内局域幺正下逐点不变。其中 $\Frec(V)$ 的不变性是因为解码器可以吸收 $W_a^R$，而对 $B$ 求迹与 $W_a^B$ 无关。
+\end{itemize}
+所以一切结论与基底无关。附带结论：\textbf{F-符号不进入任何 Haar 平均量}，只通过“哪些算符是局域的”来实现 $\mathcal A_R$。
+
+% =====================================================================
+\section{A 部分：熵的校准（\texorpdfstring{$k=1$}{k=1}）}\label{sec:A}
+
+\subsection{扇区概率 \tagP}\label{ss:A-prob}
+单位球面上均匀分布的 $\psi\in\mathbb C^D$ 满足 $(|\psi_i|^2)_i\sim\mathrm{Dirichlet}(1,\dots,1)$。把分量按块求和，得到
+\begin{gather*}
+(p_1,p_\tau)\sim\mathrm{Dirichlet}(M_1,M_\tau),\qquad p_\tau\sim\mathrm{Beta}(M_\tau,M_1),\\
+\E p_a=\frac{M_a}{D},\qquad \operatorname{Var}p_a=\frac{M_1M_\tau}{D^2(D+1)}.
+\end{gather*}
+归一化的块 $X_a/\sqrt{p_a}$ 是 $\mathbb C^{M_a}$ 中相互独立的均匀单位向量，且与 $p$ 独立：在 Gaussian 表示 $\psi=g/|g|$ 中，块的范数与块的方向独立。
+当 $N\to\infty$ 时 $p_a\to d_a^2/\mathcal D^2$，即 $p_\tau^\infty=\varphi/\sqrt5\approx0.7236$，涨落为 $O(D^{-1/2})$。
+Monte Carlo 核验了 $\E p_1$ 与 $\operatorname{Var}p_1$（\code{partA.py}，7 个切分）。
+
+\subsection{两种熵的关系 \tagP}\label{ss:A-rel}
+两种熵可以写成
+\begin{align*}
+\Salg&=H(p)+\sum_ap_aS(\rho_{R,a}),\\
+\Sqtr&=-\sum_ad_a\Tr\Big[\tfrac{X_aX_a^\dagger}{d_a}\ln\tfrac{X_aX_a^\dagger}{d_a}\Big]=\Salg+\sum_ap_a\ln d_a .
+\end{align*}
+其中 $\tTr\widetilde\rho_R=\sum_ap_a=1$，所以 $\widetilde\rho_R$ 已正确归一化。由于 $X_aX_a^\dagger$ 与 $X_a^TX_a^{*}$ 同谱，且 $R$、$B$ 共享同一个 $p$，
+有 $\Salg(R)=\Salg(B)$ 以及 $\Sqtr(R)=\Sqtr(B)$（数值上也逐样本成立）。
+两个上界为 $\Sqtr(R)\le\ln\sum_ad_am_a=N_R\ln\varphi$（\textbf{精确}），以及 $\Salg(R)\le\ln F_{N_R+1}$。
+
+\subsection{精确有限维公式 \tagP}\label{ss:A-exact}
+Page 公式（$m\le n$）为 $S_{\rm P}(m,n)=H_{mn}-H_n-\frac{m-1}{2n}$，出处 Page 1993；证明见 Foong--Kanno 1994、Sánchez-Ruiz 1995。
+Dirichlet 分布的熵平均为 $\E[-p_a\ln p_a]=\frac{M_a}{D}(H_D-H_{M_a})$。结合 \S\ref{ss:A-prob} 的独立性：
+\[
+\boxed{\begin{aligned}
+\E\Salg&=H_D-\sum_a\frac{M_a}{D}\Big[H_{\max(m_a,n_a)}+\frac{\min(m_a,n_a)-1}{2\max(m_a,n_a)}\Big],\\
+\E\Sqtr&=\E\Salg+\frac{M_\tau}{D}\ln\varphi .
+\end{aligned}}
+\]
+这里 $\E H(p)=H_D-\sum_a\frac{M_a}{D}H_{M_a}$ 与 Page 项中的 $H_{M_a}$ 相消了。
+
+\begin{table}[htbp]
+\centering\small
+\caption{精确公式与 Monte Carlo（每组 $2\times10^4$ 个 Haar 随机态）}
+\begin{tabular}{cccccc}
+\toprule
+$(N_R,N_B)$ & $D$ & $\E\Salg$ 精确 & MC & $\E\Sqtr$ 精确 & MC\\
+\midrule
+(3,2) & 3  & 0.50000 & $0.49907\pm0.00133$ & 0.82081 & $0.82031\pm0.00103$\\
+(2,4) & 5  & 0.58333 & $0.58185\pm0.00090$ & 0.87206 & $0.86988\pm0.00079$\\
+(4,4) & 13 & 1.14167 & $1.14170\pm0.00097$ & 1.47482 & $1.47528\pm0.00090$\\
+(5,3) & 13 & 0.92372 & $0.92377\pm0.00078$ & 1.29389 & $1.29451\pm0.00064$\\
+(3,6) & 21 & 0.98334 & $0.98386\pm0.00053$ & 1.34998 & $1.35029\pm0.00043$\\
+(6,6) & 89 & 2.04869 & $2.04843\pm0.00040$ & 2.39473 & $2.39434\pm0.00037$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{\texorpdfstring{$N\to\infty$、$\Delta$}{N→∞、Δ} 固定时的展开 \tagP（系数已高精度数值核验）}\label{ss:A-asym}
+推导步骤：
+\begin{enumerate}
+  \item 将 $H_x=\ln x+\gamma+\frac1{2x}-\frac1{12x^2}+\dots$ 代入 \S\ref{ss:A-exact}，得到（$\Delta\ge0$）
+  \[
+  \E\Salg=\ln D+\frac1{2D}-\sum_ap_a\Big[\ln m_a+\frac{n_a}{2m_a}-\frac1{12m_a^2}\Big]+O(D^{-2}),
+  \]
+  其中 $p_a=M_a/D$ 取精确值。
+  \item 用 Binet 公式 $F_n=(\varphi^n-(-\varphi)^{-n})/\sqrt5$ 展开。
+  \item $O(\varphi^{-2N_B})$ 阶的奇偶项在 $\Sqtr$ 中精确相消，原因是 $p_\tau^\infty=\varphi^2p_1^\infty$，即 $p_a^\infty\propto d_a^2$。它在 $\Salg$ 中残留为 $-\delta p_\tau\ln\varphi$。
+\end{enumerate}
+结果即 \S\ref{sec:summary} 第 2 条中的两式（$\Delta<0$ 时由 $R\leftrightarrow B$ 对称得到）。
+\begin{itemize}
+  \item \textbf{首个非平凡修正}是 $O(1)$ 的 $-\tfrac12\varphi^{-|\Delta|}=-\tfrac12\min(d_R,d_B)/\max(d_R,d_B)$。它正是把整数维换成量子维数后的 Page 修正。
+  \item $\Salg$ 还多一个常数中心项 $-p_\tau^\infty\ln\varphi=-0.348211$。
+  \item 随后是 $\varphi^{-N}$ 阶的指数小修正。只有 $\Salg$ 带 Fibonacci 奇偶振荡 $(-1)^{N_B},(-1)^{N_R}$。
+\end{itemize}
+核验（\code{partA\_asym.py}，40 位精度）：$(\E S-{\rm leading})\varphi^N$ 在 $N=54$ 时，$\Delta=0,1,2,3$ 的值为 2.412023、2.181695、2.039345、1.951367，
+与 $\frac{\sqrt5\varphi}{2}(1+\varphi^{-\Delta}/3)$ 的差 $<10^{-6}$。$\Salg$ 在偶/奇 $N_B$（$\Delta=0$）时的系数 3.108439 与 1.715606 也与公式一致。
+
+\subsection{Replica moments \tagP}\label{ss:A-replica}
+对一般 $n$，精确有（$\gamma_n$ 为循环置换，$D^{\bar n}=D(D+1)\cdots(D+n-1)$）：
+\begin{align*}
+\E\Tr(\rho_R^{\rm alg})^n&=\frac{1}{D^{\bar n}}\sum_a\sum_{\sigma\in S_n}m_a^{\#(\gamma_n^{-1}\sigma)}n_a^{\#(\sigma)},\\
+\E\,\tTr\,\widetilde\rho_R^{\,n}&=\frac{1}{D^{\bar n}}\sum_ad_a^{1-n}\sum_{\sigma\in S_n}(\cdots)\qquad(\text{求和项同上}).
+\end{align*}
+\textbf{二阶：}
+\[
+\E\Tr(\rho^{\rm alg}_R)^2=\sum_a\frac{M_a(m_a+n_a)}{D(D+1)},\qquad
+\E\tTr\widetilde\rho_R^2=\sum_a\frac{M_a(m_a+n_a)}{d_a\,D(D+1)}.
+\]
+它们已由 MC 核验（\code{partA.py}）。例如 (6,6) 处精确值 0.15905 / 0.11022，MC 为 0.15914 / 0.11029。渐近地有
+\[
+\E\tTr\widetilde\rho^2=(d_R^{-1}+d_B^{-1})\big(1+O(\varphi^{-N})\big),\qquad
+\E\Tr(\rho^{\rm alg})^2=\tfrac{2\varphi}{\sqrt5}(d_R^{-1}+d_B^{-1})(1+\dots)
+\]
+（\code{partA\_asym.py}：(20,20) 处比值为 $1-1.6\times10^{-8}$）。
+
+\textbf{平面结构：}主阶只有非交叉置换贡献，满足 $\#(\gamma^{-1}\sigma)+\#\sigma=n+1$。
+代入 $m_a\simeq d_ad_R/\mathcal D^2$、$n_a\simeq d_ad_B/\mathcal D^2$、$D\simeq d_Rd_B/\mathcal D^2$，每一项的扇区和都给出同一个因子：
+\begin{gather*}
+\E\tTr\widetilde\rho^{\,n}=\sum_{\sigma\in NC(n)}d_R^{\#(\gamma^{-1}\sigma)-n}d_B^{\#\sigma-n}\,\big(1+O(\varphi^{-N})\big),\\
+\E\Tr(\rho^{\rm alg})^n=\kappa_n\times(\text{同一式}),\qquad \kappa_n=\sum_ap_a^\infty d_a^{\,n-1}.
+\end{gather*}
+也就是说，\textbf{qtr 约定的所有 Rényi moment 都是以量子维数 $d_R,d_B$ 为“维数”的普通 Page moment}，alg 约定只差常数因子 $\kappa_n$。
+因此 $S_n^{\rm alg,ann}=S_n^{\rm qtr,ann}-\frac{\ln\kappa_n}{n-1}$，当 $n\to1$ 时回到 $-\sum_ap_a\ln d_a$，与 \S\ref{ss:A-rel} 的精确恒等式一致。$\kappa_2=2\varphi/\sqrt5$。
+
+\subsection{\texorpdfstring{$\E\ln Z$、$\ln\E Z$}{E ln Z、ln E Z} 与归一化顺序的区分 \tagP\ + \tagN}\label{ss:A-conv}
+\begin{itemize}
+  \item \textbf{归一化后再平均，von Neumann 情形。}对归一化态 $\Tr\rho=1$，有 $-\partial_n\ln\E\Tr\rho^n|_{n=1}=\E S$，所以在 $n\to1$ 处 annealed 与 quenched 相等。
+  \item \textbf{未归一化 Gaussian 态的 replica。}对 $g\sim\mathcal{CN}(0,I/D)$，$|g|$ 与方向独立，$\E|g|^{2n}=\Gamma(D+n)/(\Gamma(D)D^n)$，从而
+  \[
+  -\partial_n\ln\E\Tr\rho_g^n\big|_{n=1}=\E S-\big[\psi(D+1)-\ln D\big]=\E S-\tfrac1{2D}+O(D^{-2}).
+  \]
+  数值核验（\code{check\_gauss\_replica.py}，$2\times10^5$ 样本）：(4,4) 处 MC 1.10416，公式 1.10370。
+  \item \textbf{Rényi-2。}$\E[-\ln Z]\ge-\ln\E Z$（Jensen）。数值上 (4,4)：quenched 0.97030，annealed 0.95551；(6,6)：1.84137 对 1.83853，差距随 $D$ 缩小。
+  \item \textbf{归一化与未归一化的比值。}$\E\Tr\rho_\psi^2=\E Z_2(g)/\E[Z_1(g)^2]$ 是精确的（范数与方向独立）。但 $\E Z_2(g)/(\E Z_1(g))^2=(1+1/D)\,\E\Tr\rho_\psi^2$。
+\end{itemize}
+四种做法都在 $O(1/D)=O(\varphi^{-N})$ 阶上彼此不同，在有限 $N$ 下必须区分。
+
+% =====================================================================
+\section{B 部分：信息恢复}\label{sec:B}
+
+\subsection{信道结构 \tagP}\label{ss:B-channel}
+令 $J:|a,r,b\rangle\mapsto|a,r\rangle_{R'}|a,b\rangle_{B'}$，其中 $R'=\bigoplus_a\mathcal H^a_R$，$B'=\bigoplus_a\mathcal H^a_B$。
+则 $\mathcal N_R=\Tr_{B'}(JV\cdot V^\dagger J^\dagger)$，$\mathcal N_B=\Tr_{R'}(\cdots)$，二者是\textbf{互补信道}，扇区标签作为共享中心被复制到两边。
+
+$\mathcal N_R$ 的输出是块对角的，所以任何 CPTP 解码器都等价于“测量 $a$，再施加 $\mathcal D_a$”，不需要也无法利用扇区间的相干。由此逐 $V$ 地有：
+\begin{gather*}
+\Frec=\sum_aq_aF_a,\qquad q_a=\tfrac1k\Tr(V^\dagger P_aV),\qquad
+F_a=\max_{\mathcal D_a}\langle\Phi|(\mathrm{id}\otimes\mathcal D_a)(\hat\rho^{(a)}_{QR})|\Phi\rangle,\\
+\Frec=\max_{\sigma_B}F\big(\rho_{QB},\tfrac{I}{k}\otimes\sigma_B\big)
+=\tfrac1k\min\{\Tr\sigma_R:\ I_Q\otimes\sigma_R\ge\rho_{QR},\ \sigma_R\in\mathcal A_R\}
+=\tfrac1ke^{-H_{\min}(Q|R)}.
+\end{gather*}
+\begin{itemize}
+  \item 第二个等号用 Uhlmann 定理，两个方向都成立：“$\le$”来自解码后纯化态与 $|\Phi\rangle\otimes|\xi\rangle$ 的重叠；“$\ge$”由 Uhlmann 等距构造解码器。
+  \item 第三个等号是 König--Renner--Schaffner（IEEE TIT 55, 4337 (2009)）的操作意义定理，逐扇区应用。
+\end{itemize}
+\textbf{三路数值互验}（\code{check\_frec.py}，10 个切分，含不等切分与 $k=2,3,4$）结果完全一致，到 $10^{-8}$：
+\begin{enumerate}
+  \item 带对偶间隙证书的 $\max_\sigma$ 形式（L-BFGS 求解，证书为 $h(\sigma)\le h^{*}\le h/2+\lambda_{\max}(\nabla h)$）；
+  \item 直接 CPTP SDP（上面的 $H_{\min}$ 形式，Clarabel 求解）；
+  \item \textbf{显式构造的扇区 Uhlmann 解码器作为 CPTP 映射作用后算出的保真度}。例如 (4,5)、$k=2$ 时三者都给出 0.66405867。
+\end{enumerate}
+
+\subsection{精确二阶矩 \tagP（已精确低阶检验）}\label{ss:B-mom}
+令 $W_e=\frac1{D^2-1}$，$W_s=\frac{-1}{D(D^2-1)}$（$n=2$ 的 Weingarten 函数，出处 Collins--Śniady, CMP 264, 773 (2006)），$\alpha_a=m_a^2n_a$，$\beta_a=m_an_a^2$。
+$V$ 的 $k$ 列按正交归一处理，没有当作独立向量。逐扇区有：
+\begin{align*}
+\E\Tr(\rho^{(a)}_{QB})^2&=\tfrac1k\big[(\alpha_a+k\beta_a)W_e+(k\alpha_a+\beta_a)W_s\big],\\
+\E\Tr(\rho^{(a)}_{B})^2&=\tfrac1k\big[(k\alpha_a+\beta_a)W_e+(\alpha_a+k\beta_a)W_s\big],\\
+\E\Tr(C^{(a)})^2&=\E\Tr(\rho^{(a)}_{QB})^2-\tfrac1k\E\Tr(\rho^{(a)}_B)^2\\
+&=(1-k^{-2})(\beta_aW_e+\alpha_aW_s)=(1-k^{-2})\frac{m_an_a(n_a-m_a/D)}{D^2-1}.
+\end{align*}
+$C_{QB}$ 是扇区块对角的，因此 $\E\Tr C_{QB}^2=\sum_a\E\Tr(C^{(a)})^2$。
+
+\smallskip
+\noindent 核验（\code{partB\_moments.py}）：
+\begin{itemize}
+  \item 与独立实现的\textbf{暴力 Weingarten 张量收缩}比较，6 组 $(N_R,N_B,k)$、12 个扇区全部一致到 $10^{-10}$；
+  \item 与 Monte Carlo（每组 4000 个 Haar 等距）一致。
+\end{itemize}
+几个检查点：
+\begin{itemize}
+  \item 单扇区且 $n=1$ 时结果为 0（此时 $D=m$）；多扇区中 $n_a=1$ 时剩下 $(1-k^{-2})m_a(1-m_a/D)/(D^2-1)$，
+  它恰好等于 \S\ref{ss:B-leak} 的标签泄露矩除以 $k^2$。此时 $C^{(a)}=(Q_a^T-q_aI)/k$，两个独立推导相互印证；
+  \item $m=1$ 的单扇区情形给出 $1-k^{-2}$，与 $\rho_{QB}$ 为纯态时的直接计算一致；
+  \item 渐近地 $\E\Tr C_{QB}^2\simeq(1-k^{-2})\frac{2\varphi}{\sqrt5}\varphi^{-N_R}$。
+\end{itemize}
+\textbf{若误把列当作独立向量}，推导会给出 $\frac{k-1}{k^2}\sum_a\big[\frac{k\beta_a-\alpha_a}{D^2}+\frac{\alpha_a+\beta_a}{D(D+1)}\big]$。它与正确结果主阶相同，但在 $O(1/D)$ 阶上不同。
+
+\subsection{关于 \texorpdfstring{$\Frec$}{F\_rec} 的非空洞界 \tagP}\label{ss:B-bounds}
+\begin{itemize}
+  \item \textbf{(B1)} 对每个 $V$：$(1-\delta)^2\le\Frec\le1-\delta^2/4$。
+  下界：$\Frec\ge F(\rho_{QB},I/k\otimes\rho_B)$，再用 Fuchs--van de Graaf 不等式。
+  上界：取最优 $\sigma^{*}$，则 $T(\rho_{QB},I/k\otimes\sigma^{*})\le\sqrt{1-\Frec}$；再用三角不等式和 $\Tr_Q$ 下的单调性，得 $\delta\le2\sqrt{1-\Frec}$。
+  因此 $\Frec\to1\iff\delta\to0$。
+  \item \textbf{(B2) 解耦下界。}由 $\|C^{(a)}\|_1\le\sqrt{kn_a}\|C^{(a)}\|_2$ 与 Jensen 不等式，
+  \[
+  \E\delta\le\bar\delta:=\tfrac12\sum_a\sqrt{kn_a\,\E\Tr(C^{(a)})^2},\qquad \E\Frec\ge(1-\bar\delta)^2\quad(\bar\delta\le1).
+  \]
+  渐近地 $\bar\delta\to\frac12\sqrt{1-k^{-2}}\,\varphi^{-\Xi/2}$。这里用了 $\sum_a\sqrt{m_an_a^3}/D\to\varphi^{-\Delta/2}$。
+  \item \textbf{(B3) 碰撞下界。}由 Hölder 不等式，$(\Tr\sqrt\rho)^2\ge1/\Tr\rho^2$，故
+  \[F_a\ge F\big(\hat\rho^{(a)},I/(kn_a)\big)\ge\frac{1}{kn_a\Tr\hat\rho^{(a)2}}.\]
+  再对 $(x,y)\mapsto x^3/y$ 的凸性用 Jensen：
+  \[
+  \E\Frec\ \ge\ \sum_a\frac{(M_a/D)^3}{kn_a\,\E\Tr(\rho^{(a)}_{QB})^2}\ \xrightarrow{N\to\infty}\ \sum_a\frac{p_a}{1+c_a}=\frac1{1+\varphi^{-\Xi}}.
+  \]
+  这是精确的有限 $N$ 定理，只依赖 $\Xi$ 与精确二阶矩。它给出 $1-F\lesssim\varphi^{-\Xi}$，比解耦界的 $\varphi^{-\Xi/2}$ 更紧。
+  \item \textbf{(B4) 逆向界。}对每个 $V$，$q_aF_a\le\operatorname{rank}(\rho^{(a)}_{QB})\,\lambda_{\max}(\rho^{(a)}_B)/k$，由 $(\Tr\sqrt X)^2\le\operatorname{rank}X\cdot\Tr X$ 得到。
+  等价的对偶形式是在 $H_{\min}$-SDP 中取 $\sigma_R=\lambda_{\max}I$。渐近形式见 \S\ref{ss:C-bounds}。
+\end{itemize}
+
+\subsection{扇区标签向 B 的泄露 \tagP}\label{ss:B-leak}
+B 总能读出 $a$，泄露的是 $a$ 的分布对输入的依赖：$\Pr(a\,|\,\rho)=\Tr(Q_a\rho)$，$Q_a=V^\dagger P_aV$。精确二阶矩为
+\[
+\E\Big\|Q_a-\tfrac{\Tr Q_a}{k}I\Big\|_2^2=\frac{(k^2-1)M_a(D-M_a)}{D(D^2-1)}\simeq\frac{(k^2-1)p_a(1-p_a)}{D},
+\]
+已由 MC 核验。B 从标签上能获得的最大区分优势 $\le\sum_a\|Q_a-q_aI\|_\infty$，期望为 $O(k/\sqrt D)=O(k\varphi^{-N/2})$。
+
+它对 $\Frec$ 的影响被 \S\ref{ss:C-red} 的约化定理精确控制。在极小系统中影响可见：(4,3)、$D=8$ 时 $F^{\rm Fib}=0.771\pm0.008$，扇区 Haar 混合为 $0.813\pm0.007$；
+到 $D\gtrsim10^2$ 时差异已不可分辨（\S\ref{ss:C-k2}）。
+
+\subsection{哪些维数条件保证什么}\label{ss:B-dims}
+\begin{itemize}
+  \item \textbf{足以保证典型的高保真恢复：}对每个权重不可忽略的扇区都有 $kn_a/m_a\to0$，也就是 $\Xi\to+\infty$。
+  此时 $\E(1-\Frec)\le\varphi^{-\Xi}/(1+\varphi^{-\Xi})+o(1)$（B3）。再结合 \S\ref{ss:C-bounds} 的集中性，几乎每个 $V$ 都成立。$D\gg k$ 自动满足，保证标签泄露可忽略。
+  \item \textbf{只能保证某种“看起来接近最大混合”，不足以恢复：}
+  \begin{enumerate}
+    \item $\E_V\rho_{QB}=\frac Ik\otimes\E_V\rho_B$ 对任何维数都成立（Haar 不变性），是空洞陈述。
+    \item $\E\Tr C^2\simeq(1-k^{-2})\frac{2\varphi}{\sqrt5}\varphi^{-N_R}\to0$ 只要 $N_R\to\infty$ 就成立，即便 $N_B\gg N_R$、恢复完全失败。原因是 HS 范数小不等于迹范数小，缺了 $kn_a$ 的维数因子。
+    \item $\rho_B$ 在每个扇区内接近 $q_aI/n_a$ 只需要 $n_a\ll km_a$，即 $\Xi>-2\log_\varphi k$。所以在窗口 $-2\log_\varphi k<\Xi<0$ 内，B 看起来是热的，但恢复失败。
+    这就是单态 Page 条件 $n\ll m$ 与恢复条件 $kn\ll m$ 之间的差别。
+    \item $q_a\approx p_a$ 只需要 $D\gg1$，与恢复无关。
+  \end{enumerate}
+\end{itemize}
+
+% =====================================================================
+\section{C 部分：临界窗口}\label{sec:C}
+
+\subsection{扇区约化定理 \tagP}\label{ss:C-red}
+取 $V=G(G^\dagger G)^{-1/2}$，其中 $G$ 是 $D\times k$ 复 Gaussian 矩阵。记 $G_a=P_aG=U_aH_a$，$U_a=G_a(G_a^\dagger G_a)^{-1/2}$，$H_a=(G_a^\dagger G_a)^{1/2}$。则
+\[
+P_aV=U_aT_a,\qquad T_a=H_a(G^\dagger G)^{-1/2},
+\]
+其中：
+\begin{itemize}
+  \item $U_a$ 是 $\mathbb C^k\to\mathcal H^a_R\otimes\mathcal H^a_B$ 的 \textbf{Haar 等距}（要求 $M_a\ge k$）；
+  \item $U_a$ 与 $T_a$ \textbf{独立}：由左不变性，$U_a$ 与 $G_a^\dagger G_a$ 独立，而 $G^\dagger G$ 只依赖 $H_a$ 与其他块；
+  \item $T_a^\dagger T_a=Q_a$。
+\end{itemize}
+记 $u_a$ 为 $T_a$ 的极分解幺正部分。解码器能吸收 $u_a$，所以 $F_{\rm opt}(U_au_a)=F_{\rm opt}(U_a)$。又因为 $F_{\rm opt}$ 在迹距离下是 $\tfrac12$-Lipschitz 的，
+\[
+q_a\,|F_a-F_{\rm opt}(U_a)|\le\|Q_a-q_aI\|_{2}/\sqrt k .
+\]
+对 $V$ 取期望，并用 $q_a$ 与 $U_a$ 的独立性：
+\[
+\boxed{\ \Big|\E F^{\rm Fib}_{\rm rec}-\sum_a\frac{M_a}{D}\,\bar F^{\rm Haar}_k(m_a,n_a)\Big|\le\sum_a\sqrt{\frac{(k^2-1)M_a(D-M_a)}{kD(D^2-1)}}\ }
+\]
+其中 $\bar F^{\rm Haar}_k(m,n)$ 是普通 Haar 码 $\mathbb C^k\to\mathbb C^m\otimes\mathbb C^n$ 从 $m$ 因子恢复时的平均最优保真度。
+也就是说，\textbf{Fibonacci 码在可操作层面上就是按 $p_a$ 加权的普通 Haar 码混合}，维数取融合重数。
+
+\subsection{比值普适性与条件极限定理 \tagP}\label{ss:C-univ}
+由 \S\ref{ss:dims}，
+\[
+c_1=\frac{kF_{N_B-1}}{F_{N_R-1}},\qquad c_\tau=\frac{kF_{N_B}}{F_{N_R}},\qquad c_a=k\varphi^{-\Delta}\big(1+O(\varphi^{-2\min(N_R,N_B)})\big)\to\varphi^{-\Xi}.
+\]
+修正项的符号随 Fibonacci 奇偶交替。\textbf{推论：}若普通 Haar 码的交叉函数 $f_k(c)=\lim\bar F^{\rm Haar}_k(m,n)$（$m,n\to\infty$，$kn/m\to c$）存在、局部一致且连续，
+则 $\E F^{\rm Fib}_{\rm rec}\to f_k(\varphi^{-\Xi})$。这个极限：
+\begin{itemize}
+  \item 与扇区权重 $p_a$ 无关，因为两个扇区的 $c_a$ 极限相同；
+  \item 与 $\tTr$ 中的 $d_a$ 无关；
+  \item 与 F-符号无关。
+\end{itemize}
+$d_\tau$ 仅通过 $\log_\varphi$ 进入。$f_k$ 的存在性只有数值证据（\S\ref{ss:C-k2}），见 \tagC。
+
+\textbf{普适性的来源}有两种说法：
+\begin{enumerate}
+  \item 从 moment 看（\S\ref{ss:A-replica}）：两个竞争的鞍点，例如 $m_a^2n_a$ 与 $km_an_a^2$，携带相同的扇区因子 $\sum_ad_a^3$，所以二者的比值与扇区无关。
+  \item 从 Perron--Frobenius 看：对任何单生成对象 $x$、融合图连通且非周期的融合范畴，都有 $n_a/m_a\to d_x^{-\Delta}$ 且与 $a$ 无关。
+  因此结论应推广为 $\Xi_x=\Delta-\log_{d_x}k$ \tagC（论证概要）。
+\end{enumerate}
+
+\subsection{只依赖 \texorpdfstring{$\Xi$}{Ξ} 的上下界与集中性 \tagPs}\label{ss:C-bounds}
+对固定 $k$、$N\to\infty$、$\Xi$ 固定：
+\begin{itemize}
+  \item \textbf{下界：}$\tfrac1{1+\varphi^{-\Xi}}$ 来自 (B3)，\textbf{完全证明}。
+  $\big(\E_{{\rm MP}(\varphi^{-\Xi})}\sqrt\lambda\big)^2$ 来自取 $\sigma=I/n_a$，即对每个 $V$ 都有
+  \[\Frec\ge\sum_a\frac{\big(\Tr\sqrt{\rho^{(a)}_{QB}}\big)^2}{kn_a};\]
+  再用 Marchenko--Pastur 定律（Math.\ USSR-Sb.\ 1, 457 (1967)），以及 $k\ll D$ 时 Stiefel 与 Gaussian 的差 $G^\dagger G/D\to I$。
+  由 MP 律 $\E\lambda^2=1+c$ 与 Hölder 不等式，MP 下界 $\ge$ 碰撞下界。平凡下界 $1/k^2$ 由常值解码器给出。
+  \item \textbf{上界：}由 (B4) 与 Wishart 型矩阵最大特征值收敛到 MP 边缘 $(1+\sqrt y)^2$（Geman, Ann.\ Probab.\ 8, 252 (1980)；Yin--Bai--Krishnaiah, PTRF 78, 509 (1988)），
+  其中 $y_a=n_a/(km_a)\to c/k^2$，得到
+  \[
+  \limsup\Frec\le\sum_ap_a\Big(\tfrac1{\sqrt{c_a}}+\tfrac1k\Big)^2=\big(\varphi^{\Xi/2}+\tfrac1k\big)^2 .
+  \]
+  上界在 $\Xi\to-\infty$ 时趋于 $1/k^2$（偏离量 $O(\varphi^{\Xi/2})$），下界在 $\Xi\to+\infty$ 时趋于 1（$1-F\le\varphi^{-\Xi}$）。
+  两者都只依赖 $\Xi$，给出\textbf{相同的临界缩放}：转折发生在 $\Xi=O(1)$，且不含任何依赖 $d_a$ 的偏移。
+  \item \textbf{集中性：}$|F(V)-F(V')|\le\|V-V'\|_{HS}/\sqrt k$，由迹距离 Lipschitz 性与 $\|\psi\psi^\dagger-\psi'\psi'^\dagger\|_1\le2\|\psi-\psi'\|$ 得到。
+  由 $U(D)$ 上的 Gaussian 集中（E.\ Meckes, \emph{The Random Matrix Theory of the Classical Compact Groups}, CUP 2019, \S5.3，Thm 5.17），
+  $\Pr(|F-\E F|\ge t)\le2e^{-kDt^2/12}$；只用到 $\exp(-c\,kDt^2)$ 这一形式。因此\textbf{极限分布是点质量}。
+  数值上 sd$(F)$ 随 $D^{-1/2}$ 下降：$D=233,1597,4181$ 时为 0.012、0.0054、0.0028。
+\end{itemize}
+
+\subsection{显式数值恢复：\texorpdfstring{$k=2$}{k=2}，含不等切分 \tagN}\label{ss:C-k2}
+\code{scan\_k2.py}：对每个 $(N_R,N_B)$ 取 48--120 个 Haar 等距，每个样本都用带证书的最优解码（间隙 $<10^{-7}$）求出 $\Frec$。
+表~\ref{tab:k2a} 与表~\ref{tab:k2b} 取每个 $\Delta$ 的最大 $N$。
+
+\begin{table}[htbp]
+\centering\small
+\caption{$k=2$ 的最优恢复保真度与普通 Haar 码对照。圆括号内为末位标准误，例如 $0.39328(40)=0.39328\pm0.00040$。
+普通 Haar 码取 $n=128$、同一 $c$；方括号内为 $c$ 不完全匹配时的实际 $c$。}\label{tab:k2a}
+\begin{tabular}{rrcrlccl}
+\toprule
+$\Delta$ & $\Xi$ & $(N_R,N_B)$ & $D$ & $\E\Frec$ & sd & $F_1$ / $F_\tau$ & 普通 Haar（同 $c$）\\
+\midrule
+$-4$ & $-5.44$ & (8,12)  & 4181   & $\mathbf{0.39328}(40)$ & 0.0028 & 0.3939 / 0.3930 & ---\\
+$-3$ & $-4.44$ & (9,12)  & 6765   & $\mathbf{0.43580}(31)$ & 0.0021 & 0.4358 / 0.4358 & $0.43362(50)\ [8.53]$\\
+$-2$ & $-3.44$ & (10,12) & 10946  & $\mathbf{0.48945}(25)$ & 0.0018 & 0.4900 / 0.4893 & $0.49073(42)\ [5.22]$\\
+$-1$ & $-2.44$ & (11,12) & 17711  & $\mathbf{0.55888}(26)$ & 0.0018 & 0.5587 / 0.5589 & $0.56086(60)\ [3.20]$\\
+$0$  & $-1.44$ & (12,12) & 28657  & $\mathbf{0.64667}(19)$ & 0.0013 & 0.6467 / 0.6467 & $0.64692(22)$\\
+$+1$ & $-0.44$ & (13,12) & 46368  & $\mathbf{0.75301}(15)$ & 0.0011 & 0.7528 / 0.7531 & $0.75320(14)$\\
+$+2$ & $+0.56$ & (14,12) & 75025  & $\mathbf{0.85198}(8)$  & 0.0006 & 0.8519 / 0.8520 & $0.85203(15)$\\
+$+3$ & $+1.56$ & (15,12) & 121393 & $\mathbf{0.91001}(5)$  & 0.0004 & 0.9101 / 0.9100 & $0.90979(9)$\\
+$+4$ & $+2.56$ & (16,12) & 196418 & $\mathbf{0.94472}(4)$  & 0.0002 & 0.9447 / 0.9447 & $0.94477(5)$\\
+$+5$ & $+3.56$ & (17,12) & 317811 & $\mathbf{0.96602}(3)$  & 0.0002 & 0.9660 / 0.9660 & $0.96600(3)$\\
+$+6$ & $+4.56$ & (17,11) & 196418 & $\mathbf{0.97901}(3)$  & 0.0002 & 0.9790 / 0.9790 & ---\\
+$+7$ & $+5.56$ & (18,11) & 317811 & $\mathbf{0.98706}(1)$  & 0.0001 & 0.9871 / 0.9870 & ---\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering\small
+\caption{$k=2$：实测值与各条界、渐近律的对照（前两列界为精确有限 $N$ 值）}\label{tab:k2b}
+\begin{tabular}{rrcccccc}
+\toprule
+$\Delta$ & $\Xi$ & 碰撞下界 & $(1-\bar\delta)^2$ & 渐近上界 $(\varphi^{\Xi/2}+\frac12)^2$ & $1-\frac3{16}\varphi^{-\Xi}$ & 实测 $\E\Frec$\\
+\midrule
+$-4$ & $-5.44$ & 0.0680 & 0.0000 & 0.5930 & --- & 0.39328\\
+$-3$ & $-4.44$ & 0.1056 & 0.0000 & 0.7116 & --- & 0.43580\\
+$-2$ & $-3.44$ & 0.1604 & 0.0001 & 0.8780 & --- & 0.48945\\
+$-1$ & $-2.44$ & 0.2361 & 0.0489 & 1.0000 & --- & 0.55888\\
+$0$  & $-1.44$ & 0.3333 & 0.1503 & 1.0000 & --- & 0.64667\\
+$+1$ & $-0.44$ & 0.4472 & 0.2689 & 1.0000 & --- & 0.75301\\
+$+2$ & $+0.56$ & 0.5669 & 0.3863 & 1.0000 & 0.85676 & 0.85198\\
+$+3$ & $+1.56$ & 0.6793 & 0.4935 & 1.0000 & 0.91147 & 0.91001\\
+$+4$ & $+2.56$ & 0.7741 & 0.5869 & 1.0000 & 0.94529 & 0.94472\\
+$+5$ & $+3.56$ & 0.8472 & 0.6660 & 1.0000 & 0.96619 & 0.96602\\
+$+6$ & $+4.56$ & 0.8997 & 0.7318 & 1.0000 & 0.97910 & 0.97901\\
+$+7$ & $+5.56$ & 0.9356 & 0.7856 & 1.0000 & 0.98708 & 0.98706\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent 要点：
+\begin{enumerate}
+  \item 沿每条 $\Delta$ 固定的整数子序列，$F$ 随 $N$ 收敛，有限尺寸偏差在 $D\gtrsim10^2$ 后低于统计误差。
+  \item 大 $N$ 下两个扇区的 $F_1$ 与 $F_\tau$ 相等（小 $N$ 下因 $c_1\ne c_\tau$ 而不同），这直接验证了 \S\ref{ss:C-univ}。
+  \item 不等切分的数据（$\Delta=\pm1,\dots$）落在同一条仅依赖 $\Xi$ 的曲线上。
+\end{enumerate}
+
+\noindent\textbf{与普通 Haar 码的普适性比较}（\code{universality.py}）：
+\begin{itemize}
+  \item 在同一 $c$ 下，$n=128$ 时的普通 Haar 码给出：$\Delta=0$（$c=2$）为 $0.64692\pm0.00022$，Fibonacci $(12,12)$ 为 $0.64667\pm0.00019$；
+  $\Delta=2$ 为 $0.85203\pm0.00015$，Fibonacci $(14,12)$ 为 $0.85198\pm0.00008$；
+  $\Delta=3$ 为 $0.90979\pm0.00009$，Fibonacci $(15,12)$ 为 $0.91001\pm0.00005$；
+  $\Delta=5$ 为 $0.96600\pm0.00003$，Fibonacci $(17,12)$ 为 $0.96602\pm0.00003$。
+  \item 逐切分地，$F^{\rm Fib}$ 与 $\sum_ap_a\bar F^{\rm Haar}(m_a,n_a)$ 在 $(9,9)$、$(10,8)$、$(7,9)$、$(11,10)$ 上分别为
+  0.6469/0.6468、0.8520/0.8523、0.4902/0.4895、0.7533/0.7530。
+\end{itemize}
+
+\noindent\textbf{两端渐近律。}
+\begin{itemize}
+  \item \textbf{$\Xi\gg1$}（\tagN\ + 启发式推导）：在平坦点附近，Bures 度规的二阶展开给出
+  $1-F^{*}\simeq\frac{kn}{4}\min_\sigma\|\rho-\frac Ik\otimes\sigma\|_2^2=\frac{kn}{4}\Tr C^2$。代入 \S\ref{ss:B-mom} 的精确 $\E\Tr C^2$（含扇区求和）得
+  \[
+  1-\E\Frec\simeq\tfrac14(1-k^{-2})\,\varphi^{-\Xi}.
+  \]
+  $k=2$ 时：$\Xi=2.56$ 预测 0.94529，实测 0.94472；$\Xi=3.56$ 预测 0.96619，实测 0.96602；$\Xi=4.56$ 预测 0.97910，实测 0.97901；
+  $\Xi=5.56$ 预测 0.98708，实测 0.98706。$k=3$ 时：$\Xi=4.72$ 预测 0.97702，实测 0.9769。
+  同一展开给出 $I(Q\!:\!B)\simeq\frac{kn}{2}\Tr C^2$，因此在该区域 $1-F\simeq\tfrac12 I(Q\!:\!B)$。
+  \item \textbf{$\Xi\ll0$}（\tagN\ + 化约）：当 $c\gg k^2$ 时 $\rho_{QR}\simeq\frac1{km}\big(I+\frac{k}{\sqrt c}W\big)$，$W$ 为 GUE。代入 $H_{\min}$-SDP，在 $k/\sqrt c$ 的主阶上化约为
+  \[
+  \Frec-\tfrac1{k^2}\simeq\tfrac{s_k}{k}\varphi^{\Xi/2},\qquad s_k=\lim_m\tfrac1m\min\{\Tr S:\ I_k\otimes S\ge W\}\in(0,2].
+  \]
+  $s_k\le2$ 来自 $S=\lambda_{\max}(W)I$。数值上（\code{s\_k.py}，Clarabel）$s_2=0.986\pm0.022\ (m=8)$、$1.0008\pm0.0074\ (m=16)$、$0.9946\pm0.0075\ (m=32)$，与 $s_2=1$ 相容。
+  $k=3$ 及 $m=64$ 的 SDP 因内存不足未完成。$k=2$ 的扫描数据在 $\Xi=-5.44,-4.44,-3.44$ 给出 $2\sqrt c\,(F-\tfrac14)=1.06,1.08,1.10$，
+  并随 $c$ 增大向 $s_2$ 减小，与 $O(1/c)$ 次级修正一致。
+\end{itemize}
+
+\subsection{让 \texorpdfstring{$k$}{k} 随 \texorpdfstring{$N$}{N} 增长 \tagN；\tagC\ + 证明概要}\label{ss:C-kgrow}
+$k\in\{3,5,8,13,21\}$，$N_B\in\{7,9\}$，每点 24 个样本（\code{scan\_k.py}）。表中为 $N_B=9$ 的数据；$N_B=7$ 的数据在 \code{scan\_kgrow.json} 中，
+与之最大相差 $2.7\times10^{-3}$，出现在 $k=3$、$\Xi\approx-2.3$ 处，其余更小。“$\pm0.0000$”表示标准误小于 $5\times10^{-5}$。
+
+{\small
+\begin{longtable}{rcrlcccr}
+\caption{$k$ 增长时的最优恢复保真度与 $f_\infty$ 对照}\label{tab:kgrow}\\
+\toprule
+$k$ & $(N_R,N_B)$ & $\Xi$ & $\E\Frec$ & MP 下界（$\sigma=I/n$） & 一阶证书上界 & $f_\infty(\varphi^{-\Xi})$ & $F-f_\infty$\\
+\midrule
+\endfirsthead
+\multicolumn{8}{l}{\small 表~\ref{tab:kgrow}（续）}\\
+\toprule
+$k$ & $(N_R,N_B)$ & $\Xi$ & $\E\Frec$ & MP 下界（$\sigma=I/n$） & 一阶证书上界 & $f_\infty(\varphi^{-\Xi})$ & $F-f_\infty$\\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+3 & (8,9) & $-3.28$ & $0.3685\pm0.0008$ & 0.1955 & 0.5962 & 0.1953 & $+0.1732$\\
+3 & (9,9) & $-2.28$ & $0.4540\pm0.0007$ & 0.3048 & 0.7090 & 0.3049 & $+0.1491$\\
+3 & (10,9) & $-1.28$ & $0.5684\pm0.0007$ & 0.4637 & 0.8356 & 0.4635 & $+0.1049$\\
+3 & (11,9) & $-0.28$ & $0.7146\pm0.0004$ & 0.6656 & 0.9903 & 0.6654 & $+0.0491$\\
+3 & (12,9) & $+0.72$ & $0.8356\pm0.0003$ & 0.8120 & 1.0714 & 0.8118 & $+0.0238$\\
+3 & (13,9) & $+1.72$ & $0.9001\pm0.0002$ & 0.8868 & 1.0930 & 0.8870 & $+0.0132$\\
+3 & (14,9) & $+2.72$ & $0.9391\pm0.0001$ & 0.9313 & 1.0935 & 0.9311 & $+0.0080$\\
+3 & (15,9) & $+3.72$ & $0.9626\pm0.0001$ & 0.9578 & 1.0838 & 0.9577 & $+0.0048$\\
+3 & (16,9) & $+4.72$ & $0.9769\pm0.0000$ & 0.9740 & 1.0734 & 0.9740 & $+0.0029$\\
+\midrule
+5 & (9,9) & $-3.34$ & $0.2750\pm0.0005$ & 0.1900 & 0.3815 & 0.1899 & $+0.0851$\\
+5 & (10,9) & $-2.34$ & $0.3673\pm0.0004$ & 0.2968 & 0.5025 & 0.2968 & $+0.0705$\\
+5 & (11,9) & $-1.34$ & $0.4971\pm0.0004$ & 0.4523 & 0.6590 & 0.4522 & $+0.0449$\\
+5 & (12,9) & $-0.34$ & $0.6718\pm0.0003$ & 0.6527 & 0.8408 & 0.6527 & $+0.0191$\\
+5 & (13,9) & $+0.66$ & $0.8144\pm0.0002$ & 0.8056 & 0.9573 & 0.8056 & $+0.0088$\\
+5 & (14,9) & $+1.66$ & $0.8885\pm0.0001$ & 0.8835 & 1.0058 & 0.8834 & $+0.0051$\\
+5 & (15,9) & $+2.66$ & $0.9318\pm0.0001$ & 0.9288 & 1.0251 & 0.9290 & $+0.0028$\\
+5 & (16,9) & $+3.66$ & $0.9582\pm0.0001$ & 0.9564 & 1.0327 & 0.9565 & $+0.0018$\\
+5 & (17,9) & $+4.66$ & $0.9743\pm0.0000$ & 0.9732 & 1.0327 & 0.9732 & $+0.0011$\\
+\midrule
+8 & (10,9) & $-3.32$ & $0.2353\pm0.0002$ & 0.1919 & 0.3019 & 0.1919 & $+0.0434$\\
+8 & (11,9) & $-2.32$ & $0.3326\pm0.0002$ & 0.2999 & 0.4209 & 0.2999 & $+0.0327$\\
+8 & (12,9) & $-1.32$ & $0.4739\pm0.0001$ & 0.4563 & 0.5776 & 0.4565 & $+0.0174$\\
+8 & (13,9) & $-0.32$ & $0.6650\pm0.0001$ & 0.6576 & 0.7714 & 0.6576 & $+0.0075$\\
+8 & (14,9) & $+0.68$ & $0.8115\pm0.0001$ & 0.8080 & 0.9017 & 0.8080 & $+0.0035$\\
+8 & (15,9) & $+1.68$ & $0.8868\pm0.0001$ & 0.8849 & 0.9602 & 0.8848 & $+0.0021$\\
+8 & (16,9) & $+2.68$ & $0.9310\pm0.0000$ & 0.9298 & 0.9897 & 0.9298 & $+0.0012$\\
+8 & (17,9) & $+3.68$ & $0.9576\pm0.0000$ & 0.9570 & 1.0034 & 0.9569 & $+0.0007$\\
+8 & (18,9) & $+4.68$ & $0.9740\pm0.0000$ & 0.9736 & 1.0106 & 0.9735 & $+0.0005$\\
+\midrule
+13 & (11,9) & $-3.33$ & $0.2115\pm0.0001$ & 0.1911 & 0.2526 & 0.1911 & $+0.0204$\\
+13 & (12,9) & $-2.33$ & $0.3121\pm0.0001$ & 0.2987 & 0.3686 & 0.2987 & $+0.0134$\\
+13 & (13,9) & $-1.33$ & $0.4614\pm0.0001$ & 0.4548 & 0.5276 & 0.4548 & $+0.0065$\\
+13 & (14,9) & $-0.33$ & $0.6586\pm0.0001$ & 0.6558 & 0.7245 & 0.6557 & $+0.0029$\\
+13 & (15,9) & $+0.67$ & $0.8084\pm0.0001$ & 0.8071 & 0.8640 & 0.8071 & $+0.0014$\\
+13 & (16,9) & $+1.67$ & $0.8852\pm0.0001$ & 0.8844 & 0.9301 & 0.8843 & $+0.0009$\\
+13 & (17,9) & $+2.67$ & $0.9300\pm0.0000$ & 0.9295 & 0.9658 & 0.9295 & $+0.0005$\\
+13 & (18,9) & $+3.67$ & $0.9571\pm0.0000$ & 0.9568 & 0.9855 & 0.9568 & $+0.0003$\\
+13 & (19,9) & $+4.67$ & $0.9736\pm0.0000$ & 0.9734 & 0.9962 & 0.9734 & $+0.0002$\\
+\midrule
+21 & (12,9) & $-3.33$ & $0.2004\pm0.0001$ & 0.1914 & 0.2282 & 0.1914 & $+0.0090$\\
+21 & (13,9) & $-2.33$ & $0.3043\pm0.0000$ & 0.2992 & 0.3408 & 0.2991 & $+0.0051$\\
+21 & (14,9) & $-1.33$ & $0.4581\pm0.0000$ & 0.4556 & 0.5007 & 0.4555 & $+0.0027$\\
+21 & (15,9) & $-0.33$ & $0.6576\pm0.0001$ & 0.6565 & 0.6981 & 0.6564 & $+0.0012$\\
+21 & (16,9) & $+0.67$ & $0.8080\pm0.0000$ & 0.8075 & 0.8420 & 0.8074 & $+0.0006$\\
+21 & (17,9) & $+1.67$ & $0.8848\pm0.0000$ & 0.8845 & 0.9124 & 0.8845 & $+0.0004$\\
+21 & (18,9) & $+2.67$ & $0.9298\pm0.0000$ & 0.9296 & 0.9519 & 0.9296 & $+0.0002$\\
+21 & (19,9) & $+3.67$ & $0.9570\pm0.0000$ & 0.9569 & 0.9744 & 0.9568 & $+0.0001$\\
+21 & (20,9) & $+4.67$ & $0.9735\pm0.0000$ & 0.9734 & 0.9874 & 0.9734 & $+0.0001$\\
+\end{longtable}
+}
+
+\begin{itemize}
+  \item 在固定 $\Xi$ 下，$F_k-f_\infty(\varphi^{-\Xi})$ 随 $k$ 单调减小。
+  \begin{itemize}
+    \item 当 $\Xi\gtrsim-1.3$ 时，$k^2(F_k-f_\infty)$ 近似与 $k$ 无关：$\Xi\approx-0.3$ 时 $k=3,5,8,13,21$ 分别为 0.44、0.48、0.48、0.49、0.54；
+    $\Xi\approx+0.7$ 时为 0.21、0.22、0.22、0.23、0.26。这与 $F_k=f_\infty+A(\Xi)/k^2+\dots$ 一致。
+    \item 当 $\Xi\approx-3.3$（$c\approx5$）时，$k^2(F_k-f_\infty)=1.6,2.1,2.8,3.4,3.9$ 仍随 $k$ 增长，说明在所考察的 $k$ 范围内收敛慢于 $k^{-2}$。
+    这与修正项由 $c/k^2$ 控制、而 $c$ 较大时高阶项仍重要的图像一致，但\textbf{尚未被证实}。
+  \end{itemize}
+  \item $\sigma=I/n$ 给出的 MP 下界在 $k\to\infty$ 时变紧。
+  \item \textbf{猜想：}$\lim_{k\to\infty}\lim_N\Frec=f_\infty(\varphi^{-\Xi})=(\E_{{\rm MP}(c)}\sqrt\lambda)^2$（闭式见 \S\ref{sec:summary} 第 6 条，已用 Mathematica 数值积分核验到 30 位）。性质：
+  级数 $f_\infty(c)=1-\frac c4-\frac{c^2}{64}-\frac{3c^3}{512}-\cdots$；$f_\infty(1)=64/(9\pi^2)$；
+  对偶性 $f_\infty(c)=c^{-1}f_\infty(1/c)$（MP 律对 $XX^\dagger\leftrightarrow X^\dagger X$ 的对偶）。
+  \item \textbf{证明概要（未闭合）：}对任意 $\sigma_0=I/n$，凹性与 Euler 齐次性给出证书
+  \[
+  \sqrt{kF}\le\tfrac12\Big[\tfrac{\Tr\sqrt\rho}{\sqrt n}+\sqrt n\,\lambda_{\max}(\Tr_Q\sqrt\rho)\Big].
+  \]
+  需要证明 $\lambda_{\max}(T)\le\frac{\Tr T}{n}\big(1+O(\sqrt{c/k})\big)$，其中 $T=\Tr_Q\sqrt\rho$。思路是：
+  \begin{enumerate}
+    \item $X\mapsto|X|$ 在 HS 范数下 $\sqrt2$-Lipschitz（Araki--Yamagami, CMP 81, 89 (1981)）；
+    \item 对固定单位向量 $v$，$\langle v|T|v\rangle$ 的 Gaussian 涨落为 $O(\sqrt{k/(mn)})$，均值为 $\sqrt{k/n}\,\E\sqrt\lambda$；
+    \item 对 $v$ 取 $\varepsilon$-网并用并集界，相对偏差为 $O(\sqrt{n/m})=O(\sqrt{c/k})$。
+  \end{enumerate}
+  尚未写出的部分：常数、Stiefel$\to$Gaussian 比较，以及扇区与 $q_a$ 涨落的逐项控制。表~\ref{tab:kgrow} 中“一阶证书上界”一列就是这个证书的数值，它随 $k$ 收紧，与概要一致。
+\end{itemize}
+
+% =====================================================================
+\section{对 C 部分具体问题的回答}\label{sec:answers}
+
+\subsection*{(1) 两种熵的 Page 转折能否单独决定 \texorpdfstring{$\Frec$}{F\_rec} 的转折？不能。}
+\addcontentsline{toc}{subsection}{(1) Page 转折能否决定恢复转折}
+\begin{itemize}
+  \item \textbf{单态 Page 曲线（$k=1$）}在两种约定下都在 $\Delta=0$ 处转折。两者只差光滑的中心项 $p_\tau\ln\varphi\to$ 常数，再加指数小振荡，所以转折点位置相同。
+  恢复转折却在 $\Delta=\log_\varphi k$，即 $\Xi=0$，两者相差 $\log_\varphi k$。
+  \item \textbf{带参考系的码子空间 Page 曲线} $S(R)_{\rho_{\rm code}}\approx\min(N_R\ln\varphi,\ N_B\ln\varphi+\ln k)$ 在 $\Xi=0$ 处转折，两种约定给出同一位置。
+  所以它只能把\textbf{位置}定到 $O(1)$ 精度。
+  \item \textbf{窗口内的函数形状由单次熵决定，而不是由 von Neumann 熵决定。}精确地有
+  \[\Frec=e^{-H_{\min}(Q|R)}/k.\]
+  在 $\Xi\to-\infty$ 端：
+  \begin{itemize}
+    \item von Neumann 信号为 $I_c+\ln k\simeq\frac{k^2-1}{2}\varphi^{\Xi}$（Page 型修正）；
+    \item 而 $F-1/k^2\simeq\frac{s_k}k\varphi^{\Xi/2}$，二者\textbf{指数不同}：$F$ 的偏离量 $\propto\sqrt{I_c+\ln k}$，由谱顶（min-entropy）控制。
+    数值核验（\code{check\_ic\_tail.py}，普通 Haar 码，$k=2$）：$c=16,32,64,100$ 时 $I_c+\ln k=0.0866,0.0454,0.0231,0.0148$，
+    对应 $\frac{3}{2c}=0.0938,0.0469,0.0234,0.0150$；同时 $c=16,32$ 时 $F-\frac14=0.129,0.091$，对应 $\frac{1}{2\sqrt c}=0.125,0.088$。
+    \item 固定 $\Xi$ 时 $F$ 还依赖 $k$，例如 $\Xi=-0.28$ 时 $k=3$ 为 0.715，$k\to\infty$ 极限 $f_\infty=0.665$。
+    \item 只有在 $\Xi\gg1$ 的微扰区才有 $1-F\simeq\frac12I(Q\!:\!B)$。
+  \end{itemize}
+  \item \textbf{数值对照}（\code{entropy\_vs\_recovery.py}；$N=20$，每点 24 个样本），见表~\ref{tab:entropy}。表中显示了四点：
+  \begin{enumerate}
+    \item 单态 Page 曲线在 $\Delta=0$ 处取峰，两种约定同时取峰，二者之差恒为 $0.348\approx p_\tau^\infty\ln\varphi$。
+    \item 码态的 $S(R)$ 在 $\Delta=+2$ 处最大（本表步长为 2）。峰位于 $\Delta\in(0,4)$，与 $\Xi=0$（$\Delta=\log_\varphi2=1.44$）相容，而不在单态的 $\Delta=0$ 处。
+    \item $I_c$ 在两种约定下逐样本相同，例如 $\Delta=+2$ 时 $4.6410-4.2345=4.2933-3.8868=0.4065$。
+    \item 在窗口内 $H_{\min}(Q|R)$ 与 $H(Q|R)$ 相差 $O(1)$。例如 $\Xi=-3.44$ 时二者为 0.022 与 0.408；此处 $I_c<0$，但 $F=0.49>1/k^2$。
+  \end{enumerate}
+  \item \textbf{相同的 von Neumann 亏损对应不同的 $F$}（$N_B=8$）。$\ln k-I_c\approx0.9$ 时，$k=2,5,13$ 的 $F$ 分别为 0.552、0.497、0.462；
+  $\ln k-I_c\approx0.57$ 时，$k=5,13$ 分别为 0.672、0.659，$k=2$ 插值约为 0.70。因此 $\Frec$ 不是 von Neumann Page 数据的函数，还依赖 $k$ 以及谱的完整形状。
+  \item \textbf{两种约定下的条件量相同} \tagP。$I_c(Q\rangle R)=S(R)-S(B)$、$I(Q\!:\!R)$、$H(Q|R)$、$H_{\min}(Q|R)$ 在两种约定下严格相等，
+  因为 $\sum_ap_a\ln d_a$ 在 $R$ 与 $QR$（或 $R$ 与 $B$）中相同，从而抵消。
+\end{itemize}
+
+\begin{table}[htbp]
+\centering\footnotesize\setlength{\tabcolsep}{4pt}
+\caption{Page 曲线、条件熵与恢复保真度（$N=20$）}\label{tab:entropy}
+\begin{tabular}{rccrrrr}
+\toprule
+$\Delta$ & \makecell{$k=1$：$\Salg(R)$ / $\Sqtr(R)$} & \makecell{$k=2$：$\Salg(R)$ / $\Salg(B)$} & $k=2$：$\Xi$ & $H(Q|R)=-I_c$ & $H_{\min}(Q|R)$ & $\Frec$\\
+\midrule
+$-8$ & 2.530 / 2.877 & 2.535 / 3.212 & $-9.44$ & $+0.677$ & $+0.498$ & 0.304\\
+$-4$ & 3.427 / 3.776 & 3.466 / 4.049 & $-5.44$ & $+0.583$ & $+0.238$ & 0.394\\
+$-2$ & 3.792 / 4.140 & 3.888 / 4.296 & $-3.44$ & $+0.408$ & $+0.022$ & 0.489\\
+$0$  & \textbf{3.964 / 4.313}（峰） & 4.214 / 4.214 & $-1.44$ & $+0.001$ & $-0.256$ & 0.646\\
+$+2$ & 3.792 / 4.141 & \textbf{4.293}（峰附近）/ 3.887 & $+0.56$ & $-0.407$ & $-0.533$ & 0.852\\
+$+4$ & 3.429 / 3.778 & 4.048 / 3.465 & $+2.56$ & $-0.583$ & $-0.636$ & 0.944\\
+$+8$ & 2.530 / 2.877 & 3.212 / 2.534 & $+6.56$ & $-0.678$ & $-0.685$ & 0.992\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection*{(2) \texorpdfstring{$d_\tau$}{d\_τ}、扇区权重与融合重数各在哪一步进入可操作的恢复？}
+\addcontentsline{toc}{subsection}{(2) \texorpdfstring{$d_\tau$}{d\_τ}、扇区权重与融合重数的作用}
+\begin{itemize}
+  \item \textbf{融合重数 $(m_a,n_a)$} 定义了信道本身，也就是块的维数。它们通过 $\bar F^{\rm Haar}_k(m_a,n_a)$ 进入（\S\ref{ss:C-red}）。
+  \item \textbf{扇区权重} $q_a\to p_a=M_a/D\to d_a^2/\mathcal D^2$ 只作为混合权重进入 $F=\sum q_aF_a$。由于 $c_a$ 的极限相同，权重在极限中消失。在有限 $N$ 下，它们通过两条途径起作用：
+  (i) $c_1\ne c_\tau$ 带来奇偶交替的 $O(\varphi^{-2\min})$ 修正（表~\ref{tab:k2a} 中小 $N$ 的 $F_1\neq F_\tau$）；
+  (ii) 标签泄露 $\|Q_a-q_aI\|$ 带来 $O(\sqrt{k/D})$ 修正。
+  \item \textbf{$d_\tau$} 只通过 PF 增长 $m_a\simeq d_ad_R/\mathcal D^2$ 进入，即 $c=kd_B/d_R$，所以临界变量以 $\log_\varphi$ 为底。
+  $\tTr$ 中显式出现的 $d_a$ 不改变 $\mathcal N_R$、$\mathcal N_B$，也不改变 $\Frec$。
+\end{itemize}
+
+\subsection*{(3) 哪些影响只改变熵约定，哪些改变了信道？}
+\addcontentsline{toc}{subsection}{(3) 熵约定与信道的区分}
+\begin{itemize}
+  \item \textbf{只改变熵约定：}$\tTr$ 中的 $d_a$ 权重，即中心项 $\sum p_a\ln d_a$，它在一切条件熵中抵消；此外还有 replica 的平均方式（\S\ref{ss:A-conv}）。
+  \item \textbf{改变信道：}融合规则，通过 $m_a,n_a$；超选择，即输出是块对角的。后者迫使恢复按扇区进行，并把 $H(p)$ 变成双方共享的经典中心。
+  不过它不降低最优保真度，因为最优解码本来就按扇区进行。
+  \item \textbf{两者都不改变：}F-符号与不改变切分的基底选择（\S\ref{ss:basis-indep}）。
+  \item \textbf{推广（超出本题定义）：}若总荷为 $c\ne1$，同样的约化给出与扇区无关的比值 $kd_cd_B/d_R$，阈值平移 $\log_\varphi d_c$；
+  $c=\tau$ 时恰为一个 anyon，因为 $\operatorname{Hom}(\tau,\tau^N)\cong\operatorname{Hom}(1,\tau^{N+1})$。
+  这是本文找到的、量子维数以加性方式真正进入恢复阈值的情形（证明概要）。
+\end{itemize}
+
+% =====================================================================
+\section{与 QES/island 比较所需的最小字典，以及缺失的部分}\label{sec:island}
+
+\begin{table}[htbp]
+\centering\small
+\caption{最小字典}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}p{3.3cm}}
+\toprule
+本模型中的量 & 可能对应的对象 & 状态\\
+\midrule
+$\ln k$（$Q$--$L$ 纠缠，码子空间熵） & island 中的 bulk entropy $S_{\rm bulk}$ & 精确定义\\
+$N_B\ln\varphi=\ln d_B$（qtr 约定；alg 约定下为 $\ln\sum n_a$ 减中心项） & 剩余黑洞的粗粒化熵，即 area$/4G$ & 仅为类比\\
+$\sum_ap_a\ln d_a$（中心上的算符 $L=\sum_a\ln d_aP_a$，属于 $Z(\mathcal A_R)=Z(\mathcal A_B)$） & Harlow（CMP 354, 865 (2017)）意义下的中心/“面积算符”，即 edge 贡献 & 结构上精确\\
+$H(p)$ & 中心上的经典 Shannon 项 & 结构上精确\\
+$\sum p_aS(\rho_{R,a})$ & 可蒸馏的 bulk 熵 & 结构上精确\\
+两个“鞍点”，$\min(N_R\ln\varphi,\ N_B\ln\varphi+\ln k)$ & no-island / island 两个 QES 候选 & 类比：对应 Weingarten 和中 $\sigma=e$ 与 $\sigma=(12)$ 两类置换的主导\\
+$\Xi=0$ & 码子空间的 Page 时刻，即纠缠楔转换 & 已证明（位置）\\
+$\Frec=e^{-H_{\min}(Q|R)}/k$ 与窗口函数 $f_k$ & 纠缠楔重建保真度，以及 PSSY 中 Petz 重建的平滑转换 & 可操作量，已计算\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent\textbf{缺失的部分：}
+\begin{enumerate}
+  \item \textbf{没有动力学。}“时间”是人为给定的 $N_R$，没有 Hamiltonian，也没有蒸发机制。
+  \item \textbf{没有几何或局域性。}$V$ 是全局 Haar，bulk 没有空间结构，面积项 $\ln d_a$ 是固定常数，不是动力学面积，也没有 $G_N\to0$ 的半经典极限。
+  \item \textbf{Haar 平均只是模拟了鞍点求和。}它与 replica wormhole（PSSY, arXiv:1911.11977；AEMM, JHEP 12 (2019) 063；Penington, JHEP 09 (2020) 002）的关系仍是类比。
+  \item \textbf{编码假设。}$L$ 是中性的；恢复只针对最大纠缠输入；没有 Hayden--Preskill 式的先验纠缠；也没有 QES 的极值化条件（Engelhardt--Wall, JHEP 01 (2015) 073）。
+\end{enumerate}
+因此本文\textbf{不}宣称证明了 island，也\textbf{不}宣称构造了全息对偶。可以陈述的是：
+\begin{enumerate}
+  \item 本模型中码子空间熵的“最小化两鞍点”结构，与可操作恢复转折的位置一致，都在 $\Xi=0$；
+  \item 窗口形状由 $H_{\min}$ 给出，不由 von Neumann 型的 $S_{\rm gen}$ 给出；
+  \item 带 $\ln d_a$ 的中心项不影响可操作恢复。
+\end{enumerate}
+
+% =====================================================================
+\section{已证与未闭合，以及下一步可证伪的检验}\label{sec:open}
+
+\textbf{最强的已证命题。}\S\ref{ss:C-red} 的约化定理，加上 \S\ref{ss:C-univ} 的比值普适性，再加上 \S\ref{ss:C-bounds} 的只依赖 $\Xi$ 的双侧界与集中性。
+合起来，它们在 $f_k$ 存在的前提下证明了 $\Xi$ 是正确的临界变量，且没有扇区或 $d_a$ 依赖的常数偏移。
+在不需要该前提的情况下，它们也证明了转折发生在 $\Xi=O(1)$。其中碰撞下界是完全证明，MP 下界与 $\lambda_{\max}$ 上界依赖所引的 RMT 标准定理。
+
+\medskip\noindent\textbf{卡住的精确位置：}
+\begin{enumerate}
+  \item \textbf{$f_k(c)$ 的存在性与闭式}（固定 $k$）。它等价于大维数下随机 SDP
+  \[
+  \max_{\sigma}\Big(\Tr\sqrt{\textstyle\sum_jA_j^\dagger\sigma A_j}\Big)^2\Big/k^2
+  \]
+  的值，其中 $A_j$ 是 $n\times m$ Gaussian 块。这需要算子值自由概率。
+  \item $s_k$ 的闭式。数值上 $s_2\approx1.00$。
+  \item \S\ref{ss:C-kgrow} 概要中的算子范数集中还需要逐项写出。
+\end{enumerate}
+
+\noindent\textbf{下一步可证伪的检验：}
+\begin{enumerate}[label=(\alph*)]
+  \item 若在 $\Delta$ 固定时继续增大 $N$（例如 $N_B=14$、$k=2$），$F$ 仍以超过 $10^{-3}$ 的量偏离同一 $c$ 下的普通 Haar 码，则 \S\ref{ss:C-univ} 的推论被否定。
+  \item 若对 $k=3,5$ 测得 $\lim_{c\to0}(1-F)/c\ne(1-k^{-2})/4$，则 \S\ref{ss:C-k2} 的微扰律被否定。
+  \item 最直接的反例候选是总荷为 $\tau$ 的版本，它超出本题定义。本文预测阈值恰好平移一个 anyon；若数值上看到扇区依赖的分裂，则 PF 普适性论证有误。
+  \item 若 $k=8,13,21$ 在 $\Xi$ 固定时 $F_k-f_\infty$ 不按 $k^{-2}$ 收敛到 0，则 \S\ref{ss:C-kgrow} 的猜想被否定。
+\end{enumerate}
+
+% =====================================================================
+\section{可复现性（全部已运行，无 NOT\_RUN 代码）}\label{sec:repro}
+
+\noindent\begin{minipage}{\textwidth}\centering\small
+\captionof{table}{脚本清单（位于 \code{q2\_work/}）}
+\begin{tabularx}{\textwidth}{>{\ttfamily}l>{\raggedright\arraybackslash}X}
+\toprule
+\normalfont 脚本 & 内容\\
+\midrule
+fib\_basis.py & 融合树基底、F-move、$\mathcal A_R$ 代数维数与对易核验\\
+partA.py & A 部分精确公式与 MC、Rényi-2 的三种平均方式\\
+partA\_asym.py & 40 位精度下的渐近系数核验\\
+check\_gauss\_replica.py & Gaussian replica 偏差 $\psi(D+1)-\ln D$\\
+partB\_moments.py & 精确二阶矩、暴力 Weingarten 对照、MC、泄露矩\\
+frec.py & 最优恢复保真度：带证书的 $\max_\sigma$ 形式，L-BFGS\\
+check\_frec.py & 与 CPTP-SDP 以及显式 Uhlmann 解码器三路互验\\
+bounds.py & 解耦界、碰撞界\\
+scan\_k2.py & $k=2$ 扫描，结果在 \code{scan\_k2.json}\\
+universality.py & 与普通 Haar 码比较\\
+haar\_code.py & 普通 Haar 码\\
+scan\_k.py & $k$ 增长扫描，结果在 \code{scan\_kgrow.json}\\
+s\_k.py & GUE-SDP 常数 $s_k$。$k=2$ 完成了 $m=8,16,32$，$m=64$ 与 $k=3$ 因内存不足未完成\\
+entropy\_vs\_recovery.py & Page 曲线、$I_c$、$H_{\min}$ 与 $F$ 的对照。最后几个 $k=13$、$\Xi\ge1.67$ 的点因内存不足中断，已完成的结果见 \code{entropy\_vs\_recovery.log}\\
+check\_ic\_tail.py & $\Xi\ll0$ 端 von Neumann 信号与 $F$ 的指数对照\\
+\bottomrule
+\end{tabularx}
+\end{minipage}
+\medskip
+
+\noindent $f_\infty$ 的闭式与级数用 Mathematica 核验。
+
+\subsection*{参考文献（仅限文中实际使用处）}
+\addcontentsline{toc}{subsection}{参考文献}
+\begin{itemize}[nosep]
+  \item Page, PRL 71, 1291 (1993)；Foong--Kanno, PRL 72, 1148 (1994)；Sánchez-Ruiz, PRE 52, 5653 (1995)
+  \item Collins--Śniady, CMP 264, 773 (2006)
+  \item König--Renner--Schaffner, IEEE TIT 55, 4337 (2009)
+  \item Fuchs--van de Graaf, IEEE TIT 45, 1216 (1999)
+  \item Marchenko--Pastur (1967)；Geman (1980)；Yin--Bai--Krishnaiah (1988)
+  \item Meckes (2019)
+  \item Araki--Yamagami (1981)
+  \item Harlow (2017)
+  \item Hayden--Preskill, JHEP 0709:120 (2007)
+  \item PSSY (2019)；AEMM (2019)；Penington (2020)；Engelhardt--Wall (2015)
+  \item $\tTr$ 约定可参照 Bonderson--Knapp--Patel, Ann.\ Phys.\ 385, 399 (2017)。本文的推导不依赖它。
+\end{itemize}
+
+\end{document}

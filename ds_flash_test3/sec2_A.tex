@@ -1,0 +1,177 @@
+\section{A 部分：因果结构、首阶波形与误差阶数}
+\label{sec:A}
+
+\subsection{扰动方程与精确因果定理}
+
+记 $\delta\psi=\psi_{\varepsilon,L}-\psi_0$。由线性性，
+\begin{equation}
+\big[\partial_\tau^2-\partial_x^2+V_0(x)\big]\delta\psi=-\varepsilon\,W(x-L)\,\psi_{\varepsilon,L},
+\qquad \delta\psi(0,\cdot)=0,\quad\partial_\tau\delta\psi(0,\cdot)=0 .
+\label{eq:dsigma}
+\end{equation}
+
+\begin{theorem}[因果定理]\label{thm:causal}
+设初值支集 $\operatorname{supp}\psi(0,\cdot)\subset[-1,1]$，势垒支集
+$\operatorname{supp}W(\cdot-L)\subset[L-1,L+1]$，$L-x_o>1$。则对一切 $\varepsilon$ 与一切 $L$，
+\begin{equation}
+h_{\varepsilon,L}(\tau)=h_0(\tau)\qquad\text{对 }0\le\tau\le T_c:=2(L-1)-1-x_o=2L-13 .
+\label{eq:causal}
+\end{equation}
+更一般地，$\delta\psi(\tau,x)=0$ 当
+$\tau<T_c(x):=\min_{z\in[L-1,L+1]}\big[(z-1)+|x-z|\big]$。
+\end{theorem}
+
+\begin{proof}
+方程 \eqref{eq:model} 的主象征为 $\partial_\tau^2-\partial_x^2$，特征速度为 $1$，
+故 retarded Green 函数 $G_0$ 的支集满足 $\operatorname{supp}G_0(\tau;\cdot,\cdot)
+\subset\{|x-y|\le\tau\}$（区域 $x\in\mathbb R$、势垒光滑有界）。由 Duhamel 公式，
+$\delta\psi(\tau,x)=-\varepsilon\int_0^\tau\!\dd\tau'\!\int\!\dd z\,
+G_0(\tau-\tau';x,z)W(z-L)\psi_{\varepsilon,L}(\tau',z)$。
+若 $W(z-L)\psi_{\varepsilon,L}(\tau',z)\ne0$，则必有 $z\in[L-1,L+1]$，且
+$\psi_{\varepsilon,L}(\tau',z)\ne0$ 要求 $z$ 落在初值支集的未来锥内，即
+$\tau'\ge z-1$（初值支集右端点为 $x=1$；经势垒反射后的到达时刻更晚，不改变下界）。
+另一方面 $G_0(\tau-\tau';x,z)\ne0$ 要求 $\tau-\tau'\ge|x-z|$，于是
+$\tau\ge(z-1)+|x-z|$。对给定 $x$ 取下确界即得。$x=x_o=10$ 时
+$T_c=\min_{z\in[L-1,L+1]}(z-1+z-10)=2(L-1)-11=2L-13$。
+由于这是对精确解的恒等式（不依赖 $\varepsilon$ 或微扰论），证毕。
+\end{proof}
+
+\begin{remark}
+定理 \ref{thm:causal} 对任何阶数的微扰展开逐阶成立：$\delta\psi$ 的各阶项都由同一支集机制生成。
+数值上（第 \ref{sec:num} 节），$\max_{0\le\tau\le2L-13}|h_{\varepsilon,L}-h_0|$
+在 $L=12,\dots,32$ 时为 $2\times10^{-13}\!-\!8\times10^{-12}$（双精度舍入量级），完全印证 \eqref{eq:causal}。
+注意 $2L-13\ge L+1$ 当 $L\ge14$：回波总在直接脉冲（$\tau\approx x_o\pm1$）与势垒反射的振铃之后到达。
+\end{remark}
+
+\subsection{首阶 Duhamel 公式、回波与余项控制}
+
+\begin{proposition}[首阶波形差]\label{prop:first}
+设 $\psi_{\varepsilon,L}=\psi_0+\psi^{(1)}+\psi^{(2)}+\cdots$ 为 $\varepsilon$ 的幂级数解。则
+\begin{equation}
+\delta h^{(1)}(\tau):=\partial_\tau\psi^{(1)}(\tau,x_o)
+=-\varepsilon\,\partial_\tau\!\int_0^\tau\!\dd\tau'\!\int\!\dd z\,
+G_0(\tau-\tau';x_o,z)\,W(z-L)\,\psi_0(\tau',z),
+\label{eq:duhamel}
+\end{equation}
+其光锥（主导）部分为
+\begin{equation}
+\delta h^{(1)}_{\rm lc}(\tau)=-\frac{\varepsilon}{2}\int_{-1}^{1}\!\dd y\,
+W(y)\,\psi_0\big(\tau-(L+y-x_o),\,L+y\big)+O(V_0/\omega^2),
+\label{eq:lc}
+\end{equation}
+即在势垒外侧的远区，回波到达时间为 $\tau\simeq 2L-x_o=2L-10$，持续时间 $O(1)$，振幅
+$O(\varepsilon)$ 且\textbf{与 $L$ 无关}。
+\end{proposition}
+
+\begin{proof}[证明要点]
+首阶方程为 \eqref{eq:dsigma} 中把 $\psi_{\varepsilon,L}$ 换成 $\psi_0$；Duhamel 给出 \eqref{eq:duhamel}。
+远区 $x\gtrsim5$ 内 $V_0=O(1/x^2)$ 而背景频率 $\omega_0\approx0.37$，$V_0/\omega_0^2\approx0.5(x=10)$，
+故严格说远区并非自由区；把 $G_0$ 分成自由光锥项与势修正项：
+$G_0=\frac12\theta(\tau-|x-z|)+\Delta G_0$，自由项经 $\partial_\tau$ 作用给出
+\eqref{eq:lc}（用 $\psi_0(\tau',z)$ 在锥上取值），$\Delta G_0$ 项为 $O(V_0/\omega^2)$ 的相对修正
+（数值上 $20\%\!-\!26\%$，见第 \ref{sec:num} 节）；此外存在经势垒再反射后到达的推迟项
+（到达时刻 $\tau\simeq2L+x_o$，属"第二回波"）。\qed
+\end{proof}
+
+\begin{proposition}[余项一致控制；证明概要]\label{prop:rem}
+存在与 $L$ 无关的常数 $C$（依赖 $L_0,x_o$ 与初值），使对一切 $L\ge L_0$、$\tau\ge0$、$0<\varepsilon<\varepsilon_0$，
+\begin{equation}
+\big\|\psi_{\varepsilon,L}-\psi_0-\psi^{(1)}\big\|_{L^2(\dd x),\mathrm{energy}}^{\vphantom{1}}
+\;+\;\big\|(h_{\varepsilon,L}-h_0)-\delta h^{(1)}\big\|_{L^2[0,\infty)}
+\;\le\; C\,\varepsilon^2 .
+\label{eq:remainder}
+\end{equation}
+\end{proposition}
+
+\begin{proof}[证明概要]
+由 \eqref{eq:dsigma}，高阶项满足
+$[\partial_\tau^2-\partial_x^2+V_0]\psi^{(n+1)}=-\varepsilon W\psi^{(n)}$，零初值。用两条标准估计：
+(i) \emph{能量/流量估计}：$\psi^{(n)}$ 的能量范数被源项的能量流量控制；
+(ii) \emph{局域流量引理}：对能量为 $E_0$ 的波，势垒窗口内的时间-空间流量满足
+$\int_0^\infty\!\!\int_{[L-1,L+1]}\!\!\sigma(z)|\psi|^2\dd\tau\dd z\le C_\sigma E_0$（$C_\sigma$ 与 $L$ 无关；
+可用频域 Plancherel：对实频 $\omega$，频域场由初值经 Volterra 积分方程给出，其 $L^2(\dd\omega\dd z)$
+范数被初值 $H^1\oplus L^2$ 范数控制）。于是 $\|\psi^{(n+1)}\|\le\varepsilon C\|\psi^{(n)}\|$，
+几何级数给出 $\|\delta\psi\|\le \varepsilon C\|\psi_0\|/(1-\varepsilon C)$。
+同时 $\delta h$ 的 $L^2(\dd\tau)$ 范数由光锥传播算子控制：对自由方程，
+$g\mapsto \frac12\!\int\!\dd z\,g(\tau-(z-x_o),z)$ 是 $L^2(\dd\tau\dd z)\to L^2(\dd\tau)$ 的压缩（系数 $1/2$）；
+$V_0$ 的反射修正给出有界扰动。合并即得 \eqref{eq:remainder}。
+数值上（第 \ref{sec:num} 节）该界的关键组合为
+$\mathcal E\le \frac12\sqrt{\mathcal F}\,\varepsilon/\|h_0\|=0.286\,\varepsilon$，
+其中流量常数 $\mathcal F=\int_0^\infty\!\!\int W(y)|\psi_0(\tau,L+y)|^2\dd\tau\dd y=0.329$
+（由未扰动数值解测得），与实测 $\mathcal E/\varepsilon\simeq0.20$ 相符（界比实测宽 $40\%$）。
+\qed
+\end{proof}
+
+\subsection{$\mathcal E$ 与 $\mathcal M$ 的首个可能非零阶：generic、抵消与归一化}
+
+把 $h_{\varepsilon,L}=h_0+\delta h^{(1)}+\delta h^{(2)}+\cdots$ 代入 \eqref{eq:EM}：
+
+\paragraph{(Q3a) 的首阶.}
+由定理 \ref{thm:causal}，当 $T\le2L-13$ 时 $\mathcal E_{\varepsilon,L}(T)=0$ 严格。
+对 $T>2L-13$，
+\begin{equation}
+\mathcal E_{\varepsilon,L}(T)=\varepsilon\,
+\frac{\|\delta h^{(1)}\|_{L^2[0,T]}}{\|h_0\|_{L^2[0,\infty)}}+O(\varepsilon^2),
+\label{eq:Efirst}
+\end{equation}
+只要 $\delta h^{(1)}\not\equiv0$（\emph{generic} 情形）。首阶差在 $\tau\in[2L-13,\,2L-5]$ 内形如
+$-\frac{\varepsilon}{2}W*\psi_0$（即 bump 对出射脉冲的"卷积回波"），
+$\|\delta h^{(1)}\|=O(\varepsilon)$ 与 $L$ 无关（\eqref{eq:Cnorm} 及 $\|W\|_{L^1}\simeq1.4$）。
+\emph{特殊抵消}：只有当 $\delta h^{(1)}\equiv0$（例如把 $W$ 换成其 Fourier 变换在背景频谱上为零的形状，
+或初值与 bump 双重正交）时首阶才消失、主导阶升为 $\varepsilon^2$；本题给定的 $W$ 与初值不属此类
+（数值上回波振幅 $0.84\epsilon$，见第 \ref{sec:num} 节）。
+
+\paragraph{(Q3b) 的首阶（结构性结论）.}
+\begin{proposition}\label{prop:M}
+对任意 $h_0\in L^2$、$\delta h\in L^2$，令 $h=h_0+\delta h$，$A=\|h_0\|^2$，$B=\langle\delta h,h_0\rangle$，
+$C=\|\delta h\|^2$。则当 $T$ 上两范数非零时
+\begin{equation}
+\mathcal M=1-\frac{|A+B|}{\|h_0\|\,\|h_0+\delta h\|}
+=\frac{C}{2A}+O\!\Big(\frac{|B|C}{A^2},\frac{C^2}{A^2}\Big).
+\label{eq:Mexpand}
+\end{equation}
+特别地，若 $\delta h=O(\varepsilon)$ 且 $\|\delta h\|/\|h_0\|=O(\varepsilon)$，则
+$\mathcal M(T)=\frac12\mathcal E(T)^2+O(\mathcal E^3)$：\textbf{$\mathcal M$ 没有 $\varepsilon$ 阶项}，
+首个非零阶是 $\varepsilon^2$。
+\end{proposition}
+\begin{proof}
+$B$ 的线性项在展开中精确抵消：$(1+x)/\sqrt{(1+x)^2+y^2}$ 的 $x$ 一阶导在 $x=y=0$ 处为零。逐项展开即得。
+\end{proof}
+
+\paragraph{归一化失效的界定（本题定义下不出现）.}
+命题 \ref{prop:M} 说明：在 \eqref{eq:EM} 的"时间原点固定、以总范数 $\|h_0\|_{L^2[0,\infty)}$ 归一"的定义下，
+只要波形差是 $O(\varepsilon)$ 的绝对小量，$\mathcal M$ 必为 $O(\varepsilon^2)$。
+数值验证：$\varepsilon=10^{-3}$、$L=12$ 时 $\mathcal M_\infty=2.376\times10^{-8}$，
+而 $\frac12\mathcal E_\infty^2=\frac12(2.180\times10^{-4})^2=2.376\times10^{-8}$，符合到 $<1\%$。
+\emph{归一化失效}只发生在如下错误用法中：把"迟到回波/已衰减背景"的局部巨大\emph{比值}
+当作 $\mathcal E$ 或 $\mathcal M$ 的 $O(1)$ 变化。例如在窗口 $[2L-15,2L-4]$ 内，
+局部比 $\|\delta h\|_W/\|h_0\|_W$ 可达 $10^{-2}\!-\!10^{-1}$（因为 $\|h_0\|_W$ 是振铃尾部的局部小量），
+但这是分母小，而非绝对变化大；由 \eqref{eq:remainder}，绝对量仍为 $O(\varepsilon)$。
+
+\subsection{A 部分的数值核验（细节见第 \ref{sec:num} 节）}
+
+\begin{itemize}\itemsep2pt
+\item 图 \ref{fig:wf}：$h_0$ 与 $h_{\varepsilon,L}$（$\varepsilon=10^{-3},L=20$）在全时域上肉眼不可分，
+回波区放大后 $\delta h/\varepsilon$ 与光锥公式 \eqref{eq:lc} 的预言形状一致（最大相对误差 $19.5\%$，$L=20$；
+$25.7\%$，$L=28$；残差主要来自远区 $V_0/\omega_0^2$ 的相位修正与第二回波）。
+\item 图 \ref{fig:caus}：$|h_{\varepsilon,L}-h_0|$ 在半对数坐标下呈现"零平台 $\to$ 回波台阶"结构，
+台阶起点与 $2L-13$ 吻合到数值精度；回波台阶高度 $\simeq\varepsilon\times0.84$，与 $L$ 无关。
+\item 回波振幅表（$\varepsilon=10^{-3}$）：$L=12,16,20,24,28,32$ 对应
+$1.2620,\;1.2466,\;1.2273,\;1.2113,\;1.1987,\;1.1888\times10^{-4}$。
+\end{itemize}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{fig1_waveforms.pdf}
+\caption{上：$h_0$ 与 $h_{\varepsilon,L}$（$\varepsilon=10^{-3}$，$L=20$），两条曲线在全时域不可分辨。
+下：回波区放大，$\delta h/\varepsilon$（实线，PDE 精确差）与光锥 Duhamel 公式 \eqref{eq:lc}（虚线）。}
+\label{fig:wf}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{fig2_causality.pdf}
+\caption{$\log_{10}|h_{\varepsilon,L}-h_0|$ 随 $\tau$：因果零点平台与 $2L-13$（点线）处的回波台阶。
+台阶高度与 $L$ 无关（$\simeq0.84\varepsilon$），完全符合命题 \ref{prop:first}。}
+\label{fig:caus}
+\end{figure}

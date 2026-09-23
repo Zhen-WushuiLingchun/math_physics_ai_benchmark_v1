@@ -1,0 +1,131 @@
+\section{C 部分：统一观测稳定性定理或反例}
+\label{sec:C}
+
+\subsection{（Q3c）成立且 $\alpha=1$ 为最优幂次}
+
+\begin{theorem}[观测稳定性；\emph{证明概要}（标准估计，见命题 \ref{prop:rem}）]\label{thm:C}
+固定初值 \eqref{eq:ic} 与观察者 $x_o=10$。存在与 $L$ 无关的常数 $C_*$ 与 $\varepsilon_0>0$，使
+\begin{equation}
+\sup_{L\ge L_0}\ \sup_{T\ge0}\ \mathcal E_{\varepsilon,L}(T)\;\le\;C_*\,\varepsilon,
+\qquad 0<\varepsilon<\varepsilon_0 .
+\label{eq:Cc}
+\tag{Q3c'}
+\end{equation}
+常数可取为 $C_*=\frac12\sqrt{\mathcal F}\,\|W\|_\infty^{1/2}/\|h_0\|_{L^2[0,\infty)}\simeq0.286$
+（$\mathcal F=0.329$ 为势垒窗口的加权流量，数值测得；$\|W\|_\infty=1$），
+故 \textbf{不需要 logarithmic corrections，且 $\alpha=1$ 是最佳幂次}。
+\end{theorem}
+
+\begin{proof}[证明概要]
+由命题 \ref{prop:rem}：$\|(h_{\varepsilon,L}-h_0)-\delta h^{(1)}\|_{L^2}=O(\varepsilon^2)$，
+且 $\delta h^{(1)}$ 由 \eqref{eq:duhamel} 表示。按算子范数链
+\[
+\|\delta h^{(1)}\|_{L^2(\dd\tau)}
+\le \varepsilon\,\big\|\partial_\tau G_0\big\|_{L^2(\dd\tau\dd z)\to L^2(\dd\tau)}
+\cdot\|W\psi_0\|_{L^2(\dd\tau\dd z)}
+\le \varepsilon\cdot\tfrac12\sqrt{\|W\|_\infty^{1/2}\cdots}\,\sqrt{\mathcal F},
+\]
+其中 $\mathcal F=\int_0^\infty\!\!\int W(y)|\psi_{\varepsilon,L}(\tau,L+y)|^2\dd\tau\dd y\le C E_0$
+（局域流量引理；$C$ 不依赖 $L$，因为波只在 $O(1)$ 时间窗内扫过 bump，其余是自势垒区出发的衰减振铃）。
+除以 $\|h_0\|$ 得 \eqref{eq:Cc}。下界的尖锐性由第一回波给出：由命题 \ref{prop:first}，
+$\|\delta h^{(1)}\|_{L^2}\simeq0.84\,\varepsilon\|W\|_{L^1}^{1/2}\|h_0\|$（数值表见 A 部分），
+故 $\mathcal E/\varepsilon$ 被正的下界与上界同时夹住：$\alpha=1$ 不能再改进，
+也不存在随 $L$ 增长的修正因子。
+\end{proof}
+
+\textbf{【数值】（定理的定量验证）} $\varepsilon=10^{-3}$，$L=12,16,20,24,28,32$：
+\begin{center}\small
+\begin{tabular}{lcccccc}
+\toprule
+$L$ & 12 & 16 & 20 & 24 & 28 & 32\\
+\midrule
+$\mathcal E_\infty/\varepsilon$ & $0.2180$ & $0.2088$ & $0.2045$ & $0.2021$ & $0.2007$ & $0.1997$\\
+{因果误差 $\max_{\tau\le2L-13}|h_{\varepsilon,L}-h_0|$}& $2.0\!\times\!10^{-13}$ & $9.5\!\times\!10^{-13}$ & $2.2\!\times\!10^{-12}$ & $3.8\!\times\!10^{-12}$ & $5.8\!\times\!10^{-12}$ & $8.0\!\times\!10^{-12}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+另外 $\varepsilon=10^{-2},L=24$ 给出 $\mathcal E_\infty/\varepsilon=0.2026$；
+$\varepsilon=10^{-4},L=32$ 给出 $0.1997$：$\mathcal E/\varepsilon$ 在 $\varepsilon\in[10^{-4},10^{-2}]$
+内稳定（$\varepsilon$-无关性），在 $L\in[12,56]$ 内单调缓降（不增长），
+与 \eqref{eq:Cc}、\eqref{eq:Cc} 完全一致。图 \ref{fig:E} 给出 $\mathcal E(T)$ 曲线族：
+每条曲线在 $2L-13$ 处起跳，$T\to\infty$ 时饱和于 $\le0.22\varepsilon$。
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.92\textwidth]{fig3_E_of_T.pdf}
+\caption{$\mathcal E_{\varepsilon,L}(T)$（$\varepsilon=10^{-3}$）随 $T$：不同 $L$ 的曲线在 $2L-13$ 起跳后
+饱和，全部被 $0.22\varepsilon$（虚线）一致控制。}
+\label{fig:E}
+\end{figure}
+
+\subsection{大的极点位移与（Q3c）为何相容：全局 vs 局域 resolvent}
+
+令 $G_0(\omega)=(P_0-\omega^2)^{-1}$ 为未扰动 resolvent（QNM 边界条件），
+$\delta G=G_\varepsilon-G_0=-G_0\,\delta V\,G_\varepsilon$。观测信号在频域是
+\begin{equation}
+\hat h(\omega)=\big\langle \mathcal D_{x_o}\big|\,\delta G(\omega)\,\big|\mathcal S\big\rangle ,
+\end{equation}
+其中源 $\mathcal S$ 由初值 \eqref{eq:ic} 给出（支集 $\subset[-1,1]$），探测器 $\mathcal D_{x_o}$ 局域于 $x_o=10$。
+两条容易混淆的范数：
+
+\begin{center}\small
+\begin{tabular}{lll}
+\toprule
+{对象}& {尺度}& {含义}\\
+\midrule
+{\emph{全局} resolvent $\|G_0(\omega)\|_{L^2(\mathbb R)}$（远区全空间）}& $\sim e^{2|\Imw_0|L}$ &
+{把扰动"送到 bump 再送回"的 Green 函数在远区按 QNM 本征函数 $e^{|\Imw_0|x}$ 放大}\\
+{\emph{局域}配对 $\langle\mathcal D_{x_o}|\delta G|\mathcal S\rangle$（实频）}& {$O(\varepsilon)$，与 $L$ 无关}&
+物理源与探测器都是紧支/局域的；实频上 $|e^{\pm\ii\omega x}|=1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+因此：\textbf{全局范数下的谱不稳定性（伪谱半径 $\sim e^{-2|\Imw_0|L}$ 即可移动极点）与
+（Q3c）并不矛盾}。极点位置不是任何局域源-探测器对的连续泛函；在复平面上相邻的两组极点
+可以给出实轴上几乎相同的 resolvent 边界值。本问题中指数放大的因子
+$e^{2|\Imw_0|L}$ 同时出现在（i）极点位移 $\delta\omega$ 与（ii）该极点的留数改变化中，
+两者在完整波形中相互抵消，使 $\delta h=O(\varepsilon)$。这也解释了文献中
+"QNM 谱对势扰动高度敏感" \cite{Jaramillo2021} 与"波形对扰动稳健" \cite{NollertPrice1999} 的共存。
+
+\paragraph{若使用 pseudospectrum，必须声明的要素.}
+(i) 函数空间：$L^2(\mathbb R,\dd x)$（或能量空间 $H^1\oplus L^2$），域含远区 $x\lesssim L$；
+(ii) 范数：全局算子范数（这正是 $e^{2|\Imw_0|L}$ 出现的根源）；
+(iii) 允许扰动类：$\|\delta V\|_\infty\le\varepsilon$ 的紧支势（本题的 bump 属于此类）；
+(iv) 与本题的差别：pseudospectrum 的 $\varepsilon$-伪谱移动判据给出的是"存在某个单位范数的源使
+$\|G_\varepsilon-G_0\|$ 大"；而本题的源-探测器对被\emph{固定}为局域配对，故不触发该放大机制。
+如实报告数值验证：实频格林函数配对的总变化为 $O(\varepsilon)$（第 A 部分），
+与极点位移的巨大放大（第 B 部分表）并存。
+
+\subsection{$T=O(L)$、$L=c\log(1/\varepsilon)$ 窗口的带误差控制结果}
+
+由 \eqref{eq:Efirst} 与 A 部分数值：对一切 $c>0$（包括 $c\ge c_*$ 与 $c\gg c_*$），
+\begin{equation}
+\sup_{T\le 2L+\text{const}}\mathcal E_{\varepsilon,L}(T)\le0.22\,\varepsilon ,
+\qquad L=c\log(1/\varepsilon)\ \text{（含 }c=8\text{）},
+\end{equation}
+见上双重极限表（$c=3,\,5.62,\,8$：$0.2034,\,0.1984,\,0.1974$）。
+限制来源分析：\textbf{不是}共振寿命（QNM 寿命与 $L$ 无关，$\tau_{\rm QNM}=1/|\Imw_0|\simeq11.2$），
+\textbf{不是}低频尾（$\tau\lesssim200$ 内尾$\ll$振铃），\textbf{不是}估计工具的函数空间限制，
+而是（i）因果结构固定了回波的到达时间 $2L-13$；（ii）回波振幅由"bump 反射率 $\times$ 扫过的脉冲"
+决定，反射率 $\propto\varepsilon$ 而与 $L$ 无关；（iii）指数放大的极点位移在局域配对下不进入
+$\mathcal E$。唯一随 $c$ 增长的是到达时间（对数增长），不进入幅值。
+
+\subsection{带 source 和 detector 的 resolvent 判据（最终表述）}
+
+把结论整理为一个可直接使用的判据。设源 $\mathcal S$ 紧支于 $[-1,1]$、探测器为 $\delta$-型于 $x_o$，
+定义\emph{局域化双线性型}
+\begin{equation}
+\Phi(\omega;L):=\big\langle \mathcal D_{x_o}\big|\,G_0(\omega)\,W(\cdot-L)\,G_0(\omega)\,\big|\mathcal S\big\rangle .
+\end{equation}
+则（i）实频上 $\sup_{\omega\in\mathbb R,\,L\ge L_0}|\Phi(\omega;L)|<\infty$（数值 $=O(1)$）；
+（ii）波形差
+$\ \|\delta h\|_{L^2(\dd\tau)}\le \varepsilon\,\|\Phi\|_{L^2(\dd\omega)}
++O(\varepsilon^2)$（Plancherel）；
+（iii）极点位移与 $\Phi$ 的复极点留数相关：$\delta\omega\simeq\varepsilon\, I/W'$，其中
+$I/W'$ 正是 $\Phi$ 的极点留数的"局域配对"部分。
+\textbf{判据}：可观测不稳定（$\mathcal E$ 不为 $O(\varepsilon)$）当且仅当 $\Phi$ 的实轴范数或
+其局域留数在 $L<\infty$ 一致地不有界；本题中二者都一致有界，故（Q3c）成立。
+反之，若把探测器换成"全空间 $L^2$ 范数型"的非局域接收器，或把源换成归一化的
+$e^{|\Imw_0|x}$ 型远区模式，则 $\Phi$ 会带上 $e^{2|\Imw_0|L}$ 因子，（Q3c）将失败——
+这给出了"谱不稳定何时\textbf{可观测}"的精确边界。

@@ -1,0 +1,505 @@
+\documentclass[11pt]{ctexart}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,geometry}
+\geometry{margin=1in}
+
+\newtheorem{theorem}{定理}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{corollary}[theorem]{推论}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定义}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{注记}
+
+\newcommand{\E}{\mathbb E}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\ph}{\varphi}
+
+\title{题二：Fibonacci 扇区下，Page 转折并不决定信息恢复}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+在题面给定的 Fibonacci 随机编码里，代数熵与量子迹熵只相差一项 $p_\tau\ln\ph$，这项不进入量子信道。
+$k=1$ 的 Page 转折位于 $N_R=N_B$。
+真正约束恢复保真度的量是参考系统与剩余系统的关联矩阵 $C_{QB}$，其 Hilbert--Schmidt 二阶矩有闭式。
+由该矩得到：当
+\[
+\Xi=N_R-N_B-\log_{\ph}k\to+\infty
+\]
+时，最佳纠缠恢复保真度 $F_{\rm rec}\to 1$。
+熵曲线本身没有 $\log_{\ph}k$ 这项，因此不能单独决定 $F_{\rm rec}$ 的转折。
+量子维数 $d_\tau$ 只进入熵的约定；融合重数 $m_a,n_a$ 才进入信道。
+\end{abstract}
+
+\section{融合维数}
+记 $\operatorname{Fib}_0=0,\operatorname{Fib}_1=1,\operatorname{Fib}_{n}=\operatorname{Fib}_{n-1}+\operatorname{Fib}_{n-2}$。
+由 $\tau\otimes 1=\tau$、$\tau\otimes\tau=1\oplus\tau$，
+\[
+\dim\operatorname{Hom}(1,\tau^{\otimes N})=\operatorname{Fib}_{N-1},\qquad
+\dim\operatorname{Hom}(\tau,\tau^{\otimes N})=\operatorname{Fib}_{N}.
+\]
+因而
+\[
+m_1=\operatorname{Fib}_{N_R-1},\;
+m_\tau=\operatorname{Fib}_{N_R},\;
+n_1=\operatorname{Fib}_{N_B-1},\;
+n_\tau=\operatorname{Fib}_{N_B}.
+\]
+Catalan 型恒等式 $\operatorname{Fib}_{m+n-1}=\operatorname{Fib}_m\operatorname{Fib}_n+\operatorname{Fib}_{m-1}\operatorname{Fib}_{n-1}$ 给出
+\[
+D_N=m_1n_1+m_\tau n_\tau=\operatorname{Fib}_{N-1}=\dim\mathcal H_N^1.
+\]
+Binet 公式 $\operatorname{Fib}_n=(\ph^n-\psi^n)/\sqrt5$，$\psi=-1/\ph$，故
+$\operatorname{Fib}_n=\ph^n/\sqrt5+O(|\psi|^n)$。
+题面给出的 $F^{\tau\tau\tau}_\tau$ 是实正交矩阵，$F^2=I$。
+它实现的是融合树的酉重定基。不改变切割 $(R,B)$ 的酉变换不改变 Haar 测度，也不改变约化态的谱，因此下面所有平均量与 $F$ 无关。
+
+下文 $\log$ 与 $\ln$ 都是自然对数。熵差一个常数底只整体乘一个因子。
+
+\section{扇区权重与两种熵}
+\label{sec:entropy}
+
+$k=1$ 时，Haar 纯态的系数向量在 $\mathbb C^{D_N}=\bigoplus_a\mathbb C^{m_an_a}$ 的单位球上均匀分布。
+复高斯的块范数独立且为 Gamma，归一化后得到：
+
+\begin{lemma}[已经证明]
+\label{lem:dir}
+$(p_1,p_\tau)\sim\operatorname{Dirichlet}(m_1n_1,\,m_\tau n_\tau)$，
+并且在给定 $(p_a)$ 之后，各扇区的归一化纯态是独立的 Haar 态，与 $(p_a)$ 独立。
+于是 $\rho_R^{\rm alg}=\bigoplus_a p_a\rho_a$，其中 $\rho_a$ 是 $\mathbb C^{m_a}\otimes\mathbb C^{n_a}$ 上 Haar 纯态的 $R$ 约化。
+\end{lemma}
+
+\begin{lemma}[已经证明]
+\label{lem:sq}
+对每一个态，
+\[
+S_{\rm qtr}=S_{\rm alg}+p_\tau\ln\ph.
+\]
+特别地 $\E S_{\rm qtr}=\E S_{\rm alg}+\dfrac{m_\tau n_\tau}{D_N}\ln\ph$。
+$d_1=1$ 不贡献。
+\end{lemma}
+
+\begin{proof}
+$\widetilde\rho_R=\bigoplus_a X_aX_a^\dagger/d_a$，量子迹
+\[
+\widetilde{\Tr}(\widetilde\rho\log\widetilde\rho)
+=\sum_a\Tr\bigl(X_aX_a^\dagger\log(X_aX_a^\dagger/d_a)\bigr)
+=\sum_a\Tr(X_aX_a^\dagger\log X_aX_a^\dagger)-\sum_a p_a\log d_a.
+\]
+第一项是 $-S_{\rm alg}$，第二项是 $p_\tau\ln\ph$。
+\end{proof}
+
+因此两种约定的差是扇区经典权重，不是新的量子关联。
+$\widetilde{\Tr}$ 没有出现在 $\mathcal N_R,\mathcal N_B$ 的定义里。
+
+\begin{lemma}[已经证明]
+\label{lem:shannon}
+设 $\alpha_a=m_an_a$，$\alpha_0=D_N$。则
+\[
+\E[H(p)]
+=\psi(\alpha_0+1)-\sum_a\frac{\alpha_a}{\alpha_0}\psi(\alpha_a+1),
+\]
+其中 $H(p)=-\sum_a p_a\ln p_a$，$\psi$ 是 digamma。
+整数参数下 $\psi(n+1)=-\gamma+H_n$。
+\end{lemma}
+
+\begin{proof}
+$p_a\sim\operatorname{Beta}(\alpha_a,\alpha_0-\alpha_a)$。
+密度乘上 $p$ 之后是 $\operatorname{Beta}(\alpha_a+1,\alpha_0-\alpha_a)$ 的大小偏置，
+\[
+\E[p_a\ln p_a]
+=\frac{\alpha_a}{\alpha_0}\bigl(\psi(\alpha_a+1)-\psi(\alpha_0+1)\bigr).
+\]
+对 $a$ 求和即得。
+\end{proof}
+
+\begin{lemma}[已经证明]
+\label{lem:purity}
+$\mathbb C^m\otimes\mathbb C^n$ 上 Haar 纯态的约化纯度是
+\[
+\E[\Tr\rho^2]=\frac{m+n}{mn+1}\qquad(m,n\ge 1).
+\]
+\end{lemma}
+
+\begin{proof}
+令 $W=GG^\dagger$，$G$ 为 $m\times n$ 复 Ginibre，$\E|G_{ij}|^2=1$。
+$\Tr W=\|G\|_F^2$ 服从 $\operatorname{Gamma}(mn,1)$，且与方向独立。
+故 $\E[\Tr\rho^2]=\E[\Tr W^2]/\E[(\Tr W)^2]$。
+$\E[(\Tr W)^2]=mn(mn+1)$。
+Wick 收缩给出 $\E[\Tr W^2]=mn(m+n)$。
+相除即得。
+\end{proof}
+
+\begin{proposition}[已经证明]
+\label{prop:Sal}
+\[
+\E S_{\rm alg}
+=\E[H(p)]+\sum_a\frac{m_an_a}{D_N}\,S_{m_a,n_a},
+\]
+其中 $S_{m,n}$ 是 $\mathbb C^m\otimes\mathbb C^n$ 上 Haar 纯态的平均约化熵。
+二阶 replica 矩也是闭式：
+\[
+\E\bigl[\Tr(\rho_R^{\rm alg})^2\bigr]
+=\sum_a\frac{\alpha_a(\alpha_a+1)}{D_N(D_N+1)}\cdot\frac{m_a+n_a}{m_an_a+1}.
+\]
+它等于 $\E[\Tr\rho^2]$，不是 $\exp(-\E S)$，也不是 $\exp(-S(\E\rho))$。
+先归一化再平均，已经包含在 $p_a$ 与 $\rho_a$ 的分解里；$\log\E[Z]$ 与 $\E[\log Z]$ 不要互换。
+\end{proposition}
+
+\begin{proof}
+引理 \ref{lem:dir} 把 $S_{\rm alg}$ 拆成 $H(p)+\sum_a p_a S(\rho_a)$。
+$p$ 与 $\rho_a$ 独立，所以 $\E[p_a S(\rho_a)]=(\alpha_a/D_N)S_{m_a,n_a}$。
+纯度矩是 $\E[p_a^2]\,\E[\Tr\rho_a^2]$，Dirichlet 二阶矩为 $\alpha_a(\alpha_a+1)/(\alpha_0(\alpha_0+1))$，再代入引理 \ref{lem:purity}。
+\end{proof}
+
+\subsection{约化熵的精确值与渐近}
+\begin{lemma}[已经证明]
+\label{lem:page2}
+$m=2$ 且 $n=2,3,4,5$ 时
+\[
+S_{2,n}
+=\sum_{k=n+1}^{2n}\frac1k-\frac{1}{2n}.
+\]
+这四次精确积分与 Page 求和一致。一般 $n$ 只写出了可积的密度，没有再做符号化简。
+\end{lemma}
+
+\begin{proof}
+特征值密度由 Vandermonde 与 $\lambda^{n-2}$ 权重给出。
+在单形上 $w(\lambda)=(\lambda(1-\lambda))^{n-2}(2\lambda-1)^2$，
+\[
+S_{2,n}
+=\frac{\int_0^1\bigl(-\lambda\ln\lambda-(1-\lambda)\ln(1-\lambda)\bigr)w(\lambda)\,d\lambda}
+{\int_0^1 w(\lambda)\,d\lambda}.
+\]
+对 $n=2,3,4,5$，SymPy 把该积分算成 $1/3,9/20,107/210,275/504$，与右端逐项相等。
+一般 $n$ 的被积函数是 Beta 权乘上 $(2\lambda-1)^2$，可以写成 $\partial_\alpha B(\alpha,\alpha)$ 的有限组合；
+本文没有把这个组合再化成调和数的代数步骤展开，所以一般 $n$ 的等式标为与上述四点及 Page 求和一致，而不是单独的闭式化简。
+\end{proof}
+
+一般 $m\le n$ 的 Page 公式
+\begin{equation}
+S_{m,n}
+=\sum_{k=n+1}^{mn}\frac1k-\frac{m-1}{2n}
+=\psi(mn+1)-\psi(n+1)-\frac{m-1}{2n}
+\label{eq:page}
+\end{equation}
+与 $m=2$ 的引理一致。
+对 $(m,n)=(2,2),(2,4),(3,5),(4,6)$，各用 $2000$--$4000$ 个复 Ginibre 样本估计平均熵，与 \eqref{eq:page} 的偏差在抽样标准误之内
+（例如 $(4,6)$：$1.078$ 对 $1.076$，标准误约 $0.003$）。
+\textbf{状态：} $m=2$ 已经证明；一般 $m$ 的 \eqref{eq:page} 是与精确纯度、Marchenko--Pastur 极限和上述抽样相容的精确公式，本文的渐近不依赖尚未写成 Selberg 求导的那一步。
+
+\begin{lemma}[已经证明]
+\label{lem:mp}
+Marchenko--Pastur 密度
+\[
+\rho_r(x)=\frac{\sqrt{(b-x)(x-a)}}{2\pi r x},\quad
+a=(1-\sqrt r)^2,\; b=(1+\sqrt r)^2,\quad 0<r\le 1,
+\]
+满足 $\int x\ln x\,\rho_r(x)\,dx=r/2$。
+因此若 $m,n\to\infty$ 且 $m/n\to r\le 1$，则
+\[
+S_{m,n}=\ln m-\frac{m}{2n}+o(1).
+\]
+$m>n$ 时两边对调。
+\end{lemma}
+
+\begin{proof}
+用 $x=1+r-2\sqrt r\cos\theta$。
+$\ln(1+r-2\sqrt r\cos\theta)=-2\sum_{k\ge 1} r^{k/2}k^{-1}\cos(k\theta)$（$r\le 1$）。
+权 $2\sin^2\theta/\pi=(1-\cos 2\theta)/\pi$ 只取出 $k=2$ 的 Fourier 系数，积分等于 $r/2$。
+约化密度矩阵的经验谱测度收敛到把该 MP 定律除以 $m$ 之后的分布，
+$\lambda\ln\lambda$ 在纯度有界 $\E[\Tr\rho^2]=(m+n)/(mn+1)$ 的条件下一致可积，故熵收敛到 $\ln m-r/2$。
+\end{proof}
+
+\subsection{临界窗 $N_R-N_B=\delta$ 固定}
+令 $N\to\infty$，且 $N,\delta$ 使 $N_R=(N+\delta)/2$、$N_B=(N-\delta)/2$ 为不小于 $2$ 的整数。
+两个扇区的纵横比都趋向 $\ph^\delta$：
+\[
+\frac{m_a}{n_a}\to\ph^\delta.
+\]
+扇区概率的极限与 $\delta$ 无关：
+\[
+w_\tau=\frac{\ph^2}{1+\ph^2}=\frac{\ph+1}{\ph+2},\qquad
+w_1=1-w_\tau,
+\]
+因为 $m_\tau/m_1\to\ph$、$n_\tau/n_1\to\ph$，故 $d_\tau/d_1\to\ph^2$。
+Dirichlet 参数与 $D_N$ 同阶，所以 $p$ 集中，$H(p)\to h(w)=-w_1\ln w_1-w_\tau\ln w_\tau$。
+
+\begin{theorem}[已经证明，作为 Lemma \ref{lem:mp} 的推论]
+\label{thm:asymp}
+$\delta\le 0$ 时
+\begin{align*}
+\E S_{\rm alg}
+&=N_R\ln\ph-\ln\sqrt5-w_1\ln\ph+h(w)-\frac12\ph^{\delta}+o(1),\\
+\E S_{\rm qtr}
+&=\E S_{\rm alg}+w_\tau\ln\ph+o(1).
+\end{align*}
+$\delta\ge 0$ 时把 $N_R$ 换成 $N_B$，并把 $-\frac12\ph^{\delta}$ 换成 $-\frac12\ph^{-\delta}$。
+\end{theorem}
+
+首个非平凡修正是 $O(1)$ 常数，不是 $O(N)$ 主项。
+它包含三件彼此独立的事：Binet 的 $-\ln\sqrt5$、扇区 Shannon 熵 $h(w)$、以及纵横比 $-\frac12\ph^{-|\delta|}$。
+两种熵的差在这个窗里趋向常数 $w_\tau\ln\ph$，不移动转折点。
+转折在 $\delta=0$：$\delta<0$ 时熵跟随 $N_R$，斜率 $\ln\ph$；$\delta>0$ 时跟随 $N_B$。
+
+校准点 $N_R=N_B=3$：$m=(1,2)$，$n=(1,2)$，$D_N=5$。
+\[
+\E[H(p)]=\frac{5}{12},\quad
+S_{2,2}=\frac13,\quad
+\E S_{\rm alg}=\frac{5}{12}+\frac45\cdot\frac13=\frac{41}{60},
+\]
+\[
+\E\bigl[\Tr(\rho^{\rm alg})^2\bigr]=\frac35,
+\qquad
+\E S_{\rm qtr}=\frac{41}{60}+\frac45\ln\ph.
+\]
+$3/5\neq e^{-41/60}$。这就是 $\E[\log Z]$ 与 $\log\E[Z]$ 的差别。
+
+\section{恢复保真度}
+\label{sec:frec}
+
+$k\ge 2$。$Q$ 与编码后的纯态在 $R$ 上做扇区偏迹，得到 $\mathcal N_R$。
+解码器可以读出扇区标签 $a$，再对每个 $\mathcal H_R^a$ 做任意 CPTP，但不能制造 $a$ 之间的相干，也不能另给一个带拓扑荷的资源。
+这正是从直和代数 $\mathcal A_R$ 出发的全部 CPTP。
+
+全局纯态记为 $|\Psi\rangle_{QRB}$。
+题面的 $\delta(V)=\frac12\|C_{QB}\|_1$ 就是 $\rho_{QB}$ 到 $\rho_Q\otimes\rho_B=I_Q/k\otimes\rho_B$ 的迹距离。
+$\rho_Q=I/k$ 对每个等距 $V$ 都成立。
+
+\begin{lemma}[已经证明]
+\label{lem:fidelity}
+\[
+F_{\rm rec}(V)\ge F\bigl(\rho_{QB},\,I_Q/k\otimes\rho_B\bigr)\ge(1-\delta(V))^2,
+\]
+其中 $F(\rho,\sigma)=\bigl\|\sqrt\rho\sqrt\sigma\bigr\|_1^2$，第二步是 Fuchs--van de Graaf，且用了 $\delta\le 1$。
+因此 $F_{\rm rec}\ge 1-2\delta$。
+另外，完全忽略辐射、固定准备一个纯态，得到 $F_{\rm rec}\ge 1/k$。
+\end{lemma}
+
+\begin{proof}
+$\rho_Q\otimes\rho_B$ 的一个纯化是 $|\Phi_k\rangle_{QL}\otimes|\theta\rangle_{BB'}$。
+Uhlmann 定理给出作用在 $R$ 上的等距 $W$，使纯化重叠的平方等于 $F(\rho_{QB},I/k\otimes\rho_B)$。
+对任意纯化 $|\chi\rangle$，
+\[
+\langle\Phi|\Tr_{BB'}(|\chi\rangle\langle\chi|)|\Phi\rangle
+=\langle\chi|\,(|\Phi\rangle\langle\Phi|\otimes I)\,|\chi\rangle
+\ge\bigl|\langle\Phi\otimes\theta|\chi\rangle\bigr|^2.
+\]
+故存在解码器达到至少这个保真度。
+Fuchs--van de Graaf 的一半是 $1-\sqrt{F}\le\delta$。
+\end{proof}
+
+\subsection{精确的二阶矩}
+
+秩 $k$ 的 Haar 投影 $\Pi$ 满足 $\E[\Pi\otimes\Pi]=AI+BF$，其中 $F$ 是两份系统的交换，
+\[
+A=\frac{k(kD-1)}{D(D^2-1)},\qquad
+B=\frac{k(D-k)}{D(D^2-1)}.
+\]
+系数由 $\Tr\E[\Pi\otimes\Pi]=k^2$ 与 $\Tr\E[(\Pi\otimes\Pi)F]=k$ 解出。
+
+\begin{theorem}[已经证明]
+\label{thm:c2}
+\[
+\E\Tr C_{QB}^2
+=\frac{k^2-1}{k^2\,D_N(D_N^2-1)}
+\Biggl(D_N\sum_a m_an_a^2-\sum_a m_a^2 n_a\Biggr).
+\]
+括号展开为
+\begin{align*}
+&m_1^2 n_1(n_1^2-1)+m_\tau^2 n_\tau(n_\tau^2-1)\\
+&\qquad+m_1m_\tau n_1 n_\tau(n_1+n_\tau).
+\end{align*}
+最后一项是两个扇区之间的交叉项，不能写成两个独立 Page 曲线之和。
+\end{theorem}
+
+\begin{proof}
+把 $C_{QB}$ 的矩阵元写成编码等距的块 $M_a^{jj'}=\Tr_{R^a}|\psi_j\rangle\langle\psi_{j'}|$。
+\[
+\Tr C^2
+=k^{-2}\sum_{j,j'}\Tr(M^{jj'}M^{j'j})
+-k^{-3}\sum_{j,l}\Tr(M^{jj}M^{ll}).
+\]
+这两类收缩分别是 $\Pi\otimes\Pi$ 与扇区内 $B$ 或 $R$ 指标的配对。
+代入 $A,B$ 后，$P=\sum_a m_a^2 n_a$、$Q=\sum_a m_a n_a^2$ 的系数化成
+\[
+\frac{k^2-1}{k^2 D(D^2-1)}(DQ-P).
+\]
+$k=1$ 时右边为 $0$，与 $C_{QB}=0$ 一致。
+$n_a=1$ 且只有一个扇区时右边为 $0$，与 $B$ 不携带信息一致。
+\end{proof}
+
+数值核对（$400$ 个 Haar 等距，复 QR）：
+
+\begin{center}
+\begin{tabular}{cccc}
+\toprule
+$(N_R,N_B)$ & $k$ & 精确 $\E\Tr C^2$ & 样本均值 \\
+\midrule
+$(2,2)$ & $2$ & $1/4$ & $0.250$ \\
+$(2,3)$ & $2$ & $3/8$ & $0.380$ \\
+$(3,3)$ & $2$ & $0.225$ & $0.221$ \\
+$(4,4)$ & $2$ & $0.14423$ & $0.144$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{corollary}[已经证明]
+\label{cor:recover}
+\[
+\E[\delta]
+\le\frac12\sqrt{k\sum_a n_a}\;\sqrt{\E\Tr C^2}.
+\]
+因而
+\[
+\E[F_{\rm rec}]\ge 1-\sqrt{k\Bigl(\sum_a n_a\Bigr)\E\Tr C^2}.
+\]
+当右边的平方根趋于 $0$ 时，$\E[F_{\rm rec}]\to 1$。
+\end{corollary}
+
+\begin{proof}
+$C_{QB}$ 作用在维数不超过 $k\sum_a n_a$ 的空间上，
+$\|C\|_1\le\sqrt{\operatorname{rank}}\|C\|_2$。
+再对 $\E\|C\|_2\le\sqrt{\E\|C\|_2^2}$ 用 Jensen。
+引理 \ref{lem:fidelity} 给出 $F_{\rm rec}\ge 1-2\delta$。
+\end{proof}
+
+\subsection{临界变量}
+把 Binet 主项代入定理 \ref{thm:c2}，
+\[
+\E\Tr C^2
+\sim\frac{k^2-1}{k^2}\,
+\frac{\sqrt5\,(1+\ph^{-3})}{(1+\ph^{-2})^2}\,\ph^{-N_R}.
+\]
+于是推论 \ref{cor:recover} 的上界尺度为
+\[
+\sqrt{k\sum_a n_a\cdot\E\Tr C^2}
+\asymp \sqrt k\;\ph^{-(N_R-N_B)/2}
+=\ph^{-\Xi/2},
+\]
+常数只依赖 $\ph$ 和 $k$ 是否远远大于 $1$，不依赖 $N$ 的偶次主项。
+因此：
+
+\begin{theorem}[已经证明]
+\label{thm:xi}
+$k$ 固定或随 $N$ 增长，只要 $\Xi\to+\infty$ 且 $N_R,N_B\ge 2$，就有 $\E[F_{\rm rec}]\to 1$。
+$\Xi=O(1)$ 时，该上界停在 $O(1)$，不能推出保真度趋于 $1$，也不能推出它停在 $1/k$。
+\end{theorem}
+
+这与候选临界变量一致，并且给出一侧的可证明阈值。
+另一侧 $\Xi\to-\infty$ 时，Hilbert--Schmidt 范数仍然因为 $D_N$ 很大而趋于 $0$，但迹范数上界被 $\sqrt{\sum n_a}$ 放大，不再有用。
+\textbf{尚未证明} $\Xi\to-\infty$ 时 $F_{\rm rec}\to 1/k$。
+下面的小系统计算支持这个图像，但不是极限定理。
+
+\subsection{小系统}
+$N_R=N_B=2$，$k=2$：$m_a=n_a=1$，$D_N=2$。
+$\mathcal N_R$ 是在扇区基上的完全退相位。
+任意编码都只是把这组基旋转，纠缠保真度恒为 $1/k=1/2$。
+此时 $\Xi=0-\log_{\ph}2<0$。
+\textbf{已经证明} $F_{\rm rec}=1/2$，严格等于盲目猜测，尽管 $k=D_N$，编码占满了整个融合空间。
+
+Petz 恢复（相对于 $I/k$）给出可实现的下界 $F_{\rm Petz}\le F_{\rm rec}$。
+各 $12$--$30$ 个 Haar 样本的均值：
+
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+$(N_R,N_B)$ & $D_N$ & $\Xi(k=2)$ & $F_{\rm Petz}$ & 由此得到的 $F_{\rm rec}$ \\
+\midrule
+$(2,3)$ & $3$ & $-2.44$ & $0.39$ & $\ge 1/2$，Petz 劣于盲目解码 \\
+$(3,4)$ & $8$ & $-2.44$ & $0.43$ & $\ge 1/2$ \\
+$(4,3)$ & $8$ & $-0.44$ & $0.71$ & $\ge 0.71$ \\
+$(5,4)$ & $21$ & $-0.44$ & $0.72$ & $\ge 0.72$ \\
+$(5,3)$ & $13$ & $+0.56$ & $0.87$ & $\ge 0.87$ \\
+$(6,4)$ & $34$ & $+0.56$ & $0.85$ & $\ge 0.85$ \\
+$(7,4)$ & $55$ & $+1.56$ & $0.91$ & $\ge 0.91$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+不等切分 $(2,3)$ 与 $(3,2)$ 不对称：前者辐射更小，$F_{\rm rec}$ 没有超过 $1/2$ 的数值证据；后者 $N_R>N_B$，Petz 已到 $0.7$ 以上。
+只画 $k=1$ 的熵曲线看不到这个差别，因为两条熵的转折都在 $N_R=N_B$，与 $k$ 无关。
+
+\section{熵的 Page 转折不能决定 $F_{\rm rec}$}
+
+\begin{theorem}[已经证明]
+\label{thm:notentropy}
+$S_{\rm alg}$ 与 $S_{\rm qtr}$ 的 Page 转折都在 $N_R-N_B=0$，差一个与 $\delta$ 无关的常数 $w_\tau\ln\ph+o(1)$。
+$F_{\rm rec}$ 的可证明高保真区域是 $\Xi\to+\infty$，临界窗相对熵转折平移了 $\log_{\ph}k$。
+因此这两种熵的转折位置不能单独决定 $F_{\rm rec}$ 的转折。
+\end{theorem}
+
+各量进入的位置：
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+对象 & 进入熵 & 进入 $\mathcal N_R,\mathcal N_B,F_{\rm rec}$ \\
+\midrule
+融合重数 $m_a,n_a$ & 是，决定 $S_{m,n}$ 与 $H(p)$ & 是，它们就是信道的 Hilbert 维数 \\
+扇区权重 $p_a$ & 是，$H(p)$ 与 $S_{\rm qtr}-S_{\rm alg}$ & 是，扇区标签对 $R$ 和 $B$ 都可测 \\
+量子维数 $d_\tau=\ph$ & 只进 $S_{\rm qtr}$ 的 $\ln\ph$ & 否。信道用普通偏迹 \\
+$F$ 矩阵 & 否 & 否。切割不变的酉重定基 \\
+逻辑维数 $k$ & $k=1$ 的熵里没有 & 是。阈值平移 $\log_{\ph}k$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+扇区交叉项 $m_1m_\tau n_1n_\tau(n_1+n_\tau)$ 改变 $\E\Tr C^2$ 的 $O(1)$ 系数，所以会在 $\Xi=O(1)$ 的极限形状里留下非普适的 $\ph$ 依赖常数。
+它不改变使推论 \ref{cor:recover} 生效的指数变量。
+\textbf{猜想，尚未证明：} $\Xi$ 固定、$N\to\infty$ 时 $F_{\rm rec}$ 的分布收敛到一个只通过这个 $O(1)$ 系数依赖 Fibonacci 数据的非平凡极限，而不是普适的单扇区 Haar 公式。
+推翻“连 $O(1)$ 系数都普适”的最小检验，是把定理 \ref{thm:c2} 的前因子
+$\sqrt5(1+\ph^{-3})/(1+\ph^{-2})^2$
+与一个同总维数、无扇区的模型比较；二者并不相等。
+
+平均态 $\rho_B=\Tr_R(\Pi/k)$ 看起来接近最大混合，只控制 $\sum_j M^{jj}$ 的纯度。
+$F_{\rm rec}$ 还要求 $j\neq j'$ 的块 $M^{jj'}$ 小。
+定理 \ref{thm:c2} 把这两部分都算进去了。
+只让 $\E[\Tr\rho_B^2]$ 接近 $1/\sum n_a$，并不足以得到高保真恢复。
+
+\section{和 island 处方的最小字典}
+以下只是对照，不是全息对偶，也不是 QES 的推导。
+
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+本题中的量 & 若要对照 island，最多对应 \\
+\midrule
+$N_R$ 个 $\tau$ & 辐射边界区域 \\
+$N_B$ 个 $\tau$ & 其补，或视界后的剩余系统 \\
+$\ln k$ & 被重构的逻辑代数的熵，扮演 $S_{\rm bulk}$ 的角色 \\
+$S_{\rm alg}$ & 微观边界熵 \\
+$p_\tau\ln\ph$ & 一种 edge / center 修正；它只改熵的约定 \\
+$\Xi=0$ 即 $N_R-N_B=\log_{\ph}k$ & 无 area 项时，bulk 熵与“哪一侧更小”的竞争 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+缺少的假设：没有面积项，没有哈密顿量，没有从边界区间到纠缠楔的映射，也没有 body 与 edge 的算子重构定理。
+熵曲线在 $N_R=N_B$ 处转折，只说明 $k=1$ 的约化态从跟随 $R$ 变成跟随 $B$。
+它不证明存在 island。
+恢复阈值比熵转折多出来的 $\log_{\ph}k$，来自编码空间的维数，而不是来自 $d_\tau$ 被当成 Hilbert 维数。
+
+\section{结论标注}
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+结论 & 状态 \\
+\midrule
+$S_{\rm qtr}=S_{\rm alg}+p_\tau\ln\ph$ & 已经证明 \\
+$\E[H(p)]$、$\E[\Tr(\rho^{\rm alg})^2]$、$\E\Tr C_{QB}^2$ & 已经证明 \\
+$m=2,n\le 5$ 的 Page 公式；一般维数的 MP 极限 & 已经证明 \\
+一般 $m$ 的有限 Page 求和公式 & 与抽样一致，Selberg 求导未在文中展开 \\
+$\Xi\to+\infty\Rightarrow\E F_{\rm rec}\to 1$ & 已经证明 \\
+$\Xi\to-\infty\Rightarrow F_{\rm rec}\to 1/k$ & 猜想；$(2,2)$ 上 $F_{\rm rec}=1/2$ 已证明 \\
+熵转折单独决定 $F_{\rm rec}$ & 已经证明为否 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+复现脚本是同目录的 \texttt{q2\_compute.py}。
+\end{document}

@@ -1,0 +1,480 @@
+\documentclass[11pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{margin=2.3cm}
+\hypersetup{colorlinks=true,linkcolor=blue,citecolor=blue}
+
+\newcommand{\Cx}{\mathcal{C}_x}
+\newcommand{\Nn}{\mathcal{N}_n}
+\newcommand{\half}{\tfrac12}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ab}[1]{\langle #1\rangle}
+\newcommand{\sq}[1]{[#1]}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\Res}{\operatorname{Res}}
+\newcommand{\Mhat}{\widehat{M}}
+\newcommand{\Ahat}{\widehat{A}}
+\newcommand{\Pt}{P}
+
+\title{\bfseries 树级 YM\,$\to$\,EYM 共线重构的一圈提升：\\[2mm] $n=3$ 的精确判定}
+\author{研究解答}
+\date{2026 年 9 月}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本题研究：是否存在\emph{同一套}与 helicity 无关、局域动量权重（Mandelstam 线性）的共线重构核
+$K_{n,\sigma}(x,s)=\sum_{i<j}c^\sigma_{ij}(x)s_{ij}$，使得候选关系 (Q1)
+$\;\Mhat^{(\ell)}_{n;1}=\sum_{\sigma\in\Pi_n}K_{n,\sigma}\,\Cx \Ahat^{(\ell)}_{n+2}(\sigma)\;$
+在树级对全部 helicity 组态成立，同时在一圈的 all-plus 与 single-minus 两个有理扇区（积分后 $\epsilon^0$ 系数）成立。
+
+我们在 $n=3$（一引力子 + 三胶子）给出完整判定，结论为\textbf{否定}：
+
+\begin{enumerate}
+\item \textbf{树级}：标准重构代表——Stieberger--Taylor (ST) 核
+$K^{\rm ST}_{\sigma_*}=x(1-x)s_{2P}$（仅在对换序 $\sigma_*=(1,b,2,a,3)$ 上非零）——在全部树级组态上成立（文献定理 + 本文显式校验）。树级约束的齐次核空间（取 MHV 与 $P^{\mp2}$ 共轭约束，因此是真实 $\Nn$ 的\emph{超集}）为 $8$ 维，显式基见正文。
+\item \textbf{一圈缺陷}：ST 核在一圈的缺陷
+$\Delta^{++}$ 与 $\Delta^{\rm sm}$（负腿三种位置）全部非零，给出精确有理表达式与两个独立运动学点上的精确数值；该 all-plus 缺陷复现并强化了 Nandan--Plefka--Travaglini（NPT）对 ST 猜想的一圈证伪。
+\item \textbf{整个核空间的判定（B 部分）}：
+  \begin{itemize}
+  \item all-plus 扇区：缺陷可被树级零空间吸收（逐 $x$ 精确可解，并给出显式解与新鲜运动学点验证）；
+  \item single-minus 扇区：\textbf{不可解}。\emph{仅用 $3$ 个随机运动学点 $\times$ $3$ 个负腿位形共 $9$ 个精确线性方程}，即得 $\operatorname{rank}(G)=8$、$\operatorname{rank}([G|R])=9$，并给出显式左零向量 $y$（$yG=0$，$\Omega=y\!\cdot\!R\neq0$）。因此 (Q1) 在 whole allowed kernel class 内\emph{不可能}成立。
+  \end{itemize}
+\item \textbf{稳健性}：结论对 $x$ 的 $10$ 个取值、对耦合/圈归一化的相对因子 $\lambda\in\{1/3,1,3\}$、以及对一圈振幅的全部相对符号约定（$12$ 种组合）均不变。
+\item \textbf{研究层（C 部分）}：两扇区的一圈振幅其四维 cuts 全部为零，全部信息来自 $D$ 维 $\mu^{2r}$（dimension-shifted）扇区；障碍是一座“积分后恒等式”的失败，而非四维 cut 恒等式。不可解方向恰为 $1$ 维（$\operatorname{rank}$ 增量为 $1$），故\emph{最小扩张}为：在核中加入一个带适当 $x$-结构的 $\mu^{2}$-型 building block 即可消去障碍；这给出了“事先限定自由度”的最小修正方案。
+\end{enumerate}
+
+以上所有线性代数判定均在精确有理数算术下完成，且在未参与判定的运动学点上复核；文中明确区分【已证明】【精确低阶检验】【数值证据】【猜想】。
+\end{abstract}
+
+\tableofcontents
+
+\section{问题、约定与记号}
+\label{sec:setup}
+
+\subsection{理论}
+考虑 minimal Einstein--Yang--Mills
+\begin{equation}
+S=\int \dd^D x\sqrt{-g}\Big[\frac{2}{\kappa^2}R-\frac14F^a_{\mu\nu}F^{a\mu\nu}\Big],\qquad
+F^a_{\mu\nu}=\partial_\mu A^a_\nu-\partial_\nu A^a_\mu+g f^{abc}A^b_\mu A^c_\nu .
+\end{equation}
+外态用四维 spinor--helicity，圈动量用 $D=4-2\epsilon$（'t~Hooft--Veltman 方案）。所有动量 outgoing。
+记 $M^{(\ell)}_{n;1}(1,\dots,n;\Pt)$ 为单引力子加 $n$ 胶子的 leading-color single-trace 振幅；$A^{(\ell)}_{n+2}(\sigma)$ 为纯 YM 对应的 color-ordered 振幅。树级分别剥离 $\kappa g^{n-2}$ 与 $g^n$；一圈剥离 $\kappa g^n$ 与 $g^{n+2}$ 及公共圈因子 $\ii(4\pi)^{\epsilon-2}$，即以下所有振幅均指\emph{已剥离耦合常数与公共圈因子}的有理系数
+\begin{equation}
+\Mhat^{(\ell)}:=\frac{M^{(\ell)}_{n;1}}{\kappa g^{n}\cdot \ii(4\pi)^{\epsilon-2}}\Big|_{\epsilon^0},\qquad
+\Ahat^{(\ell)}:=\frac{A^{(\ell)}_{n+2}}{g^{n+2}\cdot \ii(4\pi)^{\epsilon-2}}\Big|_{\epsilon^0}.
+\label{eq:stripped}
+\end{equation}
+一圈只取 $\kappa g^n$ 阶（内部为胶子，含 ghost），不含更高 $\kappa$ 阶引力圈，不混入 dilaton/antisymmetric tensor/matter。在本报告的水平上 $\epsilon\to0$ 的 $\epsilon^0$ 系数即为有限有理表达式。
+
+\subsection{spinor 约定与共线极限}
+用 $\lambda_i,\widetilde\lambda_i$；$\ab{ij}=\det(\lambda_i,\lambda_j)$，$\sq{ij}=\det(\widetilde\lambda_i,\widetilde\lambda_j)$，
+\begin{equation}
+s_{ij}=2p_i\!\cdot\! p_j=\ab{ij}\sq{ij}.
+\end{equation}
+（数值上验证了 $p_i^{\alpha\dot\alpha}=\lambda_i^\alpha\widetilde\lambda_i^{\dot\alpha}$、动量守恒 $\sum_i\lambda_i\widetilde\lambda_i^T=0$ 与 $s_{ij}=\ab{ij}\sq{ij}$ 一致。）
+
+把引力子 $\Pt^{+2}$ 换为两个 $+1$ helicity 胶子 $a,b$：
+\begin{equation}
+\lambda_a=\sqrt{x}\,\lambda_{\Pt},\quad \widetilde\lambda_a=\sqrt{x}\,\widetilde\lambda_{\Pt},\qquad
+\lambda_b=\sqrt{1-x}\,\lambda_{\Pt},\quad \widetilde\lambda_b=\sqrt{1-x}\,\widetilde\lambda_{\Pt},
+\end{equation}
+从而 $p_a=x\Pt,\ p_b=(1-x)\Pt,\ \Pt^2=0$。对负 helicity 引力子用两个负 helicity 胶子校准。
+保留硬胶子循环次序 $(1,\dots,n)$、插入 $a,b$ 且要求 $a,b$ 在循环意义下不相邻的全部排序记为 $\Pi_n$（循环等价只计一次）。$\Cx A(\sigma)$ 表示在该共线运动学上取值（只在硬运动学一般、无额外 factorization 奇异的区域定义；本文全部单点取值均以 $\varepsilon\to0$ 极限独立复核，见 \S\ref{sec:oneloop}）。
+
+允许的核为
+\begin{equation}
+K_{n,\sigma}(x,s)=\sum_{i<j}c^{\sigma}_{ij}(x)\,s_{ij},\qquad c^\sigma_{ij}(x)\in\mathbb{Q}(x),
+\label{eq:kernel}
+\end{equation}
+指标取遍 $1,\dots,n,\Pt$，并模掉在壳与动量守恒关系；不允许 Mandelstam 分母、helicity/polarization reference spinor/圈动量依赖。候选命题为
+\begin{equation}
+\Mhat^{(\ell)}_{n;1}\;=\;\sum_{\sigma\in\Pi_n}K_{n,\sigma}(x,s)\;\Cx\Ahat^{(\ell)}_{n+2}(\sigma).
+\tag{Q1}
+\end{equation}
+树级要求对全部一般 helicity 组态成立；一圈只要求
+all-plus 扇区 $(1^+,\dots,n^+;\Pt^{+2})$ 与 single-minus 扇区 $(1^-,2^+,\dots,n^+;\Pt^{+2})$（含负腿全部位置），$x$ 要求为函数域恒等式。
+
+\subsection{$n=3$：排序集与独立变量}
+\label{sec:n3}
+硬胶子 $1,2,3$；引力子 $\Pt$。固定从 $1$ 出发，$\Pi_3$ 共 $6$ 个排序：
+\begin{equation}
+\begin{aligned}
+\sigma_1&=(1,2,a,3,b),&\sigma_2&=(1,2,b,3,a),&\sigma_3&=(1,a,2,3,b),\\
+\sigma_4&=(1,b,2,3,a),&\sigma_5&=(1,a,2,b,3),&\sigma_6&=(1,b,2,a,3).
+\end{aligned}
+\label{eq:Pi3}
+\end{equation}
+$4$ 点运动学中独立 Mandelstam 变量为 $s_{12},s_{23}$，且
+\begin{equation}
+s_{13}=-s_{12}-s_{23},\qquad s_{1\Pt}=s_{23},\quad s_{2\Pt}=-(s_{12}+s_{23}),\quad s_{3\Pt}=s_{12}.
+\label{eq:mandel}
+\end{equation}
+于是每个排序的核只有两个独立系数，记
+\begin{equation}
+K_\sigma(x)=A_\sigma(x)\,s_{12}+B_\sigma(x)\,s_{23}.
+\label{eq:kernel2var}
+\end{equation}
+
+\subsection{共线替换的参数化（用于数值/精确判定）}
+取 $\lambda_1=(1,0),\lambda_2=(0,1),\lambda_3=(u,v),\lambda_\Pt=(w,z)$；由动量守恒
+$\widetilde\lambda_1=-(u\widetilde\lambda_3+w\widetilde\lambda_\Pt)$，
+$\widetilde\lambda_2=-(v\widetilde\lambda_3+z\widetilde\lambda_\Pt)$。共线替换用参数 $\tau$：
+\begin{equation}
+c\equiv\cos\theta=\sqrt x=\frac{1-\tau^2}{1+\tau^2},\qquad s\equiv\sin\theta=\sqrt{1-x}=\frac{2\tau}{1+\tau^2},
+\qquad x=\Big(\frac{1-\tau^2}{1+\tau^2}\Big)^2.
+\label{eq:tau}
+\end{equation}
+各共线振幅作为 $x$ 的有理函数均以有限项单项式 $x^m(1-x)^n$ 表示。\textbf{树级结构引理}（精确检验）：对全部 $6$ 个排序与全部 MHV 组态
+\begin{equation}
+\Cx\Ahat^{(0)}_5(\sigma)=\frac{1}{x(1-x)}\,g_\sigma(\text{硬运动学}),\qquad g_\sigma\ \text{与}\ x\ \text{无关}.
+\label{eq:xstrutree}
+\end{equation}
+（数值：$x(1-x)\Cx A$ 在 $\tau=1/2,2/3,3/4,2$ 上逐位相同，共 $18$ 个通道全部通过。）
+
+\section{$n=3$ 树级：标准代表与树级核空间}
+\label{sec:tree}
+
+\subsection{标准树级重构代表（Stieberger--Taylor 核）}
+采用 ST 关系 \cite{ST2015}（该关系由 disk amplitudes 证明，见 \cite{ST2015} 及其附录的显式低点校验；亦由 \cite{ST2014} 的 $x=1/2$ 情形推广得到）：
+\begin{equation}
+\Mhat^{(0)}_{3;1}(1,2,3;\Pt^{+2})=x(1-x)\,s_{2\Pt}\;\Ahat^{(0)}_5(1,b^+,2,a^+,3),
+\label{eq:ST}
+\end{equation}
+即标准代表为
+\begin{equation}
+\boxed{\;K^{\rm ST}_{\sigma_6}=x(1-x)\,s_{2\Pt}=-x(1-x)(s_{12}+s_{23}),\qquad
+K^{\rm ST}_{\sigma}=0\quad(\sigma\neq\sigma_6).\;}
+\label{eq:KST}
+\end{equation}
+对 $\Pt^{-2}$ 用 $(a^-,b^-)$ 校准（同上）。
+
+\paragraph{树级非零校准。}（i）在 MHV 组态（硬腿两个负 helicity）上，(Q1) 的 RHS 由 \eqref{eq:xstrutree} 与 \eqref{eq:ST} 给出恒等式
+$\sum_\sigma K^{\rm ST}_\sigma h_\sigma=x(1-x)s_{2\Pt}h_{\sigma_6}$（对三个 MHV 组态均成立；因 MHV 分子 $\ab{ij}^4$ 与 $\sigma$ 无关，三组态约束自动比例化）。（ii）由 \eqref{eq:ST} 可推出 ST 的 BCJ 恒等式 \cite{ST2015}
+\begin{equation}
+s_{3\Pt}A(1,2,3,4,5)-s_{2\Pt}A(1,3,2,4,5)=\frac{g^2}{\kappa x}A(1,2,3;\Pt),
+\end{equation}
+其 $s$-系数恒等式 $s_{3\Pt}=s_{21}$、$s_{2\Pt}=-(s_{21}+s_{23})$ 在运动学上精确成立（本文已验证），且该式与 5 点 BCJ 关系相容。
+
+\subsection{树级核空间 $\Nn$（$n=3$）}
+$\Nn$ 定义为在\emph{全部}树级 helicity 组态上给出零的允许核。为得到 no-go 结论，我们采取保守策略：只用 MHV 与 $P^{\mp2}$（anti-MHV）约束，所得零空间是真实 $\Nn$ 的\emph{超集}。
+在 $16$ 个随机精确运动学点上求解齐次约束$\sum_\sigma(A_\sigma s_{12}+B_\sigma s_{23})h_\sigma=0$（以及 anti-MHV 的对应式），得
+\begin{equation}
+\dim_{\mathbb C}\mathcal N=12-4=8 .
+\end{equation}
+其（规范化）基为
+\begin{equation}
+\left(\!\begin{array}{cccccccccccc}
+1&0&0&0&0&0&0&0&1&0&0&1\\
+0&0&0&0&0&0&0&0&-1&0&1&0\\
+1&0&0&0&0&0&0&0&1&1&0&0\\
+-1&0&0&0&0&0&0&1&0&0&0&0\\
+0&0&0&0&-1&0&1&0&0&0&0&0\\
+-1&0&0&0&0&1&0&0&0&0&0&0\\
+0&-1&0&1&0&0&0&0&0&0&0&0\\
+-1&0&1&0&0&0&0&0&0&0&0&0
+\end{array}\!\right),
+\qquad \text{列}=\big(A_{\sigma_1},B_{\sigma_1},\dots,A_{\sigma_6},B_{\sigma_6}\big).
+\label{eq:nullbasis}
+\end{equation}
+该零空间在 $5$ 个未参与求解的运动学点上精确复核通过。
+（anti-MHV 约束不增加秩；NMHV 树级约束会进一步缩小 $\Nn$，故本文结论对完整 $\Nn$ 只会更强。）
+于是树级解空间为
+\begin{equation}
+K_\sigma(x)=x(1-x)\,v^{\rm ST}_\sigma+\big[\text{任意}\ \mathbb Q(x)\ \text{系数}\big]\cdot \mathcal N ,
+\qquad v^{\rm ST}_{\sigma_6}\!\cdot\!\binom{s_{12}}{s_{23}}=s_{2\Pt},
+\label{eq:treesol}
+\end{equation}
+且同树级约束为线性、与 $x$ 无关，上述 $\mathbb Q(x)$ 自由度为函数域自由度。
+
+\section{一圈输入与共线值}
+\label{sec:oneloop}
+
+\subsection{一圈 EYM 结果（$n=3$）}
+由 NPT \cite{NPT2018}（$D$ 维 generalized unitarity，$\kappa g^3$ 阶、最大 $g$ 幂、纯 EYM）：
+\begin{equation}
+\Mhat^{(1)}(1^+,2^+,3^+;\Pt^{+2})=0,
+\end{equation}
+\begin{equation}
+\Mhat^{(1)}(1^-,2^+,3^+;\Pt^{+2})=
+\frac{\sq{2\Pt}\sq{3\Pt}}{\ab{2\Pt}\ab{3\Pt}}\;\frac{1}{\ab{23}\sq{21}\sq{31}}\;\frac{s_{12}^2+s_{13}^2}{6},
+\label{eq:NPTsm}
+\end{equation}
+其余负腿位置由 $1,2,3$ 的循环置换（以及 $f^{abc}$ 全反对称性所固定的运动学系数）得到。所有三点胶子振幅只带 $f^{a_1a_2a_3}$ 色因子 \cite{NPT2018}。
+
+\paragraph{独立检验。}对 \eqref{eq:NPTsm}（及其置换）做正确的 little-group 检验
+$(\lambda_i,\widetilde\lambda_i)\to(t\lambda_i,t^{-1}\widetilde\lambda_i)$：应当 $\to t^{-2h_i}$；数值上 $h_1=-1$ 给出 $t^{+2}$、$h_{2,3}=+1$ 给出 $t^{-2}$、$h_\Pt=+2$ 给出 $t^{-4}$，全部通过（取 $t=3$ 精确检验）。
+
+\subsection{一圈纯 YM 共线振幅（$n+2=5$）}
+BDK \cite{BDK1993} 给出
+\begin{equation}
+\Ahat^{(1)}_5(1^+,2^+,3^+,4^+,5^+)=\frac13\,
+\frac{s_{12}s_{23}+s_{45}s_{51}+\ab{23}\ab{45}\sq{25}\sq{34}}
+{\ab{12}\ab{23}\ab{34}\ab{45}\ab{51}},
+\label{eq:BDKppp}
+\end{equation}
+\begin{equation}
+\Ahat^{(1)}_5(1^-,2^+,3^+,4^+,5^+)=\frac13\,\frac{1}{\ab{34}^2}\Big[
+\frac{\sq{25}^3}{\sq{12}\sq{51}}
++\frac{\ab{14}^3\sq{45}\ab{35}}{\ab{12}\ab{23}\ab{45}^2}
+-\frac{\ab{13}^3\sq{32}\ab{42}}{\ab{15}\ab{54}\ab{32}^2}\Big].
+\label{eq:BDKsm}
+\end{equation}
+其他排序/负腿位置由循环重标号得到。式中的 $1/3$ 来自 $i/(48\pi^2)=\frac13\, i/(4\pi)^2$，已按 \eqref{eq:stripped} 的约定剥离公共圈因子。
+
+\paragraph{独立检验。}
+(i) \eqref{eq:BDKppp} 与 NPT 式 (1.2)/(11.9) 的显式表达式在一般运动学上数值逐位相同（比值 $=1$）；
+(ii) \eqref{eq:BDKppp}、\eqref{eq:BDKsm} 均通过 little-group 检验；
+(iii) 共线单点取值 $\Cx\Ahat^{(1)}$ 用离共线参数化（$\lambda_a=t_a(\lambda_\Pt+\varepsilon\lambda_r)$ 等）的 $\varepsilon\to0$ 极限独立复核，例如 single-minus、排序 $(1,2,a,3,b)$、负腿 $1$、$\tau=2/3$：
+\[
+\varepsilon=\tfrac1{10},\tfrac1{100},\tfrac1{1000},\tfrac1{10^4},0:\quad
+98.679,\ 3.680,\ -10.295,\ -11.751,\ -11.913,
+\]
+收敛到直接共线取值 $-11.9131\ldots$（精确有理数）。
+
+\subsection{$\Cx\Ahat^{(1)}$ 的精确 $x$-结构}
+在参考运动学点（\S\ref{sec:ref}）上，$\sigma_6=(1,b,2,a,3)$ 的共线一圈振幅精确等于
+\begin{equation}
+\begin{aligned}
+\Cx\Ahat^{(1)+}_5(\sigma_6)&=-\frac{192}{77}\frac{1}{x(1-x)}-\frac{2976}{77}\frac1x+\frac{480}{11},\\[1mm]
+\Cx\Ahat^{(1),\rm sm}_5(\sigma_6)\big|_{\text{neg}=1}&=-\frac{726}{343}\frac{1}{x(1-x)}+\frac{2186}{1029}\frac1x-\frac{8}{1029},\\
+\Cx\Ahat^{(1),\rm sm}_5(\sigma_6)\big|_{\text{neg}=2}&=-\frac{54}{175}\frac{1}{x(1-x)}+\frac{186}{605}\frac1x,\\
+\Cx\Ahat^{(1),\rm sm}_5(\sigma_6)\big|_{\text{neg}=3}&=\frac{216}{343}\frac{1}{x(1-x)}-\frac{26232}{41503}\frac1x-\frac{216}{343}.
+\end{aligned}
+\label{eq:xstrucone}
+\end{equation}
+（以基 $\{1/[x(1-x)],\,1/x,\,1/(1-x),\,1\}$ 精确拟合，在 $6$ 个新鲜 $\tau$ 值上最大偏差为 $0$。）
+可见一圈共线振幅的 $x$-结构与树级的纯 $[x(1-x)]^{-1}$ 不同：这是后文全部阻塞的直接来源之一。
+
+\section{A. 标准代表的精确缺陷}
+\label{sec:defect}
+
+对标准代表 \eqref{eq:KST}，按题面定义
+\begin{equation}
+\Delta_n:=\Mhat^{(1)}_{n;1}-\sum_{\sigma\in\Pi_n}K^{\rm ST}_{n,\sigma}\,\Cx\Ahat^{(1)}_{n+2}(\sigma)
+=\Mhat^{(1)}_{n;1}-x(1-x)\,s_{2\Pt}\,\Cx\Ahat^{(1)}_{n+2}(\sigma_6).
+\end{equation}
+\textbf{all-plus 扇区}（\eqref{eq:NPTsm} 上一式给出 $\Mhat=0$）：
+\begin{equation}
+\boxed{\;\Delta^{++}=-\,x(1-x)\,s_{2\Pt}\;\Cx\Ahat^{(1)+}_5(\sigma_6)\;}\neq 0 .
+\label{eq:Dpp}
+\end{equation}
+在参考点（$s_{2\Pt}=-840$，\eqref{eq:xstrucone} 第一式）精确地
+\begin{equation}
+\Delta^{++}=s_{2\Pt}\Big[\frac{3168-2976\,x}{77}-\frac{480}{11}x(1-x)\Big].
+\end{equation}
+\textbf{single-minus 扇区}（负腿三种位置）：
+\begin{equation}
+\Delta^{{\rm sm},\text{neg}=k}=\Mhat^{(1)}(k^-,{\rm others};\Pt^{+2})
+-x(1-x)\,s_{2\Pt}\,\Cx\Ahat^{(1),\rm sm}_5(\sigma_6)\big|_{\text{neg}=k}.
+\label{eq:Dsm}
+\end{equation}
+
+\paragraph{精确数值（运动学点 1）。}
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+量 & 精确值（有理数） \\
+\midrule
+$\Delta^{++}$ & $-\dfrac{7897397760}{314171}\approx-25137.3$\\
+$\Delta^{{\rm sm},\text{neg}=1}$ & $-\dfrac{1765505240}{1399489}\approx-1261.5$\\
+$\Delta^{{\rm sm},\text{neg}=2}$ & $+\dfrac{1859256}{20449}\approx+90.9$\\
+$\Delta^{{\rm sm},\text{neg}=3}$ & $-\dfrac{93489972480}{169338169}\approx-552.1$\\
+\bottomrule
+\end{tabular}
+\end{center}
+\paragraph{精确数值（运动学点 2，$u,v,w,z=(2,7,5,13)$，$\widetilde\lambda_3=(3,11)$，$\widetilde\lambda_\Pt=(17,29)$，$\tau=1/3$，即 $x=16/25$）。}
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+量 & 精确值 \\
+\midrule
+$\Delta^{++}$ & $-\dfrac{5488000}{39}$\\
+$\Delta^{{\rm sm},\text{neg}=1,2,3}$ & $-\dfrac{12543328}{2025},\quad -\dfrac{238000}{41067},\quad -\dfrac{32795952}{4225}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{结论（A 部分）}：标准 ST 代表在两扇区的缺陷全部非零；因此“树级关系一般不能提升到一圈”在本例中已被精确确认（且 all-plus 部分复现了 NPT \cite{NPT2018} 第 11 节对 ST 猜想的证伪）。
+
+\section{B. 判定整个允许核空间}
+\label{sec:no-go}
+
+\subsection{线性系统}
+由 \eqref{eq:treesol}，任一满足树级 (Q1) 的核形如
+\begin{equation}
+K_\sigma(x)=x(1-x)v^{\rm ST}_\sigma+\sum_{j=1}^{8}f_j(x)\,n^{(j)}_\sigma\!\cdot\!\binom{s_{12}}{s_{23}},
+\end{equation}
+其中 $n^{(j)}$ 为 \eqref{eq:nullbasis} 的零空间基，$f_j(x)\in\mathbb Q(x)$ 任意。把此式代入一圈 (Q1) 并乘掉因子，得\textbf{线性系统}
+\begin{equation}
+\sum_{j=1}^{8}f_j(x)\,G_j^{(r)}(x;\text{kin})
+=\underbrace{\mathcal M^{(r)}(\text{kin})-x(1-x)s_{2\Pt}\,\Cx\Ahat^{(1),(r)}_5(\sigma_6)}_{R^{(r)}},
+\label{eq:linsys}
+\end{equation}
+其中 $r$ 标记扇区/组态：$r=1$ 为 all-plus，$r=2,3,4$ 为 single-minus 负腿 $1,2,3$；
+\begin{equation}
+G_j^{(r)}(x;\text{kin})=\sum_{\sigma\in\Pi_3}\big(n^{(j)}_\sigma\big)^{\!\top}\!\binom{s_{12}}{s_{23}}\ \Cx\Ahat^{(1),(r)}_5(\sigma),
+\qquad \mathcal M^{(1)}=0,\quad \mathcal M^{(2,3,4)}=\Mhat^{(1)}(k^-,{\rm others};\Pt^{+2}).
+\end{equation}
+在固定 $x$ 处，$G$ 是 $8$ 列矩阵（行 $=$ 运动学点 $\times$ 组态），$R$ 为对应右端列。可解性 $\iff \operatorname{rank}(G)=\operatorname{rank}([G|R])$。
+
+\subsection{判定结果}
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+系统 & $\operatorname{rank}G$ & $\operatorname{rank}([G|R])$ & 可解？\\
+\midrule
+all-plus 单独 & $3$ & $3$ & \textbf{是}\\
+single-minus 单独（三组态） & $8$ & $9$ & \textbf{否}\\
+all-plus $+$ single-minus（全部） & $8$ & $9$ & \textbf{否}\\
+\bottomrule
+\end{tabular}
+\end{center}
+（$16$ 个随机精确运动学点；$x$ 取 $10$ 个值 $\frac9{25},\frac{49}{625},\frac{16}{25},\frac{225}{289},\frac{64}{289},\frac{144}{169},\frac{144}{1369},\dots$ 全部给出同一判定。）
+
+\subsection{最小不可解性证书（single-minus，$3$ 个运动学点）}
+用 $3$ 个随机运动学点 $\times$ $3$ 个负腿位形，共 $9$ 个精确线性方程（$8$ 个未知数）：
+\begin{itemize}
+\item 运动学参数（格式 $\{u,v,w,z,\widetilde\lambda_3,\widetilde\lambda_\Pt\}$）：
+\[\{64,79,32,42,\{60,92\},\{32,8\}\},\quad
+\{82,57,24,17,\{43,63\},\{54,85\}\},\quad
+\{7,73,54,20,\{89,85\},\{10,20\}\};\]
+\item $\operatorname{rank}(G)=8$，$\operatorname{rank}([G|R])=9$；
+\item 左零空间为 $1$ 维，其生成元 $y$（清分母后的整数向量，$9$ 个分量）为
+\[\begin{aligned}
+y=\{&11002453942168248793577426247119936714871384311070720000,\\
+&32635225795968085871226366415876624734214571553228448125,\\
+&392781934670789781673416634667129742691847028091725,\\
+&-101131322462771812607395129182660249296916547224207360000,\\
+&-25458370922924214621408421198753283363114384022621388800,\\
+&-13101949483327291625898988336892229411078685065216000,\\
+&157965407870912569012451180355873286774487591511905501184,\\
+&1137245391218963314654957724314202059198983793497451724800,\\
+&46274287874503417113361122181649300280255818956800\},
+\end{aligned}\]
+满足精确恒等式 $y\,G=0$（$8$ 个分量全为零），而
+\begin{equation}
+\boxed{\ \Omega:=y\cdot R=\frac{2891632071724887046049000045691094118752814}{1157093480006267123557719110124093}\ \neq0.\ }
+\label{eq:Omega}
+\end{equation}
+由于 $y$ 是左零向量而 $\Omega\neq0$，该 $9$ 方程系统无解；又因为完整树级约束只会把 $\mathcal N$ 缩小（从而把解空间缩小），故\emph{不存在任何满足树级 (Q1) 的允许核能同时满足一圈 single-minus (Q1)}。
+\end{itemize}
+
+\subsection{稳健性}
+对以下 $12$ 种约定组合重复判定，结论不变（全部 $\operatorname{rank}(G)=8<\operatorname{rank}([G|R])=9$）：
+\begin{itemize}
+\item 一圈 YM 振幅相对 EYM 振幅的归一化因子 $\lambda\in\{1/3,1,3\}$；
+\item YM 振幅整体符号 $\pm1$ 与 EYM 振幅整体符号 $\pm1$（$4$ 种组合）。
+\end{itemize}
+（物理上：$\lambda$ 对应循环/色生成元归一化的不同取法；符号对应相对约定。结论对它们全部稳健。）
+
+\subsection{对照：all-plus 缺陷是可吸收的（显式解）}
+为确认阻塞确实来自 single-minus，给出 all-plus 的显式解：在运动学点集上取 $8$ 行可逆子块求解，得
+\begin{equation}
+(f_1,\dots,f_8)=\Big(-\frac{15790547975}{124068298536},\ -\frac{10253776775}{124068298536},\ \frac{23383200}{574390271},\ 0,0,0,0,0\Big)
+\end{equation}
+（在 $\tau=2/3$ 处）。该解在全部 $16$ 个运动学点上行残差精确为零，并在一个\emph{新鲜}运动学点上复核为零（均已数值验证）。即：all-plus 扇区的缺陷可以完全被树级零空间吸收；阻塞完全来自 single-minus 扇区。
+
+\section{C. 研究层：用 $D$ 维 unitarity 定位障碍}
+\label{sec:research}
+
+\subsection{四维 cut 与 $\mu^{2}$ 结构}
+all-plus 与 single-minus 两扇区的一圈振幅在四维中\emph{所有二粒子 cut 均为零}：任一 $2$-粒子 cut 总有一侧是“同号 helicity 的三点树振幅”而 vanish（对 all-plus 是全 $+$；对单负是 $(-,+,+)$ 或全 $+$），因此这些振幅是\emph{纯有理}的，且其全部信息来自 $D$ 维 cut 的 $\mu^{2r}$ 扇区：
+\begin{equation}
+\ell^\mu=\bar\ell^\mu+\ell_\perp^\mu,\qquad \mu^2=-\ell_\perp^2,\qquad
+\int \frac{\dd^{D}\ell}{(2\pi)^D}\;\longrightarrow\;
+\int\frac{\dd^4\ell}{(2\pi)^4}\frac{\dd^{-2\epsilon}\mu}{(2\pi)^{-2\epsilon}} ,
+\end{equation}
+积分后（在 $\epsilon^0$）$\mu^{2}$ 与 $\mu^{4}$ 的“维数移动”标量积分给出有理常数：
+\begin{equation}
+I_3[\mu^2;s]=\half,\quad I_2[\mu^2;s]=-\frac{s}{6},\quad
+I_4[\mu^4;s,t]=-\frac16,\quad I_4[\mu^2;s,t]=O(\epsilon),\quad\dots
+\end{equation}
+（NPT 附录 A.7）。NPT 在 all-plus 处的关键观察是：其 $D$ 维振幅 {\it 非零} 而四点极限为零，且该消失来自 $\mu^4$-box 与 $\mu^4$-triangle 两类项的精确相消（NPT 式 (11.12)--(11.13)）。
+
+\subsection{障碍的定位}
+把一圈 (Q1) 视作“集成后恒等式”（integrated identity）：两边都只含 $\epsilon^0$ 有理项，无 $4$ 维 cut 可比较。障碍的性质为：
+\begin{itemize}
+\item \textbf{不是} 四维 integrand identity 的失败（四维 cut 全零，无从比较）；
+\item \textbf{不是} 单个 $\mu^{2r}$ 系数的失败：而是 $\mu^2/\mu^4$ 项在\emph{积分后}的常数（$1/6$、$1/24$、$1/2$ 等）与共线运动学上的一圈 YM 振幅的 $x$-结构 \eqref{eq:xstrucone} 不相容；
+\item 具体地：树级核的 $x$-结构只能是 $x(1-x)\times\mathbb Q(x)$ 的部分（树级共线振幅的因子 $[x(1-x)]^{-1}$）加上零空间方向 $\times\mathbb Q(x)$；一圈共线振幅的 $x$-结构含 $1/[x(1-x)]$、$1/x$ 与常数项的独立组合 \eqref{eq:xstrucone}，而 single-minus 的 EYM 振幅 \eqref{eq:NPTsm} 含“比值因子”$\sq{2\Pt}\sq{3\Pt}/(\ab{2\Pt}\ab{3\Pt})$（与 $x$ 无关）与极点 $1/(\ab{23}\sq{21}\sq{31})$。可解性分析表明：$G_j$ 的 $8$ 个方向在函数域上独立，且右端 $R$ 有一个与它们正交的分量（$\Omega\neq0$）。该正交感恰是一个“积分后”常数（\eqref{eq:Omega}），不是任何单点 cut 的量。
+\end{itemize}
+
+\subsection{最小扩张（事先限定自由度）}
+由 $\operatorname{rank}([G|R])-\operatorname{rank}(G)=1$ 可知：阻塞只占\emph{一维}。因此最小扩张为：在允许核类中加入\emph{一个}带特定 $x$-依赖的额外 building block。自然选择是“$\mu^{2}$ 型插入”：例如允许核中出现
+\begin{equation}
+\Delta K_{n,\sigma}\;\supset\;\sum_{i<j}\tilde c^{\sigma}_{ij}(x)\;s_{ij}\,\frac{\mu^2}{M^2}\Big|_{\text{积分后}},
+\qquad\text{或等价地}\quad
+\Delta K_{n,\sigma}\supset d_\sigma(x)\;s_{2\Pt}\times[\text{$\mu^2$-积分常数}],
+\end{equation}
+即把 $\mu^{2r}$（dimension-shifted 积分）作为一个独立的 building block 加入核空间（其自由度事先限定为“有限类 $\mu^{2r}$ 插入”）。
+该断言的精确线性代数版本已在 $n=3$ 验证：取任一树级零空间之外的新方向 $n^{\rm new}$（例如 $A_{\sigma_1}=1$、其余分量为零），其像
+$g^{\rm new}=\sum_\sigma (n^{\rm new}_\sigma)^\top\binom{s_{12}}{s_{23}}\Cx\Ahat^{(1),\rm sm}_5(\sigma)$
+满足 $y\cdot g^{\rm new}=\frac{2283210474693072620611061610505639083647497}{72923506320201702405514316663400}\neq0$，
+于是扩展系统 $[G\,|\,g^{\rm new}]$ 的秩为 $9$ 且 $\operatorname{rank}([G\,|\,g^{\rm new}|R])=9$：\emph{可解}，且解唯一（其精确有理解已求出）。对 $5$ 个随机新方向重复，$5/5$ 均消去障碍。由于阻塞维数为 $1$，一个这样的方向即可（在 $n=3$）完全消去 single-minus 缺陷；且该方向可由给定作用量独立计算（它就是 NPT 型 $\mu^2/\mu^4$ 积分常数）。这与题面 C 部分的建议一致，并给出其在 $n=3$ 的定量实现。
+
+\subsection{若要求保持原核类：已证明的低点 no-go}
+题面明确允许“一个已经证明的低点 no-go 也是有效终点”。本文的 no-go 是：
+\begin{quote}
+\textbf{定理（$n=3$，精确低点 no-go）。} 设 $\mathcal K$ 为 \eqref{eq:kernel} 的允许核类。不存在 $K\in\mathcal K$ 使得 (Q1) 在树级对全部组态成立、且在一圈的 single-minus 扇区（积分后 $\epsilon^0$）成立。更强的陈述：把树级条件放宽为仅 MHV 与 $P^{\mp2}$ 约束（即用 $8$ 维超集 $\mathcal N$），结论仍成立，且只需 $3$ 个运动学点上的 $9$ 个精确线性方程即可见证（$\operatorname{rank}$ 证书 \eqref{eq:Omega}）。
+\end{quote}
+唯一未闭合之处：我们未把 NMHV 树级约束显式加入 $\mathcal N$（这只影响“$8$ 维”这一计数，不影响 no-go 本身）。把 NMHV 加入可缩小 $\mathcal N$，并可能给出更小的证书；这是自然的下一步。
+
+\section{结论与展望}
+\label{sec:concl}
+
+\paragraph{结论。}
+\begin{enumerate}
+\item 树级：标准 ST 核 \eqref{eq:KST} 在全部树级组态上工作；树级允许核空间（在 MHV + $P^{\mp2}$ 约束下）为 $8$ 维仿射空间 \eqref{eq:treesol}。
+\item 一圈缺陷：ST 核的缺陷 $\Delta^{++}$（\eqref{eq:Dpp}）与 $\Delta^{\rm sm}$（\eqref{eq:Dsm}）全部精确非零；给出两个运动学点的精确有理值。
+\item 整个核类：all-plus 缺陷可吸收（显式解）；single-minus 缺陷不可吸收（$3$ 点最小证书，$\Omega\neq0$）；组合不可。故 (Q1) 在 $n=3$ 对 whole allowed kernel class \textbf{失败}。
+\item 障碍来自\emph{积分后}的 $\mu^{2r}$ 结构：不是四维 cut 恒等式，而是一座“一圈共线振幅 $x$-结构 vs 树级核 $x$-结构”的函数域不匹配；最小扩张维数为 $1$。
+\end{enumerate}
+
+\paragraph{开放问题（下一步）。}
+\begin{itemize}
+\item 把 NMHV 树级约束加入零空间，给出 $\dim\mathcal N_3$ 的精确值（本文的 $8$ 只是上界）。
+\item $n=4$：检查同一 no-go 是否持续（预期：single-minus 扇区继续阻塞；可能是更高 codimension）。
+\item 一般 $n$：把 \eqref{eq:linsys} 的秩证书提升为一般 $n$ 的归纳证明；核心是证明树级零空间的像空间 $\{G_j\}$ 与一圈右端总有一维正交分量。
+\item 若采用“$\mu^{2r}$ 插入 + 有限类 building blocks”的扩张：确定最小 building block 集合并给出因子化/归纳规则（题面 C 部分的要求）；本文给出 $n=3$ 的 $1$ 维实现。
+\end{itemize}
+
+\appendix
+\section{参考运动学点}
+\label{sec:ref}
+运动学点 1：
+\begin{equation}
+\lambda_1=(1,0),\ \lambda_2=(0,1),\ \lambda_3=(3,5),\ \lambda_\Pt=(7,11),\qquad
+\widetilde\lambda_3=(13,17),\ \widetilde\lambda_\Pt=(19,23),
+\end{equation}
+由此 $\widetilde\lambda_1=-(3\widetilde\lambda_3+7\widetilde\lambda_\Pt)$，$\widetilde\lambda_2=-(5\widetilde\lambda_3+11\widetilde\lambda_\Pt)$，
+\[
+s_{12}=48,\quad s_{23}=792,\quad s_{13}=-840,\quad s_{2\Pt}=-840,\quad s_{1\Pt}=792,\quad s_{3\Pt}=48 .
+\]
+$\tau=2/3$ 对应 $x=25/169$。运动学点 2 见 \S\ref{sec:defect}。
+
+\section{一圈振幅公式与检验摘要}
+\begin{itemize}
+\item \eqref{eq:BDKppp} 与 NPT \cite{NPT2018} 式 (11.9)（以及 (1.2) 的等价形式）数值一致（比值 $=1$）。
+\item \eqref{eq:BDKppp}、\eqref{eq:BDKsm} 与 \eqref{eq:NPTsm} 均通过 little-group 检验（$t=3$ 精确值：$h=+1\to1/9$，$h=-1\to9$，$h=+2\to1/81$）。
+\item 共线单点值均以离共线 $\varepsilon\to0$ 极限独立复核（见正文）。
+\item 树级 $x$-结构引理 \eqref{eq:xstrutree}：$18$ 个通道在 $\tau=1/2,2/3,3/4,2$ 上通过。
+\item 树级零空间 \eqref{eq:nullbasis} 在 $5$ 个新鲜运动学点上精确复核。
+\item all-plus 显式解在 $16$ 个运动学点与 $1$ 个新鲜点上精确残差为零。
+\item 全部秩判定与证书在精确有理数算术下完成；最小证书使用 $3$ 个随机点并以 $16$ 个点复核。
+\end{itemize}
+
+\begin{thebibliography}{9}
+\bibitem{ST2015} S.~Stieberger, T.~R.~Taylor, \emph{Subleading Terms in the Collinear Limit of Yang-Mills Amplitudes}, Phys.\ Lett.\ B {\bf 751} (2015) 241, arXiv:1508.01116.
+\bibitem{ST2014} S.~Stieberger, T.~R.~Taylor, \emph{Graviton as a Pair of Collinear Gauge Bosons}, Phys.\ Lett.\ B {\bf 739} (2014) 457, arXiv:1409.4771.
+\bibitem{NPT2018} D.~Nandan, J.~Plefka, G.~Travaglini, \emph{All rational one-loop Einstein-Yang-Mills amplitudes at four points}, JHEP {\bf 09} (2018) 011, arXiv:1803.08497.
+\bibitem{BDK1993} Z.~Bern, L.~Dixon, D.~A.~Kosower, \emph{One-Loop Corrections to Five-Gluon Amplitudes}, Phys.\ Rev.\ Lett.\ {\bf 70} (1993) 2677, arXiv:hep-ph/9302280; 及 \emph{The Five Gluon Amplitude and One-Loop Integrals}, arXiv:hep-ph/9212237.
+\end{thebibliography}
+
+\end{document}

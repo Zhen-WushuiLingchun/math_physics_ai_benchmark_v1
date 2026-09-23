@@ -1,0 +1,413 @@
+\documentclass[UTF8,11pt,a4paper]{ctexart}
+\usepackage[left=2.25cm,right=2.25cm,top=1.8cm,bottom=1.8cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,bm}
+\usepackage{booktabs,array,tabularx,longtable}
+\usepackage{xcolor,hyperref,fancyhdr,enumitem,microtype}
+\usepackage{listings}
+
+\definecolor{navy}{HTML}{17365D}
+\definecolor{teal}{HTML}{0F6B73}
+\definecolor{light}{HTML}{F3F6F8}
+\hypersetup{colorlinks=true,linkcolor=navy,urlcolor=teal,citecolor=teal}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{题二：Fibonacci 融合约束下的信息恢复}
+\rhead{独立解答}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+\setlist{nosep,leftmargin=2em}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{说明}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\E}{\mathbb E}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cN}{\mathcal N}
+\newcommand{\cD}{\mathcal D}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\ket}[1]{\lvert #1\rangle}
+\newcommand{\bra}[1]{\langle #1\rvert}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\phiG}{\varphi}
+
+\lstset{basicstyle=\ttfamily\small,backgroundcolor=\color{light},frame=single,
+  columns=fullflexible,breaklines=true,showstringspaces=false}
+
+\title{\bfseries Fibonacci 融合约束下：Page 转折\\是否意味着量子信息可恢复？\\[4pt]
+\large 精确 Haar--Stiefel 平均、可恢复性界与临界窗口}
+\author{独立推导与可复现计算}
+\date{2026 年 9 月 23 日}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+在题目给定的 direct-sum random-code 模型中，本文不把量子维数当作 Hilbert 空间维数。
+对于单个 Haar 纯态，给出两种熵、二阶 replica moment 的精确有限维公式；对于
+$k\ge2$ 的 Haar--Stiefel 编码，保留列正交约束，精确算出
+$\E\Tr C_{QB}^{2}$。由迹范数与 Uhlmann 延拓得到确实约束最佳恢复保真度的界。
+固定 $k$ 时，上下界具有候选变量
+$\Xi=N_R-N_B-\log_{\phiG}k$ 的临界缩放；但在 $k$ 随系统增长时，本文只证明了
+$\Xi\to+\infty$ 是高保真恢复的充分条件，未证明 $\Xi$ 单独决定整个临界分布。
+数值部分用 4000 个独立 Haar 等距嵌入核验二阶平均，并用 CPTP Choi SDP 对三个不等切分各做
+12 个最佳解码样本。
+\end{abstract}
+
+\section*{结论与证据等级}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{>{\bfseries}p{2.8cm}X}
+\toprule
+已经证明 & Fibonacci 融合重数；$p_a$ 的 Dirichlet 分布；两种平均熵及二阶矩；
+精确 Haar--Stiefel 四阶平均；平均与高概率恢复下界；固定 $k$ 的同尺度上下界。\\
+精确低阶检验 & 三组小尺寸的所有解析量均以有理数或含 $\log\phiG$ 的闭式计算。\\
+数值证据 & 4000 次 Haar 抽样核验 $\E\Tr C^2$；每组 12 次完整 CPTP 解码 SDP。\\
+尚未闭合 & $\Xi=O(1)$ 内最佳恢复保真度的精确极限分布；增长 $k$ 时仅凭 $\Xi$ 的普适 converse；
+任何真实引力对偶或 island 动力学。\\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{融合重数与切分}
+
+令 $u_N=(\dim\cH_N^1,\dim\cH_N^\tau)^T$。融合规则给出
+\[
+u_{N+1}=\begin{pmatrix}0&1\\1&1\end{pmatrix}u_N,
+\qquad u_2=(1,1)^T.
+\]
+若 $F_0=0,F_1=1,F_{j+1}=F_j+F_{j-1}$，则
+\begin{equation}
+\dim\cH_N^1=F_{N-1},\qquad \dim\cH_N^\tau=F_N.             \tag{1}
+\end{equation}
+所以
+\[
+(m_1,m_\tau)=(F_{N_R-1},F_{N_R}),\quad
+(n_1,n_\tau)=(F_{N_B-1},F_{N_B}).
+\]
+记 $q_a=m_an_a$。Vajda 型 Fibonacci 恒等式（也可直接由转移矩阵相乘得到）给出
+\begin{equation}
+D:=q_1+q_\tau=F_{N_R+N_B-1}.                              \tag{2}
+\end{equation}
+这里的每个数都是普通整数维数。$d_\tau=\phiG$ 只会在题目明确定义的 quantum trace 中出现。
+
+题给的 $F$-move 是正交矩阵。任何不改变物理切分、仅在各 $\cH_R^a$、$\cH_B^a$
+内部作正交（复化后酉）基变换的操作，均只是对密度矩阵作分块酉共轭，因而不改变下文的谱、
+迹范数或最佳解码保真度。
+
+\section{A：单个 Haar 纯态的精确熵}
+
+\subsection{扇区概率与条件态}
+
+可先取 $D$ 个独立标准复 Gaussian 系数，再除以总范数。每个扇区平方范数是形状参数
+$q_a$ 的 Gamma 随机变量；归一化后
+\begin{equation}
+(p_1,p_\tau)\sim\operatorname{Dirichlet}(q_1,q_\tau).     \tag{3}
+\end{equation}
+条件于 $p_a$，$X_a/\sqrt{p_a}$ 是 $\mathbb C^{m_a}\otimes\mathbb C^{n_a}$
+上的独立 Haar 单位向量，并且与 $(p_1,p_\tau)$ 独立。
+
+以下所有平均都在随机态已经归一化以后进行。特别地，这里没有把
+$\E[\log Z]$ 换成 $\log\E[Z]$：Gaussian 表示中的随机总范数 $Z$ 已在得到式 (3) 前除去。
+
+\subsection{有限维闭式}
+
+记 $H_s=\sum_{j=1}^s j^{-1}$，并定义
+\begin{equation}
+P(m,n)=H_{mn}-H_{\max(m,n)}-
+\frac{\min(m,n)-1}{2\max(m,n)}.                           \tag{4}
+\end{equation}
+这是 $m\times n$ Haar 纯态任一侧约化态的平均熵。式 (4) 可从归一化 Wishart
+特征值密度对下式的积分得到：
+\[
+-\sum_i\lambda_i\log\lambda_i.
+\]
+结果对 $m,n$ 交换不变。
+
+由 direct-sum 熵分解
+$S(\oplus_a p_a\rho_a)=H(p)+\sum_a p_aS(\rho_a)$，以及
+$\E[p_a\log p_a]=(q_a/D)[\psi(q_a+1)-\psi(D+1)]$，得到：
+
+\begin{theorem}[两种熵的精确平均]
+\begin{align}
+\E S_{\rm alg}
+ &=H_D-\sum_a\frac{q_a}{D}H_{q_a}
+   +\sum_a\frac{q_a}{D}P(m_a,n_a),                       \tag{5}\\
+\E S_{\rm qtr}
+ &=\E S_{\rm alg}+\sum_a\frac{q_a}{D}\log d_a
+ =\E S_{\rm alg}+\frac{q_\tau}{D}\log\phiG.           \tag{6}
+\end{align}
+\end{theorem}
+
+第二式直接来自
+\[
+-\sum_a d_a\Tr\left(\frac{X_aX_a^\dagger}{d_a}
+ \log\frac{X_aX_a^\dagger}{d_a}\right)
+=S_{\rm alg}+\sum_ap_a\log d_a.
+\]
+因此两种 convention 的差别是显式 center/edge 项，而不是额外的非整数 Hilbert 空间。
+
+作为二阶 replica 校准，复球面四阶矩
+$\E[z_i\bar z_jz_k\bar z_l]
+=(\delta_{ij}\delta_{kl}+\delta_{il}\delta_{kj})/[D(D+1)]$
+给出
+\begin{align}
+\E\Tr(\rho_R^{\rm alg})^2
+ &=\frac{\sum_a m_an_a(m_a+n_a)}{D(D+1)},                \tag{7}\\
+\E\widetilde\Tr(\widetilde\rho_R^2)
+ &=\frac{\sum_a m_an_a(m_a+n_a)/d_a}{D(D+1)}.           \tag{8}
+\end{align}
+两式同时核验了普通 trace 与 quantum trace 的归一化差异。
+
+\subsection{平衡大尺寸渐近}
+
+取 $r=N_R-N_B=O(1)$，$M=\min(N_R,N_B)\to\infty$。由
+$F_j=(\phiG^j-(-\phiG^{-1})^j)/\sqrt5$，
+\begin{equation}
+w_1:=\frac{q_1}{D}\longrightarrow\frac1{\phiG\sqrt5},
+\qquad
+w_\tau:=\frac{q_\tau}{D}\longrightarrow\frac{\phiG}{\sqrt5}.       \tag{9}
+\end{equation}
+又因 $P(m,n)=\log\min(m,n)-\tfrac12\min(m,n)/\max(m,n)
++O((mn)^{-1})$，首个非平凡修正为
+\begin{align}
+\E S_{\rm alg}
+={}&M\log\phiG+h(w_1,w_\tau)-w_1\log\phiG-\frac12\log5
+-\frac12\phiG^{-|r|}+O(\phiG^{-2M}),                    \tag{10}\\
+\E S_{\rm qtr}
+={}&\E S_{\rm alg}+w_\tau\log\phiG+O(\phiG^{-2M}),     \tag{11}
+\end{align}
+其中 $h(w_1,w_\tau)=-\sum_aw_a\log w_a$。式 (10) 中
+$-\frac12\phiG^{-|r|}$ 是有限宽高比的 Page 修正；式 (11) 的额外常数只来自 entropy convention。
+
+\section{B：精确 Haar--Stiefel 平均与恢复界}
+
+\subsection{保留列正交性的四阶积分}
+
+令 $V_{\alpha i}$ 是 $D\times D$ Haar 酉矩阵的前 $k$ 列。所需四阶矩为
+\begin{align}
+&\E[V_{\alpha i}\bar V_{\beta j}V_{\gamma l}\bar V_{\delta m}]\notag\\
+&=\frac{\delta_{\alpha\beta}\delta_{\gamma\delta}\delta_{ij}\delta_{lm}
++\delta_{\alpha\delta}\delta_{\gamma\beta}\delta_{im}\delta_{lj}}{D^2-1}
+-\frac{\delta_{\alpha\beta}\delta_{\gamma\delta}\delta_{im}\delta_{lj}
++\delta_{\alpha\delta}\delta_{\gamma\beta}\delta_{ij}\delta_{lm}}
+{D(D^2-1)}.                                               \tag{12}
+\end{align}
+后两项正是不能把 $k$ 列误当作独立 Haar 向量的修正。
+
+逐扇区缩并指标得到
+\begin{align}
+\E\Tr\rho_{QB}^2
+&=\frac1{D^2-1}\sum_aq_a\left(n_a+\frac{m_a}{k}
+-\frac{m_a}{D}-\frac{n_a}{Dk}\right),                  \tag{13}\\
+\E\Tr\rho_B^2
+&=\frac1{D^2-1}\sum_aq_a\left(m_a+\frac{n_a}{k}
+-\frac{m_a}{Dk}-\frac{n_a}{D}\right).                  \tag{14}
+\end{align}
+因为 $\Tr C_{QB}^2=\Tr\rho_{QB}^2-k^{-1}\Tr\rho_B^2$，化简得本文的核心闭式：
+
+\begin{theorem}[精确 decoupling 二阶矩]
+对题目定义的 Haar--Stiefel 编码，
+\begin{equation}
+\boxed{
+\E\Tr C_{QB}^2=
+\frac{1-k^{-2}}{D^2-1}
+\left(\sum_am_an_a^2-\frac1D\sum_am_a^2n_a\right).}
+                                                                    \tag{15}
+\end{equation}
+恢复 $B$ 时只需交换 $m_a\leftrightarrow n_a$。
+\end{theorem}
+
+\subsection{从二范数到最佳恢复保真度}
+
+令 $n_\Sigma=n_1+n_\tau$。由于 $C_{QB}$ 支持在维数至多 $kn_\Sigma$ 的空间上，
+\[
+\delta(V)=\frac12\norm{C_{QB}}_1
+\le\frac12\sqrt{kn_\Sigma\Tr C_{QB}^2}.
+\]
+Uhlmann 延拓与 Fuchs--van de Graaf 不等式说明存在一个允许的 direct-sum CPTP 解码器，使
+$F_{\rm rec}(V)\ge(1-\delta(V))^2$。Jensen 不等式于是给出：
+
+\begin{corollary}[平均恢复下界]
+定义
+\begin{equation}
+\varepsilon_R:=\frac12\sqrt{kn_\Sigma\,\E\Tr C_{QB}^2}.
+                                                                    \tag{16}
+\end{equation}
+则
+\begin{equation}
+\boxed{\E F_{\rm rec}\ge[1-\min(1,\varepsilon_R)]^2.}              \tag{17}
+\end{equation}
+而且对任意 $0<\eta<1$，
+\begin{equation}
+\Pr\{F_{\rm rec}<(1-\eta)^2\}
+\le\frac{kn_\Sigma\,\E\Tr C_{QB}^2}{4\eta^2}.                    \tag{18}
+\end{equation}
+因此 $kn_\Sigma\E\Tr C^2=o(1)$ 不只说明平均态接近最大混合，还保证典型编码可高保真恢复。
+\end{corollary}
+
+相反，只验证 $\E\rho_{QB}=I_Q/k\otimes\E\rho_B$ 不够：这只是随机编码之间的抵消，
+没有控制单个 $V$ 的相关性。式 (15)--(18) 避免了这个问题。
+
+\subsection{classical sector label 的泄露}
+
+把 $B$ 内部自由度全部迹掉而只保留标签 $A\in\{1,\tau\}$，得到
+$C_{QA}$。数据处理不等式给出
+\begin{equation}
+\frac12\norm{C_{QA}}_1\le\delta(V),                               \tag{19}
+\end{equation}
+故标签泄露不能被忽略。令 $q_a=m_an_a$，同一四阶积分还给出
+\begin{equation}
+\E\Tr C_{QA}^2=
+\frac{1-k^{-2}}{D(D^2-1)}\left(D^2-\sum_aq_a^2\right).             \tag{20}
+\end{equation}
+式 (15) 已经包含这部分以及标签条件下的量子相关性；没有假设标签与内部态独立。
+
+\section{C：临界变量、固定与增长的逻辑维数}
+
+\subsection{精确渐近尺度}
+
+在 $N_R,N_B\to\infty$ 时直接使用 Binet 公式：
+\begin{align*}
+D&=\frac{\phiG^{N_R+N_B-1}}{\sqrt5}
+ [1+O(\phiG^{-2(N_R+N_B)})],\\
+\sum_am_an_a^2
+&=\frac{\phiG^{N_R+2N_B}}{5\sqrt5}(1+\phiG^{-3})
+ [1+O(\phiG^{-2\min(N_R,N_B)})].
+\end{align*}
+式 (15) 中第二个和式低一指数阶，故
+\begin{equation}
+\E\Tr C_{QB}^2=
+(1-k^{-2})\frac{2\phiG}{\sqrt5}\phiG^{-N_R}
+[1+O(\phiG^{-2\min(N_R,N_B)})].                                   \tag{21}
+\end{equation}
+又 $n_\Sigma=F_{N_B+1}\sim\phiG^{N_B+1}/\sqrt5$。代入式 (16)，对
+\[
+\Xi=N_R-N_B-\log_{\phiG}k
+\]
+得到
+\begin{equation}
+\boxed{\varepsilon_R^2=
+\frac{\phiG^2}{10}(1-k^{-2})\phiG^{-\Xi}[1+o(1)].}                 \tag{22}
+\end{equation}
+因此 $\Xi\to+\infty$ 是典型高保真恢复的充分条件，适用于固定或增长的 $k$，只要
+$2\le k\le D$ 且两侧尺寸均趋于无穷。
+
+\subsection{固定 \texorpdfstring{$k$}{k} 的同尺度上下界}
+
+对补系统 $B$ 定义
+\[
+\Xi_B=N_B-N_R-\log_{\phiG}k=-\Xi-2\log_{\phiG}k.
+\]
+把两个允许的最佳解码器同时作用于 $R,B$，所得两个最大纠缠分数满足
+\begin{equation}
+F_R(V)+F_B(V)\le1+\frac1k.                                        \tag{23}
+\end{equation}
+证明只需注意两个投影
+$\Phi_{Q R'}\otimes I_{B'}$ 与 $\Phi_{Q B'}\otimes I_{R'}$ 的交叠范数为 $1/k$，
+所以它们之和的最大特征值为 $1+1/k$。
+
+对固定 $k$，式 (17)、(22)、(23) 给出同一临界尺度上的包夹：
+\begin{equation}
+\begin{aligned}
+\E F_R&\ge [1-\min(1,c_k\phiG^{-\Xi/2})]^2+o(1),\\
+\E F_R&\le1+\frac1k-[1-\min(1,c_k\phiG^{-\Xi_B/2})]^2+o(1),\\
+c_k&=\frac{\phiG}{\sqrt{10}}\sqrt{1-k^{-2}}.
+\end{aligned}                                                        \tag{24}
+\end{equation}
+于是 $\Xi\to+\infty$ 时 $F_R\to1$；$\Xi\to-\infty$ 时
+$F_B\to1$，从而 $F_R\le1/k+o(1)$。这证明候选变量在固定 $k$ 下给出了正确的
+crossover 尺度，但没有算出 $\Xi=O(1)$ 中的精确极限曲线。
+
+若 $k$ 随 $N$ 增长，式 (22) 的充分方向仍成立；然而互补变量包含额外的
+$-2\log_{\phiG}k$，式 (23) 在整个 $\Xi=O(1)$ 窗口内不再提供匹配 converse。
+所以目前不能声称 $\Xi$ 单独决定增长 $k$ 的普适极限分布。这是本解答明确保留的未闭合点。
+
+\subsection{Page 转折不能单独决定恢复转折}
+
+两种熵的 leading Page 转折都在 $N_R\simeq N_B$；式 (6) 只把
+$S_{\rm qtr}$ 平移一个由扇区权重决定的 $O(1)$ center/edge 项。恢复条件却在
+\[
+N_R-N_B\simeq\log_{\phiG}k
+\]
+发生变化。只要改变 $k$，熵的 $k=1$ Page 曲线不变，而恢复阈值移动，故两种熵的转折
+都不能单独决定 $F_{\rm rec}$。
+
+各数据的作用可清楚分开：
+\begin{itemize}
+\item $d_\tau=\phiG$ 直接进入式 (6)、(8)，这是 entropy convention；
+\item 整数融合重数 $m_a,n_a$ 与权重 $q_a/D$ 直接定义信道并进入式 (15)，会改变可操作恢复；
+\item 同一个 $\phiG$ 也作为 Fibonacci 重数的指数增长率进入式 (21)--(22)，这是信道维数的渐近效应，
+不是把 $d_\tau$ 当作 Hilbert 空间维数。
+\end{itemize}
+
+\section{小规模独立验证}
+
+所有对数均为自然对数。二阶量用 4000 个独立 Haar--Stiefel 样本；
+$F_R,F_B$ 是每组前 12 个独立样本的完整 CPTP Choi SDP 最优值。表中 ``精确/MC''
+分别表示解析期望与 Monte Carlo 均值。
+
+\begin{center}
+\small
+\begin{tabular}{cccccccc}
+\toprule
+$(N_R,N_B)$ & $(m_1,m_\tau)$ & $(n_1,n_\tau)$ &
+$\E S_{\rm alg}$ & $\E\Tr C_R^2$ & MC $C_R^2$ & SDP $F_R$ & SDP $F_B$\\
+\midrule
+$(3,2)$ & $(1,2)$ & $(1,1)$ & $1/2$ & $1/8$ & $0.12746$ & $0.7248$ & $0.4379$\\
+$(2,4)$ & $(1,1)$ & $(2,3)$ & $7/12$ & $3/8$ & $0.37516$ & $0.3635$ & $0.9252$\\
+$(4,3)$ & $(2,3)$ & $(1,2)$ & $59/70$ & $15/112$ & $0.13340$ & $0.7726$ & $0.5162$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+相应 $B$-互补方向的精确/MC 二阶值依次为
+$3/8$/$0.37069$、$3/40$/$0.07433$、$27/112$/$0.24222$。
+式 (20) 的纯标签二阶值依次为 $1/8,3/40,1/28$；这说明标签泄露确实存在。
+12 个 SDP 样本中每个都满足式 (23)，三组最大观测和分别为
+$1.24745,1.30654,1.36506<1.5$（此处 $k=2$）。
+
+第一组解析恢复下界为 $0.41789$；第三组为 $0.30447$。第二组的范数秩界较松，
+只给 $0.00101$，而 SDP 直接显示辐射侧恢复差、互补侧恢复好。数值结果只作为有限规模证据；
+解析式 (5)--(24) 不依赖这些样本。
+
+\subsection*{数值方法与复现}
+
+每个扇区 $a$ 的解码器用 Choi 矩阵 $J_a\succeq0$ 表示，并施加
+$\Tr_{L}J_a=I_{R,a}$。目标函数是
+$\bra{\Phi_k}[\operatorname{id}\otimes(\cD\circ\cN_R)]
+(\ket{\Phi_k}\!\bra{\Phi_k})\ket{\Phi_k}$，故这是凸 SDP，且允许解码器读取 classical label。
+
+在本目录运行：
+\begin{lstlisting}
+python -m pytest -q
+python fibonacci_recovery.py --samples 4000 --sdp-samples 12 \
+  --seed 20260923 --output results_02.json
+\end{lstlisting}
+测试覆盖融合维数、精确熵/replica、精确 Haar--Stiefel $C^2$、独立 Haar 抽样以及
+SDP 的物理范围与式 (23)。本次实际运行结果为 \texttt{5 passed}。
+
+\section{最小 island / QES 字典及其边界}
+
+一个谨慎的比较字典是：逻辑系统 $L$（及其 reference $Q$）对应待重建的 bulk/code 信息；
+$\cN_R$ 上的可恢复性对应 entanglement-wedge reconstruction 的操作性陈述；
+$S_{\rm alg}$ 是给定辐射可观测代数的普通熵；
+$S_{\rm qtr}-S_{\rm alg}=\sum_ap_a\log d_a$ 可类比 center/edge contribution。
+
+但本模型没有时空、面积算符、引力路径积分、QES 极值规则、蒸发动力学、局域 bulk 代数，
+也没有证明 random Stiefel 编码来自任何微观引力演化。故熵曲线相似只支持一个 toy-model
+类比；式 (15)--(24) 才是本模型内部关于信息恢复的可操作结论，不能据此宣称“证明 island”
+或“构造了全息对偶”。
+
+\section*{最终回答}
+
+在本题精确定义的模型中，Page 转折\emph{不}等于恢复转折。
+前者在平衡切分附近并受 entropy convention 的 $O(1)$ center/edge 项修正；后者由
+Haar--Stiefel decoupling 控制，固定 $k$ 时的正确临界尺度是
+$N_R-N_B-\log_{\phiG}k$。扇区标签泄露已被式 (20) 显式计入，而真正改变信道的是整数融合重数，
+不是把非整数 $d_\tau$ 当作普通维数。增长 $k$ 时，高保真充分方向成立，但普适 converse
+与临界极限分布仍未闭合。
+
+\end{document}

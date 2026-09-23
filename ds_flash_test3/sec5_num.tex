@@ -1,0 +1,146 @@
+\section{数值方法、验证与误差预算}
+\label{sec:num}
+
+\paragraph{时域 PDE（Part A/C）.}
+方程 $\psi_{\tau\tau}=\psi_{xx}-V_{\varepsilon,L}\psi$，时间推进 RK4，
+空间用四阶中心差分（边界两点降为二阶）；初值 \eqref{eq:ic}，$C$ 用高分辨率积分求得
+$C=0.5692357678$（能量校验 $E_0=1.000000000$）。
+计算域 $x\in[-70,\,L+70]$，网格 $dx=0.025$、$dt=0.0125$（CFL $=0.5$）；
+两端设宽度 $20$、$\sigma_0=0.8$ 的二次型 sponge 吸收层（近似 outgoing 边界条件）。
+
+\emph{收敛性}（$\varepsilon=10^{-3},L=20$）：
+\begin{center}\small
+\begin{tabular}{lccc}
+\toprule
+$(dx,dt)$ & $(0.05,0.025)$ & $(0.025,0.0125)$ & $(0.0125,0.00625)$\\
+$\mathcal E_\infty$ & $2.00612\times10^{-4}$ & $2.00398\times10^{-4}$ & $2.00380\times10^{-4}$\\
+{回波峰值}& $1.22719\times10^{-4}$ & $1.22728\times10^{-4}$ & $1.22730\times10^{-4}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+相对差 $0.1\%\!-\!0.01\%$，Richardson 外推 $\mathcal E_\infty\to2.00379\times10^{-4}$；
+基线（$dx=0.025$）的离散误差 $\sim10^{-4}$ 相对量级。
+\emph{晚时域反射污染}：sponge 残余反射在 $x\simeq-50$ 处返回，$\tau\gtrsim112$ 后进入观察点，
+幅度 $\le1.5\times10^{-4}$（未扰动运行实测：$\tau=115,125$ 时 $|h_0|=5.6,14.3\times10^{-4}$ 量级，
+而真实衰减包络只有 $10^{-6}$）。所有引用的 $\mathcal E$ 积分窗口均止于 $\tau\le2L+45\le109<112$，
+不受污染；双重极限 $c=8$ 的运行窗口虽达 $150$，但该污染在 $h_{\varepsilon,L}$ 与 $h_0$ 中几乎相同，
+在差 $\delta h$ 与归一化中分别只贡献 $O(\varepsilon)\!-\!O(10^{-7})$，不影响结论。
+双算法核验：极点定位（频域匹配）与时域振铃拟合互相独立，对 $\omega_0$ 的一致度为 $10^{-3}$
+（时域拟合的窗口系统误差），对 $\omega_0$ 的最终高精度值采用频域匹配。
+
+\paragraph{频域极点（Part B）.}
+用 mpmath 40 位精度直接积分 Jost 方程；$\psi_R$ 的远场初条件使用势尾的完整渐近级数
+（符号推导至 $x^{-8}$，含 $\log x$ 项，见附录 \ref{app:asymp}），
+从而消除复频积分中的指数二分失稳（不这样做时 $\omega_0$ 会出现 $10^{-4}$ 以上的虚假偏移）。
+RK4 步长 $dx=0.025\to0.00625$ 的四阶收敛（差值比 $16.00$），Richardson 外推稳定到 $10^{-13}$。
+未扰动 QNM 的独立校验：
+\begin{center}\small
+\begin{tabular}{lccc}
+\toprule
+ & {本文计算}& {文献值（Leaver 连分式）\cite{Leaver1985,Berti2009}}& {相对偏差}\\
+$l=2,n=0$ & $0.3736728-0.0889633\ii$ & $0.3736717-0.0889623\ii$ & $3\times10^{-6}$\\
+$l=3,n=0$ & $0.5994475-0.0927075\ii$ & $0.5994433-0.0927031\ii$ & $7\times10^{-6}$\\
+$l=4,n=0$ & $0.8091638-0.0941723\ii$ & $0.8091784-0.0941642\ii$ & $2\times10^{-5}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+残差来自渐近级数的截断阶 $N=8$，随 $N$ 下降，属系统性可控误差。
+扰动后极点用同一匹配法直接求解（真实光滑 bump 加进位势、Newton 迭代至 $|W_\varepsilon|<10^{-27}$）；
+delta 模型用精确方程 $W(\omega)=\varepsilon_\delta\psi_L(L)\psi_R(L)$。
+新分支扫描：$18\times15$ 或 $40\times30$ 网格上的 $|F(\omega)|$ 极小值 + Newton 精化
+（先用 $dx=0.1$ 粗网格，再用 $0.025$ 复核）。
+
+\paragraph{误差预算汇总.}
+\begin{center}\small
+\begin{tabular}{lll}
+\toprule
+{量}& {误差来源}& {量级}\\
+\midrule
+$\mathcal E/\varepsilon$ & {PDE 离散+sponge+窗口}& {$\le0.5\%$（差分 $10^{-4}$，sponge 在窗外）}\\
+{因果零点}& {双精度舍入累积}& $\le8\times10^{-12}$\\
+$\delta\omega_1$ & {渐近截断 + 数值积分}& {$10^{-6}$（校验见上表）}\\
+{$I(L)$、$W'$}& {同上}& {$10^{-5}$ 相对}\\
+{新分支位置}& {扫描分辨率 + Newton}& {$10^{-6}$（Newton 残差 $<10^{-25}$）}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{结论、标注与未闭合点}
+
+\begin{center}\small
+\begin{tabular}{p{9.6cm}l}
+\toprule
+{结论}& {标注}\\
+\midrule
+{$h_{\varepsilon,L}(\tau)=h_0(\tau)$，$0\le\tau\le2L-13$（定理 \ref{thm:causal}）}& {\textbf{已证明}}\\
+{首阶 Duhamel \eqref{eq:duhamel}--\eqref{eq:lc}；余项 $\le C\varepsilon^2$（命题 \ref{prop:rem}）}& {\textbf{证明概要}（标准能量/流量估计）}\\
+{$\mathcal M=\frac12\mathcal E^2+O(\mathcal E^3)$（命题 \ref{prop:M}）}& {\textbf{已证明}（精确代数）}\\
+{$W_\varepsilon=W-\varepsilon I+O(\varepsilon^2)$；$\delta\omega=\varepsilon I/W'$（命题 \ref{prop:wronsk}、\ref{prop:shift}）}& {\textbf{已证明}（首阶）}\\
+{$|I/W'|\simeq0.13\,e^{2|\Imw_0|L}$；阈值 $c_*=5.6204$}& {\textbf{精确低阶+数值}}\\
+{$|2LZ|\gtrsim1$ 时新共振分支；delta 精确方程与 Lambert-$W$ 结构}& {\textbf{已证明}（delta 模型）+ \textbf{数值}（光滑 bump）}\\
+{（Q3c）成立，$\alpha=1$ 最优，$C_*\le0.286$，实测 $0.20\!-\!0.22$}& {\textbf{证明概要}+\textbf{数值}}\\
+{大谱位移（$|\delta\omega|\gtrsim|\omega_0|$）与（Q3c）相容（$c=8$ 数值例）}& {\textbf{数值}}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{未闭合点（诚实标注）}：(i) 命题 \ref{prop:rem} 的能量/流量估计中"局域流量引理"
+的常数只给出数值界（$\mathcal F=0.329$ 由未扰动数值解测得），其纯解析上界（含 $\log$ 修正）
+未逐项写出；(ii) 首阶极点位移的\emph{收敛半径}关于 $L$ 的解析标度（数值上修正 $\sim\varepsilon e^{4|\Imw_0|L}/K$，
+$K=O(1)$ 未解析确定）；(iii) 光滑 bump 的新分支计数（区域内有 4 个根）依赖扫描区域，
+全局计数（含虚部更深的分支）未闭合；(iv) 幂次 $\alpha=1$ 的最优性由回波下界支撑（数值 $0.84\varepsilon$），
+其解析下界常数未逐项写出。
+
+\textbf{最低可评价交付的对照}：本解答给出了一个严格因果结论（定理 \ref{thm:causal}）
+与两类定量结果——共振位移的适用条件（\S\ref{sec:double}--\ref{sec:resum}：$\mu\ll1$ 且
+$\varepsilon e^{4|\Imw_0|L}\ll1$；阈值 $c_*$）与带明确时间窗的波形误差 bound（定理 \ref{thm:C}：
+所有 $T$、所有 $L$ 一致；$T=O(L)$、$L=c\log(1/\varepsilon)$ 窗口单独核验）。
+仅"频域不稳定但时域稳定"的定性陈述不是本解答的结论；本解答给出的是二者的定量联系与边界。
+
+\appendix
+
+\section{渐近级数与数值细节}
+\label{app:asymp}
+
+Jost 解 $\psi_R=e^{\ii\omega x}F(x)$，$F=1+\sum_{k=1}^{N}G_k(\log x)x^{-k}$，
+$V$ 的展开到 $x^{-(N+3)}$；系数 $G_k$ 由符号递推求得（sympy；脚本 \texttt{derive\_asymp2.py}）。
+例如
+\[
+G_1=\frac{3\ii}{\omega},\qquad
+G_2=\frac{3\big[\ii\omega(4\log x-\log16-1)-2\big]}{2\omega^2},\quad(l=2),
+\]
+与 WKB 相移 $-\!\int V/(2\omega)\dd x$ 的展开一致；截断阶 $N=8$ 在 $x_0=62$ 处使初条件误差
+$\sim x_0^{-9}\!\cdot\!O(10^5)\lesssim10^{-9}$，数值上残余极点偏差 $1.2\times10^{-6}$。
+
+\textbf{数据表（$\varepsilon=10^{-3}$，时域）}：
+\begin{center}\small
+\begin{tabular}{lcccccc}
+\toprule
+$L$ & 12 & 16 & 20 & 24 & 28 & 32\\
+$\mathcal E_\infty$ & $2.1799\times10^{-4}$ & $2.0880\times10^{-4}$ & $2.0445\times10^{-4}$ & $2.0208\times10^{-4}$ & $2.0065\times10^{-4}$ & $1.9974\times10^{-4}$\\
+$\mathcal E_\infty/\varepsilon$ & 0.2180 & 0.2088 & 0.2045 & 0.2021 & 0.2007 & 0.1997\\
+$\mathcal M_\infty$ & $2.3759\times10^{-8}$ & $2.1796\times10^{-8}$ & $2.0899\times10^{-8}$ & $2.0415\times10^{-8}$ & $2.0128\times10^{-8}$ & $1.9944\times10^{-8}$\\
+$\frac12\mathcal E_\infty^2$ & $2.3759\times10^{-8}$ & $2.1796\times10^{-8}$ & $2.0899\times10^{-8}$ & $2.0415\times10^{-8}$ & $2.0128\times10^{-8}$ & $1.9944\times10^{-8}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+（第三、四行符合到表内所有位数以上，验证命题 \ref{prop:M}。）
+
+\textbf{首阶极点位移数据（部分）}：
+\begin{center}\small
+\begin{tabular}{lcccc}
+\toprule
+$L$ & 12 & 20 & 32 & 48\\
+$|I(L)|$ & $8.289$ & $35.94$ & $318.4$ & $5667.6$\\
+$|I(L)|e^{-2|\Imw_0|L}$ & $0.98$ & $1.02$ & $1.07$ & $1.10$\\
+$|\delta\omega_1|/\varepsilon=|I/W'|$ & $1.03$ & $4.48$ & $39.7$ & $7.06\times10^{2}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{脚本清单（全部已运行）}：\texttt{qnm\_lib.py}（几何/位势/初值）、
+\texttt{qnm\_mp.py}（高精度 Jost 匹配）、\texttt{derive\_asymp2.py}（渐近系数符号推导）、
+\texttt{partB*.py}（$I(L)$，$W'$，首阶 vs 精确位移）、\texttt{scan\_roots.py}/\texttt{scan\_analyze.py}（新分支扫描）、
+\texttt{td\_solve.py}/\texttt{td\_main.py}（时域 PDE、$\mathcal E,\mathcal M$、因果检验）、
+\texttt{duhamel2.py}（光锥 Duhamel 核验）、\texttt{double\_limit.py}（双重极限表）、
+\texttt{plot\_figs.py}（图 1--6）。

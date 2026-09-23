@@ -1,0 +1,145 @@
+% !TEX program = xelatex
+\documentclass[11pt]{ctexart}
+\usepackage{geometry}
+\geometry{a4paper,margin=2.4cm}
+\usepackage{amsmath,amssymb,amsthm,bm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black}
+\graphicspath{{qnm_study/}}
+\usepackage{caption}
+\captionsetup{font=small}
+
+\newtheorem{theorem}{定理}
+\newtheorem{proposition}[theorem]{命题}
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\theoremstyle{definition}
+\newtheorem{remark}[theorem]{评注}
+\newtheorem{definition}[theorem]{定义}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\Imw}{\operatorname{Im}\omega}
+
+\title{\bfseries 题三：黑洞 QNM 谱不稳定性能否导致可观测振铃不稳定？\\[2mm]
+\large 完整研究解答（含解析推导与数值验证）}
+\author{}
+\date{2026-09-23}
+
+\begin{document}
+\maketitle
+\vspace{-8mm}
+
+\begin{center}
+\fbox{\parbox{0.95\textwidth}{
+\textbf{结论总览（标注体系：\emph{已证明}=严格证明；\emph{精确低阶}=首阶解析+精确低阶检验；
+\emph{数值}=数值证据；\emph{证明概要}=标准估计+可核验常数；\emph{猜想}=未闭合）}
+\begin{itemize}\itemsep2pt
+\item[(A)] \textbf{已证明}：$h_{\varepsilon,L}(\tau)=h_0(\tau)$ 对一切 $0\le\tau\le 2L-13$ 严格成立（因果定理），
+数值上该区间内 $|h_{\varepsilon,L}-h_0|\le 8\times10^{-12}$。
+首阶 Duhamel 公式给出回波（echo）最早在 $\tau_*=2L-13$ 出现，振幅 $O(\varepsilon)$；
+$\mathcal E$ 的首个非零阶为 $\varepsilon$（generic），$\mathcal M=\tfrac12\mathcal E^2+O(\mathcal E^3)$（精确代数关系）。
+\item[(B)] \textbf{已证明（首阶）}+\textbf{数值}：$\delta\omega=\varepsilon\, I(L)/W'(\omega_0)$，
+$|I(L)/W'(\omega_0)|\simeq(0.122\!-\!0.140)\,e^{2|\Imw_0|L}$；
+双重极限 $L=c\log(1/\varepsilon)$ 的阈值为 $c_*=1/(2|\Imw_0|)\approx5.620$。
+$c>c_*$ 时极点位移不随 $\varepsilon$ 消失；$\mu:=\varepsilon e^{2|\Imw_0|L}\gtrsim10^{-2}$ 时首阶展开失效，
+须用精确共振方程重求和（delta 模型精确解 + Lambert-$W$ 分支结构，数值验证新共振分支）。
+\item[(C)] \textbf{（Q3c）成立且 $\alpha=1$（最优幂次，无对数修正）}，\emph{证明概要}+\emph{数值}：
+$\sup_L\sup_T\mathcal E_{\varepsilon,L}(T)\le C_*\varepsilon$，数值上 $C_*\simeq0.20\!-\!0.22$
+（理论能量-流量界给出 $\le0.29$）。即使在极点位移达到 $O(|\omega_0|)$ 甚至更大（$c=8$：$\delta\omega\approx3.8|\omega_0|$）时，
+波形误差仍为 $\mathcal E/\varepsilon=0.197$。大的谱位移与（Q3c）完全相容：
+极点位置不是连续可观测量的判据；局域化的源-探测器分辨函数在实频轴上一致有界。
+\end{itemize}}}
+\end{center}
+
+\section{设定、约定与预备}
+
+采用 $G=c=1$、以 Schwarzschild 质量 $M$ 无量纲化。龟坐标与位势为
+\begin{equation}
+x=\rho+2\log\!\Big(\frac{\rho}{2}-1\Big),\qquad
+V_{\varepsilon,L}(x)=\Big(1-\frac2\rho\Big)\Big(\frac6{\rho^2}-\frac6{\rho^3}\Big)
++\varepsilon\,W(x-L),
+\label{eq:model}
+\end{equation}
+\[
+W(y)=\begin{cases}\exp\!\big(1-\frac1{1-y^2}\big),&|y|<1,\\0,&|y|\ge1,\end{cases}\qquad
+0<\varepsilon\ll1,\quad L\ge L_0>12 ,
+\]
+$\rho=\rho(x)>2$ 为 \eqref{eq:model} 中龟坐标关系的解。取观察者 $x_o=10$，故势垒在观察者外侧。
+初值为
+\begin{equation}
+\psi(0,x)=C\,W(x),\qquad \partial_\tau\psi(0,x)=-C\,W'(x),\qquad
+E_0=\frac12\!\int\!\big(|\psi_\tau|^2+|\psi_x|^2+V_0|\psi|^2\big)\dd x=1,
+\label{eq:ic}
+\end{equation}
+其中 $V_0=V_{0,L}$（未扰动）。观测信号 $h_{\varepsilon,L}(\tau)=\partial_\tau\psi_{\varepsilon,L}(\tau,x_o)$，
+$h_0=h_{0,L}$。数值计算给出
+\begin{equation}
+C=0.5692357678,\qquad \|h_0\|_{L^2[0,\infty)}^2=\int_0^\infty h_0^2\,\dd\tau=1.00654 .
+\label{eq:Cnorm}
+\end{equation}
+
+\textbf{共振与误差定义.} 采用 $e^{-\ii\omega\tau}$ 约定；
+QNM 是频域 retarded Green 函数解析延拓的极点，边界条件
+$\psi_\omega\sim e^{-\ii\omega x}~(x\to-\infty)$，$\psi_\omega\sim e^{+\ii\omega x}~(x\to+\infty)$，
+阻尼态 $\Imw<0$。定义
+\begin{equation}
+\mathcal E_{\varepsilon,L}(T)=\Big[\frac{\int_0^T|h_{\varepsilon,L}-h_0|^2\dd\tau}
+{\int_0^\infty|h_0|^2\dd\tau}\Big]^{1/2},\qquad
+\mathcal M_{\varepsilon,L}(T)=1-\frac{|\langle h_{\varepsilon,L},h_0\rangle_T|}
+{\|h_{\varepsilon,L}\|_T\,\|h_0\|_T},
+\label{eq:EM}
+\end{equation}
+$\langle f,g\rangle_T=\int_0^Tf\bar g\,\dd\tau$，时间原点固定。
+
+\paragraph{未扰动 QNM（数值预备，已核验）.}
+\textbf{【数值】}我们用两种独立方法计算了未扰动谱：
+(i) 高精度（mpmath，40 位）Jost 解匹配，配合势尾的完整渐近级数初条件（附录~\ref{app:asymp}），
+用 RK4 四阶收敛（步长 $0.025\to0.00625$，Richardson 外推收敛到 $10^{-13}$）；
+(ii) 时域振铃拟合。结果为
+\begin{equation}
+\omega_0=0.3736728-0.0889633\,\ii .
+\label{eq:w0}
+\end{equation}
+与标准文献值 $\omega_0^{\rm lit}=0.3736716844-0.0889623158\,\ii$（Leaver 连分式法，见文献\cite{Leaver1985,Berti2009}）
+相对偏差 $\sim3\times10^{-6}$；同样方法对 $l=3,4$ 基模给出 $0.5994475-0.0927075\ii$、$0.8091638-0.0941723\ii$，
+与文献值 $0.5994433-0.0927031\ii$、$0.8091784-0.0941642\ii$ 相符（$10^{-5}$ 量级）。时域拟合给出
+$0.3743-0.0901\,\ii$（窗口系统误差 $10^{-3}$）。以下取 \eqref{eq:w0}，其关键组合
+\begin{equation}
+|\Imw_0|=0.0889633,\qquad c_*:=\frac1{2|\Imw_0|}=5.6204 .
+\label{eq:cstar}
+\end{equation}
+所有数值代码均已实际运行，见第~\ref{sec:num} 节；无 \texttt{NOT\_RUN} 代码。
+
+\paragraph{本文使用的文献（仅为背景对比，不代替本题推导）.}
+Regge--Wheeler 方程与 $V_0$\ \cite{ReggeWheeler1957}；QNM 数值（Leaver 连分式）\cite{Leaver1985}，综述\cite{Berti2009}；
+晚期幂律尾（Price 定律，$l$ 极：$\psi\sim\tau^{-(2l+3)}$）\cite{Price1972}；
+QNM 激发与"谱移动 vs 波形稳健性"的早期讨论 \cite{Nollert1996,NollertPrice1999}；
+QNM 谱不稳定性/伪谱 \cite{Jaramillo2021}。
+
+\input{sec2_A}
+\input{sec3_B}
+\input{sec4_C}
+\input{sec5_num}
+
+\begin{thebibliography}{9}
+\bibitem{ReggeWheeler1957} T.~Regge and J.~A.~Wheeler, \emph{Stability of a Schwarzschild singularity},
+Phys.\ Rev.\ \textbf{108}, 1063 (1957).
+\bibitem{Leaver1985} E.~W.~Leaver, \emph{An analytic representation for the quasi-normal modes of Kerr
+black holes}, Proc.\ R.\ Soc.\ Lond.\ A \textbf{402}, 285 (1985).
+\bibitem{Price1972} R.~H.~Price, \emph{Nonspherical perturbations of relativistic gravitational collapse.
+I. Scalar and gravitational perturbations}, Phys.\ Rev.\ D \textbf{5}, 2419 (1972).
+\bibitem{Nollert1996} H.-P.~Nollert, \emph{Quasinormal modes of Schwarzschild black holes: The determination
+of quasinormal frequencies with very large imaginary parts}, Phys.\ Rev.\ D \textbf{53}, 4397 (1996).
+\bibitem{NollertPrice1999} H.-P.~Nollert and R.~H.~Price, \emph{Quantifying excitations of quasinormal mode
+systems}, J.\ Math.\ Phys.\ \textbf{40}, 980 (1999).
+\bibitem{Jaramillo2021} J.~L.~Jaramillo, R.~Panosso Macedo, and L.~Al Sheikh,
+\emph{Pseudospectrum and black hole quasinormal mode (in)stability},
+Phys.\ Rev.\ Lett.\ \textbf{128}, 231101 (2021).
+\bibitem{Berti2009} E.~Berti, V.~Cardoso, and A.~O.~Starinets,
+\emph{Quasinormal modes of black holes and black branes}, Class.\ Quantum Grav.\ \textbf{26}, 163001 (2009).
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,279 @@
+% !TeX program = xelatex
+\documentclass[UTF8,a4paper,11pt]{ctexart}
+\usepackage[margin=2.35cm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,array}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{microtype}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\newtheorem{theorem}{定理}
+\newtheorem{proposition}{命题}
+\newtheorem{remark}{说明}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Dir}{Dir}
+\DeclareMathOperator{\Beta}{Beta}
+\DeclareMathOperator{\GammaDist}{Gamma}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\Prob}{\mathbb P}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\ph}{\varphi}
+\title{题二解答：Fibonacci 融合约束下的熵与信息恢复}
+\author{可复核的有限维计算与临界标度界}
+\date{2026 年 9 月 23 日}
+\begin{document}
+\maketitle
+\begin{abstract}
+对题设的 Haar/Stiefel 随机编码，本文给出单态熵、二阶矩、互补信道泄漏的精确有限维公式，并据此证明恢复保真度的上下界。临界变量
+$\Xi=N_R-N_B-\log_{\ph}k$ 控制高保真与低保真两侧的充分条件；在有限临界窗口内，本文给出显式界，不声称得到精确 crossover 函数。两个 $N=5,k=2$ 切分具有相同的单态熵分布，却有不同的精确平均最佳恢复保真度 $23/30$ 与 $5/12$，因此熵曲线本身不能决定恢复。
+\end{abstract}
+
+\section{融合重数、模型与约定}
+取 Fibonacci 数 $F_0=0,F_1=1,F_{j+1}=F_j+F_{j-1}$。由
+$\tau\otimes\tau=1\oplus\tau$，若 $r=N_R,b=N_B\geq2$，则
+\begin{equation}\label{eq:dimensions}
+ (m_1,m_\tau)=(F_{r-1},F_r),\qquad
+ (n_1,n_\tau)=(F_{b-1},F_b),\qquad
+ D=\sum_a m_an_a=F_{r+b-1}.
+\end{equation}
+末式由 Fibonacci 加法公式得到。下文设 $h_a=m_an_a$，$M_R=\sum_a m_a$，$M_B=\sum_a n_a$，$d_1=1,d_\tau=\ph=(1+\sqrt5)/2$。$d_\tau$ 不是普通 Hilbert 空间维数。所有信道与保真度均采用题设的普通矩阵迹；仅带下标 qtr 的熵或矩使用量子迹。
+
+同一物理切分上的 $F$ 变换是融合树正交基之间的酉变换，同时变换状态、$P_a$ 与可观测代数。因此以下迹、熵和最优恢复值不依赖所选的正交融合树基。这里不需要编织数据。
+
+\section{A：单个 Haar 随机态的熵}
+令复高斯向量 $g\in\mathbb C^D$ 各坐标独立、方差为 $1$，$Z=\|g\|^2$，$\psi=g/\sqrt Z$。按扇区将 $\psi$ 整理为 $X_a\in\mathbb C^{m_a\times n_a}$。高斯径向与方向独立，于是
+\begin{equation}\label{eq:dirichlet}
+ (p_1,p_\tau)\sim\Dir(h_1,h_\tau),\quad
+ p_a=\Tr X_aX_a^\dagger,\quad
+ \EE p_a=\frac{h_a}{D}.
+\end{equation}
+条件于 $p_a$，$X_a/\sqrt{p_a}$ 是 $m_a\times n_a$ 的独立 Haar 纯态矩阵。
+
+记 $H_j=\sum_{i=1}^j i^{-1}$，$U_a=\min(m_a,n_a)$，$L_a=\max(m_a,n_a)$。Page 公式的复 Hilbert 空间形式\cite{Page,Sen}为
+\begin{equation}\label{eq:pageblock}
+ \EE S(\rho_{R,a})=H_{h_a}-H_{L_a}-\frac{U_a-1}{2L_a}.
+\end{equation}
+又 $\EE H(p)=H_D-\sum_a(h_a/D)H_{h_a}$。因此得到严格的有限维答案
+\begin{align}
+ \boxed{\EE S_{\rm alg}}
+ &=H_D-\sum_a\frac{h_a}{D}
+ \left(H_{L_a}+\frac{U_a-1}{2L_a}\right),\label{eq:alg}\displaybreak[0]\\
+ \boxed{\EE S_{\rm qtr}}
+ &=\EE S_{\rm alg}+\frac{h_\tau}{D}\log\ph.\label{eq:qtr}
+\end{align}
+第二式也逐样本成立：$S_{\rm qtr}=S_{\rm alg}+p_\tau\log\ph$。这些式子是自然对数熵。
+
+一个独立的二阶 replica 检验是
+\begin{align}
+ \EE\Tr[(\rho_R^{\rm alg})^2]
+ &=\frac{\sum_a h_a(m_a+n_a)}{D(D+1)},\label{eq:purity}\displaybreak[0]\\
+ \EE\widetilde{\Tr}(\widetilde\rho_R^2)
+ &=\frac{\sum_a h_a(m_a+n_a)/d_a}{D(D+1)}.\label{eq:qpurity}
+\end{align}
+推导时 $\EE p_a^2=h_a(h_a+1)/[D(D+1)]$，而条件纯度为 $(m_a+n_a)/(h_a+1)$。这一消去同时核验了 $d_a$ 仅在量子迹约定中出现的位置。
+
+\paragraph{归一化次序。}
+$Z\sim\GammaDist(D,1)$，故
+\begin{equation}
+ \EE\log Z=\psi(D)=H_{D-1}-\gamma_{\!E},\qquad
+ \log\EE Z=\log D.
+\end{equation}
+两者不同。若先计算未归一化高斯矩，再用 $(\EE Z)^2=D^2$ 作分母，则\eqref{eq:purity}的分母会错误地成为 $D^2$；先逐样本归一化再平均才得到 $D(D+1)$。类似地，熵的对数不能穿过随机归一化与期望。
+
+\paragraph{近等分大尺寸。}
+设 $r,b\to\infty$ 且 $\Delta=r-b=O(1)$。定义
+\begin{equation}\label{eq:zdefs}
+ c=(\ph^{-1},1),\quad Z_j=\sum_a c_a^j,\quad
+ w_a=\frac{c_a^2}{Z_2},\quad
+ C_{\rm alg}=\log Z_2-\frac12\log5+w_1\log\ph.
+\end{equation}
+Binet 公式给出 $m_a=\ph^r c_a/\sqrt5\,[1+o(1)]$、$n_a=\ph^b c_a/\sqrt5\,[1+o(1)]$，$h_a/D\to w_a$。由
+$H_j=\log j+\gamma_{\!E}+1/(2j)+O(j^{-2})$，\eqref{eq:alg}中的 $1/(2L_a)$ 与 Page 项中的 $-1/(2L_a)$ 抵消，得到
+\begin{align}
+ \EE S_{\rm alg}
+ &=\min(r,b)\log\ph+C_{\rm alg}
+ -\frac12\ph^{-|\Delta|}+o(1),\label{eq:asympalg}\\
+ \EE S_{\rm qtr}
+ &=\min(r,b)\log\ph+C_{\rm alg}+w_\tau\log\ph
+ -\frac12\ph^{-|\Delta|}+o(1).\label{eq:asympqtr}
+\end{align}
+这里 $w_\tau=\ph^2/(1+\ph^2)$。式中的 $-\ph^{-|\Delta|}/2$ 是固定不对称度下仍为 $O(1)$ 的 Page 修正，不能在求极限前丢掉。
+
+\section{B：多维逻辑系统的恢复问题}
+写 $V_{(a,r,s),i}$，其中 $1\leq r\leq m_a$、$1\leq s\leq n_a$、$1\leq i\leq k$。记
+\begin{equation}\label{eq:sdefs}
+ S_1=\sum_a m_an_a^2,\qquad S_2=\sum_a m_a^2n_a.
+\end{equation}
+令 $C_{QB}=\rho_{QB}-\pi_Q\otimes\rho_B$、$\pi_Q=I_Q/k$；同理定义
+$C_{QR}=\rho_{QR}-\pi_Q\otimes\rho_R$。$R,B$ 的直和标签均保留为经典标签。
+
+\begin{theorem}[精确 Stiefel 二阶泄漏]\label{thm:moments}
+对 $2\leq k\leq D$，有
+\begin{align}
+ \boxed{\mu_B:=\EE\Tr C_{QB}^2}
+ &=\frac{1-k^{-2}}{D^2-1}\left(S_1-\frac{S_2}{D}\right),\label{eq:mub}\\
+ \mu_R:=\EE\Tr C_{QR}^2
+ &=\frac{1-k^{-2}}{D^2-1}\left(S_2-\frac{S_1}{D}\right),\label{eq:mur}\\
+ P_{QR}:=\EE\Tr\rho_{QR}^2
+ &=\frac{S_2+S_1/k-(S_1+S_2/k)/D}{D^2-1}.\label{eq:pqr}
+\end{align}
+将 $B$ 缩减到仅有扇区标签 $A$，中心泄漏满足
+\begin{equation}\label{eq:center}
+ \EE\Tr C_{QA}^2
+ =\frac{1-k^{-2}}{D^2-1}
+ \left(D-\frac{\sum_a h_a^2}{D}\right).
+\end{equation}
+\end{theorem}
+\begin{proof}
+把 $V$ 看成 Haar 酉矩阵的前 $k$ 列。所需的四点式\cite{CollinsSniady}在本记号中为
+\begin{align*}
+&\EE[V_{xi}\overline V_{yj}V_{z\ell}\overline V_{wt}]\\
+&=\frac{\delta_{xy}\delta_{zw}\delta_{ij}\delta_{\ell t}
+ +\delta_{xw}\delta_{zy}\delta_{it}\delta_{\ell j}}{D^2-1}
+ -\frac{\delta_{xy}\delta_{zw}\delta_{it}\delta_{\ell j}
+ +\delta_{xw}\delta_{zy}\delta_{ij}\delta_{\ell t}}{D(D^2-1)}.
+\end{align*}
+在各块中按 $r,s$ 与逻辑指标收缩后，分别得到
+\begin{align*}
+\EE\Tr\rho_{QB}^2
+ &=\frac{S_1+S_2/k-(S_2+S_1/k)/D}{D^2-1},\\
+\EE\Tr\rho_B^2
+ &=\frac{S_2+S_1/k-(S_1+S_2/k)/D}{D^2-1}.
+\end{align*}
+第二行也等于 $P_{QR}$，因为 $Q(RB)$ 整体纯。由
+$\Tr C_{QB}^2=\Tr\rho_{QB}^2-k^{-1}\Tr\rho_B^2$
+得到\eqref{eq:mub}；交换 $R,B$ 得\eqref{eq:mur}。对 $B$ 的所有块内指标再取迹，并沿用同一四点式，得到\eqref{eq:center}。此推导保留了列间正交性；把 $k$ 列当作独立 Haar 态会失去分母中的 $D^2-1$ 与 $1/D$ 项。
+\end{proof}
+
+中心式\eqref{eq:center}说明仅扇区标签也可能泄漏逻辑信息；只检查平均态 $\EE\rho_B$ 是否接近最大混合无法排除这种相关。事实上精确的一阶 Haar 平均是
+$\EE\mathcal N_B(\rho)=\bigoplus_a (m_a/D)I_{n_a}$，对每个输入态 $\rho$ 均相同；恢复问题依赖典型的\emph{同一个}随机编码 $V$ 的相关，而非先平均 $V$ 得到的信道。
+
+\begin{theorem}[可操作恢复界]\label{thm:fidelity}
+逐样本设 $\delta_B=\tfrac12\|C_{QB}\|_1$、
+$\delta_R=\tfrac12\|C_{QR}\|_1$。在题设允许的 CPTP 恢复器类中，
+\begin{align}
+ (1-\delta_B)^2&\leq F_{\rm rec}(V)
+ \leq1-\frac{\delta_B^2}{4},\label{eq:dualitybound}\\
+ F_{\rm rec}(V)&\leq k^{-2}+\delta_R,\label{eq:radbound}
+\end{align}
+并且
+\begin{align}
+ \boxed{\EE F_{\rm rec}}
+ &\geq\max\{0,1-\sqrt{kM_B\mu_B}\},\label{eq:flb}\\
+ \boxed{\EE F_{\rm rec}}
+ &\leq\min\left\{1,\sqrt{\frac{M_R}{k}P_{QR}},
+ k^{-2}+\frac12\sqrt{kM_R\mu_R}\right\}.\label{eq:fub}
+\end{align}
+对于 $0<\varepsilon<1$，还成立
+\begin{equation}\label{eq:tail}
+ \Prob(F_{\rm rec}<1-\varepsilon)
+ \leq\frac{\sqrt{kM_B\mu_B}}{\varepsilon}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+将 $R,B$ 直和嵌入通常的 $R_{\oplus}\otimes B_{\oplus}$，并只占据匹配的扇区。对两侧取部分迹恰为题设两信道，因而它们互补。恢复的 Uhlmann 对偶形式\cite{KRS,KSW}是
+\begin{equation*}
+ F_{\rm rec}(V)=\max_{\sigma_B}
+ F_{\rm Uhl}(\rho_{QB},\pi_Q\otimes\sigma_B)^2,
+\end{equation*}
+其中 $F_{\rm Uhl}=\|\sqrt\rho\sqrt\sigma\|_1$，本文的 $F_{\rm rec}$ 是其平方。输出对扇区预先去相干即可将通常的恢复映射限制到题设直和代数，不改变其可达值。取 $\sigma_B=\rho_B$，并用 Fuchs--van de Graaf 不等式，得左界。若
+$t=\tfrac12\|\rho_{QB}-\pi_Q\otimes\sigma_B\|_1$，取边缘态及三角不等式给 $\delta_B\leq2t$；再用 $F_{\rm Uhl}^2\leq1-t^2$，得右界。
+
+对于任意恢复器 $\mathcal D$，令
+$X_{QR}=(\id_Q\otimes\mathcal D^\dagger)(|\Phi_k\rangle\langle\Phi_k|)$。
+于是 $0\leq X\leq I$、$\Tr X=M_R/k$，且
+$F_{\rm rec}=\Tr(\rho_{QR}X)$。Hilbert--Schmidt Cauchy--Schwarz 给
+$F_{\rm rec}\leq\sqrt{(M_R/k)\Tr\rho_{QR}^2}$。
+若将 $\rho_{QR}$ 换为 $\pi_Q\otimes\rho_R$，同一表达式正好是 $k^{-2}$；有迹为零的差别至多贡献 $\delta_R$，即\eqref{eq:radbound}。
+
+矩阵 $C_{QB}$ 作用在维数 $kM_B$ 的空间，故
+$\EE\delta_B\leq\tfrac12\sqrt{kM_B\mu_B}$；$R$ 亦然。
+对\eqref{eq:dualitybound}用 $(1-\delta_B)^2\geq1-2\delta_B$，对上界用 Jensen，不等式\eqref{eq:flb}--\eqref{eq:fub}随之成立。若 $F_{\rm rec}<1-\varepsilon$，则由左界 $2\delta_B>\varepsilon$，Markov 不等式给\eqref{eq:tail}。
+\end{proof}
+
+特别地，$kM_B\mu_B\to0$ 足以保证典型高保真恢复。另一侧，固定 $k$ 且 $kM_R\mu_R\to0$ 时，平凡的固定输出恢复器总达到 $k^{-2}$，\eqref{eq:fub}说明平均最佳值趋于 $k^{-2}$。这两个条件直接涉及二阶相关；仅有一阶平均态条件不充分。
+
+\section{C：临界变量、严格反例及解释边界}
+设 $r,b\to\infty$，先固定 $k=2$，也可令 $2\leq k\leq D$ 随尺寸增长。定义
+\begin{equation}\label{eq:xi}
+ \Xi=r-b-\log_{\ph}k,\qquad
+ \gamma=\frac{\sqrt{Z_1Z_3}}{Z_2}=\frac{\sqrt2}{Z_2}
+ \simeq1.0233345472.
+\end{equation}
+由 Binet 公式、\eqref{eq:mub}--\eqref{eq:pqr}，在 $r,b\to\infty$ 且 $\Xi=O(1)$ 的任意允许整数子序列上，下面的 $o(1)$ 相对于括号内正主项一致；$k$ 亦可随序列增长：
+\begin{align}
+ \EE F_{\rm rec}
+ &\geq\max\left\{0,
+ 1-\gamma\sqrt{1-k^{-2}}\,\ph^{-\Xi/2}[1+o(1)]\right\},\label{eq:criticalLB}\\
+ \EE F_{\rm rec}
+ &\leq\min\left\{1,
+ \gamma\sqrt{\ph^\Xi+k^{-2}}[1+o(1)],
+ k^{-2}+\frac\gamma2\sqrt{k^2-1}\,\ph^{\Xi/2}[1+o(1)]\right\}.
+ \label{eq:criticalUB}
+\end{align}
+若 $\Xi\to+\infty$，\eqref{eq:tail}给 $F_{\rm rec}\to1$（依概率）。若固定 $k$ 且 $\Xi\to-\infty$，则 $\EE F_{\rm rec}\to k^{-2}$；若 $k\to\infty$ 且 $\Xi\to-\infty$，则 $\EE F_{\rm rec}\to0$。这些结论仍要求 $r,b\to\infty$；尾部可直接使用精确有限维界保证误差。有限 $\Xi$ 的\eqref{eq:criticalLB}--\eqref{eq:criticalUB}是明确的同尺度上下界，但并不确定唯一的极限分布或精确 crossover 函数。特别是界在某些临界点可能退化为 $0\leq\EE F\leq1$；将其称为精确临界公式是不成立的。
+
+\begin{proposition}[相同熵分布、不同恢复的精确反例]\label{prop:counter}
+令 $k=2,N=5$。切分 $(r,b)=(3,2)$ 与 $(2,3)$ 的单个 Haar 态的 $S_{\rm alg}$、$S_{\rm qtr}$ \emph{整个分布}均相同，并有
+\begin{equation}
+ \EE S_{\rm alg}=\frac12,\qquad
+ \EE S_{\rm qtr}=\frac12+\frac23\log\ph,\qquad
+ \EE\Tr(\rho_R^{\rm alg})^2=\frac23.
+\end{equation}
+然而它们的 Haar/Stiefel 平均最佳纠缠恢复保真度分别是
+\begin{equation}\label{eq:smallF}
+ \boxed{\EE F_{\rm rec}(3,2)=\frac{23}{30}},\qquad
+ \boxed{\EE F_{\rm rec}(2,3)=\frac5{12}}.
+\end{equation}
+对应的互补相关二阶矩分别为 $\mu_B=1/8$ 和 $3/8$。
+\end{proposition}
+\begin{proof}
+两者均有 $D=3$、$h=(1,2)$；每个条件扇区的 $R$ 态均为纯态，因此逐样本
+$S_{\rm alg}=H(p)$、$S_{\rm qtr}=H(p)+(1-p)\log\ph$，其中
+$p=p_1\sim\Beta(1,2)$。这证明了整个熵分布相同，也给出所列均值和二阶纯度。
+
+对随机 $3\times2$ 等距矩阵 $V$，记
+$q=\Tr(V^\dagger P_1V)$。因为 $P_1$ 秩为 $1$，随机二维子空间对固定向量的投影长度平方满足 $q\sim\Beta(2,1)$，密度为 $2q\,dq$。
+
+在 $(3,2)$ 切分，$m=(1,2),n=(1,1)$，每个扇区只有一个 Kraus 算符 $A_a$。对给定分支，极分解恢复达到且迹不等式证明的最优贡献为
+$k^{-2}[\Tr\sqrt{A_a^\dagger A_a}]^2$。两个分支的 Gram 矩阵为秩一、迹 $q$ 的 $W_1$ 和 $W_\tau=I-W_1$；其谱分别为 $(q,0)$、$(1,1-q)$。所以逐样本
+\begin{equation*}
+ F_{\rm rec}(V)=\frac{q+(1+\sqrt{1-q})^2}{4}
+ =\frac{1+\sqrt{1-q}}2.
+\end{equation*}
+由 $\EE\sqrt{1-q}=2\int_0^1q\sqrt{1-q}\,dq=8/15$ 得 $23/30$。
+
+在 $(2,3)$ 切分，$m=(1,1),n=(1,2)$，$R$ 只给出经典扇区结果。任意恢复器等价于按结果制备逻辑态，最优值为各结果的最大本征值之和除以 $k^2$。两个 POVM 效应 $W_1,W_\tau$ 的最大本征值为 $q,1$，故
+$F_{\rm rec}(V)=(1+q)/4$；$\EE q=2/3$ 给 $5/12$。把两组维数代入\eqref{eq:mub}，即得 $1/8,3/8$。
+\end{proof}
+
+\begin{center}
+\begin{tabular}{@{}ccccc@{}}
+\toprule
+$(N_R,N_B)$ & $(m_1,m_\tau)$ & $(n_1,n_\tau)$ & $\EE S_{\rm alg}$ & $\EE F_{\rm rec}$\\
+\midrule
+$(3,2)$ & $(1,2)$ & $(1,1)$ & $1/2$ & $23/30$\\
+$(2,3)$ & $(1,1)$ & $(1,2)$ & $1/2$ & $5/12$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{各类融合数据进入何处。}
+$d_\tau=\ph$ 在本题定义的普通迹信道中不作为输出维数，也不改变 $F_{\rm rec}$；它显式地只给\eqref{eq:qtr}添加量子迹熵项。融合重数 $m_a,n_a$ 决定每个矩阵块的物理维数，故进入信道、\eqref{eq:mub}、\eqref{eq:fub}以及上述反例。扇区权重 $h_a/D$ 既控制 Haar 态的 Dirichlet 分布，又影响标签泄漏\eqref{eq:center}。$F$ 矩阵重配同一分解的坐标，不提供额外中性或带荷资源。
+
+\paragraph{与 island/QES 的最小字典。}
+逻辑参考 $Q$ 与编码维数 $\log k$ 可作为待恢复的 bulk 信息候选；$H(p_a)$ 是可观测中心标签的不确定性，$\sum_a p_a\log d_a$ 是量子迹约定下的 edge 项候选；\eqref{eq:alg}--\eqref{eq:qtr}给出可比较的熵侧量。但是本模型没有时空几何、面积算符、QES 极值化、辐射动力学、局域性与半经典 bulk 重建假设。这里证明的是给定融合约束随机编码的恢复界与熵反例，并未证明 island prescription 或建立引力对偶。
+
+\paragraph{复现与证据级别。}
+同目录的 \texttt{check\_q2.py} 以 SymPy 检验有限维有理式，以复高斯 QR 生成真正的 Haar/Stiefel 等距矩阵，并对两种小切分分别用显式最优恢复器作独立 Monte Carlo 检验。精确公式、定理及反例属解析证明；Monte Carlo 只作交叉检查。有限临界窗口的精确极限函数与分布在此未闭合。可证伪的下一步是沿固定 $k=2$、固定整数 $r-b$ 的序列计算 CPTP 最优值，检验其是否落在\eqref{eq:criticalLB}--\eqref{eq:criticalUB}并是否收敛；这不影响已证的有限维结论。
+
+\clearpage
+\begin{thebibliography}{9}
+\bibitem{Page} D. N. Page, \emph{Average entropy of a subsystem}, Phys. Rev. Lett. \textbf{71}, 1291 (1993), \url{https://doi.org/10.1103/PhysRevLett.71.1291}.
+\bibitem{Sen} S. Sen, \emph{Average entropy of a quantum subsystem}, Phys. Rev. Lett. \textbf{77}, 1 (1996), \url{https://arxiv.org/abs/hep-th/9601132}.
+\bibitem{CollinsSniady} B. Collins and P. Śniady, \emph{Integration with respect to the Haar measure on unitary, orthogonal and symplectic group}, Commun. Math. Phys. \textbf{264}, 773 (2006), \url{https://arxiv.org/abs/math-ph/0402073}.
+\bibitem{KRS} R. König, R. Renner and C. Schaffner, \emph{The operational meaning of min- and max-entropy}, IEEE Trans. Inf. Theory \textbf{55}, 4337 (2009), \url{https://arxiv.org/abs/0807.1338}.
+\bibitem{KSW} D. Kretschmann, D. Schlingemann and R. F. Werner, \emph{The information-disturbance tradeoff and the continuity of Stinespring's representation}, IEEE Trans. Inf. Theory \textbf{54}, 1708 (2008), \url{https://arxiv.org/abs/quant-ph/0605009}.
+\end{thebibliography}
+\end{document}

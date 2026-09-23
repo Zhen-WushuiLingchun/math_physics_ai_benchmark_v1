@@ -1,0 +1,323 @@
+\documentclass[11pt,a4paper,UTF8]{ctexart}
+\usepackage[margin=2.25cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,longtable,array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!65!black,citecolor=blue!55!black}
+\allowdisplaybreaks
+
+\newcommand{\YM}{\mathrm{YM}}
+\newcommand{\EYM}{\mathrm{EYM}}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cN}{\mathcal N}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\PT}{\operatorname{PT}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Qx}{\mathbb Q(x)}
+\newcommand{\braket}[2]{\langle #1\,#2\rangle}
+\newcommand{\sqbraket}[2]{[#1\,#2]}
+
+\title{题一独立解答（第一完成版）\\[2mm]
+\large $n=3$ 的精确函数域 no-go、标准核缺陷与 $D$ 维障碍}
+\author{}
+\date{2026年9月17日}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文在题面所限定的核类中完成 $n=3$ 判定。结论是：不存在同一套 helicity 无关、Mandelstam 一次齐次、无 Mandelstam 分母的局域核，同时满足全部树级关系、一圈全正关系以及一圈单负关系。证明不是数值秩判断，而是在 $\Qx$ 上给出四条系数方程的显式左零向量证书；其矛盾为 $0=x(1-x)$，故对函数域恒等式已经构成 no-go。文中也给出一个标准树级代表的精确一圈缺陷、两个未参与求解的有理点校验，以及保留 $\mu^2$ 的 $D$ 维解释。由于 $n=3$ 已排除题目中的统一核，逻辑上无需再以 $n=4$ 才否定命题 (Q1)。
+\end{abstract}
+
+\section{结论与证据等级}
+
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{3.0cm}>{\raggedright\arraybackslash}p{10.7cm}}
+\toprule
+等级 & 结论\\
+\midrule
+已经证明 & 在 $n=3$、题面允许的完整一次局域核类中，树级 $+$ 一圈全正 $+$ 任意一个固定位置的单负扇区已经不相容。\\
+已经证明 & 标准树级代表的一圈全正及三个单负缺陷均为非零有理函数；下文给出稠密四点运动学图上的精确式。\\
+精确低阶检验 & 新写的 SymPy 脚本在 $\mathbb Q(x,z)$ 上重建 29 条系数方程，得到全系统 $\rank A=9$、$\rank[A|b]=10$；五个自动测试全部通过。\\
+尚未闭合 & 未给出 $n\ge4$ 的核空间分类；因 $n=3$ 已否定 (Q1)，这不影响 no-go。单负振幅的完整张量积分约化未在本文逐行重做，只给出 $D$ 维切割结构、最终有理式与独立代数检查。\\
+建议扩张 & 在积分前保留 dimension-shifted 的 $\mu^4$ box/triangle 系数向量；它精确处理第一个全正障碍，但尚不是一般 $n$ 定理。\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{$n=3$ 的排序、变量与稠密运动学图}
+
+固定硬腿循环次序 $(1,2,3)$，把 $a,b$ 放入三个循环间隙且不得相邻。循环等价只计一次，得到恰好六个排序
+\begin{align}
+\sigma_1&=(1,a,2,b,3), &
+\sigma_2&=(1,a,2,3,b), &
+\sigma_3&=(1,b,2,a,3),\nonumber\\
+\sigma_4&=(1,2,a,3,b), &
+\sigma_5&=(1,b,2,3,a), &
+\sigma_6&=(1,2,b,3,a).
+\label{eq:orders}
+\end{align}
+四点硬运动学只有
+\begin{equation}
+s=s_{12},\qquad t=s_{23},\qquad u=s_{13},\qquad s+t+u=0
+\end{equation}
+两个独立 Mandelstam 变量。为把函数域问题化成可直接核验的有理恒等式，取
+\begin{equation}
+\begin{array}{c|cccc}
+ &1&2&3&P\\ \hline
+\lambda &(1,0)&(0,1)&(1,1)&(1,z)\\
+\widetilde\lambda&(-1,-1)&(-1,-z)&(1,0)&(0,1)
+\end{array}
+\label{eq:chart}
+\end{equation}
+并令 $(\lambda_a,\widetilde\lambda_a)=\sqrt{x}(\lambda_P,\widetilde\lambda_P)$、
+$(\lambda_b,\widetilde\lambda_b)=\sqrt{1-x}(\lambda_P,\widetilde\lambda_P)$。直接相乘可见
+$\sum_i\lambda_i\widetilde\lambda_i=0$，且
+\begin{equation}
+s=1-z,\qquad t=z,\qquad u=-1.
+\label{eq:stu-chart}
+\end{equation}
+除去 $z=0,1$ 后，这是一般复四点运动学的稠密图。若候选关系在一般运动学上成立，它在此图上必为 $\mathbb Q(x,z)$ 恒等式；因此在此图上得到矛盾足以排除全局候选。
+
+\section{振幅输入与 $D$ 维来源}
+
+\subsection{五点纯 YM}
+
+树级 MHV 振幅写作
+\begin{equation}
+A_5^{(0)}(q_1,\ldots,q_5)
+=i\frac{\langle r s\rangle^4}{\PT_\angle(q_1,\ldots,q_5)},
+\qquad
+\PT_\angle=\prod_{j=1}^{5}\langle q_jq_{j+1}\rangle .
+\end{equation}
+反 MHV 式为其宇称共轭。五点树振幅只有 MHV 与反 MHV 非零，所以这两类已经穷尽题面要求的全部树级 helicity 约束。
+
+剥去公共因子
+\begin{equation}
+c_\Gamma^{(0)}:=\frac{i}{48\pi^2},
+\end{equation}
+一圈全正振幅可写成
+\begin{equation}
+\widehat A_{5}^{(1)}(+,+,+,+,+)
+=\frac{H_5}{\PT_\angle},\qquad
+H_5=\sum_{i<j<k<\ell}
+\langle ij\rangle[jk]\langle k\ell\rangle[\ell i],
+\label{eq:allplus-ym}
+\end{equation}
+其中帽表示除以 $c_\Gamma^{(0)}$。把负腿循环转到第一位后，五点单负振幅采用
+\begin{align}
+\widehat A_5^{(1)}(1^-,2^+,3^+,4^+,5^+)
+=\frac{1}{\langle34\rangle^2}\bigg[
+&-\frac{[25]^3}{[12][51]}
++\frac{\langle14\rangle^3[45]\langle35\rangle}
+{\langle12\rangle\langle23\rangle\langle45\rangle^2}\nonumber\\
+&-\frac{\langle13\rangle^3[32]\langle42\rangle}
+{\langle15\rangle\langle54\rangle\langle32\rangle^2}
+\bigg].
+\label{eq:oneminus-ym}
+\end{align}
+式 \eqref{eq:allplus-ym}--\eqref{eq:oneminus-ym} 在新脚本中按每个排序重新求值，而不是使用保存的数表。
+
+\subsection{四点 EYM 的实际结果}
+
+在题面指定的 maximal-$g$、单迹、内部胶子扇区，积分后 $\epsilon^0$ 系数为
+\begin{equation}
+M_{3;1}^{(1)}(1^+,2^+,3^+;P^{++})=0,
+\label{eq:eym-allplus}
+\end{equation}
+以及（先写负腿为 $1$）
+\begin{equation}
+M_{3;1}^{(1)}(1^-,2^+,3^+;P^{++})
+=\frac{c_\Gamma^{(0)}}{2}
+\frac{[2P][3P]}{\langle2P\rangle\langle3P\rangle}
+\frac{s_{12}^2+s_{13}^2}{\langle23\rangle[21][31]}.
+\label{eq:eym-oneminus}
+\end{equation}
+负腿在 $2,3$ 的结果由 $(1,2,3)$ 循环置换得到。这里的归一化与式 \eqref{eq:allplus-ym}--\eqref{eq:oneminus-ym} 相同；这些四点结果也可与
+\href{https://arxiv.org/abs/1803.08497}{arXiv:1803.08497}
+的 $D$ 维 unitarity 计算交叉核对。
+
+为看清全正零不是四维 cut 的充分信息，写
+\begin{equation}
+\ell^\mu=\bar\ell^\mu+\ell_\perp^\mu,
+\qquad \mu^2=-\ell_\perp^2.
+\end{equation}
+一个循环代表的 $D$ 维结果含有
+\begin{equation}
+\frac12 I_4[\mu^4;s,t]
++\frac1t I_3[\mu^4;t]
++\frac1s I_3[\mu^4;s],
+\label{eq:mu-combination}
+\end{equation}
+再乘以其外部自旋因子并作 $(1,2,3)$ 循环和。维数移位给出
+\begin{equation}
+I_4[\mu^4;s,t]=-\frac16+\cO(\epsilon),
+\qquad
+I_3[\mu^4;s]=\frac{s}{24}+\cO(\epsilon),
+\end{equation}
+故 \eqref{eq:mu-combination} 的有限部逐项为
+$-1/12+1/24+1/24=0$。因此：四维 cuts 为零；$D$ 维 cuts 非零并含 $\mu^4$；box 与 triangle 在积分后才抵消。后文的 no-go 是 integrated identity 的 no-go，不等同于 integrand identity 的 no-go。
+
+\section{A：标准树级代表及精确一圈缺陷}
+
+选择标准代表
+\begin{equation}
+K^{\rm tree}_{1}=x(1-x)s_{2P},\qquad
+K^{\rm tree}_{2}=x(1-x)s_{3P},\qquad
+K^{\rm tree}_{3,4,5,6}=0.
+\label{eq:standard-kernel}
+\end{equation}
+因 $s_{2P}=u,s_{3P}=s$，式 \eqref{eq:chart} 上
+\begin{equation}
+(K_1,K_2)=\bigl(x(x-1),\,x(x-1)(z-1)\bigr).
+\end{equation}
+例如对 $(1^-,2^-,3^+;P^{++})$，Parke--Taylor 代入后得到
+\begin{equation}
+\sum_{i=1}^6K_i^{\rm tree}\cC_xA^{(0)}_5(\sigma_i)
+=i\frac{1}{z^2(z-1)},
+\label{eq:tree-calibration}
+\end{equation}
+在一般 $z$ 非零，且 $x$ 完全抵消；这是所要求的非零树级校准。宇称共轭的约化结果为 $-1/z$，同样与 $x$ 无关。
+
+定义 $\widehat\Delta:=\Delta/c_\Gamma^{(0)}$。把
+\eqref{eq:allplus-ym}--\eqref{eq:eym-oneminus} 逐项代入 \eqref{eq:standard-kernel}，得到
+\begin{equation}
+\widehat\Delta_{+++}
+=\frac{x^2z^2-x^2z-x^2-2xz^2+2xz+z^2-z}{z(z-1)}.
+\label{eq:defect-allplus}
+\end{equation}
+对负腿 $1$，
+\begin{equation}
+\widehat\Delta_{-++}
+=\frac{
+2x^2z^3-4x^2z^2+2x^2z-4xz^3+6xz^2-4xz
++z^3+2z^2-4z+2}
+{2z(z-1)^2}.
+\label{eq:defect-minus1}
+\end{equation}
+另外两个位置为
+\begin{align}
+\widehat\Delta_{+-+}
+&=-\frac{
+2x^2z^3-6x^2z^2+6x^2z-2x^2+4xz^2-4xz+2x
+-4z^3+2z^2+z-2}
+{2z^3(z-1)^2},\label{eq:defect-minus2}\\
+\widehat\Delta_{++-}
+&=\frac{
+2x^2z^3-2x^2z+2x^2-4xz^3+2xz^2-2x
++z^3-3z+2}
+{2z^3}.
+\label{eq:defect-minus3}
+\end{align}
+这些都是一般点上的非零有理函数。因此，标准树代表不能提升到一圈。
+
+独立的精确有理点检查取
+\begin{equation}
+(x,z)=\left(\frac25,\frac37\right),
+\end{equation}
+得到
+\begin{equation}
+(\widehat\Delta_{+++},\widehat\Delta_{-++},
+\widehat\Delta_{+-+},\widehat\Delta_{++-})
+=\left(\frac{76}{75},\frac{3479}{2400},
+\frac{491813}{21600},\frac{952}{675}\right),
+\end{equation}
+与符号式直接代入一致。此检查只验证标准代表；下一节才处理整个允许核空间。
+
+\section{B：完整核空间的 $n=3$ 不可解性证书}
+
+令
+\begin{equation}
+N_i=a_i(x)s+b_i(x)t,\qquad a_i,b_i\in\Qx,
+\label{eq:null-ansatz}
+\end{equation}
+并考察 $K=K^{\rm tree}+N$。未知量共十二个。把 MHV、反 MHV 树关系在图 \eqref{eq:chart} 上清分母并按 $z$ 比较系数，得到八行、函数域秩四，故
+\begin{equation}
+\dim_{\Qx}\cN_3=12-4=8.
+\end{equation}
+加入一圈全正关系后总秩为七，仿射解空间仍有五维；所以“全正失败”本身不足以排除整个核类。
+
+再加入负腿为 $1$ 的单负关系。以下四条系数方程已经给出不可解证书，依次记为
+\[
+E_{T3},\qquad E_{T2},\qquad E_{A2},\qquad E_{S4}.
+\]
+\begin{align}
+E_{T3}:\quad
+&-a_1-a_3+b_1+b_3=0,\label{eq:ET3}\\
+E_{T2}:\quad
+&2a_1+a_2+2a_3-a_4+a_5-a_6
+-b_1-b_2-b_3+b_4-b_5+b_6=0.\label{eq:ET2}
+\end{align}
+全正方程的一行是 $L_A=x(x-1)^3$，其中
+\begin{align}
+L_A={}&(1-2x)a_1+(x-1)^2a_2+(2x-1)a_3-(x-1)^2a_4+x^2a_5-x^2a_6\nonumber\\
+&+(2x-1)b_1-(x-1)^2b_2+(1-2x)b_3+(x-1)^2b_4-x^2b_5+x^2b_6.
+\label{eq:EA2}
+\end{align}
+单负方程的一行是 $L_S=x(x-1)(2x^2-4x+1)$，其中
+\begin{align}
+L_S=-2\big[{}&(4x^2-2x+2)a_1+xa_2+(4x^2-6x+4)a_3-xa_4
++(1-x)a_5+(x-1)a_6\nonumber\\
+&+(-3x^2+x-1)b_1-xb_2+(-3x^2+5x-3)b_3+xb_4
++(x-1)b_5+(1-x)b_6\big].
+\label{eq:ES4}
+\end{align}
+现在取线性组合
+\begin{equation}
+-2(2x^2-2x+1)E_{T3}
++2(x^2-x+1)E_{T2}
+-2E_{A2}+E_{S4}.
+\label{eq:certificate-combination}
+\end{equation}
+所有十二个未知量的系数逐项消失，而右端成为
+\begin{equation}
+0=-x(x-1)=x(1-x).
+\label{eq:contradiction}
+\end{equation}
+对题面域 $0<x<1$，右端非零；作为 $\Qx$ 元素它也不是零函数。这就是有限、解析、与具体 helicity 测试对应的不可解性证书。
+
+完整行集的精确秩为
+\begin{equation}
+\rank A=9,
+\qquad
+\rank[A|b]=10,
+\end{equation}
+而只用“树 $+$ 全正 $+$ 负腿 1”的子系统已有
+$\rank A=8,\rank[A|b]=9$。证书在未用于构造的
+$x=2/5$ 与 $x=3/8$ 分别给出 $6/25$、$15/64$，但这些有理点只作回归测试；函数域证明是式 \eqref{eq:certificate-combination}--\eqref{eq:contradiction}。
+
+\paragraph{No-go 的范围。}
+该证书排除了题面中 $n=3$ 的整个允许类：所有 $c_{ij}^{\sigma}(x)\in\mathbb Q(x)$、所有 Mandelstam 一次齐次且无 Mandelstam 分母的 helicity 无关核。它不是只排除式 \eqref{eq:standard-kernel} 的一个代表。既然 (Q1) 要求同一方案同时覆盖所有 $n$，$n=3$ 已足以否定 (Q1)。
+
+\section{C：障碍的 $D$ 维位置与一个受限扩张}
+
+四维 unitarity 看不到本题的有理扇区；决定性信息位于
+$\mu^{2r}$ 项。全正 EYM 在 $D$ 维并不为零，有限部零来自
+$I_4[\mu^4]$ 与 $I_3[\mu^4]$ 的积分后抵消。另一方面，把已经积分的五点 YM 有理函数压成一个标量后，局域外部核无法再区分“box 系数”与“triangle 完成项”。式 \eqref{eq:contradiction} 表明，这个信息损失不能由树级零空间补回。
+
+一个事先限定自由度、且不是把 $\Delta$ 改名的扩张，是把重构对象从积分后的标量振幅提升为 dimension-shifted master 向量
+\begin{equation}
+\bm{V}_{\mu^4}(s,t)=\left(
+I_4[\mu^4;s,t],\ \frac{I_3[\mu^4;s]}s,\
+\frac{I_3[\mu^4;t]}t\right),
+\label{eq:master-vector}
+\end{equation}
+并允许由 $D$ 维 cuts 固定的有限协向量作用其上。第一个全正障碍对应的规则是
+\begin{equation}
+\mathfrak R_{+}(s,t)
+=\left(\frac12,1,1\right)\!\cdot\bm{V}_{\mu^4}(s,t),
+\label{eq:completion-rule}
+\end{equation}
+随后乘以切割直接给出的外部自旋因子并作硬腿循环和。这个规则不含逐点拟合参数；三个分量及比例由同一 $D$ 维两粒子 cuts 和维数移位确定。其有限部严格为零，所以它确实处理了第一个障碍 \eqref{eq:eym-allplus}。
+
+这还不是一般 $n$ 的修复定理。单负扇区还需要加入有限的
+$\mu^2$ box/triangle/bubble 层并证明 factorization 下闭合；目前尚未证明一个统一的 tree-to-loop 映射。下一步可证伪检验应是：在不增加新的 master 类型的前提下，用全部三个单负位置的 $D$ 维 cuts 检查扩张后的系数向量是否一致。若仍出现增广秩跳跃，则式 \eqref{eq:master-vector} 的 $\mu^4$ 层不足，必须明确加入 $\mu^2$ 层，而不能再调整树级核。
+
+\paragraph{复现。}
+当前目录中的 \texttt{check\_n3.py} 生成六个排序的树级、全正与单负有理函数，构造 $\mathbb Q(x)$ 上的线性系统并输出证书；\texttt{test\_check\_n3.py} 检查动量守恒、排序完备性、树级 $x$ 消去、非零缺陷、左零向量以及两个 holdout 点。运行 \texttt{python -m pytest -q}（本次为 \texttt{5 passed}）及 \texttt{python check\_n3.py} 即可复现。编译命令为：
+\begin{center}
+\small\texttt{xelatex -interaction=nonstopmode -halt-on-error solution\_n3.tex}
+\end{center}
+
+\end{document}

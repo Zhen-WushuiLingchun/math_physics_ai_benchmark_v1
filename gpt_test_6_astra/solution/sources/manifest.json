@@ -1,0 +1,26 @@
+[
+  {
+    "file": "1803.08497.pdf",
+    "url": "https://arxiv.org/pdf/1803.08497",
+    "sha256": "57000a69237c8b4ea9afd2b8e22fe76dc7bdfb70b1a4c9c51373ea7695a273c3",
+    "pages": 37
+  },
+  {
+    "file": "1508.01116.pdf",
+    "url": "https://arxiv.org/pdf/1508.01116",
+    "sha256": "1604791c65671c59b642c7cff2b027b11762d0d1224ffcc5e798956467a6a367",
+    "pages": 8
+  },
+  {
+    "file": "hep-ph_9302280.pdf",
+    "url": "https://arxiv.org/pdf/hep-ph/9302280",
+    "sha256": "476f1e2fc9e27053b8753279e689618daf57d85f95a033ea9d169b228ccfe182",
+    "pages": 7
+  },
+  {
+    "file": "1405.1015.pdf",
+    "url": "https://arxiv.org/pdf/1405.1015",
+    "sha256": "461eba9209de4b4895d84582d0671ad6cbaae00bb49829208038f9501567e30a",
+    "pages": 21
+  }
+]

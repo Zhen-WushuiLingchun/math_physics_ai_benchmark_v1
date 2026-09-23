@@ -1,0 +1,257 @@
+\documentclass[UTF8,11pt]{ctexart}
+\usepackage[a4paper,margin=2.35cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,bm}
+\usepackage{booktabs,array}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\setlist{nosep}
+\newcommand{\trm}{\operatorname{tr}_{-}}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cM}{\mathcal M}
+\newcommand{\cC}{\mathcal C}
+\newcommand{\cN}{\mathcal N}
+\newcommand{\e}{\varepsilon}
+\newcommand{\eps}{\epsilon}
+\title{题一（$n=3$）：共线树级重构与一圈 EYM 振幅的精确检验}
+\author{局部解析与 SymPy 有理函数证书}
+\date{2026年9月23日}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+在题面规定的单引力子、leading-color、$\kappa g^3$ 一圈阶，$n=3$ 已足以否定候选式 (Q1)。本文先给出六个非相邻共线排序、一个非零树级校准和一个树级代表的一圈 all-plus 缺陷。随后把每个排序的允许核完全放宽为两个任意系数，分别乘独立 Mandelstam 变量；在 $x=1/3$ 上用 all-plus 与两个 single-minus 扇区得到一个 $15\times12$ 的精确有理线性系统。其系数矩阵秩为 $12$，增广矩阵秩为 $13$，并给出整数左零证书。因此不只是所选树级代表，整个允许核空间都无法修复 $n=3$ 的一圈结果。此结论不依赖先求出树级零空间 $\cN_3$。
+\end{abstract}
+
+\paragraph{结论范围。}
+\begin{itemize}
+  \item \textbf{已证明（$n=3$）：}没有任何题面允许的、在 $s_{ij}$ 中线性的核能同时满足所检验的一圈 helicity 扇区；这是比 $K^{\rm tree}+N$ 更强的 no-go。
+  \item \textbf{精确校准：}树级 $1^-2^-3^+;P^{++}$ 非零；标准共线代表在该点和全 $x$ 树关系归一化下得到同一振幅。
+  \item \textbf{精确低点结果：}写出题面所需两个一圈 EYM 扇区的积分后结果，并计算树级代表在 all-plus 一圈的缺陷。
+  \item \textbf{尚未完成：}不据此声称 $n\ge4$ 的结论；最后给出一圈积分基底扩张的 $n=3$ 实例和一个尚待证明的一般构造规则。
+\end{itemize}
+
+\section{排序、运动学和核的完整参数化}
+令 $p_a=xP$、$p_b=(1-x)P$，$a,b$ 同 helicity，且二者在循环意义下不相邻。锚定硬腿循环次序 $(1,2,3)$ 后，排序集合正好是
+\begin{align*}
+\Pi_3=\{&\sigma_1=(1,a,2,b,3),\quad \sigma_2=(1,b,2,a,3),\\
+&\sigma_3=(1,a,2,3,b),\quad \sigma_4=(1,b,2,3,a),\\
+&\sigma_5=(1,2,a,3,b),\quad \sigma_6=(1,2,b,3,a)\}.
+\end{align*}
+在四个独立无质量动量 $(p_1,p_2,p_3,P)$ 上取
+\[
+s=s_{12},\qquad t=s_{23},\qquad u=s_{13},\qquad s+t+u=0.
+\]
+故仅有两个独立 Mandelstam 变量，且
+\[
+s_{1P}=t,\qquad s_{2P}=u,\qquad s_{3P}=s,
+\quad s_{ia}=x s_{iP},\quad s_{ib}=(1-x)s_{iP},\quad s_{ab}=0.
+\]
+因此任何题面允许的核在模掉在壳关系后都可且只能写作
+\[
+K_\sigma(x,s,t)=U_\sigma(x)s+V_\sigma(x)t,
+\qquad U_\sigma,V_\sigma\in\mathbb Q(x).
+\]
+下文在整个 12 维核类上做 no-go，不只检查一个代表。
+
+\section{树级代表和非零校准}
+在指定的 $F=\partial A-\partial A+gfAA$ 符号下，采用单引力子的树级插入关系
+\[
+\cM^{(0)}_3(1,2,3;P^{++})
+=-\sum_{j=1}^{2}\bigl(2q_j\!\cdot\!\e_P^+\bigr)
+\cA^{(0)}_4(1,\ldots,j,P^+,j+1,\ldots,3),
+\qquad q_j=\sum_{k=1}^{j}p_k,
+\tag{1}
+\]
+并用共线代表（整体符号由下列非零校准固定）
+\[
+K^{\rm tree}_{\sigma_2}=-(1-x)s_{2a}=-x(1-x)s_{2P},
+\qquad K^{\rm tree}_{\sigma}=0\quad(\sigma\ne\sigma_2).
+\tag{2}
+\]
+其支撑恰为 $\sigma_2=(1,b,2,a,3)$；这与 Stieberger--Taylor 的 $n=3$ 共线表达式相同，整体符号按 (1) 的振幅约定固定 [2,3]。
+
+取 $1^-_1,2^-_2,3^+;P^{++}$。五点 YM 树 MHV 振幅为
+\[
+\cA^{(0)}_5(1^-,b^+,2^-,a^+,3^+)
+=i\frac{\langle12\rangle^4}
+{\langle1b\rangle\langle b2\rangle\langle2a\rangle\langle a3\rangle\langle31\rangle}.
+\]
+代入 $\langle a i\rangle=\sqrt{x}\langle P i\rangle$ 与
+$\langle b i\rangle=\sqrt{1-x}\langle P i\rangle$，得非零结果
+\[
+\cM^{(0)}_3(1^-_1,2^-_2,3^+;P^{++})
+=-i\,s_{2P}\frac{\langle12\rangle^4}
+{\langle1P\rangle\langle P2\rangle\langle2P\rangle\langle P3\rangle\langle31\rangle}.
+\tag{3}
+\]
+式 (3) 是一个精确树级校准，而不是只对全同 helicity 的零振幅校准。
+
+再作一个直接检查。取
+\[
+\lambda_1=(1,0),\quad\lambda_2=(0,1),\quad\lambda_3=(1,1),\quad
+\lambda_P=(\zeta,1),\quad \zeta=1-\frac1\tau,
+\]
+\[
+\tilde\lambda_1=(1,0),\quad\tilde\lambda_2=(0,1),\quad
+\tilde\lambda_3=\frac{(1,-\zeta)}{\zeta-1},\quad
+\tilde\lambda_P=\frac{(-1,1)}{\zeta-1}.
+\]
+这是满足动量守恒的复在壳四点运动学，并给出
+$s=-1,t=\tau,u=1-\tau$。在式 (1) 取正 helicity 参考旋量 $q=1$，有
+$2p_1\cdot\e_P^+=0$；直接代入两项四点 Parke--Taylor 振幅得到
+\[
+\cM^{(0)}_3=-i\frac{\tau^3}{\tau-1}
+=K^{\rm tree}_{\sigma_2}\cA^{(0)}_5(1^-,b^+,2^-,a^+,3^+),
+\]
+与 (2)--(3) 相符。该等式亦由附带脚本逐式精确验证。
+
+\section{实际一圈 EYM 结果与树级代表的缺陷}
+以下省略题面指定的共同 $\kappa g^3$ 因子，并采用 [1] 的圈积分归一化。两个指定扇区的积分后 $\eps^0$ 结果为 [1, Eqs.~(1.6),(4.31)]
+\begin{align}
+\cM^{(1)}_{3;1}(1^+,2^+,3^+;P^{++})&=0,\tag{4a}\\
+\cM^{(1)}_{3;1}(1^-,2^+,3^+;P^{++})
+&=\frac{i}{(4\pi)^2}\,
+\frac{[2P][3P]}{\langle2P\rangle\langle3P\rangle}
+\frac{s^2+u^2}{6\,\langle23\rangle[21][31]}.
+\tag{4b}
+\end{align}
+负 helicity 硬腿位于 2 或 3 的结果由硬腿循环重标记给出。振幅采用四维外态、$D=4-2\eps$ 圈动量；这些是最大 gauge coupling 阶的纯胶子圈贡献，ghost 已由规范不变的态和/或协变规范完整和包含。
+
+对树级代表 (2)，all-plus 缺陷定义为
+\[
+\Delta_{+++}=\cM^{(1)}_{3;1}(1^+,2^+,3^+;P^{++})
+-\sum_{\sigma\in\Pi_3}K^{\rm tree}_\sigma\cC_x\cA^{(1)}_5(\sigma).
+\]
+五点 all-plus YM 公式给出，在上述 $s=-1,t=\tau$ 的运动学片上
+\[
+\boxed{\displaystyle
+\Delta_{+++}=\frac{i}{48\pi^2}\,\tau^3
+\bigl[\tau(1-x)^2-x^2\bigr].}
+\tag{5}
+\]
+例如 $x=1/2,\tau=2$ 时，$\Delta_{+++}=i/(24\pi^2)\ne0$。独立代数校验是把五点 all-plus 的迹公式
+\[
+\cA^{(1)}_5(\sigma^{+++++})
+=\frac{i}{96\pi^2}\frac{\sum_{i<j<k<\ell}\trm(ijkl)}
+{\prod_{r=1}^5\langle\sigma_r\sigma_{r+1}\rangle},
+\qquad \trm(ijkl)=2\langle ij\rangle[jk]\langle k\ell\rangle[\ell i]
+\tag{6}
+\]
+与五点紧凑表达式互化；SymPy 对 (5)--(6) 作了精确恒等式检查。式 (5) 本身只否定所选树级代表；下面的线性证书才否定整个允许核类。
+
+\section{\texorpdfstring{$n=3$}{n=3} 整个核空间的精确 no-go}
+用五点纯 YM one-loop 公式 [4] 定义 $F_\sigma,G_{\sigma,h}$：
+\[
+\cA^{(1)}_5(\sigma^{+++++})=\frac{i}{48\pi^2}F_\sigma,
+\]
+\[
+F_\sigma=
+\frac{
+-s_{\sigma_1\sigma_2}s_{\sigma_2\sigma_3}
+-s_{\sigma_5\sigma_1}s_{\sigma_4\sigma_5}
++\langle\sigma_2\sigma_3\rangle\langle\sigma_4\sigma_5\rangle
+[\sigma_3\sigma_4][\sigma_5\sigma_2]}
+{\langle\sigma_1\sigma_2\rangle\langle\sigma_2\sigma_3\rangle
+\langle\sigma_3\sigma_4\rangle\langle\sigma_4\sigma_5\rangle
+\langle\sigma_5\sigma_1\rangle}.
+\tag{7}
+\]
+若 $\sigma$ 循环旋转为 $(h,r_2,r_3,r_4,r_5)$，则
+\begin{align*}
+G_{\sigma,h}=\frac{1}{\langle r_3r_4\rangle^2}\Bigg(&
+\frac{[r_2r_5]^3}{[hr_2][r_5h]}
++\frac{\langle hr_4\rangle^3[r_4r_5]\langle r_3r_5\rangle}
+{\langle hr_2\rangle\langle r_2r_3\rangle\langle r_4r_5\rangle^2}\\[-2pt]
+&-\frac{\langle hr_3\rangle^3[r_3r_2]\langle r_4r_2\rangle}
+{\langle hr_5\rangle\langle r_5r_4\rangle\langle r_3r_2\rangle^2}
+\Bigg),\qquad
+\cA^{(1)}_5(h^-,\text{others}^+)=\frac{i}{48\pi^2}G_{\sigma,h}.
+\tag{8}
+\end{align*}
+令硬腿循环为 $(h,j,k)$，再定义
+\[
+E_h=\frac{[jP][kP]}{\langle jP\rangle\langle kP\rangle}
+\frac{s_{hj}^2+s_{hk}^2}{6\,\langle jk\rangle[jh][kh]},
+\quad
+\cM^{(1)}_{3;1}(h^-,j^+,k^+;P^{++})=\frac{i}{(4\pi)^2}E_h.
+\tag{9}
+\]
+于是若有任何允许核 $K_\sigma$ 能满足一圈等式，它至少须满足
+\[
+\sum_{\sigma}K_\sigma F_\sigma=0,
+\qquad
+\sum_{\sigma}K_\sigma G_{\sigma,h}=3E_h\quad(h=1,2),
+\tag{10}
+\]
+因为 $i/(4\pi)^2=3i/(48\pi^2)$。这里只使用两个 single-minus 位置，第三个只会增加约束。
+
+在 (10) 中代入所有六个 $\sigma$，取
+$K_\sigma=U_\sigma s+V_\sigma t$，再用自旋量片
+$s=-1,t=\tau,u=1-\tau$。在 $x=1/3$ 处，任何符合题面“对全部 $0<x<1$ 有定义”的候选核都必须能取有限值。将三个有理恒等式分别通分，取 $\tau$ 多项式系数，得到如下 15 行有限线性系统 $M z=b$：
+\begin{itemize}
+\item all-plus 分子系数 $\tau^5,\tau^4,\tau^3$；
+\item $h=1$ single-minus 分子系数 $\tau^8,\tau^7,\tau^6,\tau^5,\tau^4,\tau^3$；
+\item $h=2$ single-minus 分子系数 $\tau^6,\tau^5,\tau^4,\tau^3,\tau^2,\tau^1$。
+\end{itemize}
+这里 $z=(U_{\sigma_1},\ldots,U_{\sigma_6},V_{\sigma_1},\ldots,V_{\sigma_6})^T$。行按以上次序排列时，精确有理运算给出
+\[
+\operatorname{rank}_{\mathbb Q}M=12,
+\qquad \operatorname{rank}_{\mathbb Q}[M\mid b]=13.
+\tag{11}
+\]
+并且有显式左零证书
+\[
+\begin{aligned}
+\lambda=(&169680,162288,-296352,-122163,-402012,\\
+         &-21876,57624,-77616,-500192,915417,\\
+         &225276,233556,212856,0,0),
+\end{aligned}
+\]
+满足
+\[
+\lambda M=0,\qquad \lambda b=-253920\ne0.
+\tag{12}
+\]
+这不是浮点或随机秩：$x=1/3$ 后 $M,b$ 的元素均为有理数，式 (12) 是整数证书。更重要的是，脚本先在 $\mathbb Q(x)$ 上清分母并构造系数矩阵，再验证该矩阵在 $x=1/3$ 正则，特化后的增广秩为 $13$。因此增广矩阵存在一个在 $x=1/3$ 非零的 $13\times13$ 子式；该子式作为 $x$ 的有理函数不恒为零，故函数域上的增广秩至少为 $13$。系数矩阵只有 $12$ 列，秩至多为 $12$，所以方程在 $\mathbb Q(x)$ 上不可解；允许核系数在该点有极点也不能绕过此结论。脚本在 $x=1/4$ 另作独立精确特化，亦得到秩 $(12,13)$。证明已把 12 个 $U,V$ 全部放开，故也排除 $K^{\rm tree}+N$、$N\in\cN_3$；这不是把一个树级代表的失败误当成整个树零空间的 no-go。
+
+\section{\texorpdfstring{$D$}{D} 维来源与一个受限的积分基底扩张}
+写 $\ell^\mu=\bar\ell^\mu+\ell_\perp^\mu$，$\mu^2=-\ell_\perp^2$。在 $D=4-2\eps$ 的切割中，内部 $D$ 维无质量态可看作质量为 $\mu^2$ 的四维带质量标量。对本题最大 $g$ 次数的一圈项，完整物理胶子态和可由该标量切割计算；在协变规范中相应 ghost 已由完整规范态和包含 [1]。
+
+all-plus 与 single-minus 的严格四维两粒子 cuts 均为零：每个 cut 至少一侧落在树级全同/至多一个反 helicity 的零振幅。$D$ 维 cuts 却不为零，因为 cut 树振幅依赖 $\mu^2$。维数平移关系为
+\[
+I_n^{4-2\eps}[(\mu^2)^p]
+=-\eps(1-\eps)(2-\eps)\cdots(p-1-\eps)
+ I_n^{4+2p-2\eps}.
+\tag{13}
+\]
+因此 $\mu^{2r}$ 项虽然在严格四维 cut 上消失，积分后仍可留下有限有理项。按 [1] 的积分归一化，所需低点值包括
+\[
+\begin{array}{lll}
+I_2[\mu^2;s]=-s/6+O(\eps),& I_3[\mu^2;s]=1/2+O(\eps),&I_3[\mu^4;s]=s/24+O(\eps),\\
+I_4[\mu^2;s,t]=O(\eps),&&I_4[\mu^4;s,t]=-1/6+O(\eps).
+\end{array}
+\tag{14}
+\]
+EYM all-plus 的 $D$ 维 integrand 非零，但其 $\mu^4$ 箱图和三角图在积分后相消，留下 (4a) 的零结果 [1, Eq.~(3.11)]。single-minus 的 cut-reconstructed integrand 含 $\mu^2$ 与 $\mu^4$ 张量箱、三角和泡图；积分后给出 (4b) [1, Eqs.~(4.30)--(4.31)]。所以这里区分了四件事：四维 cut 为零、$D$ 维 cut 非零、圈动量被积式不为零、积分后的有理振幅可相消。
+
+一个不靠逐点拟合、且已处理首个障碍的受限扩张，是暂时不把 $n=3$ 一圈振幅压成积分后的 YM partial amplitudes，而在明确的维数平移积分基底中展开：all-plus 用 $I_4[\mu^4]$ 与 $I_3[\mu^4]$；single-minus 用
+\[
+\{I_4[\mu^4],I_4[\mu^2],I_3[\mu^4],I_3[\mu^2],I_2[\mu^2]\}
+\]
+及其 $s,t,u$ 通道副本。系数由 $D$ 维两粒子 cuts 固定，(13)--(14) 再给出积分结果；[1] 的 $n=3$ 计算证明该有限基底确实重现 (4a)--(4b)。一个可能的高点规则是对每个物理通道先由作用量构造完整 $D$ 维 cuts，再在含 $\mu^{2r}$ 的标量箱、三角、泡基底作张量约化；cut-free 接触项须另由因子化、规范不变性和大动量幂计数确定。该规则对 $n\ge4$ 的接触项与无切割有理项尚未证明，本文不把它提升为一般关系。
+
+\section{来源与可复算材料}
+原始公式与适用范围：
+\begin{enumerate}
+\item D. Nandan, J. Plefka, G. Travaglini, “All rational one-loop Einstein-Yang-Mills amplitudes at four points,” \href{https://arxiv.org/abs/1803.08497}{arXiv:1803.08497}. 目标理论为纯 EYM、单引力子与三胶子、最大 gauge coupling 阶；使用 $D$ 维广义幺正性。本文用到 (1.6)、(3.11)、(4.30)--(4.31)、(A.6)--(A.7)、(11.9)。
+\item L. de la Cruz, A. Kniss, S. Weinzierl, “Relations for Einstein-Yang-Mills amplitudes from the CHY representation,” \href{https://arxiv.org/abs/1607.06036}{arXiv:1607.06036}, Eq.~(9)，单引力子树振幅的 YM 插入展开及符号约定。
+\item S. Stieberger, T. R. Taylor, “Subleading Terms in the Collinear Limit of Yang-Mills Amplitudes,” \href{https://arxiv.org/abs/1508.01116}{arXiv:1508.01116}, Eqs.~(8),(10)，任意 $x$ 的单引力子共线代表；整体符号按本文式 (1) 的振幅约定校准。
+\item Z. Bern, L. Dixon, D. A. Kosower, “The Five Gluon Amplitude and One-Loop Integrals,” \href{https://arxiv.org/abs/hep-ph/9212237}{arXiv:hep-ph/9212237}, Eq.~(7)，五胶子 all-plus 与 single-minus 有理振幅。本文对相同循环次序作了显式 collinear 代入。
+\end{enumerate}
+
+同目录的 \texttt{n3\_exact\_no\_go.py} 使用 SymPy 精确生成树级校准、式 (5) 缺陷、特化系数矩阵、函数域矩阵秩检查与左零证书；运行命令为
+\begin{quote}\texttt{python n3\_exact\_no\_go.py}\end{quote}
+本次实际运行通过，打印秩 $12,13$、证书收缩 $-253920$，确认函数域矩阵在 $x=1/3$ 正则，并在另一个精确有理值 $x=1/4$ 重复检查。未运行 Mathematica；证明脚本使用 SymPy 有理域，不使用随机抽样或浮点秩。
+
+\end{document}
