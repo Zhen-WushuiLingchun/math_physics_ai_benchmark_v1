@@ -1,0 +1,25 @@
+id,question,model,definition,calibration,verification,research,calibration_of_claims,total,interval_lower,interval_upper,cost_usd,source_pdf,replaces
+1a,1,GPT-5.6 Sol xhigh,13,18,7,14,5,57,51,63,4.082,submissions/original/01/1a.pdf,
+1b,1,GPT-6 Astra high,14,28,13,28,9,92,88,95,5.614,submissions/original/01/1b.pdf,
+1c,1,GPT-6 Sol xhigh,14,20,5,9,6,54,48,60,2.386,submissions/original/01/1c.pdf,
+1d,1,Grok 4.7 high,10,11,2,2,5,30,24,36,4.514,submissions/original/01/1d.pdf,
+s_1a,1,Opus 5.5 xhigh,13,27,12,28,7,87,82,92,24.056,submissions/supplement/01/s_1a.pdf,1e
+s_1b,1,GPT-6 Sol max,14,29,13,28,10,94,90,97,4.118,submissions/supplement/01/s_1b.pdf,
+s_1c,1,GPT-6 Luna max,14,20,5,8,6,53,47,60,0.178,submissions/supplement/01/s_1c.pdf,
+s_1d,1,DeepSeek V4.1 Flash max,13,20,4,7,3,47,41,55,0.414,submissions/supplement/01/s_1d.pdf,
+2a,2,GPT-5.6 Sol xhigh,15,30,12,21,9,87,84,90,2.763,submissions/original/02/2a.pdf,
+2b,2,GPT-6 Luna max,15,30,13,18,10,86,82,89,0.143,submissions/original/02/2b.pdf,
+2c,2,GPT-6 Sol max,15,30,14,25,10,94,91,97,1.814,submissions/original/02/2c.pdf,
+2d,2,GPT-6 Sol xhigh,15,30,13,24,10,92,89,95,2.155,submissions/original/02/2d.pdf,
+2e,2,GPT-6 Astra high,15,30,14,28,10,97,94,99,4.550,submissions/original/02/2e.pdf,
+2f,2,Grok 4.7 high,13,25,11,15,5,69,65,75,4.274,submissions/original/02/2f.pdf,
+s_2a,2,Opus 5.5 xhigh,15,30,13,28,7,93,88,97,12.330,submissions/supplement/02/s_2a.pdf,2g
+s_2b,2,DeepSeek V4.1 Flash max,14,27,11,17,6,75,70,81,0.430,submissions/supplement/02/s_2b.pdf,
+3a,3,GPT-5.6 Sol xhigh,14,27,12,20,9,82,78,86,13.960,submissions/original/03/3a.pdf,
+3b,3,GPT-6 Luna max,15,25,9,18,9,76,72,81,0.143,submissions/original/03/3b.pdf,
+3c,3,GPT-6 Sol max,15,29,12,29,10,95,91,98,2.320,submissions/original/03/3c.pdf,
+3d,3,GPT-6 Sol xhigh,15,29,12,24,10,90,86,94,1.643,submissions/original/03/3d.pdf,
+3e,3,GPT-6 Astra high,15,30,14,29,10,98,94,99,4.206,submissions/original/03/3e.pdf,
+3f,3,Grok 4.7 high,13,23,12,15,7,70,65,75,5.888,submissions/original/03/3f.pdf,
+s_3a,3,Opus 5.5 xhigh,13,28,14,21,5,81,76,86,14.384,submissions/supplement/03/s_3a.pdf,3g
+s_3b,3,DeepSeek V4.1 Flash max,10,21,9,11,3,54,49,60,0.477,submissions/supplement/03/s_3b.pdf,

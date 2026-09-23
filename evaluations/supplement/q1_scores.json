@@ -1,0 +1,153 @@
+{
+  "question": 1,
+  "date": "2026-09-23",
+  "set": "Supplement",
+  "reviewer": "primary_agent",
+  "dimensions": [
+    "definition",
+    "calibration",
+    "verification",
+    "research",
+    "calibration_of_claims"
+  ],
+  "maxima": [
+    15,
+    30,
+    15,
+    30,
+    10
+  ],
+  "cross_question_identity": false,
+  "model_mapping_status": "pending_user_disclosure",
+  "interval_interpretation": "合理复评范围，非统计置信区间。",
+  "answers": [
+    {
+      "id": "s_1b",
+      "source_pdf": "Supplement/01/s_1b.pdf",
+      "scores": {
+        "definition": 14,
+        "calibration": 29,
+        "verification": 13,
+        "research": 28,
+        "calibration_of_claims": 10
+      },
+      "total": 94,
+      "interval": [
+        90,
+        97
+      ],
+      "summary": "完整树零空间及逐排序的树—单负一圈解析证书成立，结论范围准确。",
+      "strongest": "六排序共同恒等式的EYM目标收缩为(2x^2-2x-3)/(6z)，排除同一套helicity无关标量权重；包含题面全部一次局域核。",
+      "errors": [
+        "跨helicity最小积分基修复尚未完成，正文已准确保留为开放步骤。",
+        "所称运行脚本未随Supplement附送，完整执行记录无法审计。"
+      ],
+      "independent_checks": [
+        "六排序证书残差逐项为零。",
+        "两种正确单负输入的18个符号残差为零。",
+        "Q(x)矩阵秩9/10，树零空间维数8。",
+        "(x,z)=(2/5,3)四个缺陷为-19/450、127/600、-1/216、-29/675。",
+        "mu^4箱三角有限项抵消成立。"
+      ],
+      "next_step": "交付证书脚本，对事先固定积分基检验n=4的跨helicity割与因子化。",
+      "reliability_fabrication_finding": "none_established"
+    },
+    {
+      "id": "s_1a",
+      "source_pdf": "Supplement/01/s_1a.pdf",
+      "scores": {
+        "definition": 13,
+        "calibration": 27,
+        "verification": 12,
+        "research": 28,
+        "calibration_of_claims": 7
+      },
+      "total": 87,
+      "interval": [
+        82,
+        92
+      ],
+      "summary": "n=3符号左零向量证书正确，软留数归约和圈动量插入有价值；数值重构与一般化仍需补证。",
+      "strongest": "有理运动学点上yV=0且yDelta=(3+2x-2x^2)/10368非零；允许x为符号，排除整个树级仿射核类。",
+      "errors": [
+        "高精度有理重构缺少误差与唯一性认证。",
+        "先精确共线后软化时，退化排序的留数归约尚需完整引理。",
+        "n=4数值秩尚未成为精确函数域证书。",
+        "圈动量插入表示的一般割闭合未完成。"
+      ],
+      "independent_checks": [
+        "p0动量守恒精确成立。",
+        "EYM三个输入和四个缺陷全部重现。",
+        "V秩2；yV的8个分量均为0。",
+        "yDelta符号表达式复现。"
+      ],
+      "next_step": "解析完成低点积分，补足退化排序软留数引理，再认证n=4子式。",
+      "reliability_fabrication_finding": "none_established"
+    },
+    {
+      "id": "s_1c",
+      "source_pdf": "Supplement/01/s_1c.pdf",
+      "scores": {
+        "definition": 14,
+        "calibration": 20,
+        "verification": 5,
+        "research": 8,
+        "calibration_of_claims": 6
+      },
+      "total": 53,
+      "interval": [
+        47,
+        60
+      ],
+      "summary": "树级与全正缺陷正确；单负错号传入12/13主证书，正确输入下所用子系统秩为9/9。",
+      "strongest": "正确树代表、全正精确缺陷、有限维数移位积分基和可复现的形式系数消元。",
+      "errors": [
+        "第3页式(8)单负首项错号。",
+        "第4页证书仅对错误物理输入成立；修正后其两个单负位置与全正子系统相容。",
+        "未提供有效的当前物理问题全核类排除。"
+      ],
+      "independent_checks": [
+        "树校准-tau^3/(tau-1)与全正缺陷成立。",
+        "正文输入重现rank12/13及lambda b=-253920。",
+        "修正输入重现rank9/9。",
+        "修正后lambda(Mz-b)中U1系数155232，不再是左零证书。"
+      ],
+      "next_step": "采用独立正确单负表达式，把三个负腿与树级目标合并重建证书。",
+      "reliability_fabrication_finding": "none_established"
+    },
+    {
+      "id": "s_1d",
+      "source_pdf": "Supplement/01/s_1d.pdf",
+      "scores": {
+        "definition": 13,
+        "calibration": 20,
+        "verification": 4,
+        "research": 7,
+        "calibration_of_claims": 3
+      },
+      "total": 47,
+      "interval": [
+        41,
+        55
+      ],
+      "summary": "树零空间和部分低点输入成立；单负错号、缺陷表、全正修复及最小扩张论证均存在实质问题。",
+      "strongest": "八个树级零向量、部分精确全正缺陷及完整形式线性系统。",
+      "errors": [
+        "第6页式(20)错号进入8/9证书；正确物理输入为5/6且原左向量失效。",
+        "第7页负腿2缺陷表与其自身式(18)、(21)、(25)不符。",
+        "第9页式(30)全正修复在参考点Gf=-R而非Gf=R。",
+        "从单列增广秩差1推断最小物理扩张维数1不成立；新方向位于树级零空间之外。",
+        "误判三点(-,+,+)与五点NMHV类别，未准确界定剩余缺口。"
+      ],
+      "independent_checks": [
+        "印出树零向量通过核验。",
+        "x=25/169三个证书点：错误输入8/9，正确输入5/6。",
+        "正确输入下原整数左向量的8个分量全部非零。",
+        "参考点负腿2按正文公式应为-17302968/102245。",
+        "全正修复参考点残差为15794795520/314171；第二参考点也非零。"
+      ],
+      "next_step": "先修复物理输入与表格，按D维割独立构造新结构并保持树级约束。",
+      "reliability_fabrication_finding": "none_established_multiple_internal_inconsistencies"
+    }
+  ]
+}

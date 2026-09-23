@@ -1,0 +1,19 @@
+{
+  "answers_verified": 24,
+  "models": 8,
+  "questions_per_model": 3,
+  "sheets": [
+    "Task 1",
+    "Task 2",
+    "Task 3",
+    "综合汇总"
+  ],
+  "native_scatter_charts": 4,
+  "native_scatter_points": 32,
+  "formula_errors": [],
+  "adopted_cost_sum": 116.842,
+  "opus_cost_counted_once": 50.77,
+  "supplemental_added_cost": 5.617,
+  "plot_pairs": 4,
+  "native_chart_x_values": "Current cost snapshot; worksheet note documents refresh requirement"
+}

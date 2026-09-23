@@ -1,0 +1,396 @@
+{
+  "question": "Q3",
+  "assessment_date": "2026-09-23",
+  "anonymous_ids": true,
+  "cross_question_letter_mapping": false,
+  "max_score": 100,
+  "score_maxima": {
+    "definition_and_setup": 15,
+    "calibration": 30,
+    "independent_verification": 15,
+    "research_progress": 30,
+    "conclusion_calibration": 10
+  },
+  "interval_interpretation": "研究层证据与证明完整度的审计不确定区间，非统计置信区间",
+  "protocol_note": "只按所提供 PDF 的可核验表现评分；不推断模型身份、预算与实际工具权限，不把 PDF 未附日志直接视为虚构。评阅者新增复核不冒充被评模型成果。",
+  "assessments": [
+    {
+      "id": "3a",
+      "interval": [
+        78,
+        86
+      ],
+      "summary": "因果、局部共振微扰和受控对数时间窗可靠；全时间 Q3c 未闭合，新腔分支的原模型匹配误差仍不足。",
+      "strongest": "精确 t*=2L−13 因果相等；T≤KL、L=c log(1/ε) 时 E≤Cε log^(5/2)(1/ε)，并识别 Lε exp(2γL) 的微扰条件。",
+      "proof_status": "proved_finite_window_q3c_open",
+      "errors": [
+        {
+          "page": 4,
+          "locator": "(18)–(19)",
+          "severity": "proof_gap",
+          "detail": "未展示非紧支 RW 背景上的精确两系数 Jost 匹配，双势垒自由传播方程不能无误差地当原模型精确共振方程。"
+        },
+        {
+          "page": 4,
+          "locator": "(20) 后的 pole 说明",
+          "severity": "overstatement",
+          "detail": "严格因果延迟属于完整差信号，通常不属于单个 pole 留数指数。"
+        },
+        {
+          "page": 5,
+          "locator": "5.1 尾部截断误差说明",
+          "severity": "validation_gap",
+          "detail": "80<t<100 的小范数不构成 t>100 全尾部误差上界。"
+        }
+      ],
+      "independent_checks": [
+        "能量常数、mismatch 二阶系数及 Lambert 局部模型独立核对。",
+        "三组时域 E/ε 独立复算与表值在约 0.1% 内相符；没有独立重算全部复标度根。"
+      ],
+      "next_step": "展示精确 Jost 传递系数及复频一致误差，再控制式 (23) 的超低频源—探测器积分。",
+      "source_pdf": "03/3a.pdf",
+      "scores": {
+        "definition_and_setup": 14,
+        "calibration": 27,
+        "independent_verification": 12,
+        "research_progress": 20,
+        "conclusion_calibration": 9
+      },
+      "total": 82,
+      "score_rationales": {
+        "definition_and_setup": "约定和能量正确，无限分母解析保证不足。",
+        "calibration": "Duhamel、mismatch 和简单共振校准可复核，能量链较压缩。",
+        "independent_verification": "两网格、两复标度半径及直接求根有实质数字，时域抽查支持。",
+        "research_progress": "完成非空洞对数窗与 resolvent 归约，尚无全时间界。",
+        "conclusion_calibration": "正确保留 Q3c 缺口，部分谱与尾部用语过强。"
+      },
+      "reliability_fabrication_finding": "none_established"
+    },
+    {
+      "id": "3b",
+      "interval": [
+        72,
+        81
+      ],
+      "summary": "有限时 Volterra、因果窗和 mismatch 正确，低频统一缺口定位清晰；首回波后一致迹估计及复频匹配证明较简略。",
+      "strongest": "精确因果窗、带算子范数条件的 Duhamel 余项、固定宽度首回波窗的稳定性归约、临界 Lambert 重求和与实轴 source–detector 判据。",
+      "proof_status": "partial_analytic_solution_q3c_open",
+      "errors": [
+        {
+          "page": 3,
+          "locator": "(3.1)",
+          "severity": "normalization_gap",
+          "detail": "Wronskian 势变分仍保留未确定的 N(ω0)，未完成单位 Jost 归一化下的明确系数/符号。"
+        },
+        {
+          "page": 3,
+          "locator": "(2.6) 及其前文",
+          "severity": "proof_gap",
+          "detail": "首回波固定宽度窗的 L 一致 Green/观察迹算子界未展开。"
+        },
+        {
+          "page": 4,
+          "locator": "(3.5)",
+          "severity": "proof_gap",
+          "detail": "未展示完整传递系数及原背景尾部/透射修正，根列渐近证据较压缩。"
+        }
+      ],
+      "independent_checks": [
+        "能量归一化式、bump 面积、mismatch 系数及 Lambert 方程均已独立核对。",
+        "文献的 tail/完整频域分解适用性已检查；其 CAS 小项不被当作核心匹配证明。"
+      ],
+      "next_step": "固定 Wronskian 归一化，写出 a_L f_+ + b_L g_+ 精确匹配并证明首回波窗的统一迹界，再推进 k→0 积分。",
+      "source_pdf": "03/3b.pdf",
+      "scores": {
+        "definition_and_setup": 15,
+        "calibration": 25,
+        "independent_verification": 9,
+        "research_progress": 18,
+        "conclusion_calibration": 9
+      },
+      "total": 76,
+      "score_rationales": {
+        "definition_and_setup": "能量、支集、变换与归一化定义准确。",
+        "calibration": "关键低阶公式大体正确，变分常数和匹配细节不完整。",
+        "independent_verification": "解析交叉检查与小型 CAS 有效，但核心一致估计未获独立验证。",
+        "research_progress": "完成有限回波窗和低频归约，未闭合一般回波后长窗或 Q3c。",
+        "conclusion_calibration": "没有把候选 α=1 当定理，部分已证标签仍强于展示的分析。"
+      },
+      "reliability_fabrication_finding": "none_established"
+    },
+    {
+      "id": "3c",
+      "interval": [
+        91,
+        98
+      ],
+      "summary": "通过精确实轴散射关系与通量不等式证明 Q3c；初等 α=1/50，使用适用的背景低能估计提升到 α=1/10。",
+      "strongest": "sup_{L≥L0,T≥0} E≤Cε^(1/10)，另有不使用精细低能文献的 ε^(1/50) 证明；固定 L 非零一阶响应给出 α_best≤1。",
+      "proof_status": "q3c_proved_alpha_0_1",
+      "proven_uniform_alpha": 0.1,
+      "elementary_uniform_alpha": 0.02,
+      "errors": [
+        {
+          "page": 3,
+          "locator": "(16)",
+          "severity": "remaining_detail",
+          "detail": "复频一致传递渐近可进一步补充基本矩阵及频率导数误差，结论应保留所述非退化解析片条件。"
+        },
+        {
+          "page": 5,
+          "locator": "(29)",
+          "severity": "open_problem",
+          "detail": "最佳统一幂次仅确定在 [1/10,1]，答卷正确标为未闭合。"
+        }
+      ],
+      "independent_checks": [
+        "独立推导式 (20) 的符号/因子和式 (21) 通量界，并核对频率积分产生 1/50 与 1/10。",
+        "附录能量链、V0 的 12/(1+x)^2 界、归一化和 mismatch 已复核。",
+        "核对 DSS 0908.4292v2 第 4–6 节、Lemma 6.3–6.4 和低能 Wronskian，确覆盖 (ℓ,σ)=(2,−3)。"
+      ],
+      "next_step": "保留低频透射及相位权重，对超低频积分建立更精确的统一上界或反例，以确定是否可达 α=1。",
+      "source_pdf": "03/3c.pdf",
+      "scores": {
+        "definition_and_setup": 15,
+        "calibration": 29,
+        "independent_verification": 12,
+        "research_progress": 29,
+        "conclusion_calibration": 10
+      },
+      "total": 95,
+      "score_rationales": {
+        "definition_and_setup": "全量词、固定源/观察点、扰动类和迹映射准确。",
+        "calibration": "低阶、能量余项、变分符号与双极限较完整。",
+        "independent_verification": "解析结构检验充分，数值交叉检验主要覆盖归一化和少数系数。",
+        "research_progress": "真正证明全 L、全 T 命题，给出两种有内容的幂次。",
+        "conclusion_calibration": "严格区分定理、文献输入、数值资料和最优性缺口。"
+      },
+      "reliability_fabrication_finding": "none_established"
+    },
+    {
+      "id": "3d",
+      "interval": [
+        86,
+        94
+      ],
+      "summary": "原模型精确 Jost 匹配与临界/超临界重求根较完整，受控对数窗口覆盖回波后时间；Q3c 明确保留为实频积分问题。",
+      "strongest": "同一 ε,L 序列上证明超临界旧极点固定邻域空缺及新腔分支，并证明 T≤KL 的 E=O(ε log^(5/2)(1/ε))、M=O(ε² log^5(1/ε))。",
+      "proof_status": "proved_spectral_and_finite_window_q3c_open",
+      "errors": [
+        {
+          "page": 5,
+          "locator": "(26)",
+          "severity": "open_problem",
+          "detail": "低频源—探测器实轴积分没有全 L 统一界，故尚不能判定 Q3c。"
+        },
+        {
+          "page": 4,
+          "locator": "(20) 与定理 3",
+          "severity": "remaining_detail",
+          "detail": "若要求论文级定理，复频局部 Volterra 误差的导数界及解析片条件仍可进一步展开。"
+        }
+      ],
+      "independent_checks": [
+        "能量链、首波前非零、mismatch 下界与精确 Wronskian 变分已独立复核。",
+        "L=14 两网格差范数独立复算与 PDF 表在报告精度内相符；未声称独立重算 QNM 根。"
+      ],
+      "next_step": "用精确实轴散射关系控制式 (26) 的超低频部分，保留 source 和 detector 的透射权重。",
+      "source_pdf": "03/3d.pdf",
+      "scores": {
+        "definition_and_setup": 15,
+        "calibration": 29,
+        "independent_verification": 12,
+        "research_progress": 24,
+        "conclusion_calibration": 10
+      },
+      "total": 90,
+      "score_rationales": {
+        "definition_and_setup": "完整审计题设、范数、观察迹和物理解释边界。",
+        "calibration": "明确能量常数、波前非零、精确匹配与 Rouché/收缩论证。",
+        "independent_verification": "两网格数值与边界说明清楚，独立复算支持。",
+        "research_progress": "非消失谱变化与完整对数窗观测稳定之间建立实质联系。",
+        "conclusion_calibration": "Eproxy、背景网格误差及 Q3c 缺口都如实标注。"
+      },
+      "reliability_fabrication_finding": "none_established"
+    },
+    {
+      "id": "3e",
+      "interval": [
+        94,
+        99
+      ],
+      "summary": "以精确零能解、背景 Green 界及低频通量控制闭合 Q3c 的 α=1/2；最优 Lipschitz 指数仍明确留下超低频面积问题。",
+      "strongest": "sup_{L≥L0,T≥0} E≤C√ε，不需要对数修正；固定 L 的非零全时间首阶响应排除 α>1。",
+      "proof_status": "q3c_proved_alpha_0_5",
+      "proven_uniform_alpha": 0.5,
+      "errors": [
+        {
+          "page": 6,
+          "locator": "(31)",
+          "severity": "remaining_detail",
+          "detail": "背景匹配估计使用正确的已引文献输入；若单独发表，应补齐分区常数与连接区论证。"
+        },
+        {
+          "page": 8,
+          "locator": "(45)",
+          "severity": "open_problem",
+          "detail": "统一 α=1 的超低频积分仍未证明，故 α_best 仅在 [1/2,1]。"
+        }
+      ],
+      "independent_checks": [
+        "CAS 独立验证静态 u,v 方程、Wronskian−1、J 导数和 mismatch。",
+        "精确左反射差与中频 Neumann 界的拼接、√ε 积分幂次已独立核验。",
+        "两网格 L=20/40 波形差与二阶余项复算支持第 10 页表。",
+        "外部低能构造已核对原文且适用本题引力扇区。"
+      ],
+      "next_step": "围绕式 (45) 给出峰宽可控的超低频面积上界或反例，判定是否达到无对数修正的 α=1。",
+      "source_pdf": "03/3e.pdf",
+      "scores": {
+        "definition_and_setup": 15,
+        "calibration": 30,
+        "independent_verification": 14,
+        "research_progress": 29,
+        "conclusion_calibration": 10
+      },
+      "total": 98,
+      "score_rationales": {
+        "definition_and_setup": "所有定义、变换、固定支集和扰动类准确。",
+        "calibration": "能量、静态、Green、源谱、Duhamel 和复频低阶均有完整可核验公式。",
+        "independent_verification": "多种代数与数值交叉核验充分，抽查支持关键表值。",
+        "research_progress": "全位置全时间存在性闭合，余下为最佳指数问题。",
+        "conclusion_calibration": "证据等级、引用依赖和剩余问题校准清楚。"
+      },
+      "reliability_fabrication_finding": "none_established"
+    },
+    {
+      "id": "3f",
+      "interval": [
+        65,
+        75
+      ],
+      "summary": "显式位置一致有限时间能量界成立，数值校准有内容；遗漏 L 倍微扰参数，Lipschitz 等价判据少了 ε 缩放，分母无限尾部未解析闭合。",
+      "strongest": "∫_0^T |Δh|²≤2ε²(1+T)^7 对全部 L 一致，结合因果结论给出对数时间窗的非空洞稳定性。",
+      "proof_status": "proved_finite_numerator_bound_q3c_open",
+      "errors": [
+        {
+          "page": 6,
+          "locator": "命题 7–8；标题与摘要",
+          "severity": "mathematical_error",
+          "detail": "只用 κ=εexp(2γL) 作为线性展开控制量；二阶项一般为 O(Lκ²)，需要 Lκ≪1。"
+        },
+        {
+          "page": 9,
+          "locator": "命题 9 与式 (3)",
+          "severity": "mathematical_error",
+          "detail": "式 (3) 右端已经含 ε，给其 O(1) 加权 L2 界不能等价于 Q3c 的 α=1；须除去 ε 或要求 O(ε)。"
+        },
+        {
+          "page": 3,
+          "locator": "D0 正性和有限性说明；第 7 页长时积分",
+          "severity": "proof_gap",
+          "detail": "有限时间数值积分不能证明无限时间分母有限或完整尾部界。"
+        },
+        {
+          "page": 6,
+          "locator": "第 5 节至第 7 节",
+          "severity": "research_gap",
+          "detail": "没有失效区的受控精确共振重求根和 residues 分析。"
+        }
+      ],
+      "independent_checks": [
+        "Vmax 精确值、能量常数、Jost 级数前三项及显式常数链已复核。",
+        "两配置 QNM 和时域网格说明作为局部数值证据计分，不被提升为全时间定理。"
+      ],
+      "next_step": "先修正 Lκ 条件和命题 9 的 ε 缩放，用背景衰减/实频估计闭合分母，再处理精确 Jost 临界匹配。",
+      "source_pdf": "03/3f.pdf",
+      "scores": {
+        "definition_and_setup": 13,
+        "calibration": 23,
+        "independent_verification": 12,
+        "research_progress": 15,
+        "conclusion_calibration": 7
+      },
+      "total": 70,
+      "score_rationales": {
+        "definition_and_setup": "主约定正确，无限分母及部分非零性只靠数值。",
+        "calibration": "有限时间显式界扎实，复频微扰和一致余项不足。",
+        "independent_verification": "多网格与双配置射击有实质核验。",
+        "research_progress": "完成对数窗，未处理失效区与全时间积分且判据有缩放错误。",
+        "conclusion_calibration": "多数局部状态诚实，部分已证标签超出条件。"
+      },
+      "reliability_fabrication_finding": "none_established"
+    },
+    {
+      "id": "3g",
+      "interval": [
+        76,
+        86
+      ],
+      "summary": "精确回波/源—探测器代数、能量界和多方法数值十分丰富；但最佳指数标签、条件定理量词、低频分母及严格逐项回波解释存在可核验问题。",
+      "strongest": "带因果延迟的 ε log² 对数窗能量界，以及在有效范数条件和 εK3(L)<1 下的全时间 Neumann 界；具体共振/residue 数值与时域对照。",
+      "proof_status": "finite_window_and_conditional_all_time_q3c_conjecture",
+      "errors": [
+        {
+          "page": 2,
+          "locator": "摘要；第 10 页 §4.3",
+          "severity": "overclaim",
+          "detail": "固定 L 的非零首阶只证明 α_best≤1，不能称最佳 α=1 已证明；全 L 的 Lipschitz 上界仍是 C2 猜想。"
+        },
+        {
+          "page": 12,
+          "locator": "§4.6 LF 启发式",
+          "severity": "mathematical_error",
+          "detail": "a−bR=1+O(εL⁻⁴) 错误；静态变分系数为 ∫W_LG0(0;y,y)dy~||W||1 L/5。"
+        },
+        {
+          "page": 9,
+          "locator": "条件 J1；第 10 页推论 B'",
+          "severity": "assumption_and_quantifier_error",
+          "detail": "kD_L 高频仅有界，范数趋 sqrt(∫W)/2 而非衰减；有限 L 网格不证明全部 L 的 K3=O(L) 或 N_L 一致界。"
+        },
+        {
+          "page": 8,
+          "locator": "§3.4 新共振 residue 与适用时间窗",
+          "severity": "overstatement",
+          "detail": "非紧支背景中后续回波项的严格 2kL 支集与任何有限窗不出现新谱的说法未获证明。"
+        },
+        {
+          "page": 6,
+          "locator": "§3.2 Lambert Taylor 收敛",
+          "severity": "minor_mathematical_error",
+          "detail": "1/e 是约化 Lambert 模型的解析半径，不是原分支精确半径；模型 Taylor 级数在半径边界仍可绝对收敛。"
+        },
+        {
+          "page": 2,
+          "locator": "主图及第 6–10 页部分表格",
+          "severity": "delivery_defect",
+          "detail": "主图缺失、表格错位/越界，削弱部分数值的可审计性，不据此认定计算虚构。"
+        }
+      ],
+      "independent_checks": [
+        "精确散射代数、静态解、E1 与能量定理 A 常数链独立核验。",
+        "L=20、ε=10⁻³ 的误差和 mismatch 以及 h0(50) 独立时域抽查支持。",
+        "静态分母导数在 L=13,20,40,100 分别为2.942357、4.335483、8.733728、22.708191，直接排除其 L⁻⁴ 主张。",
+        "未独立复现全部超大 L 窄峰积分；缺少外附日志不被当作虚构。"
+      ],
+      "next_step": "修正静态分母与最佳指数表述，先用精确通量关系控制低频分式整体，再做带峰宽和面积误差的统一低频分析。",
+      "source_pdf": "03/3g.pdf",
+      "scores": {
+        "definition_and_setup": 13,
+        "calibration": 28,
+        "independent_verification": 14,
+        "research_progress": 21,
+        "conclusion_calibration": 5
+      },
+      "total": 81,
+      "score_rationales": {
+        "definition_and_setup": "源、探测器和结构化扰动定义好，J 条件与全 L 量词有错。",
+        "calibration": "低阶校准丰富，低频分母存在具体错误。",
+        "independent_verification": "多方法数值与 residues 对照十分具体，抽查支持关键数据。",
+        "research_progress": "完成能量窗口和条件界，尚未闭合全 L 的 LF。",
+        "conclusion_calibration": "反复把 α≤1 写成 α=1 最佳已证，其他严格回波/条件范围表述也过强。"
+      },
+      "reliability_fabrication_finding": "none_established"
+    }
+  ]
+}

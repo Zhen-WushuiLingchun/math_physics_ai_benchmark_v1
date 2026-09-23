@@ -1,0 +1,250 @@
+[
+  {
+    "title": "三题：均分与总成本",
+    "mode": "xValues numeric snapshot; y cell formula",
+    "points": [
+      {
+        "model": "GPT-6 Astra high",
+        "x": 1.1574567681342256,
+        "y": 95.66666666666667,
+        "sourceX": "O6",
+        "sourceY": "P6"
+      },
+      {
+        "model": "GPT-6 Sol max",
+        "x": 0.916559219301114,
+        "y": 94.33333333333333,
+        "sourceX": "O7",
+        "sourceY": "P7"
+      },
+      {
+        "model": "Opus 5.5 xhigh",
+        "x": 1.705607163404605,
+        "y": 87,
+        "sourceX": "O8",
+        "sourceY": "P8"
+      },
+      {
+        "model": "GPT-6 Sol xhigh",
+        "x": 0.7912694809102685,
+        "y": 78.66666666666667,
+        "sourceX": "O9",
+        "sourceY": "P9"
+      },
+      {
+        "model": "GPT-5.6 Sol xhigh",
+        "x": 1.318167720128966,
+        "y": 75.33333333333333,
+        "sourceX": "O10",
+        "sourceY": "P10"
+      },
+      {
+        "model": "GPT-6 Luna max",
+        "x": -0.3334820194451191,
+        "y": 71.66666666666667,
+        "sourceX": "O11",
+        "sourceY": "P11"
+      },
+      {
+        "model": "DeepSeek V4.1 Flash max",
+        "x": 0.12090281761452719,
+        "y": 58.666666666666664,
+        "sourceX": "O12",
+        "sourceY": "P12"
+      },
+      {
+        "model": "Grok 4.7 high",
+        "x": 1.1666077030839104,
+        "y": 56.333333333333336,
+        "sourceX": "O13",
+        "sourceY": "P13"
+      }
+    ]
+  },
+  {
+    "title": "第 1 题：得分与实际成本",
+    "mode": "xValues numeric snapshot; y cell formula",
+    "points": [
+      {
+        "model": "GPT-6 Sol max",
+        "x": 0.6146863422820126,
+        "y": 94,
+        "sourceX": "O19",
+        "sourceY": "P19"
+      },
+      {
+        "model": "GPT-6 Astra high",
+        "x": 0.7492724082984203,
+        "y": 92,
+        "sourceX": "O20",
+        "sourceY": "P20"
+      },
+      {
+        "model": "Opus 5.5 xhigh",
+        "x": 1.3812234150924612,
+        "y": 87,
+        "sourceX": "O21",
+        "sourceY": "P21"
+      },
+      {
+        "model": "GPT-5.6 Sol xhigh",
+        "x": 0.6108730003800517,
+        "y": 57,
+        "sourceX": "O22",
+        "sourceY": "P22"
+      },
+      {
+        "model": "GPT-6 Sol xhigh",
+        "x": 0.3776704393343231,
+        "y": 54,
+        "sourceX": "O23",
+        "sourceY": "P23"
+      },
+      {
+        "model": "GPT-6 Luna max",
+        "x": -0.7495799976911061,
+        "y": 53,
+        "sourceX": "O24",
+        "sourceY": "P24"
+      },
+      {
+        "model": "DeepSeek V4.1 Flash max",
+        "x": -0.3829996588791011,
+        "y": 47,
+        "sourceX": "O25",
+        "sourceY": "P25"
+      },
+      {
+        "model": "Grok 4.7 high",
+        "x": 0.6545615547417433,
+        "y": 30,
+        "sourceX": "O26",
+        "sourceY": "P26"
+      }
+    ]
+  },
+  {
+    "title": "第 2 题：得分与实际成本",
+    "mode": "xValues numeric snapshot; y cell formula",
+    "points": [
+      {
+        "model": "GPT-6 Astra high",
+        "x": 0.6580113966571124,
+        "y": 97,
+        "sourceX": "O31",
+        "sourceY": "P31"
+      },
+      {
+        "model": "GPT-6 Sol max",
+        "x": 0.25863728272407643,
+        "y": 94,
+        "sourceX": "O32",
+        "sourceY": "P32"
+      },
+      {
+        "model": "Opus 5.5 xhigh",
+        "x": 1.0909630765957317,
+        "y": 93,
+        "sourceX": "O33",
+        "sourceY": "P33"
+      },
+      {
+        "model": "GPT-6 Sol xhigh",
+        "x": 0.3334472744967504,
+        "y": 92,
+        "sourceX": "O34",
+        "sourceY": "P34"
+      },
+      {
+        "model": "GPT-5.6 Sol xhigh",
+        "x": 0.44138088491651134,
+        "y": 87,
+        "sourceX": "O35",
+        "sourceY": "P35"
+      },
+      {
+        "model": "GPT-6 Luna max",
+        "x": -0.8446639625349383,
+        "y": 86,
+        "sourceX": "O36",
+        "sourceY": "P36"
+      },
+      {
+        "model": "DeepSeek V4.1 Flash max",
+        "x": -0.36653154442041347,
+        "y": 75,
+        "sourceX": "O37",
+        "sourceY": "P37"
+      },
+      {
+        "model": "Grok 4.7 high",
+        "x": 0.6308345178280506,
+        "y": 69,
+        "sourceX": "O38",
+        "sourceY": "P38"
+      }
+    ]
+  },
+  {
+    "title": "第 3 题：得分与实际成本",
+    "mode": "xValues numeric snapshot; y cell formula",
+    "points": [
+      {
+        "model": "GPT-6 Astra high",
+        "x": 0.6238692683503023,
+        "y": 98,
+        "sourceX": "O43",
+        "sourceY": "P43"
+      },
+      {
+        "model": "GPT-6 Sol max",
+        "x": 0.3654879848908996,
+        "y": 95,
+        "sourceX": "O44",
+        "sourceY": "P44"
+      },
+      {
+        "model": "GPT-6 Sol xhigh",
+        "x": 0.2156375634350617,
+        "y": 90,
+        "sourceX": "O45",
+        "sourceY": "P45"
+      },
+      {
+        "model": "GPT-5.6 Sol xhigh",
+        "x": 1.1448854182871424,
+        "y": 82,
+        "sourceX": "O46",
+        "sourceY": "P46"
+      },
+      {
+        "model": "Opus 5.5 xhigh",
+        "x": 1.1578796743891535,
+        "y": 81,
+        "sourceX": "O47",
+        "sourceY": "P47"
+      },
+      {
+        "model": "GPT-6 Luna max",
+        "x": -0.8446639625349383,
+        "y": 76,
+        "sourceX": "O48",
+        "sourceY": "P48"
+      },
+      {
+        "model": "Grok 4.7 high",
+        "x": 0.7699678013294424,
+        "y": 70,
+        "sourceX": "O49",
+        "sourceY": "P49"
+      },
+      {
+        "model": "DeepSeek V4.1 Flash max",
+        "x": -0.3214816209598861,
+        "y": 54,
+        "sourceX": "O50",
+        "sourceY": "P50"
+      }
+    ]
+  }
+]

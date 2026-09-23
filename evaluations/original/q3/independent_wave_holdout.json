@@ -1,0 +1,40 @@
+{
+  "dx": 0.0125,
+  "dt": 0.005000000000000001,
+  "order": 4,
+  "tmax": 120,
+  "interval": [
+    -100,
+    160
+  ],
+  "C": 0.5692357678263644,
+  "energy_C1": 3.0861401014260226,
+  "background_norm": 1.0032300202514906,
+  "background_norm_squared": 1.0064704735338061,
+  "h0_50": 0.0005144019432406134,
+  "seconds": 35.871184800002084,
+  "cases": [
+    {
+      "kind": "difference",
+      "L": 20,
+      "epsilon": 0.001,
+      "difference_norm_over_epsilon": 0.20550350015505148,
+      "E_finite_denominator_over_epsilon": 0.20484185680920483,
+      "remainder_norm_over_epsilon_squared": 0.28789440324386123,
+      "mismatch": 2.0979374295252887e-08,
+      "precursor_max_tstar_minus_one": 2.572890536205529e-34,
+      "born_norm": 0.20544083150843365
+    },
+    {
+      "kind": "difference",
+      "L": 60,
+      "epsilon": 0.001,
+      "difference_norm_over_epsilon": 0.18071296395155492,
+      "E_finite_denominator_over_epsilon": 0.18013113673198658,
+      "remainder_norm_over_epsilon_squared": 0.16739415478869998,
+      "mismatch": 1.622361281210753e-08,
+      "precursor_max_tstar_minus_one": 4.307781442108535e-21,
+      "born_norm": 0.18067119361114117
+    }
+  ]
+}

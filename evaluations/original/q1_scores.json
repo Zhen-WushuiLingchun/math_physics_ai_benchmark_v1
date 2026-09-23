@@ -1,0 +1,136 @@
+{
+  "question": 1,
+  "date": "2026-09-23",
+  "reviewer": "primary_agent",
+  "dimensions": [
+    "definition",
+    "calibration",
+    "verification",
+    "research",
+    "calibration_of_claims"
+  ],
+  "maxima": [
+    15,
+    30,
+    15,
+    30,
+    10
+  ],
+  "cross_question_identity": false,
+  "answers": [
+    {
+      "id": "1b",
+      "scores": {
+        "definition": 14,
+        "calibration": 28,
+        "verification": 13,
+        "research": 28,
+        "calibration_of_claims": 9
+      },
+      "total": 92,
+      "interval": [
+        88,
+        95
+      ],
+      "summary": "完整一圈核类的解析不可解性证书成立；一处输入公式笔误未进入后续主要结果。",
+      "strongest": "八维树零空间及一圈全正、三个单负联合约束的显式函数域证书。",
+      "errors": [
+        "第2页式(7)首项符号错误；式(18)、缺陷与证书经正确输入复算成立。",
+        "一般多重数扩张尚未闭合，运行脚本未附。"
+      ],
+      "next_step": "统一单负输入公式并提供证书生成脚本，再检验固定积分基的n=4因子化。"
+    },
+    {
+      "id": "1e",
+      "scores": {
+        "definition": 13,
+        "calibration": 27,
+        "verification": 12,
+        "research": 26,
+        "calibration_of_claims": 7
+      },
+      "total": 85,
+      "interval": [
+        80,
+        89
+      ],
+      "summary": "n=3单负扇区左零向量证书正确，插入型扩张有价值；一般化和数值认证不足。",
+      "strongest": "在明确有理运动学点上严格保留x的三单负不相容证书，及独立定义的圈动量加权building blocks。",
+      "errors": [
+        "90位数值加有理重构缺少误差与唯一性认证。",
+        "所有n的软约化对精确共线与软极限的交换论证不完整。",
+        "n=4数值秩未升级为严格函数域证书。"
+      ],
+      "next_step": "解析完成n=3积分，补足软极限异常排序引理，再精确化n=4子式。"
+    },
+    {
+      "id": "1a",
+      "scores": {
+        "definition": 13,
+        "calibration": 18,
+        "verification": 7,
+        "research": 14,
+        "calibration_of_claims": 5
+      },
+      "total": 57,
+      "interval": [
+        51,
+        63
+      ],
+      "summary": "正确的一圈输入和齐次零空间有价值；树级仿射目标错误，另有单负公式及校验矛盾。",
+      "strongest": "八维齐次树零空间、部分精确缺陷、形式左零向量及D维积分后抵消。",
+      "errors": [
+        "第3页式(14)给出的树级结果比实际值多1/z，不能作真实树代表。",
+        "第4页式(19)在给定点为-491813/21600，式(22)报正值；正确振幅差为308063/21600。",
+        "原稿证书约束错误的树级仿射空间。"
+      ],
+      "next_step": "换成真实树代表，重建非齐次约束，并逐个复核三个负腿位置。"
+    },
+    {
+      "id": "1c",
+      "scores": {
+        "definition": 14,
+        "calibration": 20,
+        "verification": 5,
+        "research": 9,
+        "calibration_of_claims": 6
+      },
+      "total": 54,
+      "interval": [
+        48,
+        60
+      ],
+      "summary": "树和全正校准正确；早期文献单负错号传播至缺陷及主子式证书。",
+      "strongest": "正确树代表、八维齐次零空间及全正缺陷与D维取消。",
+      "errors": [
+        "第2页式(6)单负首项符号错误。",
+        "x=1/3,z=2时真实单负缺陷为7/9，正文为-1/9。",
+        "带eta系统错误输入秩13/14，正确输入秩10/10，主十四阶子式不能证明所称物理命题。"
+      ],
+      "next_step": "使用BDK 1993独立表达替换单负输入，按物理归一化重新构造全部扇区证书。"
+    },
+    {
+      "id": "1d",
+      "scores": {
+        "definition": 10,
+        "calibration": 11,
+        "verification": 2,
+        "research": 2,
+        "calibration_of_claims": 5
+      },
+      "total": 30,
+      "interval": [
+        24,
+        36
+      ],
+      "summary": "同一核树级已不存在的核心结论源于跨helicity符号匹配失败；未完成一圈结果。",
+      "strongest": "排序、变量计数与正helicity一侧的部分树级校准。",
+      "errors": [
+        "第5页树级no-go与适用于两种引力子helicity的标准树恒等式矛盾。",
+        "有限cross-ratio点未配合次数上界，不能据此声称一般恒等式。",
+        "没有一圈实际EYM结果、缺陷和有效不可解性证书。"
+      ],
+      "next_step": "先统一极化、spinor与宇称约定，同时核验MHV和anti-MHV树振幅。"
+    }
+  ]
+}

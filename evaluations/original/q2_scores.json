@@ -1,0 +1,375 @@
+{
+  "question": 2,
+  "date": "2026-09-23",
+  "rubric": "math_physics_ai_benchmark_rubric.md",
+  "score_maxima": {
+    "definition": 15,
+    "calibration": 30,
+    "verification": 15,
+    "research": 30,
+    "calibration_of_claims": 10
+  },
+  "interval_note": "阅卷判断区间，非统计置信区间；研究区间单列。",
+  "report": "evaluations/original/q2_assessment.md",
+  "reviewer_evidence": "evaluations/original/q2/independent_checks.json",
+  "records": [
+    {
+      "id": "2a",
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 12,
+        "research": 21,
+        "calibration_of_claims": 9
+      },
+      "interval": [
+        84,
+        90
+      ],
+      "research_interval": [
+        19,
+        24
+      ],
+      "summary": "完整精确校准、正确 Stiefel/标签矩、合法恢复下界；固定 k 的 monogamy converse 给同尺度约束，增长 k 的 converse 尚缺。",
+      "strongest": "精确 E Tr C_QB² 与标签泄漏矩；平均/高概率恢复下界；固定 k 下由 F_R+F_B≤1+1/k 得到低辐射端非高保真 converse。",
+      "errors": [
+        {
+          "page": 5,
+          "locator": "式 (23)–(24)",
+          "kind": "gap",
+          "severity": "moderate",
+          "description": "低辐射端只能得 F_R≤1/k+o(1)，未确定真实盲解码基线 1/k²，也未覆盖增长 k 的匹配 converse。"
+        },
+        {
+          "page": 4,
+          "locator": "4.1 节至第 5 页 4.2 节",
+          "kind": "scope",
+          "severity": "minor",
+          "description": "渐近要求两侧尺寸均发散，未处理固定 N_B、k/D 非小的有限 Xi 边界序列。"
+        }
+      ],
+      "independent_verification": "评阅者用随机投影与逐指标 Weingarten 两路核验核心矩；核对 monogamy 投影范数为 1+1/k；新 Haar/Petz 样本与精确值一致。",
+      "next_step": "用辐射 Choi SDP 对偶或 F_R≤1/k²+δ_R 收紧低端，并获得增长 k 的同尺度上界。",
+      "score_reasons": {
+        "definition": "维数、trace、直和与允许操作均正确。",
+        "calibration": "熵、replica、Stiefel 及精确小尺寸值正确完整。",
+        "verification": "三组 MC 和每组 12 次 SDP 有具体数值，但无误差条或原始–对偶证书。",
+        "research": "精确矩、标签量和固定 k 两侧界成立，增长 k/窗口仍未闭合。",
+        "calibration_of_claims": "多数结论范围清楚，低端 1/k 只应解释为非高保真 converse。"
+      },
+      "source": "submissions/original/02/2a.pdf",
+      "total": 87,
+      "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。"
+    },
+    {
+      "id": "2b",
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 13,
+        "research": 18,
+        "calibration_of_claims": 10
+      },
+      "interval": [
+        82,
+        89
+      ],
+      "research_interval": [
+        15,
+        21
+      ],
+      "summary": "校准、保真度范数关系与标签泄漏均扎实，且精确求解 classical decoder；研究层只完成高保真一侧。",
+      "strongest": "随机投影导出的精确 Stiefel 平均；(1−δ)²≤F_rec≤1−δ²/4；(2,3), k=2 的最优平均 5/12，以及 k=3 时 2/9。",
+      "errors": [
+        {
+          "page": 7,
+          "locator": "5.1 节",
+          "kind": "gap",
+          "severity": "moderate",
+          "description": "只有 Xi→+∞ 的充分条件；窗口内没有 δ 的正下界或最优 decoder 的匹配 converse。"
+        }
+      ],
+      "independent_verification": "评阅者精确核验随机投影系数及 Stiefel 化简；由 Beta(2,1) 的 rank-one POVM effect 独立积分复现 5/12。",
+      "next_step": "构造辐射 Choi SDP 的显式对偶可行点并用 Gaussian 谱界得到临界上界。",
+      "score_reasons": {
+        "definition": "互补嵌入、标签、平方保真度及 1/k² 基线均正确。",
+        "calibration": "有限熵、replica、渐近及小规模最优解码正确。",
+        "verification": "解析 POVM 最优解、Beta 积分、CAS 与 MC 构成不同检查。",
+        "research": "精确矩、恢复 bound 及有限维反例成立，但缺两侧临界窗推进。",
+        "calibration_of_claims": "准确承认 HS 趋零不足以控制 trace norm；未过度声称。"
+      },
+      "source": "submissions/original/02/2b.pdf",
+      "total": 86,
+      "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。"
+    },
+    {
+      "id": "2c",
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 14,
+        "research": 25,
+        "calibration_of_claims": 10
+      },
+      "interval": [
+        91,
+        97
+      ],
+      "research_interval": [
+        23,
+        28
+      ],
+      "summary": "给出正确的有限维 Gaussian 谱概率上界、增长 k 的同尺度两侧界，以及非平凡 Jacobi 最优恢复反例。",
+      "strongest": "F_rec 的有限维高概率谱上界和 limsup E F≤min(1,(√u+κ⁻¹)²)；镜像 (4,2)/(2,4) 精确均值 6619/7350 与 53/140。",
+      "errors": [
+        {
+          "page": 4,
+          "locator": "式 (26)",
+          "kind": "gap",
+          "severity": "minor",
+          "description": "当 κ=2、u≥1/4 时上界为 1，不能在所有有限窗口排除完美恢复或确定误差率。"
+        },
+        {
+          "page": 4,
+          "locator": "临界子序列假设",
+          "kind": "scope",
+          "severity": "minor",
+          "description": "固定一侧、k/D 不趋零的边界序列未覆盖。"
+        }
+      ],
+      "independent_verification": "评阅者核对原始复高斯尾界及 t 条件；Mathematica 独立积分 Jacobi 密度的归一化、gap 与两个平方根矩，全部复现。",
+      "next_step": "结合二阶量集中与 ||C||₁≥Tr C²/||C||∞ 给出每个有限 u 的严格 converse。",
+      "score_reasons": {
+        "definition": "基底、代数、标签和 decoder 定义准确。",
+        "calibration": "全部熵/replica/Stiefel 及 Jacobi 精确值正确。",
+        "verification": "解析最优 decoder、Jacobi 积分、镜像 MC 和 Petz 核验互补。",
+        "research": "有限维概率上界、增长 k 两端和精确熵反例成立，尚缺高端误差同阶 bound。",
+        "calibration_of_claims": "未把区间界或数值误差当成精确函数，范围明确。"
+      },
+      "source": "submissions/original/02/2c.pdf",
+      "total": 94,
+      "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。"
+    },
+    {
+      "id": "2d",
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 13,
+        "research": 24,
+        "calibration_of_claims": 10
+      },
+      "interval": [
+        89,
+        95
+      ],
+      "research_interval": [
+        22,
+        27
+      ],
+      "summary": "以 elementary purity/trace-norm 上界完成两侧临界缩放，并给最小镜像切分的精确熵分布反例。",
+      "strongest": "F_R≤k⁻²+δ_R 与 purity 型上界；固定和增长 k 的低端控制；(3,2)/(2,3) 相同熵分布但最优均值为 23/30 与 5/12。",
+      "errors": [
+        {
+          "page": 4,
+          "locator": "式 (23)–(24)",
+          "kind": "gap",
+          "severity": "minor",
+          "description": "purity 上界较松，部分临界点退化；并未得到有限窗口的唯一函数。"
+        },
+        {
+          "page": 4,
+          "locator": "r,b→∞ 假设",
+          "kind": "scope",
+          "severity": "minor",
+          "description": "未讨论固定一侧和 k/D 非小的边界子序列。"
+        }
+      ],
+      "independent_verification": "评阅者核对 decoder effect 的 0≤X≤I、Tr X=M_R/k 和基线配对值；独立 Beta 积分复现 23/30、5/12。",
+      "next_step": "用逐扇区谱范数替换全局 purity 界，并审计固定 N_B、k/D→α 的边界。",
+      "score_reasons": {
+        "definition": "互补、trace、允许操作及基底运输准确。",
+        "calibration": "熵、矩、渐近常数和最小精确反例均正确。",
+        "verification": "两种不同最优 decoder 与 Beta 积分构成充分解析验证；数值摘要较简略。",
+        "research": "有真实低端 1/k² converse 与增长 k 失败端，但窗口界偏松。",
+        "calibration_of_claims": "主动标明退化区间和未求极限，论断与证据相符。"
+      },
+      "source": "submissions/original/02/2d.pdf",
+      "total": 92,
+      "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。"
+    },
+    {
+      "id": "2e",
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 14,
+        "research": 28,
+        "calibration_of_claims": 10
+      },
+      "interval": [
+        94,
+        99
+      ],
+      "research_interval": [
+        26,
+        30
+      ],
+      "summary": "本组最强的已证窗口结果：MP 下界、每个有限 t 的严格 converse、高保真端同阶误差律，并处理 k=D 边界。",
+      "strongest": "两侧增长窗口内 max(k⁻²,h(1/t)²)≤F≤min(1,(√t+k⁻¹)²,1−g_k(t)²/4)；顺序极限下 1−F=Θ(φ⁻Ξ)；k=D 时 F=Σm_a²/D²。",
+      "errors": [
+        {
+          "page": 6,
+          "locator": "式 (41)，及第 7 页式 (45)",
+          "kind": "proof_detail",
+          "severity": "minor",
+          "description": "增长 k 的退化宽高比不能只援引固定正有限宽高比的 Bai–Yin 定理；补充 Gaussian 有限维尾界即可补足，但文中未展开参数。"
+        },
+        {
+          "page": 8,
+          "locator": "式 (47)",
+          "kind": "scope",
+          "severity": "minor",
+          "description": "误差同阶律是先窗口极限再高 t 的顺序极限，不能推广为任意联合发散的统一系数。文中已经明确这一限制。"
+        }
+      ],
+      "independent_verification": "评阅者独立审计 Gaussian 正交化、MP 线性统计、Wick 均值与 Poincaré 梯度；CAS 核对 g₂ 和高 t 系数；直接复核全空间最优值。",
+      "next_step": "以原始–对偶 SDP 证书检验 MP 下界与固定 k 真实最优值的间隙，并写出增长宽高比的显式 Gaussian 引理。",
+      "score_reasons": {
+        "definition": "整数子序列、k/D、trace 和拓扑资源范围审计完整。",
+        "calibration": "有限熵、次级展开、replica、Stiefel、标签与边缘涨落式完整正确。",
+        "verification": "CAS、原始 contraction、六组带标准误样本及显式 Petz map 互补；未声称执行未做的 SDP。",
+        "research": "严格窗口 converse、同阶高端误差律及全空间边界答案实质性强。",
+        "calibration_of_claims": "证明、候选、Petz 数值下界及极限顺序严格区分。"
+      },
+      "source": "submissions/original/02/2e.pdf",
+      "total": 97,
+      "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。"
+    },
+    {
+      "id": "2f",
+      "scores": {
+        "definition": 13,
+        "calibration": 25,
+        "verification": 11,
+        "research": 15,
+        "calibration_of_claims": 5
+      },
+      "interval": [
+        65,
+        75
+      ],
+      "research_interval": [
+        12,
+        19
+      ],
+      "summary": "精确 Stiefel 与高保真充分界正确，但把恒定输出纠缠保真度写成 1/k 并传播到低端表格和结论。",
+      "strongest": "第 5 页定理 10 的精确 Stiefel 二阶矩及第 6 页正确的 1−√(kΣn_a ETr C²) 高保真下界；低维熵积分正确。",
+      "errors": [
+        {
+          "page": 4,
+          "locator": "引理 9 最后一句",
+          "kind": "error",
+          "severity": "major",
+          "description": "恒定输出 decoder 的 (Q2) 值是 1/k²，文中写成 1/k。"
+        },
+        {
+          "page": 6,
+          "locator": "3.3 节，及第 7 页表格、第 8 页结论",
+          "kind": "propagated_error",
+          "severity": "major",
+          "description": "(2,2), k=2 的 1/2 来自利用测量结果；(2,3), k=2 的最优平均是 5/12，不满足表中 ≥1/2。"
+        },
+        {
+          "page": 4,
+          "locator": "3/5≠exp(−41/60) 后的文字",
+          "kind": "conceptual_error",
+          "severity": "minor",
+          "description": "此比较同时改变 Rényi 阶数，不能单独作为 E log Z 与 log E Z 不等的检验。"
+        },
+        {
+          "page": 7,
+          "locator": "HS 前因子与普适性段落",
+          "kind": "unsupported_inference",
+          "severity": "moderate",
+          "description": "二阶 HS 前因子不同不推出最优恢复曲线不同，不能据此证伪恢复常数普适性。"
+        }
+      ],
+      "independent_verification": "评阅者确认定理 10 与八组逐指标 contraction 相容；用精确 POVM 最优解证明 (2,3),k=2 的平均为 5/12；新 Petz 样本约 0.388，高于正确盲解码基线 1/4。",
+      "next_step": "先统一修复 1/k² 基线并用 (2,3) 完整 POVM 优化重审表格，再做低端 converse 和标签泄漏检查。",
+      "score_reasons": {
+        "definition": "模型基本正确，但 (Q2) 操作性归一化没有贯彻。",
+        "calibration": "低维积分和核心矩有效；一般 Page 公式证据较弱，平均次序示例有混淆。",
+        "verification": "有解析积分、QR 样本和 Petz 数值，但未发现恢复基线与小系统矛盾。",
+        "research": "正确的矩和高保真充分界保留；低端和非普适性结论不能计分。",
+        "calibration_of_claims": "错误下界多次标为已证，且一侧充分区被升级为已证转折。"
+      },
+      "source": "submissions/original/02/2f.pdf",
+      "total": 69,
+      "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。"
+    },
+    {
+      "id": "2g",
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 13,
+        "research": 28,
+        "calibration_of_claims": 7
+      },
+      "interval": [
+        88,
+        97
+      ],
+      "research_interval": [
+        24,
+        30
+      ],
+      "summary": "扇区 Haar 码加随机过滤器的定量归约和高阶校准突出；集中性与精确转折位置的部分表述超出证明。",
+      "strongest": "O(√(k/D)) 的扇区 Haar 码归约；精确有限维碰撞下界、MP 下界与谱上界；完整次级 entropy 和 replica 结构。",
+      "errors": [
+        {
+          "page": 10,
+          "locator": "4.3 节集中性段落",
+          "kind": "unsupported_inference",
+          "severity": "moderate",
+          "description": "F_N−EF_N→0 不自动证明 EF_N 收敛；极限分布为点质量须加均值极限存在或子序列条件。"
+        },
+        {
+          "page": 14,
+          "locator": "恢复转折 Ξ=0；第 16 页字典和第 17 页总结",
+          "kind": "overclaim",
+          "severity": "moderate",
+          "description": "已证是 Ξ=O(1) 的尺度，没有定义并证明唯一精确转折点 Ξ=0。"
+        },
+        {
+          "page": 16,
+          "locator": "总荷 c=τ 推广",
+          "kind": "scope",
+          "severity": "moderate",
+          "description": "空间同构不足以确定局域代数与资源权限；另一个任务的单 anyon 阈值偏移仍需定义信道，不能计作已证。"
+        },
+        {
+          "page": 8,
+          "locator": "label 区分优势 O(k/√D)",
+          "kind": "scope",
+          "severity": "minor",
+          "description": "该上界非所有增长 k 序列上的小量；窗口中应使用 k/D→0 及更细的 O(√(k/D)) 归约。"
+        }
+      ],
+      "independent_verification": "评阅者独立核对 polar 独立性与过滤误差、碰撞下界凸性，复现四个 q-trace 次级系数和 MP 椭圆积分表达式；未声称重跑全部大规模最优 SDP。",
+      "next_step": "证明固定 k 普通 Haar 随机 SDP 的均值极限存在；用原始–对偶证书检验增长 k 的 MP 极限猜想，并条件化集中性结论。",
+      "score_reasons": {
+        "definition": "trace、互补、Hmin 和 sector-filter 条件正确。",
+        "calibration": "有限熵、次级奇偶项、replica、各扇区 Stiefel 与 label 矩完整正确。",
+        "verification": "多条解析和数值路径实质性强，但大型优化仅有摘要及裁切表格，证书矩阵未可审计。",
+        "research": "定量归约、碰撞/MP/谱 bounds 与集中性有明确推进；增长 k 最优函数仍是猜想。",
+        "calibration_of_claims": "正文多有正确限定，但点质量极限、精确 Ξ=0 及跨总荷扩展存在过度表述。"
+      },
+      "source": "submissions/original/02/2g.pdf",
+      "total": 93,
+      "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。"
+    }
+  ],
+  "blind_review": true
+}

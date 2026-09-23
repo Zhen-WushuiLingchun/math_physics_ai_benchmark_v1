@@ -1,0 +1,250 @@
+{
+  "path_base": "repository root",
+  "pdf_count": 27,
+  "adopted_count": 24,
+  "submissions": [
+    {
+      "id": "1a",
+      "question": 1,
+      "model": "GPT-5.6 Sol xhigh",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/01/1a.pdf",
+      "sha256": "65117b0a3669111dd2fa1decebfbe3b1ce4d54f6c50d39d04e42a5baf9cb67b6"
+    },
+    {
+      "id": "1b",
+      "question": 1,
+      "model": "GPT-6 Astra high",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/01/1b.pdf",
+      "sha256": "6ba80e272fd0fd5a56634a39fdd47cf9e4515a7c3b5f078a70fb0b58bd7b8af2"
+    },
+    {
+      "id": "1c",
+      "question": 1,
+      "model": "GPT-6 Sol xhigh",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/01/1c.pdf",
+      "sha256": "abfaa9dda778a20ce3e290c516edc2cf63a7a13de37a86442575e37d4c98fd0d"
+    },
+    {
+      "id": "1d",
+      "question": 1,
+      "model": "Grok 4.7 high",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/01/1d.pdf",
+      "sha256": "eeebe94069f812b7322913ef5aa2a5cbca005fa1d54c138ed153ff03cf7f6448"
+    },
+    {
+      "id": "1e",
+      "question": 1,
+      "model": "Opus 5.5 xhigh",
+      "adopted": false,
+      "replaced_by": "s_1a",
+      "path": "submissions/original/01/1e.pdf",
+      "sha256": "0c0444300353119b8fa8f0bae3c213042b315ee5275c22ce4fac8198ff103f15"
+    },
+    {
+      "id": "2a",
+      "question": 2,
+      "model": "GPT-5.6 Sol xhigh",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/02/2a.pdf",
+      "sha256": "93d55bc0fafe1023a64baf89f1e8d015d63103e20c3b0556219bab27154b9da9"
+    },
+    {
+      "id": "2b",
+      "question": 2,
+      "model": "GPT-6 Luna max",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/02/2b.pdf",
+      "sha256": "f1646c7f5073810246bd26182dec336161bc0de969557e4ec46a16f082919439"
+    },
+    {
+      "id": "2c",
+      "question": 2,
+      "model": "GPT-6 Sol max",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/02/2c.pdf",
+      "sha256": "32080d1c518a966d8051c87a02fe7dbff5ad6b75becb01bb833f03c046f26273"
+    },
+    {
+      "id": "2d",
+      "question": 2,
+      "model": "GPT-6 Sol xhigh",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/02/2d.pdf",
+      "sha256": "b1f707442960e0c359e6c3908745d89d369b8f5976e32533d0ef6a7a3d6eab54"
+    },
+    {
+      "id": "2e",
+      "question": 2,
+      "model": "GPT-6 Astra high",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/02/2e.pdf",
+      "sha256": "d6f126a1591fd56536fd2298e1572e6061c1363444bf3fab7b200fbd17a5e52c"
+    },
+    {
+      "id": "2f",
+      "question": 2,
+      "model": "Grok 4.7 high",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/02/2f.pdf",
+      "sha256": "8c135c9c157d9be1784a3667024638346c81f66cbcc402021fffd24d41b888ba"
+    },
+    {
+      "id": "2g",
+      "question": 2,
+      "model": "Opus 5.5 xhigh",
+      "adopted": false,
+      "replaced_by": "s_2a",
+      "path": "submissions/original/02/2g.pdf",
+      "sha256": "40da6357e6f6dc9d748fff92927f21fae0d746ff050e64feb51b4d2f47a07a1e"
+    },
+    {
+      "id": "3a",
+      "question": 3,
+      "model": "GPT-5.6 Sol xhigh",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/03/3a.pdf",
+      "sha256": "c582ff9b277fc48225cb52736b86e8ffc17a6989240186ebcdeed0637be8f642"
+    },
+    {
+      "id": "3b",
+      "question": 3,
+      "model": "GPT-6 Luna max",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/03/3b.pdf",
+      "sha256": "8206e5895380613e40e1cd5fbf9d57c94db7cfca0a2b266c7de6d73078bdec1d"
+    },
+    {
+      "id": "3c",
+      "question": 3,
+      "model": "GPT-6 Sol max",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/03/3c.pdf",
+      "sha256": "6af8e2a9eb4f091092144fb414b90160bb3ff03e17cb3e738a9b90d5fe7872d8"
+    },
+    {
+      "id": "3d",
+      "question": 3,
+      "model": "GPT-6 Sol xhigh",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/03/3d.pdf",
+      "sha256": "c11925dc331a8a389988a1fc6517b5af7e71be01bb5f70e33cdba223208ba1c1"
+    },
+    {
+      "id": "3e",
+      "question": 3,
+      "model": "GPT-6 Astra high",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/03/3e.pdf",
+      "sha256": "e1af0151070c63873adfcc2231eabafd9b43264482922f7dac747e049af93e15"
+    },
+    {
+      "id": "3f",
+      "question": 3,
+      "model": "Grok 4.7 high",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/original/03/3f.pdf",
+      "sha256": "f52b2bbbdab612bc9f4fdcfd7b3edfd637cc87256f93c6eeb9f3dd5d5949b3a2"
+    },
+    {
+      "id": "3g",
+      "question": 3,
+      "model": "Opus 5.5 xhigh",
+      "adopted": false,
+      "replaced_by": "s_3a",
+      "path": "submissions/original/03/3g.pdf",
+      "sha256": "c60a27a0fde9986aeebbfc5f0de6d4702989efed1e840655d788da094555208c"
+    },
+    {
+      "id": "s_1a",
+      "question": 1,
+      "model": "Opus 5.5 xhigh",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/supplement/01/s_1a.pdf",
+      "sha256": "f8a4f85d6e8cc6d95ce8076f99e48a27c39764af4796082c0edd0eb523e1cef5"
+    },
+    {
+      "id": "s_1b",
+      "question": 1,
+      "model": "GPT-6 Sol max",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/supplement/01/s_1b.pdf",
+      "sha256": "ee07f2e9e4db819dd1706240409ffaa698a0dfc9f33acbf2cf4d0d17163a99b3"
+    },
+    {
+      "id": "s_1c",
+      "question": 1,
+      "model": "GPT-6 Luna max",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/supplement/01/s_1c.pdf",
+      "sha256": "199e80d59d5d956fb5e5e56d8f5596f26785a645928b292f8d10c0c261e7ecbd"
+    },
+    {
+      "id": "s_1d",
+      "question": 1,
+      "model": "DeepSeek V4.1 Flash max",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/supplement/01/s_1d.pdf",
+      "sha256": "d4e1a913e4c1751a39f09c6d789eb5a425574dc6c6bfa50ed61e05eb46855b34"
+    },
+    {
+      "id": "s_2a",
+      "question": 2,
+      "model": "Opus 5.5 xhigh",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/supplement/02/s_2a.pdf",
+      "sha256": "5d4bf3901d589c1091525a13444afbb17862cb866a5604348965cb2caeff0989"
+    },
+    {
+      "id": "s_2b",
+      "question": 2,
+      "model": "DeepSeek V4.1 Flash max",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/supplement/02/s_2b.pdf",
+      "sha256": "19a4ed3ec874a88a4d0b4767f1dc11ffccd37f295c7cf66401c4666f41406af1"
+    },
+    {
+      "id": "s_3a",
+      "question": 3,
+      "model": "Opus 5.5 xhigh",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/supplement/03/s_3a.pdf",
+      "sha256": "498439a488c79806f247d4d3fd1c937fce8d89abc7879e22a8ca5e9dc0304068"
+    },
+    {
+      "id": "s_3b",
+      "question": 3,
+      "model": "DeepSeek V4.1 Flash max",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/supplement/03/s_3b.pdf",
+      "sha256": "637970f3cb86b85390356e4ad33291d28afe8e30398b025946258b5ed39e127c"
+    }
+  ]
+}

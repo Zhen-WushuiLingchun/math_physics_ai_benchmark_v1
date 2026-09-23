@@ -1,0 +1,3997 @@
+{
+  "date": "2026-09-23",
+  "scope": "8 configurations x 3 questions; Opus reformatted answers adopted; old cost reused once",
+  "definitions": [
+    {
+      "name": "GPT-6 Astra high",
+      "short": "Astra high",
+      "ids": [
+        "1b",
+        "2e",
+        "3e"
+      ],
+      "color": "#7E0C6E"
+    },
+    {
+      "name": "GPT-6 Sol max",
+      "short": "Sol max",
+      "ids": [
+        "s_1b",
+        "2c",
+        "3c"
+      ],
+      "color": "#167E9A"
+    },
+    {
+      "name": "GPT-6 Sol xhigh",
+      "short": "Sol xhigh",
+      "ids": [
+        "1c",
+        "2d",
+        "3d"
+      ],
+      "color": "#478B42"
+    },
+    {
+      "name": "GPT-6 Luna max",
+      "short": "Luna max",
+      "ids": [
+        "s_1c",
+        "2b",
+        "3b"
+      ],
+      "color": "#C88700"
+    },
+    {
+      "name": "GPT-5.6 Sol xhigh",
+      "short": "5.6 Sol xhigh",
+      "ids": [
+        "1a",
+        "2a",
+        "3a"
+      ],
+      "color": "#52677E"
+    },
+    {
+      "name": "Opus 5.5 xhigh",
+      "short": "Opus 5.5 xhigh",
+      "ids": [
+        "s_1a",
+        "s_2a",
+        "s_3a"
+      ],
+      "color": "#BE644B"
+    },
+    {
+      "name": "Grok 4.7 high",
+      "short": "Grok 4.7 high",
+      "ids": [
+        "1d",
+        "2f",
+        "3f"
+      ],
+      "color": "#888888"
+    },
+    {
+      "name": "DeepSeek V4.1 Flash max",
+      "short": "DeepSeek Flash max",
+      "ids": [
+        "s_1d",
+        "s_2b",
+        "s_3b"
+      ],
+      "color": "#6857B1"
+    }
+  ],
+  "rows": [
+    {
+      "id": "1a",
+      "scores": {
+        "definition": 13,
+        "calibration": 18,
+        "verification": 7,
+        "research": 14,
+        "calibration_of_claims": 5
+      },
+      "total": 57,
+      "interval": [
+        51,
+        63
+      ],
+      "summary": "正确的一圈输入和齐次零空间有价值；树级仿射目标错误，另有单负公式及校验矛盾。",
+      "strongest": "八维齐次树零空间、部分精确缺陷、形式左零向量及D维积分后抵消。",
+      "errors": [
+        "第3页式(14)给出的树级结果比实际值多1/z，不能作真实树代表。",
+        "第4页式(19)在给定点为-491813/21600，式(22)报正值；正确振幅差为308063/21600。",
+        "原稿证书约束错误的树级仿射空间。"
+      ],
+      "next_step": "换成真实树代表，重建非齐次约束，并逐个复核三个负腿位置。",
+      "source_pdf": "submissions/original/01/1a.pdf",
+      "question": 1,
+      "rank_within_question": 3,
+      "model": "GPT-5.6 Sol xhigh",
+      "short": "5.6 Sol xhigh",
+      "color": "#52677E",
+      "cost": 4.082,
+      "sheet": "Task 1",
+      "row": 2,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "1b",
+      "scores": {
+        "definition": 14,
+        "calibration": 28,
+        "verification": 13,
+        "research": 28,
+        "calibration_of_claims": 9
+      },
+      "total": 92,
+      "interval": [
+        88,
+        95
+      ],
+      "summary": "完整一圈核类的解析不可解性证书成立；一处输入公式笔误未进入后续主要结果。",
+      "strongest": "八维树零空间及一圈全正、三个单负联合约束的显式函数域证书。",
+      "errors": [
+        "第2页式(7)首项符号错误；式(18)、缺陷与证书经正确输入复算成立。",
+        "一般多重数扩张尚未闭合，运行脚本未附。"
+      ],
+      "next_step": "统一单负输入公式并提供证书生成脚本，再检验固定积分基的n=4因子化。",
+      "source_pdf": "submissions/original/01/1b.pdf",
+      "question": 1,
+      "rank_within_question": 1,
+      "model": "GPT-6 Astra high",
+      "short": "Astra high",
+      "color": "#7E0C6E",
+      "cost": 5.614,
+      "sheet": "Task 1",
+      "row": 3,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "1c",
+      "scores": {
+        "definition": 14,
+        "calibration": 20,
+        "verification": 5,
+        "research": 9,
+        "calibration_of_claims": 6
+      },
+      "total": 54,
+      "interval": [
+        48,
+        60
+      ],
+      "summary": "树和全正校准正确；早期文献单负错号传播至缺陷及主子式证书。",
+      "strongest": "正确树代表、八维齐次零空间及全正缺陷与D维取消。",
+      "errors": [
+        "第2页式(6)单负首项符号错误。",
+        "x=1/3,z=2时真实单负缺陷为7/9，正文为-1/9。",
+        "带eta系统错误输入秩13/14，正确输入秩10/10，主十四阶子式不能证明所称物理命题。"
+      ],
+      "next_step": "使用BDK 1993独立表达替换单负输入，按物理归一化重新构造全部扇区证书。",
+      "source_pdf": "submissions/original/01/1c.pdf",
+      "question": 1,
+      "rank_within_question": 4,
+      "model": "GPT-6 Sol xhigh",
+      "short": "Sol xhigh",
+      "color": "#478B42",
+      "cost": 2.386,
+      "sheet": "Task 1",
+      "row": 4,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "1d",
+      "scores": {
+        "definition": 10,
+        "calibration": 11,
+        "verification": 2,
+        "research": 2,
+        "calibration_of_claims": 5
+      },
+      "total": 30,
+      "interval": [
+        24,
+        36
+      ],
+      "summary": "同一核树级已不存在的核心结论源于跨helicity符号匹配失败；未完成一圈结果。",
+      "strongest": "排序、变量计数与正helicity一侧的部分树级校准。",
+      "errors": [
+        "第5页树级no-go与适用于两种引力子helicity的标准树恒等式矛盾。",
+        "有限cross-ratio点未配合次数上界，不能据此声称一般恒等式。",
+        "没有一圈实际EYM结果、缺陷和有效不可解性证书。"
+      ],
+      "next_step": "先统一极化、spinor与宇称约定，同时核验MHV和anti-MHV树振幅。",
+      "source_pdf": "submissions/original/01/1d.pdf",
+      "question": 1,
+      "rank_within_question": 5,
+      "model": "Grok 4.7 high",
+      "short": "Grok 4.7 high",
+      "color": "#888888",
+      "cost": 4.514,
+      "sheet": "Task 1",
+      "row": 5,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "s_1a",
+      "question": 1,
+      "source_pdf": "submissions/supplement/01/s_1a.pdf",
+      "model_name": "Opus 5.5 xhigh",
+      "reasoning_effort": "xhigh",
+      "cost_usd": 24.056,
+      "scores": {
+        "definition": 13,
+        "calibration": 27,
+        "verification": 12,
+        "research": 28,
+        "calibration_of_claims": 7
+      },
+      "total": 87,
+      "interval": [
+        82,
+        92
+      ],
+      "summary": "n=3符号左零向量证书正确，软留数归约和圈动量插入有价值；数值重构与一般化仍需补证。",
+      "strongest": "有理运动学点上yV=0且yDelta=(3+2x-2x^2)/10368非零；允许x为符号，排除整个树级仿射核类。",
+      "errors": [
+        "高精度有理重构缺少误差与唯一性认证。",
+        "先精确共线后软化时，退化排序的留数归约尚需完整引理。",
+        "n=4数值秩尚未成为精确函数域证书。",
+        "圈动量插入表示的一般割闭合未完成。"
+      ],
+      "next_step": "解析完成低点积分，补足退化排序软留数引理，再认证n=4子式。",
+      "source_detail_json": "evaluations/supplement/q1_scores.json",
+      "rank_within_supplement_question": 2,
+      "cost_source": "原表用量",
+      "replaces_answer_id": "1e",
+      "model": "Opus 5.5 xhigh",
+      "short": "Opus 5.5 xhigh",
+      "color": "#BE644B",
+      "cost": 24.056,
+      "sheet": "Task 1",
+      "row": 6,
+      "replaces": "1e",
+      "costSource": "原表用量"
+    },
+    {
+      "id": "s_1b",
+      "question": 1,
+      "source_pdf": "submissions/supplement/01/s_1b.pdf",
+      "model_name": "GPT-6 Sol max",
+      "reasoning_effort": "max",
+      "cost_usd": 4.118,
+      "scores": {
+        "definition": 14,
+        "calibration": 29,
+        "verification": 13,
+        "research": 28,
+        "calibration_of_claims": 10
+      },
+      "total": 94,
+      "interval": [
+        90,
+        97
+      ],
+      "summary": "完整树零空间及逐排序的树—单负一圈解析证书成立，结论范围准确。",
+      "strongest": "六排序共同恒等式的EYM目标收缩为(2x^2-2x-3)/(6z)，排除同一套helicity无关标量权重；包含题面全部一次局域核。",
+      "errors": [
+        "跨helicity最小积分基修复尚未完成，正文已准确保留为开放步骤。",
+        "所称运行脚本未随Supplement附送，完整执行记录无法审计。"
+      ],
+      "next_step": "交付证书脚本，对事先固定积分基检验n=4的跨helicity割与因子化。",
+      "source_detail_json": "evaluations/supplement/q1_scores.json",
+      "rank_within_supplement_question": 1,
+      "cost_source": "用户补充用量",
+      "replaces_answer_id": null,
+      "model": "GPT-6 Sol max",
+      "short": "Sol max",
+      "color": "#167E9A",
+      "cost": 4.118,
+      "sheet": "Task 1",
+      "row": 7,
+      "replaces": null,
+      "costSource": "用户补充用量"
+    },
+    {
+      "id": "s_1c",
+      "question": 1,
+      "source_pdf": "submissions/supplement/01/s_1c.pdf",
+      "model_name": "GPT-6 Luna max",
+      "reasoning_effort": "max",
+      "cost_usd": 0.178,
+      "scores": {
+        "definition": 14,
+        "calibration": 20,
+        "verification": 5,
+        "research": 8,
+        "calibration_of_claims": 6
+      },
+      "total": 53,
+      "interval": [
+        47,
+        60
+      ],
+      "summary": "树级与全正缺陷正确；单负错号传入12/13主证书，正确输入下所用子系统秩为9/9。",
+      "strongest": "正确树代表、全正精确缺陷、有限维数移位积分基和可复现的形式系数消元。",
+      "errors": [
+        "第3页式(8)单负首项错号。",
+        "第4页证书仅对错误物理输入成立；修正后其两个单负位置与全正子系统相容。",
+        "未提供有效的当前物理问题全核类排除。"
+      ],
+      "next_step": "采用独立正确单负表达式，把三个负腿与树级目标合并重建证书。",
+      "source_detail_json": "evaluations/supplement/q1_scores.json",
+      "rank_within_supplement_question": 3,
+      "cost_source": "用户补充用量",
+      "replaces_answer_id": null,
+      "model": "GPT-6 Luna max",
+      "short": "Luna max",
+      "color": "#C88700",
+      "cost": 0.178,
+      "sheet": "Task 1",
+      "row": 8,
+      "replaces": null,
+      "costSource": "用户补充用量"
+    },
+    {
+      "id": "s_1d",
+      "question": 1,
+      "source_pdf": "submissions/supplement/01/s_1d.pdf",
+      "model_name": "DeepSeek V4.1 Flash max",
+      "reasoning_effort": "max",
+      "cost_usd": 0.414,
+      "scores": {
+        "definition": 13,
+        "calibration": 20,
+        "verification": 4,
+        "research": 7,
+        "calibration_of_claims": 3
+      },
+      "total": 47,
+      "interval": [
+        41,
+        55
+      ],
+      "summary": "树零空间和部分低点输入成立；单负错号、缺陷表、全正修复及最小扩张论证均存在实质问题。",
+      "strongest": "八个树级零向量、部分精确全正缺陷及完整形式线性系统。",
+      "errors": [
+        "第6页式(20)错号进入8/9证书；正确物理输入为5/6且原左向量失效。",
+        "第7页负腿2缺陷表与其自身式(18)、(21)、(25)不符。",
+        "第9页式(30)全正修复在参考点Gf=-R而非Gf=R。",
+        "从单列增广秩差1推断最小物理扩张维数1不成立；新方向位于树级零空间之外。",
+        "误判三点(-,+,+)与五点NMHV类别，未准确界定剩余缺口。"
+      ],
+      "next_step": "先修复物理输入与表格，按D维割独立构造新结构并保持树级约束。",
+      "source_detail_json": "evaluations/supplement/q1_scores.json",
+      "rank_within_supplement_question": 4,
+      "cost_source": "用户补充用量",
+      "replaces_answer_id": null,
+      "model": "DeepSeek V4.1 Flash max",
+      "short": "DeepSeek Flash max",
+      "color": "#6857B1",
+      "cost": 0.414,
+      "sheet": "Task 1",
+      "row": 9,
+      "replaces": null,
+      "costSource": "用户补充用量"
+    },
+    {
+      "id": "2a",
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 12,
+        "research": 21,
+        "calibration_of_claims": 9
+      },
+      "interval": [
+        84,
+        90
+      ],
+      "research_interval": [
+        19,
+        24
+      ],
+      "summary": "完整精确校准、正确 Stiefel/标签矩、合法恢复下界；固定 k 的 monogamy converse 给同尺度约束，增长 k 的 converse 尚缺。",
+      "strongest": "精确 E Tr C_QB² 与标签泄漏矩；平均/高概率恢复下界；固定 k 下由 F_R+F_B≤1+1/k 得到低辐射端非高保真 converse。",
+      "errors": [
+        {
+          "page": 5,
+          "locator": "式 (23)–(24)",
+          "kind": "gap",
+          "severity": "moderate",
+          "description": "低辐射端只能得 F_R≤1/k+o(1)，未确定真实盲解码基线 1/k²，也未覆盖增长 k 的匹配 converse。"
+        },
+        {
+          "page": 4,
+          "locator": "4.1 节至第 5 页 4.2 节",
+          "kind": "scope",
+          "severity": "minor",
+          "description": "渐近要求两侧尺寸均发散，未处理固定 N_B、k/D 非小的有限 Xi 边界序列。"
+        }
+      ],
+      "independent_verification": "评阅者用随机投影与逐指标 Weingarten 两路核验核心矩；核对 monogamy 投影范数为 1+1/k；新 Haar/Petz 样本与精确值一致。",
+      "next_step": "用辐射 Choi SDP 对偶或 F_R≤1/k²+δ_R 收紧低端，并获得增长 k 的同尺度上界。",
+      "score_reasons": {
+        "definition": "维数、trace、直和与允许操作均正确。",
+        "calibration": "熵、replica、Stiefel 及精确小尺寸值正确完整。",
+        "verification": "三组 MC 和每组 12 次 SDP 有具体数值，但无误差条或原始–对偶证书。",
+        "research": "精确矩、标签量和固定 k 两侧界成立，增长 k/窗口仍未闭合。",
+        "calibration_of_claims": "多数结论范围清楚，低端 1/k 只应解释为非高保真 converse。"
+      },
+      "source": "submissions/original/02/2a.pdf",
+      "total": 87,
+      "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+      "source_pdf": "submissions/original/02/2a.pdf",
+      "question": 2,
+      "rank_within_question": 5,
+      "model": "GPT-5.6 Sol xhigh",
+      "short": "5.6 Sol xhigh",
+      "color": "#52677E",
+      "cost": 2.763,
+      "sheet": "Task 2",
+      "row": 2,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "2b",
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 13,
+        "research": 18,
+        "calibration_of_claims": 10
+      },
+      "interval": [
+        82,
+        89
+      ],
+      "research_interval": [
+        15,
+        21
+      ],
+      "summary": "校准、保真度范数关系与标签泄漏均扎实，且精确求解 classical decoder；研究层只完成高保真一侧。",
+      "strongest": "随机投影导出的精确 Stiefel 平均；(1−δ)²≤F_rec≤1−δ²/4；(2,3), k=2 的最优平均 5/12，以及 k=3 时 2/9。",
+      "errors": [
+        {
+          "page": 7,
+          "locator": "5.1 节",
+          "kind": "gap",
+          "severity": "moderate",
+          "description": "只有 Xi→+∞ 的充分条件；窗口内没有 δ 的正下界或最优 decoder 的匹配 converse。"
+        }
+      ],
+      "independent_verification": "评阅者精确核验随机投影系数及 Stiefel 化简；由 Beta(2,1) 的 rank-one POVM effect 独立积分复现 5/12。",
+      "next_step": "构造辐射 Choi SDP 的显式对偶可行点并用 Gaussian 谱界得到临界上界。",
+      "score_reasons": {
+        "definition": "互补嵌入、标签、平方保真度及 1/k² 基线均正确。",
+        "calibration": "有限熵、replica、渐近及小规模最优解码正确。",
+        "verification": "解析 POVM 最优解、Beta 积分、CAS 与 MC 构成不同检查。",
+        "research": "精确矩、恢复 bound 及有限维反例成立，但缺两侧临界窗推进。",
+        "calibration_of_claims": "准确承认 HS 趋零不足以控制 trace norm；未过度声称。"
+      },
+      "source": "submissions/original/02/2b.pdf",
+      "total": 86,
+      "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+      "source_pdf": "submissions/original/02/2b.pdf",
+      "question": 2,
+      "rank_within_question": 6,
+      "model": "GPT-6 Luna max",
+      "short": "Luna max",
+      "color": "#C88700",
+      "cost": 0.143,
+      "sheet": "Task 2",
+      "row": 3,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "2c",
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 14,
+        "research": 25,
+        "calibration_of_claims": 10
+      },
+      "interval": [
+        91,
+        97
+      ],
+      "research_interval": [
+        23,
+        28
+      ],
+      "summary": "给出正确的有限维 Gaussian 谱概率上界、增长 k 的同尺度两侧界，以及非平凡 Jacobi 最优恢复反例。",
+      "strongest": "F_rec 的有限维高概率谱上界和 limsup E F≤min(1,(√u+κ⁻¹)²)；镜像 (4,2)/(2,4) 精确均值 6619/7350 与 53/140。",
+      "errors": [
+        {
+          "page": 4,
+          "locator": "式 (26)",
+          "kind": "gap",
+          "severity": "minor",
+          "description": "当 κ=2、u≥1/4 时上界为 1，不能在所有有限窗口排除完美恢复或确定误差率。"
+        },
+        {
+          "page": 4,
+          "locator": "临界子序列假设",
+          "kind": "scope",
+          "severity": "minor",
+          "description": "固定一侧、k/D 不趋零的边界序列未覆盖。"
+        }
+      ],
+      "independent_verification": "评阅者核对原始复高斯尾界及 t 条件；Mathematica 独立积分 Jacobi 密度的归一化、gap 与两个平方根矩，全部复现。",
+      "next_step": "结合二阶量集中与 ||C||₁≥Tr C²/||C||∞ 给出每个有限 u 的严格 converse。",
+      "score_reasons": {
+        "definition": "基底、代数、标签和 decoder 定义准确。",
+        "calibration": "全部熵/replica/Stiefel 及 Jacobi 精确值正确。",
+        "verification": "解析最优 decoder、Jacobi 积分、镜像 MC 和 Petz 核验互补。",
+        "research": "有限维概率上界、增长 k 两端和精确熵反例成立，尚缺高端误差同阶 bound。",
+        "calibration_of_claims": "未把区间界或数值误差当成精确函数，范围明确。"
+      },
+      "source": "submissions/original/02/2c.pdf",
+      "total": 94,
+      "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+      "source_pdf": "submissions/original/02/2c.pdf",
+      "question": 2,
+      "rank_within_question": 2,
+      "model": "GPT-6 Sol max",
+      "short": "Sol max",
+      "color": "#167E9A",
+      "cost": 1.814,
+      "sheet": "Task 2",
+      "row": 4,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "2d",
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 13,
+        "research": 24,
+        "calibration_of_claims": 10
+      },
+      "interval": [
+        89,
+        95
+      ],
+      "research_interval": [
+        22,
+        27
+      ],
+      "summary": "以 elementary purity/trace-norm 上界完成两侧临界缩放，并给最小镜像切分的精确熵分布反例。",
+      "strongest": "F_R≤k⁻²+δ_R 与 purity 型上界；固定和增长 k 的低端控制；(3,2)/(2,3) 相同熵分布但最优均值为 23/30 与 5/12。",
+      "errors": [
+        {
+          "page": 4,
+          "locator": "式 (23)–(24)",
+          "kind": "gap",
+          "severity": "minor",
+          "description": "purity 上界较松，部分临界点退化；并未得到有限窗口的唯一函数。"
+        },
+        {
+          "page": 4,
+          "locator": "r,b→∞ 假设",
+          "kind": "scope",
+          "severity": "minor",
+          "description": "未讨论固定一侧和 k/D 非小的边界子序列。"
+        }
+      ],
+      "independent_verification": "评阅者核对 decoder effect 的 0≤X≤I、Tr X=M_R/k 和基线配对值；独立 Beta 积分复现 23/30、5/12。",
+      "next_step": "用逐扇区谱范数替换全局 purity 界，并审计固定 N_B、k/D→α 的边界。",
+      "score_reasons": {
+        "definition": "互补、trace、允许操作及基底运输准确。",
+        "calibration": "熵、矩、渐近常数和最小精确反例均正确。",
+        "verification": "两种不同最优 decoder 与 Beta 积分构成充分解析验证；数值摘要较简略。",
+        "research": "有真实低端 1/k² converse 与增长 k 失败端，但窗口界偏松。",
+        "calibration_of_claims": "主动标明退化区间和未求极限，论断与证据相符。"
+      },
+      "source": "submissions/original/02/2d.pdf",
+      "total": 92,
+      "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+      "source_pdf": "submissions/original/02/2d.pdf",
+      "question": 2,
+      "rank_within_question": 4,
+      "model": "GPT-6 Sol xhigh",
+      "short": "Sol xhigh",
+      "color": "#478B42",
+      "cost": 2.155,
+      "sheet": "Task 2",
+      "row": 5,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "2e",
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 14,
+        "research": 28,
+        "calibration_of_claims": 10
+      },
+      "interval": [
+        94,
+        99
+      ],
+      "research_interval": [
+        26,
+        30
+      ],
+      "summary": "本组最强的已证窗口结果：MP 下界、每个有限 t 的严格 converse、高保真端同阶误差律，并处理 k=D 边界。",
+      "strongest": "两侧增长窗口内 max(k⁻²,h(1/t)²)≤F≤min(1,(√t+k⁻¹)²,1−g_k(t)²/4)；顺序极限下 1−F=Θ(φ⁻Ξ)；k=D 时 F=Σm_a²/D²。",
+      "errors": [
+        {
+          "page": 6,
+          "locator": "式 (41)，及第 7 页式 (45)",
+          "kind": "proof_detail",
+          "severity": "minor",
+          "description": "增长 k 的退化宽高比不能只援引固定正有限宽高比的 Bai–Yin 定理；补充 Gaussian 有限维尾界即可补足，但文中未展开参数。"
+        },
+        {
+          "page": 8,
+          "locator": "式 (47)",
+          "kind": "scope",
+          "severity": "minor",
+          "description": "误差同阶律是先窗口极限再高 t 的顺序极限，不能推广为任意联合发散的统一系数。文中已经明确这一限制。"
+        }
+      ],
+      "independent_verification": "评阅者独立审计 Gaussian 正交化、MP 线性统计、Wick 均值与 Poincaré 梯度；CAS 核对 g₂ 和高 t 系数；直接复核全空间最优值。",
+      "next_step": "以原始–对偶 SDP 证书检验 MP 下界与固定 k 真实最优值的间隙，并写出增长宽高比的显式 Gaussian 引理。",
+      "score_reasons": {
+        "definition": "整数子序列、k/D、trace 和拓扑资源范围审计完整。",
+        "calibration": "有限熵、次级展开、replica、Stiefel、标签与边缘涨落式完整正确。",
+        "verification": "CAS、原始 contraction、六组带标准误样本及显式 Petz map 互补；未声称执行未做的 SDP。",
+        "research": "严格窗口 converse、同阶高端误差律及全空间边界答案实质性强。",
+        "calibration_of_claims": "证明、候选、Petz 数值下界及极限顺序严格区分。"
+      },
+      "source": "submissions/original/02/2e.pdf",
+      "total": 97,
+      "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+      "source_pdf": "submissions/original/02/2e.pdf",
+      "question": 2,
+      "rank_within_question": 1,
+      "model": "GPT-6 Astra high",
+      "short": "Astra high",
+      "color": "#7E0C6E",
+      "cost": 4.55,
+      "sheet": "Task 2",
+      "row": 6,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "2f",
+      "scores": {
+        "definition": 13,
+        "calibration": 25,
+        "verification": 11,
+        "research": 15,
+        "calibration_of_claims": 5
+      },
+      "interval": [
+        65,
+        75
+      ],
+      "research_interval": [
+        12,
+        19
+      ],
+      "summary": "精确 Stiefel 与高保真充分界正确，但把恒定输出纠缠保真度写成 1/k 并传播到低端表格和结论。",
+      "strongest": "第 5 页定理 10 的精确 Stiefel 二阶矩及第 6 页正确的 1−√(kΣn_a ETr C²) 高保真下界；低维熵积分正确。",
+      "errors": [
+        {
+          "page": 4,
+          "locator": "引理 9 最后一句",
+          "kind": "error",
+          "severity": "major",
+          "description": "恒定输出 decoder 的 (Q2) 值是 1/k²，文中写成 1/k。"
+        },
+        {
+          "page": 6,
+          "locator": "3.3 节，及第 7 页表格、第 8 页结论",
+          "kind": "propagated_error",
+          "severity": "major",
+          "description": "(2,2), k=2 的 1/2 来自利用测量结果；(2,3), k=2 的最优平均是 5/12，不满足表中 ≥1/2。"
+        },
+        {
+          "page": 4,
+          "locator": "3/5≠exp(−41/60) 后的文字",
+          "kind": "conceptual_error",
+          "severity": "minor",
+          "description": "此比较同时改变 Rényi 阶数，不能单独作为 E log Z 与 log E Z 不等的检验。"
+        },
+        {
+          "page": 7,
+          "locator": "HS 前因子与普适性段落",
+          "kind": "unsupported_inference",
+          "severity": "moderate",
+          "description": "二阶 HS 前因子不同不推出最优恢复曲线不同，不能据此证伪恢复常数普适性。"
+        }
+      ],
+      "independent_verification": "评阅者确认定理 10 与八组逐指标 contraction 相容；用精确 POVM 最优解证明 (2,3),k=2 的平均为 5/12；新 Petz 样本约 0.388，高于正确盲解码基线 1/4。",
+      "next_step": "先统一修复 1/k² 基线并用 (2,3) 完整 POVM 优化重审表格，再做低端 converse 和标签泄漏检查。",
+      "score_reasons": {
+        "definition": "模型基本正确，但 (Q2) 操作性归一化没有贯彻。",
+        "calibration": "低维积分和核心矩有效；一般 Page 公式证据较弱，平均次序示例有混淆。",
+        "verification": "有解析积分、QR 样本和 Petz 数值，但未发现恢复基线与小系统矛盾。",
+        "research": "正确的矩和高保真充分界保留；低端和非普适性结论不能计分。",
+        "calibration_of_claims": "错误下界多次标为已证，且一侧充分区被升级为已证转折。"
+      },
+      "source": "submissions/original/02/2f.pdf",
+      "total": 69,
+      "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+      "source_pdf": "submissions/original/02/2f.pdf",
+      "question": 2,
+      "rank_within_question": 7,
+      "model": "Grok 4.7 high",
+      "short": "Grok 4.7 high",
+      "color": "#888888",
+      "cost": 4.274,
+      "sheet": "Task 2",
+      "row": 7,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "s_2a",
+      "question": 2,
+      "source_pdf": "submissions/supplement/02/s_2a.pdf",
+      "model_name": "Opus 5.5 xhigh",
+      "reasoning_effort": "xhigh",
+      "cost_usd": 12.33,
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 13,
+        "research": 28,
+        "calibration_of_claims": 7
+      },
+      "total": 93,
+      "interval": [
+        88,
+        97
+      ],
+      "summary": "完整精确校准与扇区 Haar 随机过滤器归约；碰撞/MP 下界和谱上界实质性强，但唯一极限、精确转折点和总荷推广有过度表述。",
+      "strongest": "M_a>=k 时 O(sqrt(k/D)) 的扇区 Haar 码归约；精确有限维碰撞下界；固定 k、两侧增长窗口中的 MP 下界及谱 converse。",
+      "errors": [
+        {
+          "page": 11,
+          "locator": "§4.3 集中性段；第 3 页摘要",
+          "kind": "unsupported_inference",
+          "severity": "moderate",
+          "description": "F_N-EF_N趋零不证明均值收敛；点质量极限应加均值极限或子序列条件。"
+        },
+        {
+          "page": 15,
+          "locator": "§5(1)；第 17 页表 6 与结论",
+          "kind": "overclaim",
+          "severity": "moderate",
+          "description": "已证尺度是Xi=O(1)，未定义并证明唯一精确转折点Xi=0。"
+        },
+        {
+          "page": 17,
+          "locator": "总荷 c!=1 推广",
+          "kind": "scope",
+          "severity": "moderate",
+          "description": "空间同构不能代替新局域代数、互补信道和拓扑资源权限的定义；单 anyon 阈值偏移未证。"
+        },
+        {
+          "page": 9,
+          "locator": "§3.4 O(k/sqrt(D)) 标签界及第 3 页摘要",
+          "kind": "scope",
+          "severity": "minor",
+          "description": "该粗界不对所有增长k序列趋零；窗口中须用k/D趋零及O(sqrt(k/D))归约。"
+        },
+        {
+          "page": 11,
+          "locator": "§4.3 固定k窗口及第15页增长k概要",
+          "kind": "gap",
+          "severity": "minor",
+          "description": "没有覆盖固定一侧、k/D不小的有限Xi边界序列；增长k最优MP函数仍为猜想。"
+        }
+      ],
+      "next_step": "证明固定k普通Haar恢复SDP的均值极限存在，明确极限顺序；以逐样本原始/对偶证书检验增长k的MP最优值猜想。",
+      "source_detail_json": "evaluations/supplement/q2_scores.json",
+      "rank_within_supplement_question": 1,
+      "cost_source": "原表用量",
+      "replaces_answer_id": "2g",
+      "model": "Opus 5.5 xhigh",
+      "short": "Opus 5.5 xhigh",
+      "color": "#BE644B",
+      "cost": 12.33,
+      "sheet": "Task 2",
+      "row": 8,
+      "replaces": "2g",
+      "costSource": "原表用量"
+    },
+    {
+      "id": "s_2b",
+      "question": 2,
+      "source_pdf": "submissions/supplement/02/s_2b.pdf",
+      "model_name": "DeepSeek V4.1 Flash max",
+      "reasoning_effort": "max",
+      "cost_usd": 0.43,
+      "scores": {
+        "definition": 14,
+        "calibration": 27,
+        "verification": 11,
+        "research": 17,
+        "calibration_of_claims": 6
+      },
+      "total": 75,
+      "interval": [
+        70,
+        81
+      ],
+      "summary": "精确Stiefel矩与Petz/CPTP优化有效，窗口主要有数值支持；平均约化态、Gaussian归一化、HS阈值及独立列数值对照存在具体错误。",
+      "strongest": "第7页定理1精确Stiefel二阶矩；第9页式(13)显式Petz恢复下界；第10页式(14)正确CPTP最优恢复SDP与维数因子。",
+      "errors": [
+        {
+          "page": 6,
+          "locator": "§2.3 表格及后文",
+          "kind": "object_error",
+          "severity": "moderate",
+          "description": "S(E rho_R)不等于log D；(3,3)平均约化态谱为(1/5,2/5,2/5)，熵1.054920…，非1.609438。"
+        },
+        {
+          "page": 6,
+          "locator": "§2.3 最后一段",
+          "kind": "normalization_error",
+          "severity": "moderate",
+          "description": "各向同性复Gaussian逐样本归一化与Haar球面分布完全相同，有限D下不存在声称的系综O(1/D)差异。"
+        },
+        {
+          "page": 4,
+          "locator": "注2独立归一化列对照",
+          "kind": "incorrect_numerical_check",
+          "severity": "moderate",
+          "description": "三个声称数值0.206/0.074/0.049与精确0.24/0.315/0.1114546829及新20000样本检查不符。该项验证不计分，其他正确核验保留。"
+        },
+        {
+          "page": 10,
+          "locator": "注6",
+          "kind": "scaling_error",
+          "severity": "moderate",
+          "description": "式(11)的k因子为1-k^-2，有界于3/4与1；HS趋零不要求NR大于约2log_phi k。并将充分维数条件近似表述成必要条件。"
+        },
+        {
+          "page": 9,
+          "locator": "推论2最后一行",
+          "kind": "parameter_error",
+          "severity": "minor",
+          "description": "Markov事件的范数界应随sqrt(t)增长，文中写成sqrt(t^-1)；紧前有限维公式使用t正确。"
+        },
+        {
+          "page": 10,
+          "locator": "§3.7",
+          "kind": "gap",
+          "severity": "moderate",
+          "description": "只检查计算基标签概率，未控制Q_a的非对角元或完整参考–标签态，不能证明任意量子输入/增长k的标签泄漏结论。"
+        },
+        {
+          "page": 12,
+          "locator": "式(16)、猜想1；第14页状态表",
+          "kind": "overinterpretation_of_fit",
+          "severity": "moderate",
+          "description": "经验拟合尚无固定k与增长k的独立外推或留出检验；表中alpha=1.25残差稍小于alpha=1，不能由此建立唯一普适窗口函数。"
+        },
+        {
+          "page": 17,
+          "locator": "表6底部",
+          "kind": "evidence_limit",
+          "severity": "minor",
+          "description": "末页裁切，本次可完整读取45行，无法逐点核验宣称的全部49组；8个N>=11点的经验常数与声明相容。"
+        }
+      ],
+      "next_step": "修正平均态与归一化检查，重跑独立列对照；计算参考–标签Choi态；从正确的SDP对偶构造显式converse，并将固定k/增长k扫描分开做留出检验。",
+      "source_detail_json": "evaluations/supplement/q2_scores.json",
+      "rank_within_supplement_question": 2,
+      "cost_source": "用户补充用量",
+      "replaces_answer_id": null,
+      "model": "DeepSeek V4.1 Flash max",
+      "short": "DeepSeek Flash max",
+      "color": "#6857B1",
+      "cost": 0.43,
+      "sheet": "Task 2",
+      "row": 9,
+      "replaces": null,
+      "costSource": "用户补充用量"
+    },
+    {
+      "id": "3a",
+      "interval": [
+        78,
+        86
+      ],
+      "summary": "因果、局部共振微扰和受控对数时间窗可靠；全时间 Q3c 未闭合，新腔分支的原模型匹配误差仍不足。",
+      "strongest": "精确 t*=2L−13 因果相等；T≤KL、L=c log(1/ε) 时 E≤Cε log^(5/2)(1/ε)，并识别 Lε exp(2γL) 的微扰条件。",
+      "proof_status": "proved_finite_window_q3c_open",
+      "errors": [
+        {
+          "page": 4,
+          "locator": "(18)–(19)",
+          "severity": "proof_gap",
+          "detail": "未展示非紧支 RW 背景上的精确两系数 Jost 匹配，双势垒自由传播方程不能无误差地当原模型精确共振方程。"
+        },
+        {
+          "page": 4,
+          "locator": "(20) 后的 pole 说明",
+          "severity": "overstatement",
+          "detail": "严格因果延迟属于完整差信号，通常不属于单个 pole 留数指数。"
+        },
+        {
+          "page": 5,
+          "locator": "5.1 尾部截断误差说明",
+          "severity": "validation_gap",
+          "detail": "80<t<100 的小范数不构成 t>100 全尾部误差上界。"
+        }
+      ],
+      "independent_checks": [
+        "能量常数、mismatch 二阶系数及 Lambert 局部模型独立核对。",
+        "三组时域 E/ε 独立复算与表值在约 0.1% 内相符；没有独立重算全部复标度根。"
+      ],
+      "next_step": "展示精确 Jost 传递系数及复频一致误差，再控制式 (23) 的超低频源—探测器积分。",
+      "source_pdf": "submissions/original/03/3a.pdf",
+      "scores": {
+        "definition": 14,
+        "calibration": 27,
+        "verification": 12,
+        "research": 20,
+        "calibration_of_claims": 9
+      },
+      "total": 82,
+      "score_rationales": {
+        "definition_and_setup": "约定和能量正确，无限分母解析保证不足。",
+        "calibration": "Duhamel、mismatch 和简单共振校准可复核，能量链较压缩。",
+        "independent_verification": "两网格、两复标度半径及直接求根有实质数字，时域抽查支持。",
+        "research_progress": "完成非空洞对数窗与 resolvent 归约，尚无全时间界。",
+        "conclusion_calibration": "正确保留 Q3c 缺口，部分谱与尾部用语过强。"
+      },
+      "reliability_fabrication_finding": "none_established",
+      "question": 3,
+      "rank_within_question": 4,
+      "model": "GPT-5.6 Sol xhigh",
+      "short": "5.6 Sol xhigh",
+      "color": "#52677E",
+      "cost": 13.96,
+      "sheet": "Task 3",
+      "row": 2,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "3b",
+      "interval": [
+        72,
+        81
+      ],
+      "summary": "有限时 Volterra、因果窗和 mismatch 正确，低频统一缺口定位清晰；首回波后一致迹估计及复频匹配证明较简略。",
+      "strongest": "精确因果窗、带算子范数条件的 Duhamel 余项、固定宽度首回波窗的稳定性归约、临界 Lambert 重求和与实轴 source–detector 判据。",
+      "proof_status": "partial_analytic_solution_q3c_open",
+      "errors": [
+        {
+          "page": 3,
+          "locator": "(3.1)",
+          "severity": "normalization_gap",
+          "detail": "Wronskian 势变分仍保留未确定的 N(ω0)，未完成单位 Jost 归一化下的明确系数/符号。"
+        },
+        {
+          "page": 3,
+          "locator": "(2.6) 及其前文",
+          "severity": "proof_gap",
+          "detail": "首回波固定宽度窗的 L 一致 Green/观察迹算子界未展开。"
+        },
+        {
+          "page": 4,
+          "locator": "(3.5)",
+          "severity": "proof_gap",
+          "detail": "未展示完整传递系数及原背景尾部/透射修正，根列渐近证据较压缩。"
+        }
+      ],
+      "independent_checks": [
+        "能量归一化式、bump 面积、mismatch 系数及 Lambert 方程均已独立核对。",
+        "文献的 tail/完整频域分解适用性已检查；其 CAS 小项不被当作核心匹配证明。"
+      ],
+      "next_step": "固定 Wronskian 归一化，写出 a_L f_+ + b_L g_+ 精确匹配并证明首回波窗的统一迹界，再推进 k→0 积分。",
+      "source_pdf": "submissions/original/03/3b.pdf",
+      "scores": {
+        "definition": 15,
+        "calibration": 25,
+        "verification": 9,
+        "research": 18,
+        "calibration_of_claims": 9
+      },
+      "total": 76,
+      "score_rationales": {
+        "definition_and_setup": "能量、支集、变换与归一化定义准确。",
+        "calibration": "关键低阶公式大体正确，变分常数和匹配细节不完整。",
+        "independent_verification": "解析交叉检查与小型 CAS 有效，但核心一致估计未获独立验证。",
+        "research_progress": "完成有限回波窗和低频归约，未闭合一般回波后长窗或 Q3c。",
+        "conclusion_calibration": "没有把候选 α=1 当定理，部分已证标签仍强于展示的分析。"
+      },
+      "reliability_fabrication_finding": "none_established",
+      "question": 3,
+      "rank_within_question": 6,
+      "model": "GPT-6 Luna max",
+      "short": "Luna max",
+      "color": "#C88700",
+      "cost": 0.143,
+      "sheet": "Task 3",
+      "row": 3,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "3c",
+      "interval": [
+        91,
+        98
+      ],
+      "summary": "通过精确实轴散射关系与通量不等式证明 Q3c；初等 α=1/50，使用适用的背景低能估计提升到 α=1/10。",
+      "strongest": "sup_{L≥L0,T≥0} E≤Cε^(1/10)，另有不使用精细低能文献的 ε^(1/50) 证明；固定 L 非零一阶响应给出 α_best≤1。",
+      "proof_status": "q3c_proved_alpha_0_1",
+      "proven_uniform_alpha": 0.1,
+      "elementary_uniform_alpha": 0.02,
+      "errors": [
+        {
+          "page": 3,
+          "locator": "(16)",
+          "severity": "remaining_detail",
+          "detail": "复频一致传递渐近可进一步补充基本矩阵及频率导数误差，结论应保留所述非退化解析片条件。"
+        },
+        {
+          "page": 5,
+          "locator": "(29)",
+          "severity": "open_problem",
+          "detail": "最佳统一幂次仅确定在 [1/10,1]，答卷正确标为未闭合。"
+        }
+      ],
+      "independent_checks": [
+        "独立推导式 (20) 的符号/因子和式 (21) 通量界，并核对频率积分产生 1/50 与 1/10。",
+        "附录能量链、V0 的 12/(1+x)^2 界、归一化和 mismatch 已复核。",
+        "核对 DSS 0908.4292v2 第 4–6 节、Lemma 6.3–6.4 和低能 Wronskian，确覆盖 (ℓ,σ)=(2,−3)。"
+      ],
+      "next_step": "保留低频透射及相位权重，对超低频积分建立更精确的统一上界或反例，以确定是否可达 α=1。",
+      "source_pdf": "submissions/original/03/3c.pdf",
+      "scores": {
+        "definition": 15,
+        "calibration": 29,
+        "verification": 12,
+        "research": 29,
+        "calibration_of_claims": 10
+      },
+      "total": 95,
+      "score_rationales": {
+        "definition_and_setup": "全量词、固定源/观察点、扰动类和迹映射准确。",
+        "calibration": "低阶、能量余项、变分符号与双极限较完整。",
+        "independent_verification": "解析结构检验充分，数值交叉检验主要覆盖归一化和少数系数。",
+        "research_progress": "真正证明全 L、全 T 命题，给出两种有内容的幂次。",
+        "conclusion_calibration": "严格区分定理、文献输入、数值资料和最优性缺口。"
+      },
+      "reliability_fabrication_finding": "none_established",
+      "question": 3,
+      "rank_within_question": 2,
+      "model": "GPT-6 Sol max",
+      "short": "Sol max",
+      "color": "#167E9A",
+      "cost": 2.32,
+      "sheet": "Task 3",
+      "row": 4,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "3d",
+      "interval": [
+        86,
+        94
+      ],
+      "summary": "原模型精确 Jost 匹配与临界/超临界重求根较完整，受控对数窗口覆盖回波后时间；Q3c 明确保留为实频积分问题。",
+      "strongest": "同一 ε,L 序列上证明超临界旧极点固定邻域空缺及新腔分支，并证明 T≤KL 的 E=O(ε log^(5/2)(1/ε))、M=O(ε² log^5(1/ε))。",
+      "proof_status": "proved_spectral_and_finite_window_q3c_open",
+      "errors": [
+        {
+          "page": 5,
+          "locator": "(26)",
+          "severity": "open_problem",
+          "detail": "低频源—探测器实轴积分没有全 L 统一界，故尚不能判定 Q3c。"
+        },
+        {
+          "page": 4,
+          "locator": "(20) 与定理 3",
+          "severity": "remaining_detail",
+          "detail": "若要求论文级定理，复频局部 Volterra 误差的导数界及解析片条件仍可进一步展开。"
+        }
+      ],
+      "independent_checks": [
+        "能量链、首波前非零、mismatch 下界与精确 Wronskian 变分已独立复核。",
+        "L=14 两网格差范数独立复算与 PDF 表在报告精度内相符；未声称独立重算 QNM 根。"
+      ],
+      "next_step": "用精确实轴散射关系控制式 (26) 的超低频部分，保留 source 和 detector 的透射权重。",
+      "source_pdf": "submissions/original/03/3d.pdf",
+      "scores": {
+        "definition": 15,
+        "calibration": 29,
+        "verification": 12,
+        "research": 24,
+        "calibration_of_claims": 10
+      },
+      "total": 90,
+      "score_rationales": {
+        "definition_and_setup": "完整审计题设、范数、观察迹和物理解释边界。",
+        "calibration": "明确能量常数、波前非零、精确匹配与 Rouché/收缩论证。",
+        "independent_verification": "两网格数值与边界说明清楚，独立复算支持。",
+        "research_progress": "非消失谱变化与完整对数窗观测稳定之间建立实质联系。",
+        "conclusion_calibration": "Eproxy、背景网格误差及 Q3c 缺口都如实标注。"
+      },
+      "reliability_fabrication_finding": "none_established",
+      "question": 3,
+      "rank_within_question": 3,
+      "model": "GPT-6 Sol xhigh",
+      "short": "Sol xhigh",
+      "color": "#478B42",
+      "cost": 1.643,
+      "sheet": "Task 3",
+      "row": 5,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "3e",
+      "interval": [
+        94,
+        99
+      ],
+      "summary": "以精确零能解、背景 Green 界及低频通量控制闭合 Q3c 的 α=1/2；最优 Lipschitz 指数仍明确留下超低频面积问题。",
+      "strongest": "sup_{L≥L0,T≥0} E≤C√ε，不需要对数修正；固定 L 的非零全时间首阶响应排除 α>1。",
+      "proof_status": "q3c_proved_alpha_0_5",
+      "proven_uniform_alpha": 0.5,
+      "errors": [
+        {
+          "page": 6,
+          "locator": "(31)",
+          "severity": "remaining_detail",
+          "detail": "背景匹配估计使用正确的已引文献输入；若单独发表，应补齐分区常数与连接区论证。"
+        },
+        {
+          "page": 8,
+          "locator": "(45)",
+          "severity": "open_problem",
+          "detail": "统一 α=1 的超低频积分仍未证明，故 α_best 仅在 [1/2,1]。"
+        }
+      ],
+      "independent_checks": [
+        "CAS 独立验证静态 u,v 方程、Wronskian−1、J 导数和 mismatch。",
+        "精确左反射差与中频 Neumann 界的拼接、√ε 积分幂次已独立核验。",
+        "两网格 L=20/40 波形差与二阶余项复算支持第 10 页表。",
+        "外部低能构造已核对原文且适用本题引力扇区。"
+      ],
+      "next_step": "围绕式 (45) 给出峰宽可控的超低频面积上界或反例，判定是否达到无对数修正的 α=1。",
+      "source_pdf": "submissions/original/03/3e.pdf",
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 14,
+        "research": 29,
+        "calibration_of_claims": 10
+      },
+      "total": 98,
+      "score_rationales": {
+        "definition_and_setup": "所有定义、变换、固定支集和扰动类准确。",
+        "calibration": "能量、静态、Green、源谱、Duhamel 和复频低阶均有完整可核验公式。",
+        "independent_verification": "多种代数与数值交叉核验充分，抽查支持关键表值。",
+        "research_progress": "全位置全时间存在性闭合，余下为最佳指数问题。",
+        "conclusion_calibration": "证据等级、引用依赖和剩余问题校准清楚。"
+      },
+      "reliability_fabrication_finding": "none_established",
+      "question": 3,
+      "rank_within_question": 1,
+      "model": "GPT-6 Astra high",
+      "short": "Astra high",
+      "color": "#7E0C6E",
+      "cost": 4.206,
+      "sheet": "Task 3",
+      "row": 6,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "3f",
+      "interval": [
+        65,
+        75
+      ],
+      "summary": "显式位置一致有限时间能量界成立，数值校准有内容；遗漏 L 倍微扰参数，Lipschitz 等价判据少了 ε 缩放，分母无限尾部未解析闭合。",
+      "strongest": "∫_0^T |Δh|²≤2ε²(1+T)^7 对全部 L 一致，结合因果结论给出对数时间窗的非空洞稳定性。",
+      "proof_status": "proved_finite_numerator_bound_q3c_open",
+      "errors": [
+        {
+          "page": 6,
+          "locator": "命题 7–8；标题与摘要",
+          "severity": "mathematical_error",
+          "detail": "只用 κ=εexp(2γL) 作为线性展开控制量；二阶项一般为 O(Lκ²)，需要 Lκ≪1。"
+        },
+        {
+          "page": 9,
+          "locator": "命题 9 与式 (3)",
+          "severity": "mathematical_error",
+          "detail": "式 (3) 右端已经含 ε，给其 O(1) 加权 L2 界不能等价于 Q3c 的 α=1；须除去 ε 或要求 O(ε)。"
+        },
+        {
+          "page": 3,
+          "locator": "D0 正性和有限性说明；第 7 页长时积分",
+          "severity": "proof_gap",
+          "detail": "有限时间数值积分不能证明无限时间分母有限或完整尾部界。"
+        },
+        {
+          "page": 6,
+          "locator": "第 5 节至第 7 节",
+          "severity": "research_gap",
+          "detail": "没有失效区的受控精确共振重求根和 residues 分析。"
+        }
+      ],
+      "independent_checks": [
+        "Vmax 精确值、能量常数、Jost 级数前三项及显式常数链已复核。",
+        "两配置 QNM 和时域网格说明作为局部数值证据计分，不被提升为全时间定理。"
+      ],
+      "next_step": "先修正 Lκ 条件和命题 9 的 ε 缩放，用背景衰减/实频估计闭合分母，再处理精确 Jost 临界匹配。",
+      "source_pdf": "submissions/original/03/3f.pdf",
+      "scores": {
+        "definition": 13,
+        "calibration": 23,
+        "verification": 12,
+        "research": 15,
+        "calibration_of_claims": 7
+      },
+      "total": 70,
+      "score_rationales": {
+        "definition_and_setup": "主约定正确，无限分母及部分非零性只靠数值。",
+        "calibration": "有限时间显式界扎实，复频微扰和一致余项不足。",
+        "independent_verification": "多网格与双配置射击有实质核验。",
+        "research_progress": "完成对数窗，未处理失效区与全时间积分且判据有缩放错误。",
+        "conclusion_calibration": "多数局部状态诚实，部分已证标签超出条件。"
+      },
+      "reliability_fabrication_finding": "none_established",
+      "question": 3,
+      "rank_within_question": 7,
+      "model": "Grok 4.7 high",
+      "short": "Grok 4.7 high",
+      "color": "#888888",
+      "cost": 5.888,
+      "sheet": "Task 3",
+      "row": 7,
+      "replaces": null,
+      "costSource": "原表用量"
+    },
+    {
+      "id": "s_3a",
+      "question": 3,
+      "source_pdf": "submissions/supplement/03/s_3a.pdf",
+      "model_name": "Opus 5.5 xhigh",
+      "reasoning_effort": "xhigh",
+      "cost_usd": 14.384,
+      "scores": {
+        "definition": 13,
+        "calibration": 28,
+        "verification": 14,
+        "research": 21,
+        "calibration_of_claims": 5
+      },
+      "total": 81,
+      "interval": [
+        76,
+        86
+      ],
+      "summary": "精确背景Jost与源—探测器代数、显式能量窗和多方法数值较强；全L的α=1仍为猜想，低频分母、条件量词和最优性标签有实质问题。",
+      "strongest": "全位置一致的有限时间能量界给出E=O(ε log²(1/ε))的对数时间窗；在所需范数有限且εK3(L)<1时有全时间条件Neumann界，并有原背景精确Jost匹配与受控一阶参数。",
+      "errors": [
+        {
+          "page": 11,
+          "locator": "§5.3；另见p.1、3、14总览",
+          "severity": "overclaim",
+          "detail": "固定L的非零首阶响应只能证明α_best≤1，不能证明全L统一α=1可取；后者仍是p.12猜想1。"
+        },
+        {
+          "page": 11,
+          "locator": "条件J1、推论2",
+          "severity": "assumption_and_quantifier_error",
+          "detail": "kD_L实轴高频范数趋√∫W/2≈0.549295，而非衰减；逐个L有界与有限数值表不足证明sup_L K2、sup_L N_L有限及K3=O(L)。"
+        },
+        {
+          "page": 13,
+          "locator": "§5.6 LF启发式",
+          "severity": "mathematical_error",
+          "detail": "a−bR=1+O(εL^−4)错误；其零频ε导数等于∫W_L G0(0;y,y)dy~||W||1 L/5。"
+        },
+        {
+          "page": 9,
+          "locator": "§4.4；p.10首段",
+          "severity": "overstatement",
+          "detail": "单个留数模延迟起效、严格2kL分段回波以及任何有限窗均不出现新谱，均超出给出的因果证明与有限窗拟合。"
+        },
+        {
+          "page": 7,
+          "locator": "§4.2",
+          "severity": "minor_mathematical_error",
+          "detail": "1/e属于约化Lambert模型；Taylor级数在|z|=1/e边界仍绝对收敛，且原问题的精确收敛半径未由该模型证明。"
+        }
+      ],
+      "next_step": "修正静态分母，以精确通量关系控制b/(a−bR)整体，针对超低频窄峰进行含峰宽与面积误差的统一积分估计。",
+      "source_detail_json": "evaluations/supplement/q3_scores.json",
+      "rank_within_supplement_question": 1,
+      "cost_source": "原表用量",
+      "replaces_answer_id": "3g",
+      "model": "Opus 5.5 xhigh",
+      "short": "Opus 5.5 xhigh",
+      "color": "#BE644B",
+      "cost": 14.384,
+      "sheet": "Task 3",
+      "row": 8,
+      "replaces": "3g",
+      "costSource": "原表用量"
+    },
+    {
+      "id": "s_3b",
+      "question": 3,
+      "source_pdf": "submissions/supplement/03/s_3b.pdf",
+      "model_name": "DeepSeek V4.1 Flash max",
+      "reasoning_effort": "max",
+      "cost_usd": 0.477,
+      "scores": {
+        "definition": 10,
+        "calibration": 21,
+        "verification": 9,
+        "research": 11,
+        "calibration_of_claims": 3
+      },
+      "total": 54,
+      "interval": [
+        49,
+        60
+      ],
+      "summary": "正确因果与固定L共振首阶、精确delta模型有价值；mismatch公式、临界极限和resolvent对象存在错误，统一能量—流量闭合缺失，最优全时间定理未证明。",
+      "strongest": "严格的2L−13因果结论、正确首阶Duhamel与Wronskian位移商、辅助delta势的精确共振方程，以及有限参数下约0.20ε的时域数值证据。",
+      "errors": [
+        {
+          "page": 4,
+          "locator": "命题5、式(13)；p.1、13–14总结",
+          "severity": "mathematical_error",
+          "detail": "漏掉−|B|²/(2A²)的mismatch二阶投影项；δh=λh0给M=0的直接反例。有限窗口分母也不同，T≤9时Q3b无定义。"
+        },
+        {
+          "page": 4,
+          "locator": "式(12)，对照p.3式(9)",
+          "severity": "notation_and_order_error",
+          "detail": "δh^(1)在式(9)中已含ε，式(12)又乘ε，与声称的一阶阶数不一致。"
+        },
+        {
+          "page": 3,
+          "locator": "命题4、式(11)；p.10定理8",
+          "severity": "core_proof_gap",
+          "detail": "未证明能量到固定宽度远区场幅时间积分的一致界；普通bump-to-bump零频核范数随L增长，不能用L无关Neumann常数闭合全部高阶项。未扰动F数值又被当作扰动场一致上界。"
+        },
+        {
+          "page": 10,
+          "locator": "定理8常数和证明链；p.3光锥算子",
+          "severity": "mathematical_error",
+          "detail": "宽度2的自由光锥映射的L2(dt dz)→L2(dt)范数为√2/2，而非1/2；加入背景势还需额外估计，0.286不是所示链给出的理论上界。"
+        },
+        {
+          "page": 7,
+          "locator": "§3.2临界区域表；p.7–8式(22)",
+          "severity": "invalid_perturbative_extrapolation",
+          "detail": "c=c*时以已失效首阶式声称不消失O(1)位移，与Lambert近邻尺度O(log L/L)矛盾。p.8确有2Lμ因子，但全文阈值与适用条件未一致化；π/L间距主沿实方向。"
+        },
+        {
+          "page": 11,
+          "locator": "§4.2；p.12式(23)–(25)及最终充要判据",
+          "severity": "operator_and_criterion_error",
+          "detail": "把普通全轴L2自伴resolvent当成下半平面outgoing共振算子，赋予未扰动全局范数L依赖；Born G0W_LG0缺全阶逆控制、频率因子与可积性条件，不能成为所述Q3c充要判据。"
+        },
+        {
+          "page": 9,
+          "locator": "§3.4 branch cut/tail",
+          "severity": "low_frequency_error",
+          "detail": "bump反射不能统一写成εω→0；Born区为ε/ω，固定正bump零频可近全反射，源—探测器低频抑制须另证。"
+        },
+        {
+          "page": 5,
+          "locator": "命题6证明",
+          "severity": "proof_sign_error",
+          "detail": "d[δψ_L,ψ_R]/dx应为−δVψ_Lψ_R；最终式(15)的负号正确，保留最终首阶公式的得分。"
+        },
+        {
+          "page": 12,
+          "locator": "时域收敛表；对照p.10、14",
+          "severity": "numerical_report_inconsistency",
+          "detail": "L=20、ε=10^-3的E/ε在收敛表为0.200398→0.200380，而其他表约0.20445，约2%差异超出其误差声称。有限时积分与受污染大L运行未提供无限尾部误差控制。"
+        }
+      ],
+      "next_step": "先修正mismatch、临界量词与频域对象，用精确背景Jost表达式和完整有限时间能量/迹估计替代未证流量引理；统一同参数数值表后，对真实bump复频根做外端/阶数/路径收敛。",
+      "source_detail_json": "evaluations/supplement/q3_scores.json",
+      "rank_within_supplement_question": 2,
+      "cost_source": "用户补充用量",
+      "replaces_answer_id": null,
+      "model": "DeepSeek V4.1 Flash max",
+      "short": "DeepSeek Flash max",
+      "color": "#6857B1",
+      "cost": 0.477,
+      "sheet": "Task 3",
+      "row": 9,
+      "replaces": null,
+      "costSource": "用户补充用量"
+    }
+  ],
+  "full": [
+    {
+      "model": "GPT-6 Astra high",
+      "short": "Astra high",
+      "color": "#7E0C6E",
+      "ids": [
+        "1b",
+        "2e",
+        "3e"
+      ],
+      "n": 3,
+      "score": 287,
+      "mean": 95.66666666666667,
+      "cost": 14.37,
+      "meanCost": 4.79,
+      "pointsPerDollar": 19.972164231036885,
+      "minimum": 92,
+      "at80": 3,
+      "lower": 92,
+      "upper": 97.66666666666667,
+      "dims": {
+        "definition": 14.666666666666666,
+        "calibration": 29.333333333333332,
+        "verification": 13.666666666666666,
+        "research": 28.333333333333332,
+        "calibration_of_claims": 9.666666666666666
+      }
+    },
+    {
+      "model": "GPT-6 Sol max",
+      "short": "Sol max",
+      "color": "#167E9A",
+      "ids": [
+        "s_1b",
+        "2c",
+        "3c"
+      ],
+      "n": 3,
+      "score": 283,
+      "mean": 94.33333333333333,
+      "cost": 8.252,
+      "meanCost": 2.750666666666667,
+      "pointsPerDollar": 34.29471643238003,
+      "minimum": 94,
+      "at80": 3,
+      "lower": 90.66666666666667,
+      "upper": 97.33333333333333,
+      "dims": {
+        "definition": 14.666666666666666,
+        "calibration": 29.333333333333332,
+        "verification": 13,
+        "research": 27.333333333333332,
+        "calibration_of_claims": 10
+      }
+    },
+    {
+      "model": "Opus 5.5 xhigh",
+      "short": "Opus 5.5 xhigh",
+      "color": "#BE644B",
+      "ids": [
+        "s_1a",
+        "s_2a",
+        "s_3a"
+      ],
+      "n": 3,
+      "score": 261,
+      "mean": 87,
+      "cost": 50.77,
+      "meanCost": 16.923333333333336,
+      "pointsPerDollar": 5.1408311995272795,
+      "minimum": 81,
+      "at80": 3,
+      "lower": 82,
+      "upper": 91.66666666666667,
+      "dims": {
+        "definition": 13.666666666666666,
+        "calibration": 28.333333333333332,
+        "verification": 13,
+        "research": 25.666666666666668,
+        "calibration_of_claims": 6.333333333333333
+      }
+    },
+    {
+      "model": "GPT-6 Sol xhigh",
+      "short": "Sol xhigh",
+      "color": "#478B42",
+      "ids": [
+        "1c",
+        "2d",
+        "3d"
+      ],
+      "n": 3,
+      "score": 236,
+      "mean": 78.66666666666667,
+      "cost": 6.184,
+      "meanCost": 2.0613333333333332,
+      "pointsPerDollar": 38.16300129366106,
+      "minimum": 54,
+      "at80": 2,
+      "lower": 74.33333333333333,
+      "upper": 83,
+      "dims": {
+        "definition": 14.666666666666666,
+        "calibration": 26.333333333333332,
+        "verification": 10,
+        "research": 19,
+        "calibration_of_claims": 8.666666666666666
+      }
+    },
+    {
+      "model": "GPT-5.6 Sol xhigh",
+      "short": "5.6 Sol xhigh",
+      "color": "#52677E",
+      "ids": [
+        "1a",
+        "2a",
+        "3a"
+      ],
+      "n": 3,
+      "score": 226,
+      "mean": 75.33333333333333,
+      "cost": 20.805,
+      "meanCost": 6.935,
+      "pointsPerDollar": 10.862773371785629,
+      "minimum": 57,
+      "at80": 2,
+      "lower": 71,
+      "upper": 79.66666666666667,
+      "dims": {
+        "definition": 14,
+        "calibration": 25,
+        "verification": 10.333333333333334,
+        "research": 18.333333333333332,
+        "calibration_of_claims": 7.666666666666667
+      }
+    },
+    {
+      "model": "GPT-6 Luna max",
+      "short": "Luna max",
+      "color": "#C88700",
+      "ids": [
+        "s_1c",
+        "2b",
+        "3b"
+      ],
+      "n": 3,
+      "score": 215,
+      "mean": 71.66666666666667,
+      "cost": 0.464,
+      "meanCost": 0.15466666666666667,
+      "pointsPerDollar": 463.3620689655172,
+      "minimum": 53,
+      "at80": 1,
+      "lower": 67,
+      "upper": 76.66666666666667,
+      "dims": {
+        "definition": 14.666666666666666,
+        "calibration": 25,
+        "verification": 9,
+        "research": 14.666666666666666,
+        "calibration_of_claims": 8.333333333333334
+      }
+    },
+    {
+      "model": "DeepSeek V4.1 Flash max",
+      "short": "DeepSeek Flash max",
+      "color": "#6857B1",
+      "ids": [
+        "s_1d",
+        "s_2b",
+        "s_3b"
+      ],
+      "n": 3,
+      "score": 176,
+      "mean": 58.666666666666664,
+      "cost": 1.321,
+      "meanCost": 0.4403333333333333,
+      "pointsPerDollar": 133.2323996971991,
+      "minimum": 47,
+      "at80": 0,
+      "lower": 53.333333333333336,
+      "upper": 65.33333333333333,
+      "dims": {
+        "definition": 12.333333333333334,
+        "calibration": 22.666666666666668,
+        "verification": 8,
+        "research": 11.666666666666666,
+        "calibration_of_claims": 4
+      }
+    },
+    {
+      "model": "Grok 4.7 high",
+      "short": "Grok 4.7 high",
+      "color": "#888888",
+      "ids": [
+        "1d",
+        "2f",
+        "3f"
+      ],
+      "n": 3,
+      "score": 169,
+      "mean": 56.333333333333336,
+      "cost": 14.676,
+      "meanCost": 4.892,
+      "pointsPerDollar": 11.515399291360044,
+      "minimum": 30,
+      "at80": 0,
+      "lower": 51.333333333333336,
+      "upper": 62,
+      "dims": {
+        "definition": 12,
+        "calibration": 19.666666666666668,
+        "verification": 8.333333333333334,
+        "research": 10.666666666666666,
+        "calibration_of_claims": 5.666666666666667
+      }
+    }
+  ],
+  "questionData": [
+    [
+      {
+        "id": "s_1b",
+        "question": 1,
+        "source_pdf": "submissions/supplement/01/s_1b.pdf",
+        "model_name": "GPT-6 Sol max",
+        "reasoning_effort": "max",
+        "cost_usd": 4.118,
+        "scores": {
+          "definition": 14,
+          "calibration": 29,
+          "verification": 13,
+          "research": 28,
+          "calibration_of_claims": 10
+        },
+        "total": 94,
+        "interval": [
+          90,
+          97
+        ],
+        "summary": "完整树零空间及逐排序的树—单负一圈解析证书成立，结论范围准确。",
+        "strongest": "六排序共同恒等式的EYM目标收缩为(2x^2-2x-3)/(6z)，排除同一套helicity无关标量权重；包含题面全部一次局域核。",
+        "errors": [
+          "跨helicity最小积分基修复尚未完成，正文已准确保留为开放步骤。",
+          "所称运行脚本未随Supplement附送，完整执行记录无法审计。"
+        ],
+        "next_step": "交付证书脚本，对事先固定积分基检验n=4的跨helicity割与因子化。",
+        "source_detail_json": "evaluations/supplement/q1_scores.json",
+        "rank_within_supplement_question": 1,
+        "cost_source": "用户补充用量",
+        "replaces_answer_id": null,
+        "model": "GPT-6 Sol max",
+        "short": "Sol max",
+        "color": "#167E9A",
+        "cost": 4.118,
+        "sheet": "Task 1",
+        "row": 7,
+        "replaces": null,
+        "costSource": "用户补充用量"
+      },
+      {
+        "id": "1b",
+        "scores": {
+          "definition": 14,
+          "calibration": 28,
+          "verification": 13,
+          "research": 28,
+          "calibration_of_claims": 9
+        },
+        "total": 92,
+        "interval": [
+          88,
+          95
+        ],
+        "summary": "完整一圈核类的解析不可解性证书成立；一处输入公式笔误未进入后续主要结果。",
+        "strongest": "八维树零空间及一圈全正、三个单负联合约束的显式函数域证书。",
+        "errors": [
+          "第2页式(7)首项符号错误；式(18)、缺陷与证书经正确输入复算成立。",
+          "一般多重数扩张尚未闭合，运行脚本未附。"
+        ],
+        "next_step": "统一单负输入公式并提供证书生成脚本，再检验固定积分基的n=4因子化。",
+        "source_pdf": "submissions/original/01/1b.pdf",
+        "question": 1,
+        "rank_within_question": 1,
+        "model": "GPT-6 Astra high",
+        "short": "Astra high",
+        "color": "#7E0C6E",
+        "cost": 5.614,
+        "sheet": "Task 1",
+        "row": 3,
+        "replaces": null,
+        "costSource": "原表用量"
+      },
+      {
+        "id": "s_1a",
+        "question": 1,
+        "source_pdf": "submissions/supplement/01/s_1a.pdf",
+        "model_name": "Opus 5.5 xhigh",
+        "reasoning_effort": "xhigh",
+        "cost_usd": 24.056,
+        "scores": {
+          "definition": 13,
+          "calibration": 27,
+          "verification": 12,
+          "research": 28,
+          "calibration_of_claims": 7
+        },
+        "total": 87,
+        "interval": [
+          82,
+          92
+        ],
+        "summary": "n=3符号左零向量证书正确，软留数归约和圈动量插入有价值；数值重构与一般化仍需补证。",
+        "strongest": "有理运动学点上yV=0且yDelta=(3+2x-2x^2)/10368非零；允许x为符号，排除整个树级仿射核类。",
+        "errors": [
+          "高精度有理重构缺少误差与唯一性认证。",
+          "先精确共线后软化时，退化排序的留数归约尚需完整引理。",
+          "n=4数值秩尚未成为精确函数域证书。",
+          "圈动量插入表示的一般割闭合未完成。"
+        ],
+        "next_step": "解析完成低点积分，补足退化排序软留数引理，再认证n=4子式。",
+        "source_detail_json": "evaluations/supplement/q1_scores.json",
+        "rank_within_supplement_question": 2,
+        "cost_source": "原表用量",
+        "replaces_answer_id": "1e",
+        "model": "Opus 5.5 xhigh",
+        "short": "Opus 5.5 xhigh",
+        "color": "#BE644B",
+        "cost": 24.056,
+        "sheet": "Task 1",
+        "row": 6,
+        "replaces": "1e",
+        "costSource": "原表用量"
+      },
+      {
+        "id": "1a",
+        "scores": {
+          "definition": 13,
+          "calibration": 18,
+          "verification": 7,
+          "research": 14,
+          "calibration_of_claims": 5
+        },
+        "total": 57,
+        "interval": [
+          51,
+          63
+        ],
+        "summary": "正确的一圈输入和齐次零空间有价值；树级仿射目标错误，另有单负公式及校验矛盾。",
+        "strongest": "八维齐次树零空间、部分精确缺陷、形式左零向量及D维积分后抵消。",
+        "errors": [
+          "第3页式(14)给出的树级结果比实际值多1/z，不能作真实树代表。",
+          "第4页式(19)在给定点为-491813/21600，式(22)报正值；正确振幅差为308063/21600。",
+          "原稿证书约束错误的树级仿射空间。"
+        ],
+        "next_step": "换成真实树代表，重建非齐次约束，并逐个复核三个负腿位置。",
+        "source_pdf": "submissions/original/01/1a.pdf",
+        "question": 1,
+        "rank_within_question": 3,
+        "model": "GPT-5.6 Sol xhigh",
+        "short": "5.6 Sol xhigh",
+        "color": "#52677E",
+        "cost": 4.082,
+        "sheet": "Task 1",
+        "row": 2,
+        "replaces": null,
+        "costSource": "原表用量"
+      },
+      {
+        "id": "1c",
+        "scores": {
+          "definition": 14,
+          "calibration": 20,
+          "verification": 5,
+          "research": 9,
+          "calibration_of_claims": 6
+        },
+        "total": 54,
+        "interval": [
+          48,
+          60
+        ],
+        "summary": "树和全正校准正确；早期文献单负错号传播至缺陷及主子式证书。",
+        "strongest": "正确树代表、八维齐次零空间及全正缺陷与D维取消。",
+        "errors": [
+          "第2页式(6)单负首项符号错误。",
+          "x=1/3,z=2时真实单负缺陷为7/9，正文为-1/9。",
+          "带eta系统错误输入秩13/14，正确输入秩10/10，主十四阶子式不能证明所称物理命题。"
+        ],
+        "next_step": "使用BDK 1993独立表达替换单负输入，按物理归一化重新构造全部扇区证书。",
+        "source_pdf": "submissions/original/01/1c.pdf",
+        "question": 1,
+        "rank_within_question": 4,
+        "model": "GPT-6 Sol xhigh",
+        "short": "Sol xhigh",
+        "color": "#478B42",
+        "cost": 2.386,
+        "sheet": "Task 1",
+        "row": 4,
+        "replaces": null,
+        "costSource": "原表用量"
+      },
+      {
+        "id": "s_1c",
+        "question": 1,
+        "source_pdf": "submissions/supplement/01/s_1c.pdf",
+        "model_name": "GPT-6 Luna max",
+        "reasoning_effort": "max",
+        "cost_usd": 0.178,
+        "scores": {
+          "definition": 14,
+          "calibration": 20,
+          "verification": 5,
+          "research": 8,
+          "calibration_of_claims": 6
+        },
+        "total": 53,
+        "interval": [
+          47,
+          60
+        ],
+        "summary": "树级与全正缺陷正确；单负错号传入12/13主证书，正确输入下所用子系统秩为9/9。",
+        "strongest": "正确树代表、全正精确缺陷、有限维数移位积分基和可复现的形式系数消元。",
+        "errors": [
+          "第3页式(8)单负首项错号。",
+          "第4页证书仅对错误物理输入成立；修正后其两个单负位置与全正子系统相容。",
+          "未提供有效的当前物理问题全核类排除。"
+        ],
+        "next_step": "采用独立正确单负表达式，把三个负腿与树级目标合并重建证书。",
+        "source_detail_json": "evaluations/supplement/q1_scores.json",
+        "rank_within_supplement_question": 3,
+        "cost_source": "用户补充用量",
+        "replaces_answer_id": null,
+        "model": "GPT-6 Luna max",
+        "short": "Luna max",
+        "color": "#C88700",
+        "cost": 0.178,
+        "sheet": "Task 1",
+        "row": 8,
+        "replaces": null,
+        "costSource": "用户补充用量"
+      },
+      {
+        "id": "s_1d",
+        "question": 1,
+        "source_pdf": "submissions/supplement/01/s_1d.pdf",
+        "model_name": "DeepSeek V4.1 Flash max",
+        "reasoning_effort": "max",
+        "cost_usd": 0.414,
+        "scores": {
+          "definition": 13,
+          "calibration": 20,
+          "verification": 4,
+          "research": 7,
+          "calibration_of_claims": 3
+        },
+        "total": 47,
+        "interval": [
+          41,
+          55
+        ],
+        "summary": "树零空间和部分低点输入成立；单负错号、缺陷表、全正修复及最小扩张论证均存在实质问题。",
+        "strongest": "八个树级零向量、部分精确全正缺陷及完整形式线性系统。",
+        "errors": [
+          "第6页式(20)错号进入8/9证书；正确物理输入为5/6且原左向量失效。",
+          "第7页负腿2缺陷表与其自身式(18)、(21)、(25)不符。",
+          "第9页式(30)全正修复在参考点Gf=-R而非Gf=R。",
+          "从单列增广秩差1推断最小物理扩张维数1不成立；新方向位于树级零空间之外。",
+          "误判三点(-,+,+)与五点NMHV类别，未准确界定剩余缺口。"
+        ],
+        "next_step": "先修复物理输入与表格，按D维割独立构造新结构并保持树级约束。",
+        "source_detail_json": "evaluations/supplement/q1_scores.json",
+        "rank_within_supplement_question": 4,
+        "cost_source": "用户补充用量",
+        "replaces_answer_id": null,
+        "model": "DeepSeek V4.1 Flash max",
+        "short": "DeepSeek Flash max",
+        "color": "#6857B1",
+        "cost": 0.414,
+        "sheet": "Task 1",
+        "row": 9,
+        "replaces": null,
+        "costSource": "用户补充用量"
+      },
+      {
+        "id": "1d",
+        "scores": {
+          "definition": 10,
+          "calibration": 11,
+          "verification": 2,
+          "research": 2,
+          "calibration_of_claims": 5
+        },
+        "total": 30,
+        "interval": [
+          24,
+          36
+        ],
+        "summary": "同一核树级已不存在的核心结论源于跨helicity符号匹配失败；未完成一圈结果。",
+        "strongest": "排序、变量计数与正helicity一侧的部分树级校准。",
+        "errors": [
+          "第5页树级no-go与适用于两种引力子helicity的标准树恒等式矛盾。",
+          "有限cross-ratio点未配合次数上界，不能据此声称一般恒等式。",
+          "没有一圈实际EYM结果、缺陷和有效不可解性证书。"
+        ],
+        "next_step": "先统一极化、spinor与宇称约定，同时核验MHV和anti-MHV树振幅。",
+        "source_pdf": "submissions/original/01/1d.pdf",
+        "question": 1,
+        "rank_within_question": 5,
+        "model": "Grok 4.7 high",
+        "short": "Grok 4.7 high",
+        "color": "#888888",
+        "cost": 4.514,
+        "sheet": "Task 1",
+        "row": 5,
+        "replaces": null,
+        "costSource": "原表用量"
+      }
+    ],
+    [
+      {
+        "id": "2e",
+        "scores": {
+          "definition": 15,
+          "calibration": 30,
+          "verification": 14,
+          "research": 28,
+          "calibration_of_claims": 10
+        },
+        "interval": [
+          94,
+          99
+        ],
+        "research_interval": [
+          26,
+          30
+        ],
+        "summary": "本组最强的已证窗口结果：MP 下界、每个有限 t 的严格 converse、高保真端同阶误差律，并处理 k=D 边界。",
+        "strongest": "两侧增长窗口内 max(k⁻²,h(1/t)²)≤F≤min(1,(√t+k⁻¹)²,1−g_k(t)²/4)；顺序极限下 1−F=Θ(φ⁻Ξ)；k=D 时 F=Σm_a²/D²。",
+        "errors": [
+          {
+            "page": 6,
+            "locator": "式 (41)，及第 7 页式 (45)",
+            "kind": "proof_detail",
+            "severity": "minor",
+            "description": "增长 k 的退化宽高比不能只援引固定正有限宽高比的 Bai–Yin 定理；补充 Gaussian 有限维尾界即可补足，但文中未展开参数。"
+          },
+          {
+            "page": 8,
+            "locator": "式 (47)",
+            "kind": "scope",
+            "severity": "minor",
+            "description": "误差同阶律是先窗口极限再高 t 的顺序极限，不能推广为任意联合发散的统一系数。文中已经明确这一限制。"
+          }
+        ],
+        "independent_verification": "评阅者独立审计 Gaussian 正交化、MP 线性统计、Wick 均值与 Poincaré 梯度；CAS 核对 g₂ 和高 t 系数；直接复核全空间最优值。",
+        "next_step": "以原始–对偶 SDP 证书检验 MP 下界与固定 k 真实最优值的间隙，并写出增长宽高比的显式 Gaussian 引理。",
+        "score_reasons": {
+          "definition": "整数子序列、k/D、trace 和拓扑资源范围审计完整。",
+          "calibration": "有限熵、次级展开、replica、Stiefel、标签与边缘涨落式完整正确。",
+          "verification": "CAS、原始 contraction、六组带标准误样本及显式 Petz map 互补；未声称执行未做的 SDP。",
+          "research": "严格窗口 converse、同阶高端误差律及全空间边界答案实质性强。",
+          "calibration_of_claims": "证明、候选、Petz 数值下界及极限顺序严格区分。"
+        },
+        "source": "submissions/original/02/2e.pdf",
+        "total": 97,
+        "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+        "source_pdf": "submissions/original/02/2e.pdf",
+        "question": 2,
+        "rank_within_question": 1,
+        "model": "GPT-6 Astra high",
+        "short": "Astra high",
+        "color": "#7E0C6E",
+        "cost": 4.55,
+        "sheet": "Task 2",
+        "row": 6,
+        "replaces": null,
+        "costSource": "原表用量"
+      },
+      {
+        "id": "2c",
+        "scores": {
+          "definition": 15,
+          "calibration": 30,
+          "verification": 14,
+          "research": 25,
+          "calibration_of_claims": 10
+        },
+        "interval": [
+          91,
+          97
+        ],
+        "research_interval": [
+          23,
+          28
+        ],
+        "summary": "给出正确的有限维 Gaussian 谱概率上界、增长 k 的同尺度两侧界，以及非平凡 Jacobi 最优恢复反例。",
+        "strongest": "F_rec 的有限维高概率谱上界和 limsup E F≤min(1,(√u+κ⁻¹)²)；镜像 (4,2)/(2,4) 精确均值 6619/7350 与 53/140。",
+        "errors": [
+          {
+            "page": 4,
+            "locator": "式 (26)",
+            "kind": "gap",
+            "severity": "minor",
+            "description": "当 κ=2、u≥1/4 时上界为 1，不能在所有有限窗口排除完美恢复或确定误差率。"
+          },
+          {
+            "page": 4,
+            "locator": "临界子序列假设",
+            "kind": "scope",
+            "severity": "minor",
+            "description": "固定一侧、k/D 不趋零的边界序列未覆盖。"
+          }
+        ],
+        "independent_verification": "评阅者核对原始复高斯尾界及 t 条件；Mathematica 独立积分 Jacobi 密度的归一化、gap 与两个平方根矩，全部复现。",
+        "next_step": "结合二阶量集中与 ||C||₁≥Tr C²/||C||∞ 给出每个有限 u 的严格 converse。",
+        "score_reasons": {
+          "definition": "基底、代数、标签和 decoder 定义准确。",
+          "calibration": "全部熵/replica/Stiefel 及 Jacobi 精确值正确。",
+          "verification": "解析最优 decoder、Jacobi 积分、镜像 MC 和 Petz 核验互补。",
+          "research": "有限维概率上界、增长 k 两端和精确熵反例成立，尚缺高端误差同阶 bound。",
+          "calibration_of_claims": "未把区间界或数值误差当成精确函数，范围明确。"
+        },
+        "source": "submissions/original/02/2c.pdf",
+        "total": 94,
+        "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+        "source_pdf": "submissions/original/02/2c.pdf",
+        "question": 2,
+        "rank_within_question": 2,
+        "model": "GPT-6 Sol max",
+        "short": "Sol max",
+        "color": "#167E9A",
+        "cost": 1.814,
+        "sheet": "Task 2",
+        "row": 4,
+        "replaces": null,
+        "costSource": "原表用量"
+      },
+      {
+        "id": "s_2a",
+        "question": 2,
+        "source_pdf": "submissions/supplement/02/s_2a.pdf",
+        "model_name": "Opus 5.5 xhigh",
+        "reasoning_effort": "xhigh",
+        "cost_usd": 12.33,
+        "scores": {
+          "definition": 15,
+          "calibration": 30,
+          "verification": 13,
+          "research": 28,
+          "calibration_of_claims": 7
+        },
+        "total": 93,
+        "interval": [
+          88,
+          97
+        ],
+        "summary": "完整精确校准与扇区 Haar 随机过滤器归约；碰撞/MP 下界和谱上界实质性强，但唯一极限、精确转折点和总荷推广有过度表述。",
+        "strongest": "M_a>=k 时 O(sqrt(k/D)) 的扇区 Haar 码归约；精确有限维碰撞下界；固定 k、两侧增长窗口中的 MP 下界及谱 converse。",
+        "errors": [
+          {
+            "page": 11,
+            "locator": "§4.3 集中性段；第 3 页摘要",
+            "kind": "unsupported_inference",
+            "severity": "moderate",
+            "description": "F_N-EF_N趋零不证明均值收敛；点质量极限应加均值极限或子序列条件。"
+          },
+          {
+            "page": 15,
+            "locator": "§5(1)；第 17 页表 6 与结论",
+            "kind": "overclaim",
+            "severity": "moderate",
+            "description": "已证尺度是Xi=O(1)，未定义并证明唯一精确转折点Xi=0。"
+          },
+          {
+            "page": 17,
+            "locator": "总荷 c!=1 推广",
+            "kind": "scope",
+            "severity": "moderate",
+            "description": "空间同构不能代替新局域代数、互补信道和拓扑资源权限的定义；单 anyon 阈值偏移未证。"
+          },
+          {
+            "page": 9,
+            "locator": "§3.4 O(k/sqrt(D)) 标签界及第 3 页摘要",
+            "kind": "scope",
+            "severity": "minor",
+            "description": "该粗界不对所有增长k序列趋零；窗口中须用k/D趋零及O(sqrt(k/D))归约。"
+          },
+          {
+            "page": 11,
+            "locator": "§4.3 固定k窗口及第15页增长k概要",
+            "kind": "gap",
+            "severity": "minor",
+            "description": "没有覆盖固定一侧、k/D不小的有限Xi边界序列；增长k最优MP函数仍为猜想。"
+          }
+        ],
+        "next_step": "证明固定k普通Haar恢复SDP的均值极限存在，明确极限顺序；以逐样本原始/对偶证书检验增长k的MP最优值猜想。",
+        "source_detail_json": "evaluations/supplement/q2_scores.json",
+        "rank_within_supplement_question": 1,
+        "cost_source": "原表用量",
+        "replaces_answer_id": "2g",
+        "model": "Opus 5.5 xhigh",
+        "short": "Opus 5.5 xhigh",
+        "color": "#BE644B",
+        "cost": 12.33,
+        "sheet": "Task 2",
+        "row": 8,
+        "replaces": "2g",
+        "costSource": "原表用量"
+      },
+      {
+        "id": "2d",
+        "scores": {
+          "definition": 15,
+          "calibration": 30,
+          "verification": 13,
+          "research": 24,
+          "calibration_of_claims": 10
+        },
+        "interval": [
+          89,
+          95
+        ],
+        "research_interval": [
+          22,
+          27
+        ],
+        "summary": "以 elementary purity/trace-norm 上界完成两侧临界缩放，并给最小镜像切分的精确熵分布反例。",
+        "strongest": "F_R≤k⁻²+δ_R 与 purity 型上界；固定和增长 k 的低端控制；(3,2)/(2,3) 相同熵分布但最优均值为 23/30 与 5/12。",
+        "errors": [
+          {
+            "page": 4,
+            "locator": "式 (23)–(24)",
+            "kind": "gap",
+            "severity": "minor",
+            "description": "purity 上界较松，部分临界点退化；并未得到有限窗口的唯一函数。"
+          },
+          {
+            "page": 4,
+            "locator": "r,b→∞ 假设",
+            "kind": "scope",
+            "severity": "minor",
+            "description": "未讨论固定一侧和 k/D 非小的边界子序列。"
+          }
+        ],
+        "independent_verification": "评阅者核对 decoder effect 的 0≤X≤I、Tr X=M_R/k 和基线配对值；独立 Beta 积分复现 23/30、5/12。",
+        "next_step": "用逐扇区谱范数替换全局 purity 界，并审计固定 N_B、k/D→α 的边界。",
+        "score_reasons": {
+          "definition": "互补、trace、允许操作及基底运输准确。",
+          "calibration": "熵、矩、渐近常数和最小精确反例均正确。",
+          "verification": "两种不同最优 decoder 与 Beta 积分构成充分解析验证；数值摘要较简略。",
+          "research": "有真实低端 1/k² converse 与增长 k 失败端，但窗口界偏松。",
+          "calibration_of_claims": "主动标明退化区间和未求极限，论断与证据相符。"
+        },
+        "source": "submissions/original/02/2d.pdf",
+        "total": 92,
+        "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+        "source_pdf": "submissions/original/02/2d.pdf",
+        "question": 2,
+        "rank_within_question": 4,
+        "model": "GPT-6 Sol xhigh",
+        "short": "Sol xhigh",
+        "color": "#478B42",
+        "cost": 2.155,
+        "sheet": "Task 2",
+        "row": 5,
+        "replaces": null,
+        "costSource": "原表用量"
+      },
+      {
+        "id": "2a",
+        "scores": {
+          "definition": 15,
+          "calibration": 30,
+          "verification": 12,
+          "research": 21,
+          "calibration_of_claims": 9
+        },
+        "interval": [
+          84,
+          90
+        ],
+        "research_interval": [
+          19,
+          24
+        ],
+        "summary": "完整精确校准、正确 Stiefel/标签矩、合法恢复下界；固定 k 的 monogamy converse 给同尺度约束，增长 k 的 converse 尚缺。",
+        "strongest": "精确 E Tr C_QB² 与标签泄漏矩；平均/高概率恢复下界；固定 k 下由 F_R+F_B≤1+1/k 得到低辐射端非高保真 converse。",
+        "errors": [
+          {
+            "page": 5,
+            "locator": "式 (23)–(24)",
+            "kind": "gap",
+            "severity": "moderate",
+            "description": "低辐射端只能得 F_R≤1/k+o(1)，未确定真实盲解码基线 1/k²，也未覆盖增长 k 的匹配 converse。"
+          },
+          {
+            "page": 4,
+            "locator": "4.1 节至第 5 页 4.2 节",
+            "kind": "scope",
+            "severity": "minor",
+            "description": "渐近要求两侧尺寸均发散，未处理固定 N_B、k/D 非小的有限 Xi 边界序列。"
+          }
+        ],
+        "independent_verification": "评阅者用随机投影与逐指标 Weingarten 两路核验核心矩；核对 monogamy 投影范数为 1+1/k；新 Haar/Petz 样本与精确值一致。",
+        "next_step": "用辐射 Choi SDP 对偶或 F_R≤1/k²+δ_R 收紧低端，并获得增长 k 的同尺度上界。",
+        "score_reasons": {
+          "definition": "维数、trace、直和与允许操作均正确。",
+          "calibration": "熵、replica、Stiefel 及精确小尺寸值正确完整。",
+          "verification": "三组 MC 和每组 12 次 SDP 有具体数值，但无误差条或原始–对偶证书。",
+          "research": "精确矩、标签量和固定 k 两侧界成立，增长 k/窗口仍未闭合。",
+          "calibration_of_claims": "多数结论范围清楚，低端 1/k 只应解释为非高保真 converse。"
+        },
+        "source": "submissions/original/02/2a.pdf",
+        "total": 87,
+        "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+        "source_pdf": "submissions/original/02/2a.pdf",
+        "question": 2,
+        "rank_within_question": 5,
+        "model": "GPT-5.6 Sol xhigh",
+        "short": "5.6 Sol xhigh",
+        "color": "#52677E",
+        "cost": 2.763,
+        "sheet": "Task 2",
+        "row": 2,
+        "replaces": null,
+        "costSource": "原表用量"
+      },
+      {
+        "id": "2b",
+        "scores": {
+          "definition": 15,
+          "calibration": 30,
+          "verification": 13,
+          "research": 18,
+          "calibration_of_claims": 10
+        },
+        "interval": [
+          82,
+          89
+        ],
+        "research_interval": [
+          15,
+          21
+        ],
+        "summary": "校准、保真度范数关系与标签泄漏均扎实，且精确求解 classical decoder；研究层只完成高保真一侧。",
+        "strongest": "随机投影导出的精确 Stiefel 平均；(1−δ)²≤F_rec≤1−δ²/4；(2,3), k=2 的最优平均 5/12，以及 k=3 时 2/9。",
+        "errors": [
+          {
+            "page": 7,
+            "locator": "5.1 节",
+            "kind": "gap",
+            "severity": "moderate",
+            "description": "只有 Xi→+∞ 的充分条件；窗口内没有 δ 的正下界或最优 decoder 的匹配 converse。"
+          }
+        ],
+        "independent_verification": "评阅者精确核验随机投影系数及 Stiefel 化简；由 Beta(2,1) 的 rank-one POVM effect 独立积分复现 5/12。",
+        "next_step": "构造辐射 Choi SDP 的显式对偶可行点并用 Gaussian 谱界得到临界上界。",
+        "score_reasons": {
+          "definition": "互补嵌入、标签、平方保真度及 1/k² 基线均正确。",
+          "calibration": "有限熵、replica、渐近及小规模最优解码正确。",
+          "verification": "解析 POVM 最优解、Beta 积分、CAS 与 MC 构成不同检查。",
+          "research": "精确矩、恢复 bound 及有限维反例成立，但缺两侧临界窗推进。",
+          "calibration_of_claims": "准确承认 HS 趋零不足以控制 trace norm；未过度声称。"
+        },
+        "source": "submissions/original/02/2b.pdf",
+        "total": 86,
+        "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+        "source_pdf": "submissions/original/02/2b.pdf",
+        "question": 2,
+        "rank_within_question": 6,
+        "model": "GPT-6 Luna max",
+        "short": "Luna max",
+        "color": "#C88700",
+        "cost": 0.143,
+        "sheet": "Task 2",
+        "row": 3,
+        "replaces": null,
+        "costSource": "原表用量"
+      },
+      {
+        "id": "s_2b",
+        "question": 2,
+        "source_pdf": "submissions/supplement/02/s_2b.pdf",
+        "model_name": "DeepSeek V4.1 Flash max",
+        "reasoning_effort": "max",
+        "cost_usd": 0.43,
+        "scores": {
+          "definition": 14,
+          "calibration": 27,
+          "verification": 11,
+          "research": 17,
+          "calibration_of_claims": 6
+        },
+        "total": 75,
+        "interval": [
+          70,
+          81
+        ],
+        "summary": "精确Stiefel矩与Petz/CPTP优化有效，窗口主要有数值支持；平均约化态、Gaussian归一化、HS阈值及独立列数值对照存在具体错误。",
+        "strongest": "第7页定理1精确Stiefel二阶矩；第9页式(13)显式Petz恢复下界；第10页式(14)正确CPTP最优恢复SDP与维数因子。",
+        "errors": [
+          {
+            "page": 6,
+            "locator": "§2.3 表格及后文",
+            "kind": "object_error",
+            "severity": "moderate",
+            "description": "S(E rho_R)不等于log D；(3,3)平均约化态谱为(1/5,2/5,2/5)，熵1.054920…，非1.609438。"
+          },
+          {
+            "page": 6,
+            "locator": "§2.3 最后一段",
+            "kind": "normalization_error",
+            "severity": "moderate",
+            "description": "各向同性复Gaussian逐样本归一化与Haar球面分布完全相同，有限D下不存在声称的系综O(1/D)差异。"
+          },
+          {
+            "page": 4,
+            "locator": "注2独立归一化列对照",
+            "kind": "incorrect_numerical_check",
+            "severity": "moderate",
+            "description": "三个声称数值0.206/0.074/0.049与精确0.24/0.315/0.1114546829及新20000样本检查不符。该项验证不计分，其他正确核验保留。"
+          },
+          {
+            "page": 10,
+            "locator": "注6",
+            "kind": "scaling_error",
+            "severity": "moderate",
+            "description": "式(11)的k因子为1-k^-2，有界于3/4与1；HS趋零不要求NR大于约2log_phi k。并将充分维数条件近似表述成必要条件。"
+          },
+          {
+            "page": 9,
+            "locator": "推论2最后一行",
+            "kind": "parameter_error",
+            "severity": "minor",
+            "description": "Markov事件的范数界应随sqrt(t)增长，文中写成sqrt(t^-1)；紧前有限维公式使用t正确。"
+          },
+          {
+            "page": 10,
+            "locator": "§3.7",
+            "kind": "gap",
+            "severity": "moderate",
+            "description": "只检查计算基标签概率，未控制Q_a的非对角元或完整参考–标签态，不能证明任意量子输入/增长k的标签泄漏结论。"
+          },
+          {
+            "page": 12,
+            "locator": "式(16)、猜想1；第14页状态表",
+            "kind": "overinterpretation_of_fit",
+            "severity": "moderate",
+            "description": "经验拟合尚无固定k与增长k的独立外推或留出检验；表中alpha=1.25残差稍小于alpha=1，不能由此建立唯一普适窗口函数。"
+          },
+          {
+            "page": 17,
+            "locator": "表6底部",
+            "kind": "evidence_limit",
+            "severity": "minor",
+            "description": "末页裁切，本次可完整读取45行，无法逐点核验宣称的全部49组；8个N>=11点的经验常数与声明相容。"
+          }
+        ],
+        "next_step": "修正平均态与归一化检查，重跑独立列对照；计算参考–标签Choi态；从正确的SDP对偶构造显式converse，并将固定k/增长k扫描分开做留出检验。",
+        "source_detail_json": "evaluations/supplement/q2_scores.json",
+        "rank_within_supplement_question": 2,
+        "cost_source": "用户补充用量",
+        "replaces_answer_id": null,
+        "model": "DeepSeek V4.1 Flash max",
+        "short": "DeepSeek Flash max",
+        "color": "#6857B1",
+        "cost": 0.43,
+        "sheet": "Task 2",
+        "row": 9,
+        "replaces": null,
+        "costSource": "用户补充用量"
+      },
+      {
+        "id": "2f",
+        "scores": {
+          "definition": 13,
+          "calibration": 25,
+          "verification": 11,
+          "research": 15,
+          "calibration_of_claims": 5
+        },
+        "interval": [
+          65,
+          75
+        ],
+        "research_interval": [
+          12,
+          19
+        ],
+        "summary": "精确 Stiefel 与高保真充分界正确，但把恒定输出纠缠保真度写成 1/k 并传播到低端表格和结论。",
+        "strongest": "第 5 页定理 10 的精确 Stiefel 二阶矩及第 6 页正确的 1−√(kΣn_a ETr C²) 高保真下界；低维熵积分正确。",
+        "errors": [
+          {
+            "page": 4,
+            "locator": "引理 9 最后一句",
+            "kind": "error",
+            "severity": "major",
+            "description": "恒定输出 decoder 的 (Q2) 值是 1/k²，文中写成 1/k。"
+          },
+          {
+            "page": 6,
+            "locator": "3.3 节，及第 7 页表格、第 8 页结论",
+            "kind": "propagated_error",
+            "severity": "major",
+            "description": "(2,2), k=2 的 1/2 来自利用测量结果；(2,3), k=2 的最优平均是 5/12，不满足表中 ≥1/2。"
+          },
+          {
+            "page": 4,
+            "locator": "3/5≠exp(−41/60) 后的文字",
+            "kind": "conceptual_error",
+            "severity": "minor",
+            "description": "此比较同时改变 Rényi 阶数，不能单独作为 E log Z 与 log E Z 不等的检验。"
+          },
+          {
+            "page": 7,
+            "locator": "HS 前因子与普适性段落",
+            "kind": "unsupported_inference",
+            "severity": "moderate",
+            "description": "二阶 HS 前因子不同不推出最优恢复曲线不同，不能据此证伪恢复常数普适性。"
+          }
+        ],
+        "independent_verification": "评阅者确认定理 10 与八组逐指标 contraction 相容；用精确 POVM 最优解证明 (2,3),k=2 的平均为 5/12；新 Petz 样本约 0.388，高于正确盲解码基线 1/4。",
+        "next_step": "先统一修复 1/k² 基线并用 (2,3) 完整 POVM 优化重审表格，再做低端 converse 和标签泄漏检查。",
+        "score_reasons": {
+          "definition": "模型基本正确，但 (Q2) 操作性归一化没有贯彻。",
+          "calibration": "低维积分和核心矩有效；一般 Page 公式证据较弱，平均次序示例有混淆。",
+          "verification": "有解析积分、QR 样本和 Petz 数值，但未发现恢复基线与小系统矛盾。",
+          "research": "正确的矩和高保真充分界保留；低端和非普适性结论不能计分。",
+          "calibration_of_claims": "错误下界多次标为已证，且一侧充分区被升级为已证转折。"
+        },
+        "source": "submissions/original/02/2f.pdf",
+        "total": 69,
+        "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+        "source_pdf": "submissions/original/02/2f.pdf",
+        "question": 2,
+        "rank_within_question": 7,
+        "model": "Grok 4.7 high",
+        "short": "Grok 4.7 high",
+        "color": "#888888",
+        "cost": 4.274,
+        "sheet": "Task 2",
+        "row": 7,
+        "replaces": null,
+        "costSource": "原表用量"
+      }
+    ],
+    [
+      {
+        "id": "3e",
+        "interval": [
+          94,
+          99
+        ],
+        "summary": "以精确零能解、背景 Green 界及低频通量控制闭合 Q3c 的 α=1/2；最优 Lipschitz 指数仍明确留下超低频面积问题。",
+        "strongest": "sup_{L≥L0,T≥0} E≤C√ε，不需要对数修正；固定 L 的非零全时间首阶响应排除 α>1。",
+        "proof_status": "q3c_proved_alpha_0_5",
+        "proven_uniform_alpha": 0.5,
+        "errors": [
+          {
+            "page": 6,
+            "locator": "(31)",
+            "severity": "remaining_detail",
+            "detail": "背景匹配估计使用正确的已引文献输入；若单独发表，应补齐分区常数与连接区论证。"
+          },
+          {
+            "page": 8,
+            "locator": "(45)",
+            "severity": "open_problem",
+            "detail": "统一 α=1 的超低频积分仍未证明，故 α_best 仅在 [1/2,1]。"
+          }
+        ],
+        "independent_checks": [
+          "CAS 独立验证静态 u,v 方程、Wronskian−1、J 导数和 mismatch。",
+          "精确左反射差与中频 Neumann 界的拼接、√ε 积分幂次已独立核验。",
+          "两网格 L=20/40 波形差与二阶余项复算支持第 10 页表。",
+          "外部低能构造已核对原文且适用本题引力扇区。"
+        ],
+        "next_step": "围绕式 (45) 给出峰宽可控的超低频面积上界或反例，判定是否达到无对数修正的 α=1。",
+        "source_pdf": "submissions/original/03/3e.pdf",
+        "scores": {
+          "definition": 15,
+          "calibration": 30,
+          "verification": 14,
+          "research": 29,
+          "calibration_of_claims": 10
+        },
+        "total": 98,
+        "score_rationales": {
+          "definition_and_setup": "所有定义、变换、固定支集和扰动类准确。",
+          "calibration": "能量、静态、Green、源谱、Duhamel 和复频低阶均有完整可核验公式。",
+          "independent_verification": "多种代数与数值交叉核验充分，抽查支持关键表值。",
+          "research_progress": "全位置全时间存在性闭合，余下为最佳指数问题。",
+          "conclusion_calibration": "证据等级、引用依赖和剩余问题校准清楚。"
+        },
+        "reliability_fabrication_finding": "none_established",
+        "question": 3,
+        "rank_within_question": 1,
+        "model": "GPT-6 Astra high",
+        "short": "Astra high",
+        "color": "#7E0C6E",
+        "cost": 4.206,
+        "sheet": "Task 3",
+        "row": 6,
+        "replaces": null,
+        "costSource": "原表用量"
+      },
+      {
+        "id": "3c",
+        "interval": [
+          91,
+          98
+        ],
+        "summary": "通过精确实轴散射关系与通量不等式证明 Q3c；初等 α=1/50，使用适用的背景低能估计提升到 α=1/10。",
+        "strongest": "sup_{L≥L0,T≥0} E≤Cε^(1/10)，另有不使用精细低能文献的 ε^(1/50) 证明；固定 L 非零一阶响应给出 α_best≤1。",
+        "proof_status": "q3c_proved_alpha_0_1",
+        "proven_uniform_alpha": 0.1,
+        "elementary_uniform_alpha": 0.02,
+        "errors": [
+          {
+            "page": 3,
+            "locator": "(16)",
+            "severity": "remaining_detail",
+            "detail": "复频一致传递渐近可进一步补充基本矩阵及频率导数误差，结论应保留所述非退化解析片条件。"
+          },
+          {
+            "page": 5,
+            "locator": "(29)",
+            "severity": "open_problem",
+            "detail": "最佳统一幂次仅确定在 [1/10,1]，答卷正确标为未闭合。"
+          }
+        ],
+        "independent_checks": [
+          "独立推导式 (20) 的符号/因子和式 (21) 通量界，并核对频率积分产生 1/50 与 1/10。",
+          "附录能量链、V0 的 12/(1+x)^2 界、归一化和 mismatch 已复核。",
+          "核对 DSS 0908.4292v2 第 4–6 节、Lemma 6.3–6.4 和低能 Wronskian，确覆盖 (ℓ,σ)=(2,−3)。"
+        ],
+        "next_step": "保留低频透射及相位权重，对超低频积分建立更精确的统一上界或反例，以确定是否可达 α=1。",
+        "source_pdf": "submissions/original/03/3c.pdf",
+        "scores": {
+          "definition": 15,
+          "calibration": 29,
+          "verification": 12,
+          "research": 29,
+          "calibration_of_claims": 10
+        },
+        "total": 95,
+        "score_rationales": {
+          "definition_and_setup": "全量词、固定源/观察点、扰动类和迹映射准确。",
+          "calibration": "低阶、能量余项、变分符号与双极限较完整。",
+          "independent_verification": "解析结构检验充分，数值交叉检验主要覆盖归一化和少数系数。",
+          "research_progress": "真正证明全 L、全 T 命题，给出两种有内容的幂次。",
+          "conclusion_calibration": "严格区分定理、文献输入、数值资料和最优性缺口。"
+        },
+        "reliability_fabrication_finding": "none_established",
+        "question": 3,
+        "rank_within_question": 2,
+        "model": "GPT-6 Sol max",
+        "short": "Sol max",
+        "color": "#167E9A",
+        "cost": 2.32,
+        "sheet": "Task 3",
+        "row": 4,
+        "replaces": null,
+        "costSource": "原表用量"
+      },
+      {
+        "id": "3d",
+        "interval": [
+          86,
+          94
+        ],
+        "summary": "原模型精确 Jost 匹配与临界/超临界重求根较完整，受控对数窗口覆盖回波后时间；Q3c 明确保留为实频积分问题。",
+        "strongest": "同一 ε,L 序列上证明超临界旧极点固定邻域空缺及新腔分支，并证明 T≤KL 的 E=O(ε log^(5/2)(1/ε))、M=O(ε² log^5(1/ε))。",
+        "proof_status": "proved_spectral_and_finite_window_q3c_open",
+        "errors": [
+          {
+            "page": 5,
+            "locator": "(26)",
+            "severity": "open_problem",
+            "detail": "低频源—探测器实轴积分没有全 L 统一界，故尚不能判定 Q3c。"
+          },
+          {
+            "page": 4,
+            "locator": "(20) 与定理 3",
+            "severity": "remaining_detail",
+            "detail": "若要求论文级定理，复频局部 Volterra 误差的导数界及解析片条件仍可进一步展开。"
+          }
+        ],
+        "independent_checks": [
+          "能量链、首波前非零、mismatch 下界与精确 Wronskian 变分已独立复核。",
+          "L=14 两网格差范数独立复算与 PDF 表在报告精度内相符；未声称独立重算 QNM 根。"
+        ],
+        "next_step": "用精确实轴散射关系控制式 (26) 的超低频部分，保留 source 和 detector 的透射权重。",
+        "source_pdf": "submissions/original/03/3d.pdf",
+        "scores": {
+          "definition": 15,
+          "calibration": 29,
+          "verification": 12,
+          "research": 24,
+          "calibration_of_claims": 10
+        },
+        "total": 90,
+        "score_rationales": {
+          "definition_and_setup": "完整审计题设、范数、观察迹和物理解释边界。",
+          "calibration": "明确能量常数、波前非零、精确匹配与 Rouché/收缩论证。",
+          "independent_verification": "两网格数值与边界说明清楚，独立复算支持。",
+          "research_progress": "非消失谱变化与完整对数窗观测稳定之间建立实质联系。",
+          "conclusion_calibration": "Eproxy、背景网格误差及 Q3c 缺口都如实标注。"
+        },
+        "reliability_fabrication_finding": "none_established",
+        "question": 3,
+        "rank_within_question": 3,
+        "model": "GPT-6 Sol xhigh",
+        "short": "Sol xhigh",
+        "color": "#478B42",
+        "cost": 1.643,
+        "sheet": "Task 3",
+        "row": 5,
+        "replaces": null,
+        "costSource": "原表用量"
+      },
+      {
+        "id": "3a",
+        "interval": [
+          78,
+          86
+        ],
+        "summary": "因果、局部共振微扰和受控对数时间窗可靠；全时间 Q3c 未闭合，新腔分支的原模型匹配误差仍不足。",
+        "strongest": "精确 t*=2L−13 因果相等；T≤KL、L=c log(1/ε) 时 E≤Cε log^(5/2)(1/ε)，并识别 Lε exp(2γL) 的微扰条件。",
+        "proof_status": "proved_finite_window_q3c_open",
+        "errors": [
+          {
+            "page": 4,
+            "locator": "(18)–(19)",
+            "severity": "proof_gap",
+            "detail": "未展示非紧支 RW 背景上的精确两系数 Jost 匹配，双势垒自由传播方程不能无误差地当原模型精确共振方程。"
+          },
+          {
+            "page": 4,
+            "locator": "(20) 后的 pole 说明",
+            "severity": "overstatement",
+            "detail": "严格因果延迟属于完整差信号，通常不属于单个 pole 留数指数。"
+          },
+          {
+            "page": 5,
+            "locator": "5.1 尾部截断误差说明",
+            "severity": "validation_gap",
+            "detail": "80<t<100 的小范数不构成 t>100 全尾部误差上界。"
+          }
+        ],
+        "independent_checks": [
+          "能量常数、mismatch 二阶系数及 Lambert 局部模型独立核对。",
+          "三组时域 E/ε 独立复算与表值在约 0.1% 内相符；没有独立重算全部复标度根。"
+        ],
+        "next_step": "展示精确 Jost 传递系数及复频一致误差，再控制式 (23) 的超低频源—探测器积分。",
+        "source_pdf": "submissions/original/03/3a.pdf",
+        "scores": {
+          "definition": 14,
+          "calibration": 27,
+          "verification": 12,
+          "research": 20,
+          "calibration_of_claims": 9
+        },
+        "total": 82,
+        "score_rationales": {
+          "definition_and_setup": "约定和能量正确，无限分母解析保证不足。",
+          "calibration": "Duhamel、mismatch 和简单共振校准可复核，能量链较压缩。",
+          "independent_verification": "两网格、两复标度半径及直接求根有实质数字，时域抽查支持。",
+          "research_progress": "完成非空洞对数窗与 resolvent 归约，尚无全时间界。",
+          "conclusion_calibration": "正确保留 Q3c 缺口，部分谱与尾部用语过强。"
+        },
+        "reliability_fabrication_finding": "none_established",
+        "question": 3,
+        "rank_within_question": 4,
+        "model": "GPT-5.6 Sol xhigh",
+        "short": "5.6 Sol xhigh",
+        "color": "#52677E",
+        "cost": 13.96,
+        "sheet": "Task 3",
+        "row": 2,
+        "replaces": null,
+        "costSource": "原表用量"
+      },
+      {
+        "id": "s_3a",
+        "question": 3,
+        "source_pdf": "submissions/supplement/03/s_3a.pdf",
+        "model_name": "Opus 5.5 xhigh",
+        "reasoning_effort": "xhigh",
+        "cost_usd": 14.384,
+        "scores": {
+          "definition": 13,
+          "calibration": 28,
+          "verification": 14,
+          "research": 21,
+          "calibration_of_claims": 5
+        },
+        "total": 81,
+        "interval": [
+          76,
+          86
+        ],
+        "summary": "精确背景Jost与源—探测器代数、显式能量窗和多方法数值较强；全L的α=1仍为猜想，低频分母、条件量词和最优性标签有实质问题。",
+        "strongest": "全位置一致的有限时间能量界给出E=O(ε log²(1/ε))的对数时间窗；在所需范数有限且εK3(L)<1时有全时间条件Neumann界，并有原背景精确Jost匹配与受控一阶参数。",
+        "errors": [
+          {
+            "page": 11,
+            "locator": "§5.3；另见p.1、3、14总览",
+            "severity": "overclaim",
+            "detail": "固定L的非零首阶响应只能证明α_best≤1，不能证明全L统一α=1可取；后者仍是p.12猜想1。"
+          },
+          {
+            "page": 11,
+            "locator": "条件J1、推论2",
+            "severity": "assumption_and_quantifier_error",
+            "detail": "kD_L实轴高频范数趋√∫W/2≈0.549295，而非衰减；逐个L有界与有限数值表不足证明sup_L K2、sup_L N_L有限及K3=O(L)。"
+          },
+          {
+            "page": 13,
+            "locator": "§5.6 LF启发式",
+            "severity": "mathematical_error",
+            "detail": "a−bR=1+O(εL^−4)错误；其零频ε导数等于∫W_L G0(0;y,y)dy~||W||1 L/5。"
+          },
+          {
+            "page": 9,
+            "locator": "§4.4；p.10首段",
+            "severity": "overstatement",
+            "detail": "单个留数模延迟起效、严格2kL分段回波以及任何有限窗均不出现新谱，均超出给出的因果证明与有限窗拟合。"
+          },
+          {
+            "page": 7,
+            "locator": "§4.2",
+            "severity": "minor_mathematical_error",
+            "detail": "1/e属于约化Lambert模型；Taylor级数在|z|=1/e边界仍绝对收敛，且原问题的精确收敛半径未由该模型证明。"
+          }
+        ],
+        "next_step": "修正静态分母，以精确通量关系控制b/(a−bR)整体，针对超低频窄峰进行含峰宽与面积误差的统一积分估计。",
+        "source_detail_json": "evaluations/supplement/q3_scores.json",
+        "rank_within_supplement_question": 1,
+        "cost_source": "原表用量",
+        "replaces_answer_id": "3g",
+        "model": "Opus 5.5 xhigh",
+        "short": "Opus 5.5 xhigh",
+        "color": "#BE644B",
+        "cost": 14.384,
+        "sheet": "Task 3",
+        "row": 8,
+        "replaces": "3g",
+        "costSource": "原表用量"
+      },
+      {
+        "id": "3b",
+        "interval": [
+          72,
+          81
+        ],
+        "summary": "有限时 Volterra、因果窗和 mismatch 正确，低频统一缺口定位清晰；首回波后一致迹估计及复频匹配证明较简略。",
+        "strongest": "精确因果窗、带算子范数条件的 Duhamel 余项、固定宽度首回波窗的稳定性归约、临界 Lambert 重求和与实轴 source–detector 判据。",
+        "proof_status": "partial_analytic_solution_q3c_open",
+        "errors": [
+          {
+            "page": 3,
+            "locator": "(3.1)",
+            "severity": "normalization_gap",
+            "detail": "Wronskian 势变分仍保留未确定的 N(ω0)，未完成单位 Jost 归一化下的明确系数/符号。"
+          },
+          {
+            "page": 3,
+            "locator": "(2.6) 及其前文",
+            "severity": "proof_gap",
+            "detail": "首回波固定宽度窗的 L 一致 Green/观察迹算子界未展开。"
+          },
+          {
+            "page": 4,
+            "locator": "(3.5)",
+            "severity": "proof_gap",
+            "detail": "未展示完整传递系数及原背景尾部/透射修正，根列渐近证据较压缩。"
+          }
+        ],
+        "independent_checks": [
+          "能量归一化式、bump 面积、mismatch 系数及 Lambert 方程均已独立核对。",
+          "文献的 tail/完整频域分解适用性已检查；其 CAS 小项不被当作核心匹配证明。"
+        ],
+        "next_step": "固定 Wronskian 归一化，写出 a_L f_+ + b_L g_+ 精确匹配并证明首回波窗的统一迹界，再推进 k→0 积分。",
+        "source_pdf": "submissions/original/03/3b.pdf",
+        "scores": {
+          "definition": 15,
+          "calibration": 25,
+          "verification": 9,
+          "research": 18,
+          "calibration_of_claims": 9
+        },
+        "total": 76,
+        "score_rationales": {
+          "definition_and_setup": "能量、支集、变换与归一化定义准确。",
+          "calibration": "关键低阶公式大体正确，变分常数和匹配细节不完整。",
+          "independent_verification": "解析交叉检查与小型 CAS 有效，但核心一致估计未获独立验证。",
+          "research_progress": "完成有限回波窗和低频归约，未闭合一般回波后长窗或 Q3c。",
+          "conclusion_calibration": "没有把候选 α=1 当定理，部分已证标签仍强于展示的分析。"
+        },
+        "reliability_fabrication_finding": "none_established",
+        "question": 3,
+        "rank_within_question": 6,
+        "model": "GPT-6 Luna max",
+        "short": "Luna max",
+        "color": "#C88700",
+        "cost": 0.143,
+        "sheet": "Task 3",
+        "row": 3,
+        "replaces": null,
+        "costSource": "原表用量"
+      },
+      {
+        "id": "3f",
+        "interval": [
+          65,
+          75
+        ],
+        "summary": "显式位置一致有限时间能量界成立，数值校准有内容；遗漏 L 倍微扰参数，Lipschitz 等价判据少了 ε 缩放，分母无限尾部未解析闭合。",
+        "strongest": "∫_0^T |Δh|²≤2ε²(1+T)^7 对全部 L 一致，结合因果结论给出对数时间窗的非空洞稳定性。",
+        "proof_status": "proved_finite_numerator_bound_q3c_open",
+        "errors": [
+          {
+            "page": 6,
+            "locator": "命题 7–8；标题与摘要",
+            "severity": "mathematical_error",
+            "detail": "只用 κ=εexp(2γL) 作为线性展开控制量；二阶项一般为 O(Lκ²)，需要 Lκ≪1。"
+          },
+          {
+            "page": 9,
+            "locator": "命题 9 与式 (3)",
+            "severity": "mathematical_error",
+            "detail": "式 (3) 右端已经含 ε，给其 O(1) 加权 L2 界不能等价于 Q3c 的 α=1；须除去 ε 或要求 O(ε)。"
+          },
+          {
+            "page": 3,
+            "locator": "D0 正性和有限性说明；第 7 页长时积分",
+            "severity": "proof_gap",
+            "detail": "有限时间数值积分不能证明无限时间分母有限或完整尾部界。"
+          },
+          {
+            "page": 6,
+            "locator": "第 5 节至第 7 节",
+            "severity": "research_gap",
+            "detail": "没有失效区的受控精确共振重求根和 residues 分析。"
+          }
+        ],
+        "independent_checks": [
+          "Vmax 精确值、能量常数、Jost 级数前三项及显式常数链已复核。",
+          "两配置 QNM 和时域网格说明作为局部数值证据计分，不被提升为全时间定理。"
+        ],
+        "next_step": "先修正 Lκ 条件和命题 9 的 ε 缩放，用背景衰减/实频估计闭合分母，再处理精确 Jost 临界匹配。",
+        "source_pdf": "submissions/original/03/3f.pdf",
+        "scores": {
+          "definition": 13,
+          "calibration": 23,
+          "verification": 12,
+          "research": 15,
+          "calibration_of_claims": 7
+        },
+        "total": 70,
+        "score_rationales": {
+          "definition_and_setup": "主约定正确，无限分母及部分非零性只靠数值。",
+          "calibration": "有限时间显式界扎实，复频微扰和一致余项不足。",
+          "independent_verification": "多网格与双配置射击有实质核验。",
+          "research_progress": "完成对数窗，未处理失效区与全时间积分且判据有缩放错误。",
+          "conclusion_calibration": "多数局部状态诚实，部分已证标签超出条件。"
+        },
+        "reliability_fabrication_finding": "none_established",
+        "question": 3,
+        "rank_within_question": 7,
+        "model": "Grok 4.7 high",
+        "short": "Grok 4.7 high",
+        "color": "#888888",
+        "cost": 5.888,
+        "sheet": "Task 3",
+        "row": 7,
+        "replaces": null,
+        "costSource": "原表用量"
+      },
+      {
+        "id": "s_3b",
+        "question": 3,
+        "source_pdf": "submissions/supplement/03/s_3b.pdf",
+        "model_name": "DeepSeek V4.1 Flash max",
+        "reasoning_effort": "max",
+        "cost_usd": 0.477,
+        "scores": {
+          "definition": 10,
+          "calibration": 21,
+          "verification": 9,
+          "research": 11,
+          "calibration_of_claims": 3
+        },
+        "total": 54,
+        "interval": [
+          49,
+          60
+        ],
+        "summary": "正确因果与固定L共振首阶、精确delta模型有价值；mismatch公式、临界极限和resolvent对象存在错误，统一能量—流量闭合缺失，最优全时间定理未证明。",
+        "strongest": "严格的2L−13因果结论、正确首阶Duhamel与Wronskian位移商、辅助delta势的精确共振方程，以及有限参数下约0.20ε的时域数值证据。",
+        "errors": [
+          {
+            "page": 4,
+            "locator": "命题5、式(13)；p.1、13–14总结",
+            "severity": "mathematical_error",
+            "detail": "漏掉−|B|²/(2A²)的mismatch二阶投影项；δh=λh0给M=0的直接反例。有限窗口分母也不同，T≤9时Q3b无定义。"
+          },
+          {
+            "page": 4,
+            "locator": "式(12)，对照p.3式(9)",
+            "severity": "notation_and_order_error",
+            "detail": "δh^(1)在式(9)中已含ε，式(12)又乘ε，与声称的一阶阶数不一致。"
+          },
+          {
+            "page": 3,
+            "locator": "命题4、式(11)；p.10定理8",
+            "severity": "core_proof_gap",
+            "detail": "未证明能量到固定宽度远区场幅时间积分的一致界；普通bump-to-bump零频核范数随L增长，不能用L无关Neumann常数闭合全部高阶项。未扰动F数值又被当作扰动场一致上界。"
+          },
+          {
+            "page": 10,
+            "locator": "定理8常数和证明链；p.3光锥算子",
+            "severity": "mathematical_error",
+            "detail": "宽度2的自由光锥映射的L2(dt dz)→L2(dt)范数为√2/2，而非1/2；加入背景势还需额外估计，0.286不是所示链给出的理论上界。"
+          },
+          {
+            "page": 7,
+            "locator": "§3.2临界区域表；p.7–8式(22)",
+            "severity": "invalid_perturbative_extrapolation",
+            "detail": "c=c*时以已失效首阶式声称不消失O(1)位移，与Lambert近邻尺度O(log L/L)矛盾。p.8确有2Lμ因子，但全文阈值与适用条件未一致化；π/L间距主沿实方向。"
+          },
+          {
+            "page": 11,
+            "locator": "§4.2；p.12式(23)–(25)及最终充要判据",
+            "severity": "operator_and_criterion_error",
+            "detail": "把普通全轴L2自伴resolvent当成下半平面outgoing共振算子，赋予未扰动全局范数L依赖；Born G0W_LG0缺全阶逆控制、频率因子与可积性条件，不能成为所述Q3c充要判据。"
+          },
+          {
+            "page": 9,
+            "locator": "§3.4 branch cut/tail",
+            "severity": "low_frequency_error",
+            "detail": "bump反射不能统一写成εω→0；Born区为ε/ω，固定正bump零频可近全反射，源—探测器低频抑制须另证。"
+          },
+          {
+            "page": 5,
+            "locator": "命题6证明",
+            "severity": "proof_sign_error",
+            "detail": "d[δψ_L,ψ_R]/dx应为−δVψ_Lψ_R；最终式(15)的负号正确，保留最终首阶公式的得分。"
+          },
+          {
+            "page": 12,
+            "locator": "时域收敛表；对照p.10、14",
+            "severity": "numerical_report_inconsistency",
+            "detail": "L=20、ε=10^-3的E/ε在收敛表为0.200398→0.200380，而其他表约0.20445，约2%差异超出其误差声称。有限时积分与受污染大L运行未提供无限尾部误差控制。"
+          }
+        ],
+        "next_step": "先修正mismatch、临界量词与频域对象，用精确背景Jost表达式和完整有限时间能量/迹估计替代未证流量引理；统一同参数数值表后，对真实bump复频根做外端/阶数/路径收敛。",
+        "source_detail_json": "evaluations/supplement/q3_scores.json",
+        "rank_within_supplement_question": 2,
+        "cost_source": "用户补充用量",
+        "replaces_answer_id": null,
+        "model": "DeepSeek V4.1 Flash max",
+        "short": "DeepSeek Flash max",
+        "color": "#6857B1",
+        "cost": 0.477,
+        "sheet": "Task 3",
+        "row": 9,
+        "replaces": null,
+        "costSource": "用户补充用量"
+      }
+    ]
+  ],
+  "fullFrontier": [
+    {
+      "model": "GPT-6 Luna max",
+      "short": "Luna max",
+      "color": "#C88700",
+      "ids": [
+        "s_1c",
+        "2b",
+        "3b"
+      ],
+      "n": 3,
+      "score": 215,
+      "mean": 71.66666666666667,
+      "cost": 0.464,
+      "meanCost": 0.15466666666666667,
+      "pointsPerDollar": 463.3620689655172,
+      "minimum": 53,
+      "at80": 1,
+      "lower": 67,
+      "upper": 76.66666666666667,
+      "dims": {
+        "definition": 14.666666666666666,
+        "calibration": 25,
+        "verification": 9,
+        "research": 14.666666666666666,
+        "calibration_of_claims": 8.333333333333334
+      }
+    },
+    {
+      "model": "GPT-6 Sol xhigh",
+      "short": "Sol xhigh",
+      "color": "#478B42",
+      "ids": [
+        "1c",
+        "2d",
+        "3d"
+      ],
+      "n": 3,
+      "score": 236,
+      "mean": 78.66666666666667,
+      "cost": 6.184,
+      "meanCost": 2.0613333333333332,
+      "pointsPerDollar": 38.16300129366106,
+      "minimum": 54,
+      "at80": 2,
+      "lower": 74.33333333333333,
+      "upper": 83,
+      "dims": {
+        "definition": 14.666666666666666,
+        "calibration": 26.333333333333332,
+        "verification": 10,
+        "research": 19,
+        "calibration_of_claims": 8.666666666666666
+      }
+    },
+    {
+      "model": "GPT-6 Sol max",
+      "short": "Sol max",
+      "color": "#167E9A",
+      "ids": [
+        "s_1b",
+        "2c",
+        "3c"
+      ],
+      "n": 3,
+      "score": 283,
+      "mean": 94.33333333333333,
+      "cost": 8.252,
+      "meanCost": 2.750666666666667,
+      "pointsPerDollar": 34.29471643238003,
+      "minimum": 94,
+      "at80": 3,
+      "lower": 90.66666666666667,
+      "upper": 97.33333333333333,
+      "dims": {
+        "definition": 14.666666666666666,
+        "calibration": 29.333333333333332,
+        "verification": 13,
+        "research": 27.333333333333332,
+        "calibration_of_claims": 10
+      }
+    },
+    {
+      "model": "GPT-6 Astra high",
+      "short": "Astra high",
+      "color": "#7E0C6E",
+      "ids": [
+        "1b",
+        "2e",
+        "3e"
+      ],
+      "n": 3,
+      "score": 287,
+      "mean": 95.66666666666667,
+      "cost": 14.37,
+      "meanCost": 4.79,
+      "pointsPerDollar": 19.972164231036885,
+      "minimum": 92,
+      "at80": 3,
+      "lower": 92,
+      "upper": 97.66666666666667,
+      "dims": {
+        "definition": 14.666666666666666,
+        "calibration": 29.333333333333332,
+        "verification": 13.666666666666666,
+        "research": 28.333333333333332,
+        "calibration_of_claims": 9.666666666666666
+      }
+    }
+  ],
+  "questionFrontiers": [
+    [
+      {
+        "id": "s_1c",
+        "question": 1,
+        "source_pdf": "submissions/supplement/01/s_1c.pdf",
+        "model_name": "GPT-6 Luna max",
+        "reasoning_effort": "max",
+        "cost_usd": 0.178,
+        "scores": {
+          "definition": 14,
+          "calibration": 20,
+          "verification": 5,
+          "research": 8,
+          "calibration_of_claims": 6
+        },
+        "total": 53,
+        "interval": [
+          47,
+          60
+        ],
+        "summary": "树级与全正缺陷正确；单负错号传入12/13主证书，正确输入下所用子系统秩为9/9。",
+        "strongest": "正确树代表、全正精确缺陷、有限维数移位积分基和可复现的形式系数消元。",
+        "errors": [
+          "第3页式(8)单负首项错号。",
+          "第4页证书仅对错误物理输入成立；修正后其两个单负位置与全正子系统相容。",
+          "未提供有效的当前物理问题全核类排除。"
+        ],
+        "next_step": "采用独立正确单负表达式，把三个负腿与树级目标合并重建证书。",
+        "source_detail_json": "evaluations/supplement/q1_scores.json",
+        "rank_within_supplement_question": 3,
+        "cost_source": "用户补充用量",
+        "replaces_answer_id": null,
+        "model": "GPT-6 Luna max",
+        "short": "Luna max",
+        "color": "#C88700",
+        "cost": 0.178,
+        "sheet": "Task 1",
+        "row": 8,
+        "replaces": null,
+        "costSource": "用户补充用量",
+        "score": 53
+      },
+      {
+        "id": "1c",
+        "scores": {
+          "definition": 14,
+          "calibration": 20,
+          "verification": 5,
+          "research": 9,
+          "calibration_of_claims": 6
+        },
+        "total": 54,
+        "interval": [
+          48,
+          60
+        ],
+        "summary": "树和全正校准正确；早期文献单负错号传播至缺陷及主子式证书。",
+        "strongest": "正确树代表、八维齐次零空间及全正缺陷与D维取消。",
+        "errors": [
+          "第2页式(6)单负首项符号错误。",
+          "x=1/3,z=2时真实单负缺陷为7/9，正文为-1/9。",
+          "带eta系统错误输入秩13/14，正确输入秩10/10，主十四阶子式不能证明所称物理命题。"
+        ],
+        "next_step": "使用BDK 1993独立表达替换单负输入，按物理归一化重新构造全部扇区证书。",
+        "source_pdf": "submissions/original/01/1c.pdf",
+        "question": 1,
+        "rank_within_question": 4,
+        "model": "GPT-6 Sol xhigh",
+        "short": "Sol xhigh",
+        "color": "#478B42",
+        "cost": 2.386,
+        "sheet": "Task 1",
+        "row": 4,
+        "replaces": null,
+        "costSource": "原表用量",
+        "score": 54
+      },
+      {
+        "id": "1a",
+        "scores": {
+          "definition": 13,
+          "calibration": 18,
+          "verification": 7,
+          "research": 14,
+          "calibration_of_claims": 5
+        },
+        "total": 57,
+        "interval": [
+          51,
+          63
+        ],
+        "summary": "正确的一圈输入和齐次零空间有价值；树级仿射目标错误，另有单负公式及校验矛盾。",
+        "strongest": "八维齐次树零空间、部分精确缺陷、形式左零向量及D维积分后抵消。",
+        "errors": [
+          "第3页式(14)给出的树级结果比实际值多1/z，不能作真实树代表。",
+          "第4页式(19)在给定点为-491813/21600，式(22)报正值；正确振幅差为308063/21600。",
+          "原稿证书约束错误的树级仿射空间。"
+        ],
+        "next_step": "换成真实树代表，重建非齐次约束，并逐个复核三个负腿位置。",
+        "source_pdf": "submissions/original/01/1a.pdf",
+        "question": 1,
+        "rank_within_question": 3,
+        "model": "GPT-5.6 Sol xhigh",
+        "short": "5.6 Sol xhigh",
+        "color": "#52677E",
+        "cost": 4.082,
+        "sheet": "Task 1",
+        "row": 2,
+        "replaces": null,
+        "costSource": "原表用量",
+        "score": 57
+      },
+      {
+        "id": "s_1b",
+        "question": 1,
+        "source_pdf": "submissions/supplement/01/s_1b.pdf",
+        "model_name": "GPT-6 Sol max",
+        "reasoning_effort": "max",
+        "cost_usd": 4.118,
+        "scores": {
+          "definition": 14,
+          "calibration": 29,
+          "verification": 13,
+          "research": 28,
+          "calibration_of_claims": 10
+        },
+        "total": 94,
+        "interval": [
+          90,
+          97
+        ],
+        "summary": "完整树零空间及逐排序的树—单负一圈解析证书成立，结论范围准确。",
+        "strongest": "六排序共同恒等式的EYM目标收缩为(2x^2-2x-3)/(6z)，排除同一套helicity无关标量权重；包含题面全部一次局域核。",
+        "errors": [
+          "跨helicity最小积分基修复尚未完成，正文已准确保留为开放步骤。",
+          "所称运行脚本未随Supplement附送，完整执行记录无法审计。"
+        ],
+        "next_step": "交付证书脚本，对事先固定积分基检验n=4的跨helicity割与因子化。",
+        "source_detail_json": "evaluations/supplement/q1_scores.json",
+        "rank_within_supplement_question": 1,
+        "cost_source": "用户补充用量",
+        "replaces_answer_id": null,
+        "model": "GPT-6 Sol max",
+        "short": "Sol max",
+        "color": "#167E9A",
+        "cost": 4.118,
+        "sheet": "Task 1",
+        "row": 7,
+        "replaces": null,
+        "costSource": "用户补充用量",
+        "score": 94
+      }
+    ],
+    [
+      {
+        "id": "2b",
+        "scores": {
+          "definition": 15,
+          "calibration": 30,
+          "verification": 13,
+          "research": 18,
+          "calibration_of_claims": 10
+        },
+        "interval": [
+          82,
+          89
+        ],
+        "research_interval": [
+          15,
+          21
+        ],
+        "summary": "校准、保真度范数关系与标签泄漏均扎实，且精确求解 classical decoder；研究层只完成高保真一侧。",
+        "strongest": "随机投影导出的精确 Stiefel 平均；(1−δ)²≤F_rec≤1−δ²/4；(2,3), k=2 的最优平均 5/12，以及 k=3 时 2/9。",
+        "errors": [
+          {
+            "page": 7,
+            "locator": "5.1 节",
+            "kind": "gap",
+            "severity": "moderate",
+            "description": "只有 Xi→+∞ 的充分条件；窗口内没有 δ 的正下界或最优 decoder 的匹配 converse。"
+          }
+        ],
+        "independent_verification": "评阅者精确核验随机投影系数及 Stiefel 化简；由 Beta(2,1) 的 rank-one POVM effect 独立积分复现 5/12。",
+        "next_step": "构造辐射 Choi SDP 的显式对偶可行点并用 Gaussian 谱界得到临界上界。",
+        "score_reasons": {
+          "definition": "互补嵌入、标签、平方保真度及 1/k² 基线均正确。",
+          "calibration": "有限熵、replica、渐近及小规模最优解码正确。",
+          "verification": "解析 POVM 最优解、Beta 积分、CAS 与 MC 构成不同检查。",
+          "research": "精确矩、恢复 bound 及有限维反例成立，但缺两侧临界窗推进。",
+          "calibration_of_claims": "准确承认 HS 趋零不足以控制 trace norm；未过度声称。"
+        },
+        "source": "submissions/original/02/2b.pdf",
+        "total": 86,
+        "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+        "source_pdf": "submissions/original/02/2b.pdf",
+        "question": 2,
+        "rank_within_question": 6,
+        "model": "GPT-6 Luna max",
+        "short": "Luna max",
+        "color": "#C88700",
+        "cost": 0.143,
+        "sheet": "Task 2",
+        "row": 3,
+        "replaces": null,
+        "costSource": "原表用量",
+        "score": 86
+      },
+      {
+        "id": "2c",
+        "scores": {
+          "definition": 15,
+          "calibration": 30,
+          "verification": 14,
+          "research": 25,
+          "calibration_of_claims": 10
+        },
+        "interval": [
+          91,
+          97
+        ],
+        "research_interval": [
+          23,
+          28
+        ],
+        "summary": "给出正确的有限维 Gaussian 谱概率上界、增长 k 的同尺度两侧界，以及非平凡 Jacobi 最优恢复反例。",
+        "strongest": "F_rec 的有限维高概率谱上界和 limsup E F≤min(1,(√u+κ⁻¹)²)；镜像 (4,2)/(2,4) 精确均值 6619/7350 与 53/140。",
+        "errors": [
+          {
+            "page": 4,
+            "locator": "式 (26)",
+            "kind": "gap",
+            "severity": "minor",
+            "description": "当 κ=2、u≥1/4 时上界为 1，不能在所有有限窗口排除完美恢复或确定误差率。"
+          },
+          {
+            "page": 4,
+            "locator": "临界子序列假设",
+            "kind": "scope",
+            "severity": "minor",
+            "description": "固定一侧、k/D 不趋零的边界序列未覆盖。"
+          }
+        ],
+        "independent_verification": "评阅者核对原始复高斯尾界及 t 条件；Mathematica 独立积分 Jacobi 密度的归一化、gap 与两个平方根矩，全部复现。",
+        "next_step": "结合二阶量集中与 ||C||₁≥Tr C²/||C||∞ 给出每个有限 u 的严格 converse。",
+        "score_reasons": {
+          "definition": "基底、代数、标签和 decoder 定义准确。",
+          "calibration": "全部熵/replica/Stiefel 及 Jacobi 精确值正确。",
+          "verification": "解析最优 decoder、Jacobi 积分、镜像 MC 和 Petz 核验互补。",
+          "research": "有限维概率上界、增长 k 两端和精确熵反例成立，尚缺高端误差同阶 bound。",
+          "calibration_of_claims": "未把区间界或数值误差当成精确函数，范围明确。"
+        },
+        "source": "submissions/original/02/2c.pdf",
+        "total": 94,
+        "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+        "source_pdf": "submissions/original/02/2c.pdf",
+        "question": 2,
+        "rank_within_question": 2,
+        "model": "GPT-6 Sol max",
+        "short": "Sol max",
+        "color": "#167E9A",
+        "cost": 1.814,
+        "sheet": "Task 2",
+        "row": 4,
+        "replaces": null,
+        "costSource": "原表用量",
+        "score": 94
+      },
+      {
+        "id": "2e",
+        "scores": {
+          "definition": 15,
+          "calibration": 30,
+          "verification": 14,
+          "research": 28,
+          "calibration_of_claims": 10
+        },
+        "interval": [
+          94,
+          99
+        ],
+        "research_interval": [
+          26,
+          30
+        ],
+        "summary": "本组最强的已证窗口结果：MP 下界、每个有限 t 的严格 converse、高保真端同阶误差律，并处理 k=D 边界。",
+        "strongest": "两侧增长窗口内 max(k⁻²,h(1/t)²)≤F≤min(1,(√t+k⁻¹)²,1−g_k(t)²/4)；顺序极限下 1−F=Θ(φ⁻Ξ)；k=D 时 F=Σm_a²/D²。",
+        "errors": [
+          {
+            "page": 6,
+            "locator": "式 (41)，及第 7 页式 (45)",
+            "kind": "proof_detail",
+            "severity": "minor",
+            "description": "增长 k 的退化宽高比不能只援引固定正有限宽高比的 Bai–Yin 定理；补充 Gaussian 有限维尾界即可补足，但文中未展开参数。"
+          },
+          {
+            "page": 8,
+            "locator": "式 (47)",
+            "kind": "scope",
+            "severity": "minor",
+            "description": "误差同阶律是先窗口极限再高 t 的顺序极限，不能推广为任意联合发散的统一系数。文中已经明确这一限制。"
+          }
+        ],
+        "independent_verification": "评阅者独立审计 Gaussian 正交化、MP 线性统计、Wick 均值与 Poincaré 梯度；CAS 核对 g₂ 和高 t 系数；直接复核全空间最优值。",
+        "next_step": "以原始–对偶 SDP 证书检验 MP 下界与固定 k 真实最优值的间隙，并写出增长宽高比的显式 Gaussian 引理。",
+        "score_reasons": {
+          "definition": "整数子序列、k/D、trace 和拓扑资源范围审计完整。",
+          "calibration": "有限熵、次级展开、replica、Stiefel、标签与边缘涨落式完整正确。",
+          "verification": "CAS、原始 contraction、六组带标准误样本及显式 Petz map 互补；未声称执行未做的 SDP。",
+          "research": "严格窗口 converse、同阶高端误差律及全空间边界答案实质性强。",
+          "calibration_of_claims": "证明、候选、Petz 数值下界及极限顺序严格区分。"
+        },
+        "source": "submissions/original/02/2e.pdf",
+        "total": 97,
+        "reliability": "未发现可由当前材料直接认定的虚构计算/引用；缺少外部脚本日志本身不作虚构依据。",
+        "source_pdf": "submissions/original/02/2e.pdf",
+        "question": 2,
+        "rank_within_question": 1,
+        "model": "GPT-6 Astra high",
+        "short": "Astra high",
+        "color": "#7E0C6E",
+        "cost": 4.55,
+        "sheet": "Task 2",
+        "row": 6,
+        "replaces": null,
+        "costSource": "原表用量",
+        "score": 97
+      }
+    ],
+    [
+      {
+        "id": "3b",
+        "interval": [
+          72,
+          81
+        ],
+        "summary": "有限时 Volterra、因果窗和 mismatch 正确，低频统一缺口定位清晰；首回波后一致迹估计及复频匹配证明较简略。",
+        "strongest": "精确因果窗、带算子范数条件的 Duhamel 余项、固定宽度首回波窗的稳定性归约、临界 Lambert 重求和与实轴 source–detector 判据。",
+        "proof_status": "partial_analytic_solution_q3c_open",
+        "errors": [
+          {
+            "page": 3,
+            "locator": "(3.1)",
+            "severity": "normalization_gap",
+            "detail": "Wronskian 势变分仍保留未确定的 N(ω0)，未完成单位 Jost 归一化下的明确系数/符号。"
+          },
+          {
+            "page": 3,
+            "locator": "(2.6) 及其前文",
+            "severity": "proof_gap",
+            "detail": "首回波固定宽度窗的 L 一致 Green/观察迹算子界未展开。"
+          },
+          {
+            "page": 4,
+            "locator": "(3.5)",
+            "severity": "proof_gap",
+            "detail": "未展示完整传递系数及原背景尾部/透射修正，根列渐近证据较压缩。"
+          }
+        ],
+        "independent_checks": [
+          "能量归一化式、bump 面积、mismatch 系数及 Lambert 方程均已独立核对。",
+          "文献的 tail/完整频域分解适用性已检查；其 CAS 小项不被当作核心匹配证明。"
+        ],
+        "next_step": "固定 Wronskian 归一化，写出 a_L f_+ + b_L g_+ 精确匹配并证明首回波窗的统一迹界，再推进 k→0 积分。",
+        "source_pdf": "submissions/original/03/3b.pdf",
+        "scores": {
+          "definition": 15,
+          "calibration": 25,
+          "verification": 9,
+          "research": 18,
+          "calibration_of_claims": 9
+        },
+        "total": 76,
+        "score_rationales": {
+          "definition_and_setup": "能量、支集、变换与归一化定义准确。",
+          "calibration": "关键低阶公式大体正确，变分常数和匹配细节不完整。",
+          "independent_verification": "解析交叉检查与小型 CAS 有效，但核心一致估计未获独立验证。",
+          "research_progress": "完成有限回波窗和低频归约，未闭合一般回波后长窗或 Q3c。",
+          "conclusion_calibration": "没有把候选 α=1 当定理，部分已证标签仍强于展示的分析。"
+        },
+        "reliability_fabrication_finding": "none_established",
+        "question": 3,
+        "rank_within_question": 6,
+        "model": "GPT-6 Luna max",
+        "short": "Luna max",
+        "color": "#C88700",
+        "cost": 0.143,
+        "sheet": "Task 3",
+        "row": 3,
+        "replaces": null,
+        "costSource": "原表用量",
+        "score": 76
+      },
+      {
+        "id": "3d",
+        "interval": [
+          86,
+          94
+        ],
+        "summary": "原模型精确 Jost 匹配与临界/超临界重求根较完整，受控对数窗口覆盖回波后时间；Q3c 明确保留为实频积分问题。",
+        "strongest": "同一 ε,L 序列上证明超临界旧极点固定邻域空缺及新腔分支，并证明 T≤KL 的 E=O(ε log^(5/2)(1/ε))、M=O(ε² log^5(1/ε))。",
+        "proof_status": "proved_spectral_and_finite_window_q3c_open",
+        "errors": [
+          {
+            "page": 5,
+            "locator": "(26)",
+            "severity": "open_problem",
+            "detail": "低频源—探测器实轴积分没有全 L 统一界，故尚不能判定 Q3c。"
+          },
+          {
+            "page": 4,
+            "locator": "(20) 与定理 3",
+            "severity": "remaining_detail",
+            "detail": "若要求论文级定理，复频局部 Volterra 误差的导数界及解析片条件仍可进一步展开。"
+          }
+        ],
+        "independent_checks": [
+          "能量链、首波前非零、mismatch 下界与精确 Wronskian 变分已独立复核。",
+          "L=14 两网格差范数独立复算与 PDF 表在报告精度内相符；未声称独立重算 QNM 根。"
+        ],
+        "next_step": "用精确实轴散射关系控制式 (26) 的超低频部分，保留 source 和 detector 的透射权重。",
+        "source_pdf": "submissions/original/03/3d.pdf",
+        "scores": {
+          "definition": 15,
+          "calibration": 29,
+          "verification": 12,
+          "research": 24,
+          "calibration_of_claims": 10
+        },
+        "total": 90,
+        "score_rationales": {
+          "definition_and_setup": "完整审计题设、范数、观察迹和物理解释边界。",
+          "calibration": "明确能量常数、波前非零、精确匹配与 Rouché/收缩论证。",
+          "independent_verification": "两网格数值与边界说明清楚，独立复算支持。",
+          "research_progress": "非消失谱变化与完整对数窗观测稳定之间建立实质联系。",
+          "conclusion_calibration": "Eproxy、背景网格误差及 Q3c 缺口都如实标注。"
+        },
+        "reliability_fabrication_finding": "none_established",
+        "question": 3,
+        "rank_within_question": 3,
+        "model": "GPT-6 Sol xhigh",
+        "short": "Sol xhigh",
+        "color": "#478B42",
+        "cost": 1.643,
+        "sheet": "Task 3",
+        "row": 5,
+        "replaces": null,
+        "costSource": "原表用量",
+        "score": 90
+      },
+      {
+        "id": "3c",
+        "interval": [
+          91,
+          98
+        ],
+        "summary": "通过精确实轴散射关系与通量不等式证明 Q3c；初等 α=1/50，使用适用的背景低能估计提升到 α=1/10。",
+        "strongest": "sup_{L≥L0,T≥0} E≤Cε^(1/10)，另有不使用精细低能文献的 ε^(1/50) 证明；固定 L 非零一阶响应给出 α_best≤1。",
+        "proof_status": "q3c_proved_alpha_0_1",
+        "proven_uniform_alpha": 0.1,
+        "elementary_uniform_alpha": 0.02,
+        "errors": [
+          {
+            "page": 3,
+            "locator": "(16)",
+            "severity": "remaining_detail",
+            "detail": "复频一致传递渐近可进一步补充基本矩阵及频率导数误差，结论应保留所述非退化解析片条件。"
+          },
+          {
+            "page": 5,
+            "locator": "(29)",
+            "severity": "open_problem",
+            "detail": "最佳统一幂次仅确定在 [1/10,1]，答卷正确标为未闭合。"
+          }
+        ],
+        "independent_checks": [
+          "独立推导式 (20) 的符号/因子和式 (21) 通量界，并核对频率积分产生 1/50 与 1/10。",
+          "附录能量链、V0 的 12/(1+x)^2 界、归一化和 mismatch 已复核。",
+          "核对 DSS 0908.4292v2 第 4–6 节、Lemma 6.3–6.4 和低能 Wronskian，确覆盖 (ℓ,σ)=(2,−3)。"
+        ],
+        "next_step": "保留低频透射及相位权重，对超低频积分建立更精确的统一上界或反例，以确定是否可达 α=1。",
+        "source_pdf": "submissions/original/03/3c.pdf",
+        "scores": {
+          "definition": 15,
+          "calibration": 29,
+          "verification": 12,
+          "research": 29,
+          "calibration_of_claims": 10
+        },
+        "total": 95,
+        "score_rationales": {
+          "definition_and_setup": "全量词、固定源/观察点、扰动类和迹映射准确。",
+          "calibration": "低阶、能量余项、变分符号与双极限较完整。",
+          "independent_verification": "解析结构检验充分，数值交叉检验主要覆盖归一化和少数系数。",
+          "research_progress": "真正证明全 L、全 T 命题，给出两种有内容的幂次。",
+          "conclusion_calibration": "严格区分定理、文献输入、数值资料和最优性缺口。"
+        },
+        "reliability_fabrication_finding": "none_established",
+        "question": 3,
+        "rank_within_question": 2,
+        "model": "GPT-6 Sol max",
+        "short": "Sol max",
+        "color": "#167E9A",
+        "cost": 2.32,
+        "sheet": "Task 3",
+        "row": 4,
+        "replaces": null,
+        "costSource": "原表用量",
+        "score": 95
+      },
+      {
+        "id": "3e",
+        "interval": [
+          94,
+          99
+        ],
+        "summary": "以精确零能解、背景 Green 界及低频通量控制闭合 Q3c 的 α=1/2；最优 Lipschitz 指数仍明确留下超低频面积问题。",
+        "strongest": "sup_{L≥L0,T≥0} E≤C√ε，不需要对数修正；固定 L 的非零全时间首阶响应排除 α>1。",
+        "proof_status": "q3c_proved_alpha_0_5",
+        "proven_uniform_alpha": 0.5,
+        "errors": [
+          {
+            "page": 6,
+            "locator": "(31)",
+            "severity": "remaining_detail",
+            "detail": "背景匹配估计使用正确的已引文献输入；若单独发表，应补齐分区常数与连接区论证。"
+          },
+          {
+            "page": 8,
+            "locator": "(45)",
+            "severity": "open_problem",
+            "detail": "统一 α=1 的超低频积分仍未证明，故 α_best 仅在 [1/2,1]。"
+          }
+        ],
+        "independent_checks": [
+          "CAS 独立验证静态 u,v 方程、Wronskian−1、J 导数和 mismatch。",
+          "精确左反射差与中频 Neumann 界的拼接、√ε 积分幂次已独立核验。",
+          "两网格 L=20/40 波形差与二阶余项复算支持第 10 页表。",
+          "外部低能构造已核对原文且适用本题引力扇区。"
+        ],
+        "next_step": "围绕式 (45) 给出峰宽可控的超低频面积上界或反例，判定是否达到无对数修正的 α=1。",
+        "source_pdf": "submissions/original/03/3e.pdf",
+        "scores": {
+          "definition": 15,
+          "calibration": 30,
+          "verification": 14,
+          "research": 29,
+          "calibration_of_claims": 10
+        },
+        "total": 98,
+        "score_rationales": {
+          "definition_and_setup": "所有定义、变换、固定支集和扰动类准确。",
+          "calibration": "能量、静态、Green、源谱、Duhamel 和复频低阶均有完整可核验公式。",
+          "independent_verification": "多种代数与数值交叉核验充分，抽查支持关键表值。",
+          "research_progress": "全位置全时间存在性闭合，余下为最佳指数问题。",
+          "conclusion_calibration": "证据等级、引用依赖和剩余问题校准清楚。"
+        },
+        "reliability_fabrication_finding": "none_established",
+        "question": 3,
+        "rank_within_question": 1,
+        "model": "GPT-6 Astra high",
+        "short": "Astra high",
+        "color": "#7E0C6E",
+        "cost": 4.206,
+        "sheet": "Task 3",
+        "row": 6,
+        "replaces": null,
+        "costSource": "原表用量",
+        "score": 98
+      }
+    ]
+  ],
+  "portfolioFrontier": [
+    {
+      "ids": [
+        "s_1c",
+        "2b",
+        "3b"
+      ],
+      "names": [
+        "GPT-6 Luna max",
+        "GPT-6 Luna max",
+        "GPT-6 Luna max"
+      ],
+      "score": 215,
+      "mean": 71.66666666666667,
+      "cost": 0.464,
+      "minimum": 53
+    },
+    {
+      "ids": [
+        "s_1c",
+        "2b",
+        "3d"
+      ],
+      "names": [
+        "GPT-6 Luna max",
+        "GPT-6 Luna max",
+        "GPT-6 Sol xhigh"
+      ],
+      "score": 229,
+      "mean": 76.33333333333333,
+      "cost": 1.964,
+      "minimum": 53
+    },
+    {
+      "ids": [
+        "s_1c",
+        "2b",
+        "3c"
+      ],
+      "names": [
+        "GPT-6 Luna max",
+        "GPT-6 Luna max",
+        "GPT-6 Sol max"
+      ],
+      "score": 234,
+      "mean": 78,
+      "cost": 2.641,
+      "minimum": 53
+    },
+    {
+      "ids": [
+        "s_1c",
+        "2c",
+        "3d"
+      ],
+      "names": [
+        "GPT-6 Luna max",
+        "GPT-6 Sol max",
+        "GPT-6 Sol xhigh"
+      ],
+      "score": 237,
+      "mean": 79,
+      "cost": 3.635,
+      "minimum": 53
+    },
+    {
+      "ids": [
+        "s_1c",
+        "2c",
+        "3c"
+      ],
+      "names": [
+        "GPT-6 Luna max",
+        "GPT-6 Sol max",
+        "GPT-6 Sol max"
+      ],
+      "score": 242,
+      "mean": 80.66666666666667,
+      "cost": 4.312,
+      "minimum": 53
+    },
+    {
+      "ids": [
+        "s_1b",
+        "2b",
+        "3b"
+      ],
+      "names": [
+        "GPT-6 Sol max",
+        "GPT-6 Luna max",
+        "GPT-6 Luna max"
+      ],
+      "score": 256,
+      "mean": 85.33333333333333,
+      "cost": 4.404,
+      "minimum": 76
+    },
+    {
+      "ids": [
+        "s_1b",
+        "2b",
+        "3d"
+      ],
+      "names": [
+        "GPT-6 Sol max",
+        "GPT-6 Luna max",
+        "GPT-6 Sol xhigh"
+      ],
+      "score": 270,
+      "mean": 90,
+      "cost": 5.904,
+      "minimum": 86
+    },
+    {
+      "ids": [
+        "s_1b",
+        "2b",
+        "3c"
+      ],
+      "names": [
+        "GPT-6 Sol max",
+        "GPT-6 Luna max",
+        "GPT-6 Sol max"
+      ],
+      "score": 275,
+      "mean": 91.66666666666667,
+      "cost": 6.581,
+      "minimum": 86
+    },
+    {
+      "ids": [
+        "s_1b",
+        "2c",
+        "3d"
+      ],
+      "names": [
+        "GPT-6 Sol max",
+        "GPT-6 Sol max",
+        "GPT-6 Sol xhigh"
+      ],
+      "score": 278,
+      "mean": 92.66666666666667,
+      "cost": 7.575,
+      "minimum": 90
+    },
+    {
+      "ids": [
+        "s_1b",
+        "2c",
+        "3c"
+      ],
+      "names": [
+        "GPT-6 Sol max",
+        "GPT-6 Sol max",
+        "GPT-6 Sol max"
+      ],
+      "score": 283,
+      "mean": 94.33333333333333,
+      "cost": 8.252,
+      "minimum": 94
+    },
+    {
+      "ids": [
+        "s_1b",
+        "2c",
+        "3e"
+      ],
+      "names": [
+        "GPT-6 Sol max",
+        "GPT-6 Sol max",
+        "GPT-6 Astra high"
+      ],
+      "score": 286,
+      "mean": 95.33333333333333,
+      "cost": 10.138,
+      "minimum": 94
+    },
+    {
+      "ids": [
+        "s_1b",
+        "2e",
+        "3e"
+      ],
+      "names": [
+        "GPT-6 Sol max",
+        "GPT-6 Astra high",
+        "GPT-6 Astra high"
+      ],
+      "score": 289,
+      "mean": 96.33333333333333,
+      "cost": 12.874,
+      "minimum": 94
+    }
+  ],
+  "portfolioCount": 512,
+  "policies": [
+    {
+      "name": "三题均用 Luna max",
+      "ids": [
+        "s_1c",
+        "2b",
+        "3b"
+      ],
+      "names": [
+        "GPT-6 Luna max",
+        "GPT-6 Luna max",
+        "GPT-6 Luna max"
+      ],
+      "score": 215,
+      "mean": 71.66666666666667,
+      "cost": 0.464,
+      "minimum": 53
+    },
+    {
+      "name": "每题至少 75 分：最低成本",
+      "ids": [
+        "s_1b",
+        "2b",
+        "3b"
+      ],
+      "names": [
+        "GPT-6 Sol max",
+        "GPT-6 Luna max",
+        "GPT-6 Luna max"
+      ],
+      "score": 256,
+      "mean": 85.33333333333333,
+      "cost": 4.404,
+      "minimum": 76
+    },
+    {
+      "name": "每题至少 80 分：最低成本",
+      "ids": [
+        "s_1b",
+        "2b",
+        "3d"
+      ],
+      "names": [
+        "GPT-6 Sol max",
+        "GPT-6 Luna max",
+        "GPT-6 Sol xhigh"
+      ],
+      "score": 270,
+      "mean": 90,
+      "cost": 5.904,
+      "minimum": 86
+    },
+    {
+      "name": "每题至少 90 分：最低成本",
+      "ids": [
+        "s_1b",
+        "2c",
+        "3d"
+      ],
+      "names": [
+        "GPT-6 Sol max",
+        "GPT-6 Sol max",
+        "GPT-6 Sol xhigh"
+      ],
+      "score": 278,
+      "mean": 92.66666666666667,
+      "cost": 7.575,
+      "minimum": 90
+    },
+    {
+      "name": "三题均用 Sol max",
+      "ids": [
+        "s_1b",
+        "2c",
+        "3c"
+      ],
+      "names": [
+        "GPT-6 Sol max",
+        "GPT-6 Sol max",
+        "GPT-6 Sol max"
+      ],
+      "score": 283,
+      "mean": 94.33333333333333,
+      "cost": 8.252,
+      "minimum": 94
+    },
+    {
+      "name": "逐题最高分组合",
+      "ids": [
+        "s_1b",
+        "2e",
+        "3e"
+      ],
+      "names": [
+        "GPT-6 Sol max",
+        "GPT-6 Astra high",
+        "GPT-6 Astra high"
+      ],
+      "score": 289,
+      "mean": 96.33333333333333,
+      "cost": 12.874,
+      "minimum": 94
+    }
+  ],
+  "totalCost": 116.842,
+  "dimensions": {
+    "definition": 15,
+    "calibration": 30,
+    "verification": 15,
+    "research": 30,
+    "calibration_of_claims": 10
+  }
+}

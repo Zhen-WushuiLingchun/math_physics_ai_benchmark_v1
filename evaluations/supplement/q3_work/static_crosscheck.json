@@ -1,0 +1,11 @@
+{
+  "provenance": "Independent reviewer endpoint-free Gauss-Legendre cross-check",
+  "bump_mass": 1.2069003224378725,
+  "static_denominator_epsilon_derivative": {
+    "13": 2.942357123710231,
+    "20": 4.335483455455137,
+    "40": 8.733728238416766,
+    "100": 22.708191101154604
+  },
+  "high_frequency_kDL_norm": 0.5492950760833999
+}

@@ -1,0 +1,85 @@
+{
+  "provenance": "Independent reviewer reuse of audited wave solver; not candidate evidence",
+  "runs": [
+    {
+      "dx": 0.025,
+      "dt": 0.010000000000000002,
+      "order": 4,
+      "tmax": 100,
+      "interval": [
+        -120,
+        140
+      ],
+      "C": 0.5692357678263644,
+      "energy_C1": 3.0861401014260226,
+      "background_norm": 1.0028523404237986,
+      "background_norm_squared": 1.0057128166934903,
+      "h0_50": 0.00046167862574858476,
+      "seconds": 5.503209100003005,
+      "cases": [
+        {
+          "kind": "difference",
+          "L": 20,
+          "epsilon": 0.001,
+          "difference_norm_over_epsilon": 0.20545089957344437,
+          "E_finite_denominator_over_epsilon": 0.20486655043016821,
+          "remainder_norm_over_epsilon_squared": 0.275775963667867,
+          "mismatch": 2.0984431934085894e-08,
+          "precursor_max_tstar_minus_one": 1.697963009689973e-22,
+          "born_norm": 0.205389223866378
+        },
+        {
+          "kind": "difference",
+          "L": 24,
+          "epsilon": 0.001,
+          "difference_norm_over_epsilon": 0.2030012323291799,
+          "E_finite_denominator_over_epsilon": 0.20242385059738008,
+          "remainder_norm_over_epsilon_squared": 0.23358416293581652,
+          "mismatch": 2.048757378363359e-08,
+          "precursor_max_tstar_minus_one": 1.8401260322959026e-21,
+          "born_norm": 0.20293759368674238
+        }
+      ]
+    },
+    {
+      "dx": 0.0125,
+      "dt": 0.005000000000000001,
+      "order": 4,
+      "tmax": 100,
+      "interval": [
+        -120,
+        140
+      ],
+      "C": 0.5692357678263644,
+      "energy_C1": 3.0861401014260226,
+      "background_norm": 1.0032300200584496,
+      "background_norm_squared": 1.006470473146477,
+      "h0_50": 0.0005144019433038007,
+      "seconds": 25.631386900000507,
+      "cases": [
+        {
+          "kind": "difference",
+          "L": 20,
+          "epsilon": 0.001,
+          "difference_norm_over_epsilon": 0.20545375838005137,
+          "E_finite_denominator_over_epsilon": 0.20479227522326468,
+          "remainder_norm_over_epsilon_squared": 0.2757777468954924,
+          "mismatch": 2.0969219258634765e-08,
+          "precursor_max_tstar_minus_one": 2.572890536212588e-34,
+          "born_norm": 0.20539208176679086
+        },
+        {
+          "kind": "difference",
+          "L": 24,
+          "epsilon": 0.001,
+          "difference_norm_over_epsilon": 0.20300411957222228,
+          "E_finite_denominator_over_epsilon": 0.20235052332305103,
+          "remainder_norm_over_epsilon_squared": 0.23358959684362274,
+          "mismatch": 2.047273348236737e-08,
+          "precursor_max_tstar_minus_one": 1.2294970528072518e-31,
+          "born_norm": 0.20294047872874757
+        }
+      ]
+    }
+  ]
+}

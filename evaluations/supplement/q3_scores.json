@@ -1,0 +1,208 @@
+{
+  "question": "Q3",
+  "assessment_date": "2026-09-23",
+  "set": "Supplement",
+  "anonymous_ids": true,
+  "cross_question_letter_mapping": false,
+  "max_score": 100,
+  "score_maxima": {
+    "definition_and_setup": 15,
+    "calibration": 30,
+    "independent_verification": 15,
+    "research_progress": 30,
+    "conclusion_calibration": 10
+  },
+  "interval_interpretation": "研究层证据与验证完整度的合理评阅区间，非统计置信区间。",
+  "protocol_note": "只依据两份PDF正文和可核验证据评分，沿用既有Q3尺度；不以未交代码认定虚构，不把评阅者补充证明计作模型贡献。",
+  "blinding_note": "辅助评阅在PDF基本信息中意外接触s_3a的潜在身份线索；主评未接触该线索，并在查看拟评分前独立复核主论证。未据此认定身份或调整分数。",
+  "reviewer_artifacts": [
+    "grading/supplement/q3_work/independent_wave_supplement.json",
+    "grading/supplement/q3_work/static_crosscheck.json",
+    "grading/supplement/q3_work/energy_crosscheck.json"
+  ],
+  "primary_sources": [
+    {
+      "title": "Donninger–Schlag–Soffer, A proof of Price's Law on Schwarzschild black hole manifolds for all angular momenta",
+      "url": "https://arxiv.org/pdf/0908.4292",
+      "locator": "v2 pp.3,6 and pp.24–25, Lemmas 6.3–6.4",
+      "use": "背景引力扇区与无零能共振，不替代本题扰动一致界"
+    },
+    {
+      "title": "Leaver, Spectral decomposition of the perturbation response of the Schwarzschild geometry",
+      "url": "https://www.edleaver.com/Misc/EdLeaver/Publications/SpectralDecompositionOfPerturbationResponseOfSchwarzschildGeometry.pdf",
+      "locator": "Abstract and Section II",
+      "use": "完整Green函数包含QNM、branch cut与高频贡献"
+    },
+    {
+      "title": "Jaramillo–Macedo–Al Sheikh, Pseudospectrum and black hole quasi-normal mode (in)stability",
+      "url": "https://arxiv.org/pdf/2004.06434",
+      "locator": "v4 Section II; Phys. Rev. X 11, 031003 (2021)",
+      "use": "双曲切片非自伴谱问题与普通全轴L2对象有别"
+    }
+  ],
+  "assessments": [
+    {
+      "id": "s_3a",
+      "interval": [
+        76,
+        86
+      ],
+      "summary": "精确背景Jost与源—探测器代数、显式能量窗和多方法数值较强；全L的α=1仍为猜想，低频分母、条件量词和最优性标签有实质问题。",
+      "strongest": "全位置一致的有限时间能量界给出E=O(ε log²(1/ε))的对数时间窗；在所需范数有限且εK3(L)<1时有全时间条件Neumann界，并有原背景精确Jost匹配与受控一阶参数。",
+      "proof_status": "proved_finite_window_and_conditional_all_time_q3c_lipschitz_open",
+      "errors": [
+        {
+          "page": 11,
+          "locator": "§5.3；另见p.1、3、14总览",
+          "severity": "overclaim",
+          "detail": "固定L的非零首阶响应只能证明α_best≤1，不能证明全L统一α=1可取；后者仍是p.12猜想1。"
+        },
+        {
+          "page": 11,
+          "locator": "条件J1、推论2",
+          "severity": "assumption_and_quantifier_error",
+          "detail": "kD_L实轴高频范数趋√∫W/2≈0.549295，而非衰减；逐个L有界与有限数值表不足证明sup_L K2、sup_L N_L有限及K3=O(L)。"
+        },
+        {
+          "page": 13,
+          "locator": "§5.6 LF启发式",
+          "severity": "mathematical_error",
+          "detail": "a−bR=1+O(εL^−4)错误；其零频ε导数等于∫W_L G0(0;y,y)dy~||W||1 L/5。"
+        },
+        {
+          "page": 9,
+          "locator": "§4.4；p.10首段",
+          "severity": "overstatement",
+          "detail": "单个留数模延迟起效、严格2kL分段回波以及任何有限窗均不出现新谱，均超出给出的因果证明与有限窗拟合。"
+        },
+        {
+          "page": 7,
+          "locator": "§4.2",
+          "severity": "minor_mathematical_error",
+          "detail": "1/e属于约化Lambert模型；Taylor级数在|z|=1/e边界仍绝对收敛，且原问题的精确收敛半径未由该模型证明。"
+        }
+      ],
+      "independent_checks": [
+        "已全文提取15页，视觉核对p.5、7、8、10、11、13等关键公式页。",
+        "本地headless Mathematica复核精确回波代数、mismatch投影项、Lambert二阶项和静态H0u=H0v=0、Wronskian−1。",
+        "静态分母ε导数L=13,20,40,100为2.9423571237、4.3354834555、8.7337282384、22.7081911012，512点无端点Gauss-Legendre与Wolfram积分一致。",
+        "独立能量求积得到C=0.5692357678263644、E1=26.12051539278872；有限时常数链与二阶余项常数0.2640709513成立。",
+        "新两网格时域检查L=20、ε=10^-3、T=100给Efinite/ε=0.2048666、0.2047923，支持回答0.204818及mismatch量级。",
+        "未认证全部超大L窄峰积分，不把数值未发现异常当作LF证明。"
+      ],
+      "next_step": "修正静态分母，以精确通量关系控制b/(a−bR)整体，针对超低频窄峰进行含峰宽与面积误差的统一积分估计。",
+      "source_pdf": "Supplement/03/s_3a.pdf",
+      "scores": {
+        "definition_and_setup": 13,
+        "calibration": 28,
+        "independent_verification": 14,
+        "research_progress": 21,
+        "conclusion_calibration": 5
+      },
+      "total": 81,
+      "score_rationales": {
+        "definition_and_setup": "源、探测器、能量与扰动类定义完整，但J1高频行为和全L量词不准确。",
+        "calibration": "因果、mismatch、能量余项、Jost变分和静态校准丰富，低频分母一阶幂次错误。",
+        "independent_verification": "多方法数值、复频求根和留数拟合有实质证据，关键时域数值获独立支持。",
+        "research_progress": "建立非空洞对数窗、精确匹配及条件全时间界，未闭合全L的低频积分。",
+        "conclusion_calibration": "LF被标为猜想，但最佳α=1与部分条件范围反复被写作已证。"
+      },
+      "previous_scale_comparison": "与旧3g科学内容与核心缺口相近，维持相同五维分数和81分；补充版图表改善不机械增加数学证明分。",
+      "reliability_fabrication_finding": "none_established"
+    },
+    {
+      "id": "s_3b",
+      "interval": [
+        49,
+        60
+      ],
+      "summary": "正确因果与固定L共振首阶、精确delta模型有价值；mismatch公式、临界极限和resolvent对象存在错误，统一能量—流量闭合缺失，最优全时间定理未证明。",
+      "strongest": "严格的2L−13因果结论、正确首阶Duhamel与Wronskian位移商、辅助delta势的精确共振方程，以及有限参数下约0.20ε的时域数值证据。",
+      "proof_status": "causality_and_fixed_L_first_order_valid_uniform_theorem_not_established",
+      "errors": [
+        {
+          "page": 4,
+          "locator": "命题5、式(13)；p.1、13–14总结",
+          "severity": "mathematical_error",
+          "detail": "漏掉−|B|²/(2A²)的mismatch二阶投影项；δh=λh0给M=0的直接反例。有限窗口分母也不同，T≤9时Q3b无定义。"
+        },
+        {
+          "page": 4,
+          "locator": "式(12)，对照p.3式(9)",
+          "severity": "notation_and_order_error",
+          "detail": "δh^(1)在式(9)中已含ε，式(12)又乘ε，与声称的一阶阶数不一致。"
+        },
+        {
+          "page": 3,
+          "locator": "命题4、式(11)；p.10定理8",
+          "severity": "core_proof_gap",
+          "detail": "未证明能量到固定宽度远区场幅时间积分的一致界；普通bump-to-bump零频核范数随L增长，不能用L无关Neumann常数闭合全部高阶项。未扰动F数值又被当作扰动场一致上界。"
+        },
+        {
+          "page": 10,
+          "locator": "定理8常数和证明链；p.3光锥算子",
+          "severity": "mathematical_error",
+          "detail": "宽度2的自由光锥映射的L2(dt dz)→L2(dt)范数为√2/2，而非1/2；加入背景势还需额外估计，0.286不是所示链给出的理论上界。"
+        },
+        {
+          "page": 7,
+          "locator": "§3.2临界区域表；p.7–8式(22)",
+          "severity": "invalid_perturbative_extrapolation",
+          "detail": "c=c*时以已失效首阶式声称不消失O(1)位移，与Lambert近邻尺度O(log L/L)矛盾。p.8确有2Lμ因子，但全文阈值与适用条件未一致化；π/L间距主沿实方向。"
+        },
+        {
+          "page": 11,
+          "locator": "§4.2；p.12式(23)–(25)及最终充要判据",
+          "severity": "operator_and_criterion_error",
+          "detail": "把普通全轴L2自伴resolvent当成下半平面outgoing共振算子，赋予未扰动全局范数L依赖；Born G0W_LG0缺全阶逆控制、频率因子与可积性条件，不能成为所述Q3c充要判据。"
+        },
+        {
+          "page": 9,
+          "locator": "§3.4 branch cut/tail",
+          "severity": "low_frequency_error",
+          "detail": "bump反射不能统一写成εω→0；Born区为ε/ω，固定正bump零频可近全反射，源—探测器低频抑制须另证。"
+        },
+        {
+          "page": 5,
+          "locator": "命题6证明",
+          "severity": "proof_sign_error",
+          "detail": "d[δψ_L,ψ_R]/dx应为−δVψ_Lψ_R；最终式(15)的负号正确，保留最终首阶公式的得分。"
+        },
+        {
+          "page": 12,
+          "locator": "时域收敛表；对照p.10、14",
+          "severity": "numerical_report_inconsistency",
+          "detail": "L=20、ε=10^-3的E/ε在收敛表为0.200398→0.200380，而其他表约0.20445，约2%差异超出其误差声称。有限时积分与受污染大L运行未提供无限尾部误差控制。"
+        }
+      ],
+      "independent_checks": [
+        "全文提取15页，视觉核对p.3、4、5、7、10、12等关键公式页。",
+        "独立CAS展开mismatch得到(AC−|B|²)/(2A²)，平行扰动为无需数值的严格反例。",
+        "按Lagrange恒等式核对Wronskian符号；delta势连续与导数跳跃匹配确认式(17)正确。",
+        "Lambert二阶项2iLZ²核验确认额外L参数；临界首阶外推不成立。",
+        "自由光锥映射精确范数√2/2确认理论常数链不成立；普通零频背景核的线性L增长提供一致Neumann论证缺口。",
+        "新两网格L=20,24时域抽查支持主要E≈0.20ε量级，但不支持L=20收敛表0.20038。",
+        "无证据认定计算虚构；未交代码未作为单独扣分依据。"
+      ],
+      "next_step": "先修正mismatch、临界量词与频域对象，用精确背景Jost表达式和完整有限时间能量/迹估计替代未证流量引理；统一同参数数值表后，对真实bump复频根做外端/阶数/路径收敛。",
+      "source_pdf": "Supplement/03/s_3b.pdf",
+      "scores": {
+        "definition_and_setup": 10,
+        "calibration": 21,
+        "independent_verification": 9,
+        "research_progress": 11,
+        "conclusion_calibration": 3
+      },
+      "total": 54,
+      "score_rationales": {
+        "definition_and_setup": "波动模型、阻尼号与因果支集正确，但Q3b归一化及未加权L2 resolvent函数空间混淆。",
+        "calibration": "保留一阶变分、delta精确匹配及因果计算，mismatch、临界推断和部分符号有错。",
+        "independent_verification": "报告多网格、Jost/时域及bump/delta对照，主要量级获支持；收敛表冲突和边界误差限制证据。",
+        "research_progress": "辅助模型重求和及光滑bump样本构成部分推进，统一余项、全时间bound和最终判据未建立。",
+        "conclusion_calibration": "文末承认缺口，却反复把所依赖的最优统一定理和错误代数命题标作已证。"
+      },
+      "previous_scale_comparison": "低于旧3f的70分，因其缺少旧3f已闭合的显式有限时间能量界，并额外存在mismatch反例、临界误判和resolvent判据错误；保留正确独立部分的分数。",
+      "reliability_fabrication_finding": "none_established_numerical_internal_inconsistency_recorded"
+    }
+  ]
+}

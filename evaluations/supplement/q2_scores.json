@@ -1,0 +1,351 @@
+{
+  "question": 2,
+  "date": "2026-09-23",
+  "batch": "Supplement",
+  "blind_review": true,
+  "rubric": "math_physics_ai_benchmark_rubric.md",
+  "comparison_baseline": "grading/q2_assessment.md and grading/q2_scores.json",
+  "score_maxima": {
+    "definition": 15,
+    "calibration": 30,
+    "verification": 15,
+    "research": 30,
+    "calibration_of_claims": 10
+  },
+  "interval_note": "合理评阅区间，非统计置信区间；不因需要区分回答而强行消除同分。",
+  "report": "evaluations/supplement/q2_assessment.md",
+  "methodology": {
+    "full_text_read": [
+      "s_2a.pdf (19 pages)",
+      "s_2b.pdf (17 pages)"
+    ],
+    "visually_checked_pdf_pages": {
+      "s_2a": [
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        15,
+        17
+      ],
+      "s_2b": [
+        4,
+        6,
+        7,
+        8,
+        9,
+        10,
+        12,
+        17
+      ]
+    },
+    "symbolic_backend": "Mathematica 15.0.1, local Windows-x86-64, headless",
+    "numeric_backend": "Local Python 3.13 / NumPy 2.3.5",
+    "reused_reviewer_evidence": "evaluations/original/q2/independent_checks.json",
+    "distinction": "评阅者新增证明、计算和反例仅用于审计，不计作被评回答自己的贡献。",
+    "candidate_run_records": "PDF 内声称的运行结果作为提供的证据审阅，未独立核实全部大规模脚本、日志及优化证书；附件缺失本身不是虚构判据。",
+    "new_checks": {
+      "stiefel_symbolic_residual": 0,
+      "projection_moment_constraint_residuals": [
+        0,
+        0
+      ],
+      "collision_hessian_determinant": "3*x^4/y^4, x>=0, y>0",
+      "mean_reduced_state_3_3": {
+        "eigenvalues": [
+          "1/5",
+          "2/5",
+          "2/5"
+        ],
+        "entropy_exact": "log(5)-(4/5)*log(2)",
+        "entropy": 1.0549201679861442,
+        "candidate_claim_logD": 1.6094379124341003
+      },
+      "independent_columns": {
+        "seed": 2026092302,
+        "samples_per_case": 20000,
+        "exact_formula": "(k-1)/k^2 * ((k*X-Y)/D^2 + (X+Y)/(D*(D+1))), X=sum(m*n^2), Y=sum(m^2*n)",
+        "results": [
+          {
+            "NR": 3,
+            "NB": 3,
+            "k": 2,
+            "exact": "6/25",
+            "value": 0.24,
+            "mean": 0.24116380415494273,
+            "se": 0.0005212694237729846,
+            "candidate": 0.206
+          },
+          {
+            "NR": 3,
+            "NB": 3,
+            "k": 4,
+            "exact": "63/200",
+            "value": 0.315,
+            "mean": 0.3157207126731699,
+            "se": 0.00033844557518084766,
+            "candidate": 0.074
+          },
+          {
+            "NR": 5,
+            "NB": 4,
+            "k": 3,
+            "exact": "1622/14553",
+            "value": 0.11145468288325432,
+            "mean": 0.1113558963346607,
+            "se": 0.0001100020159860536,
+            "candidate": 0.049
+          }
+        ]
+      },
+      "recovery_crosscheck": {
+        "seed": 2026092303,
+        "method": "New QR isometries; Petz closed form compared to direct Kraus composition; small-case optimum computed by exact classical-POVM or single-Kraus polar formula, not a new full SDP run.",
+        "max_petz_residual": 5.551115123125783e-16,
+        "cases": [
+          {
+            "NR": 2,
+            "NB": 3,
+            "k": 2,
+            "samples": 4000,
+            "petz_mean": 0.3856542037598175,
+            "optimum_mean": 0.4161114552812995,
+            "optimum_se": 0.0009338942743904769,
+            "benchmark_exact_mean": "5/12"
+          },
+          {
+            "NR": 3,
+            "NB": 2,
+            "k": 2,
+            "samples": 4000,
+            "petz_mean": 0.7675997093168555,
+            "optimum_mean": 0.7675997103428063,
+            "optimum_se": 0.0017227530442177636,
+            "benchmark_exact_mean": "23/30"
+          },
+          {
+            "NR": 3,
+            "NB": 2,
+            "k": 3,
+            "samples": 20,
+            "petz_mean": 0.5555555555555556,
+            "benchmark_exact": "5/9"
+          },
+          {
+            "NR": 2,
+            "NB": 3,
+            "k": 3,
+            "samples": 20,
+            "petz_mean": 0.22222222222222224,
+            "benchmark_exact": "2/9"
+          }
+        ]
+      },
+      "label_witness": {
+        "NR": 2,
+        "NB": 2,
+        "k": 2,
+        "encoding": "Hadamard H_2",
+        "computational_basis_classical_statistic": 0,
+        "plus_minus_label_distinguishability": 1,
+        "reference_label_C2": "1/4"
+      },
+      "s_2b_visible_empirical_fit": {
+        "complete_visible_rows": 45,
+        "N_ge_11_rows": 8,
+        "c_definition": "(1-F)*phi^Xi",
+        "mean": 0.20050247629833745,
+        "sample_sd": 0.020394573273669166,
+        "range": [
+          0.17418520841198126,
+          0.23176845996455464
+        ],
+        "assessment": "与回答的 0.200 ± 0.019 经验值相容；不构成极限定理。"
+      }
+    },
+    "primary_sources": [
+      {
+        "title": "König, Renner and Schaffner, The operational meaning of min- and max-entropy",
+        "url": "https://arxiv.org/pdf/0807.1338",
+        "locator": "Theorems 2–3; equations (20)–(22), singlet-fraction dimension factor"
+      },
+      {
+        "title": "Sen, Average Entropy of a Quantum Subsystem",
+        "url": "https://arxiv.org/pdf/hep-th/9601132",
+        "locator": "Finite-dimensional Page formula"
+      },
+      {
+        "title": "Meckes, The Random Matrix Theory of the Classical Compact Groups, author manuscript",
+        "url": "https://case.edu/artsci/math/esmeckes/Haar_book.pdf",
+        "locator": "Sections 5.2–5.3; Theorems 5.5, 5.16, 5.17"
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "s_2a",
+      "source": "submissions/supplement/02/s_2a.pdf",
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 13,
+        "research": 28,
+        "calibration_of_claims": 7
+      },
+      "total": 93,
+      "interval": [
+        88,
+        97
+      ],
+      "research_interval": [
+        24,
+        30
+      ],
+      "summary": "完整精确校准与扇区 Haar 随机过滤器归约；碰撞/MP 下界和谱上界实质性强，但唯一极限、精确转折点和总荷推广有过度表述。",
+      "strongest": "M_a>=k 时 O(sqrt(k/D)) 的扇区 Haar 码归约；精确有限维碰撞下界；固定 k、两侧增长窗口中的 MP 下界及谱 converse。",
+      "errors": [
+        {
+          "page": 11,
+          "locator": "§4.3 集中性段；第 3 页摘要",
+          "kind": "unsupported_inference",
+          "severity": "moderate",
+          "description": "F_N-EF_N趋零不证明均值收敛；点质量极限应加均值极限或子序列条件。"
+        },
+        {
+          "page": 15,
+          "locator": "§5(1)；第 17 页表 6 与结论",
+          "kind": "overclaim",
+          "severity": "moderate",
+          "description": "已证尺度是Xi=O(1)，未定义并证明唯一精确转折点Xi=0。"
+        },
+        {
+          "page": 17,
+          "locator": "总荷 c!=1 推广",
+          "kind": "scope",
+          "severity": "moderate",
+          "description": "空间同构不能代替新局域代数、互补信道和拓扑资源权限的定义；单 anyon 阈值偏移未证。"
+        },
+        {
+          "page": 9,
+          "locator": "§3.4 O(k/sqrt(D)) 标签界及第 3 页摘要",
+          "kind": "scope",
+          "severity": "minor",
+          "description": "该粗界不对所有增长k序列趋零；窗口中须用k/D趋零及O(sqrt(k/D))归约。"
+        },
+        {
+          "page": 11,
+          "locator": "§4.3 固定k窗口及第15页增长k概要",
+          "kind": "gap",
+          "severity": "minor",
+          "description": "没有覆盖固定一侧、k/D不小的有限Xi边界序列；增长k最优MP函数仍为猜想。"
+        }
+      ],
+      "independent_verification": "核对极分解独立性、纯态过滤误差、凸性与恢复谱界；CAS重新核验Stiefel残差；复用已有entropy次级系数与MP表达式基准；原始Meckes文献支持集中尺度。",
+      "score_reasons": {
+        "definition": "trace、互补、Hmin、资源权限和扇区归约秩条件正确。",
+        "calibration": "有限熵、次级修正、一般replica及Stiefel和标签精确矩完整正确。",
+        "verification": "多条解析和声明已运行的数值路径有实质内容；大型优化仅有间隙摘要，未独立重跑全部证书。",
+        "research": "定量归约、碰撞/MP/谱bounds和集中性成立；固定k均值极限及增长k最优值未闭合。",
+        "calibration_of_claims": "点质量极限、精确Xi=0和跨总荷扩展的部分表述超过证明。"
+      },
+      "next_step": "证明固定k普通Haar恢复SDP的均值极限存在，明确极限顺序；以逐样本原始/对偶证书检验增长k的MP最优值猜想。",
+      "comparison": "与既有2g同为93，证据层级与局限相当；低于2e的97，因为缺有限窗口严格converse、同阶高端误差和全空间边界分析。",
+      "reliability": "未发现可由当前材料直接认定的虚构计算或引用；原始附件缺失本身不作虚构依据。"
+    },
+    {
+      "id": "s_2b",
+      "source": "submissions/supplement/02/s_2b.pdf",
+      "scores": {
+        "definition": 14,
+        "calibration": 27,
+        "verification": 11,
+        "research": 17,
+        "calibration_of_claims": 6
+      },
+      "total": 75,
+      "interval": [
+        70,
+        81
+      ],
+      "research_interval": [
+        14,
+        20
+      ],
+      "summary": "精确Stiefel矩与Petz/CPTP优化有效，窗口主要有数值支持；平均约化态、Gaussian归一化、HS阈值及独立列数值对照存在具体错误。",
+      "strongest": "第7页定理1精确Stiefel二阶矩；第9页式(13)显式Petz恢复下界；第10页式(14)正确CPTP最优恢复SDP与维数因子。",
+      "errors": [
+        {
+          "page": 6,
+          "locator": "§2.3 表格及后文",
+          "kind": "object_error",
+          "severity": "moderate",
+          "description": "S(E rho_R)不等于log D；(3,3)平均约化态谱为(1/5,2/5,2/5)，熵1.054920…，非1.609438。"
+        },
+        {
+          "page": 6,
+          "locator": "§2.3 最后一段",
+          "kind": "normalization_error",
+          "severity": "moderate",
+          "description": "各向同性复Gaussian逐样本归一化与Haar球面分布完全相同，有限D下不存在声称的系综O(1/D)差异。"
+        },
+        {
+          "page": 4,
+          "locator": "注2独立归一化列对照",
+          "kind": "incorrect_numerical_check",
+          "severity": "moderate",
+          "description": "三个声称数值0.206/0.074/0.049与精确0.24/0.315/0.1114546829及新20000样本检查不符。该项验证不计分，其他正确核验保留。"
+        },
+        {
+          "page": 10,
+          "locator": "注6",
+          "kind": "scaling_error",
+          "severity": "moderate",
+          "description": "式(11)的k因子为1-k^-2，有界于3/4与1；HS趋零不要求NR大于约2log_phi k。并将充分维数条件近似表述成必要条件。"
+        },
+        {
+          "page": 9,
+          "locator": "推论2最后一行",
+          "kind": "parameter_error",
+          "severity": "minor",
+          "description": "Markov事件的范数界应随sqrt(t)增长，文中写成sqrt(t^-1)；紧前有限维公式使用t正确。"
+        },
+        {
+          "page": 10,
+          "locator": "§3.7",
+          "kind": "gap",
+          "severity": "moderate",
+          "description": "只检查计算基标签概率，未控制Q_a的非对角元或完整参考–标签态，不能证明任意量子输入/增长k的标签泄漏结论。"
+        },
+        {
+          "page": 12,
+          "locator": "式(16)、猜想1；第14页状态表",
+          "kind": "overinterpretation_of_fit",
+          "severity": "moderate",
+          "description": "经验拟合尚无固定k与增长k的独立外推或留出检验；表中alpha=1.25残差稍小于alpha=1，不能由此建立唯一普适窗口函数。"
+        },
+        {
+          "page": 17,
+          "locator": "表6底部",
+          "kind": "evidence_limit",
+          "severity": "minor",
+          "description": "末页裁切，本次可完整读取45行，无法逐点核验宣称的全部49组；8个N>=11点的经验常数与声明相容。"
+        }
+      ],
+      "independent_verification": "CAS精确核验核心Stiefel式；直接Kraus构造确认Petz闭式及小规模最优值；独立推导并用20000样本复核独立随机列对照；Hadamard码证明其计算基标签统计存在盲点；重算8点经验常数。",
+      "score_reasons": {
+        "definition": "模型和操作权限基本正确，Gaussian归一化系综关系错误。",
+        "calibration": "有限熵、replica、核心矩和Petz/SDP正确；平均约化态熵、Markov参数和HS后续标度有误。",
+        "verification": "具体MC和恢复计算保留；独立列三组对照错误，窗口拟合缺留出验证，表6未完整显示。",
+        "research": "精确矩、显式decoder与有限CPTP优化成立；没有窗口解析converse、完整标签控制或增长k定理。",
+        "calibration_of_claims": "有正确的数值/猜想标记，但HS阈值、单参数拟合与标签泄漏的部分论断超出证据。"
+      },
+      "next_step": "修正平均态与归一化检查，重跑独立列对照；计算参考–标签Choi态；从正确的SDP对偶构造显式converse，并将固定k/增长k扫描分开做留出检验。",
+      "comparison": "高于既有2f的69，因为Petz和最优恢复归一化正确且有实际数值内容；低于既有2a/2b的87/86，因明确错误、标签与窗口证明缺口。",
+      "reliability": "独立列对照数值与声明对象显著不符，相关验证不计分；没有据此认定虚构，也未将其他正确计算清零。"
+    }
+  ]
+}

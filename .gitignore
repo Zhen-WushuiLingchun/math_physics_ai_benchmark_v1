@@ -1,5 +1,33 @@
-# This public archive tracks only files reviewed for publication.
-# Local session exports, build products, caches and large scratch data stay local.
+# Publish reviewed project directories; keep local execution products out.
 *
 !/.gitignore
 !/README.md
+!/questions/
+!/questions/**
+!/runs/
+!/runs/**
+!/submissions/
+!/submissions/**
+!/evaluations/
+!/evaluations/**
+!/costs/
+!/costs/**
+!/data/
+!/data/**
+!/results/
+!/results/**
+!/scripts/
+!/scripts/**
+**/__pycache__/
+**/*.py[cod]
+**/node_modules/
+**/.venv/
+**/.env
+**/.env.*
+**/*.inspect.ndjson
+**/*.aux
+**/*.log
+**/*.fls
+**/*.fdb_latexmk
+**/*.synctex.gz
+/.work/
