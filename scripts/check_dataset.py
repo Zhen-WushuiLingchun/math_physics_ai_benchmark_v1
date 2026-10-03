@@ -9,14 +9,28 @@ ROOT=Path(__file__).resolve().parents[1]
 load=lambda p:json.loads((ROOT/p).read_text(encoding='utf-8-sig'))
 data=load('data/analysis_data.json');manifest=load('data/submissions.json')
 rows=data['rows'];byid={r['id']:r for r in rows}
-assert len(rows)==len(byid)==24
-assert len({r['model'] for r in rows})==8
-assert len(manifest['submissions'])==27
-assert sum(r['adopted'] for r in manifest['submissions'])==24
-assert manifest['adopted_count']==24 and manifest['pdf_count']==27
+assert len(rows)==len(byid)==30
+assert len({r['model'] for r in rows})==10
+assert len(manifest['submissions'])==33
+assert sum(r['adopted'] for r in manifest['submissions'])==30
+assert manifest['adopted_count']==30 and manifest['pdf_count']==33
 rubric={'definition':15,'calibration':30,'verification':15,'research':30,'calibration_of_claims':10}
 source_batches=[load('evaluations/original/评分明细.json'),load('evaluations/supplement/补充评分明细.json')]
 source_scores={r['id']:r for batch in source_batches for q in batch['questions'] for r in q['answers']}
+source_scores.update({r['id']:r for r in load('evaluations/supplement_2nd/第二轮补充评分明细.json')['answers']})
+for r in load('evaluations/supplement_2nd/source_manifest.json')['files']:
+ content=(ROOT/r['path']).read_bytes()
+ if r.get('hash_normalization')=='CRLF to LF':content=content.replace(b'\r\n',b'\n')
+ assert len(content)==r['bytes'] and hashlib.sha256(content).hexdigest()==r['sha256'],r['path']
+for r in load('costs/supplement_2nd_costs.json')['entries']:
+ a=byid[r['id']]
+ assert a['cost']==r['cost_usd'] and a['model']==r['model'] and a['question']==r['question']
+old_costs={r[0]:r[2] for rs in load('data/input_rows.json').values() for r in rs[1:]}
+first_costs={'s_1b':4.118,'s_1c':.178,'s_1d':.414,'s_2b':.430,'s_3b':.477}
+for r in rows:
+ if not r['id'].startswith('s2_'):
+  expected=first_costs[r['id']] if r['id'] in first_costs else old_costs[r['replaces'] or r['id']]
+  assert r['cost']==expected
 for r in rows:
  assert set(r['scores'])==set(rubric)
  assert all(isinstance(v,int) and 0<=v<=rubric[k] for k,v in r['scores'].items())
@@ -36,20 +50,21 @@ for m in data['full']:
  assert sum(r['total'] for r in group)==m['score']
  assert math.isclose(m['mean'],m['score']/3)
  assert sum(Decimal(str(r['cost'])) for r in group)==Decimal(str(m['cost']))
-assert sum(Decimal(str(r['cost'])) for r in rows)==Decimal('116.842')
+assert sum(Decimal(str(r['cost'])) for r in rows)==Decimal(str(data['totalCost']))==Decimal('125.512')
 with (ROOT/'data/scores.csv').open(encoding='utf-8',newline='') as f:csvrows=list(csv.DictReader(f))
-assert len(csvrows)==24
+assert len(csvrows)==30
 for r in csvrows:
  a=byid[r['id']]
  assert r['model']==a['model'] and int(r['question'])==a['question']
  assert int(r['total'])==a['total'] and Decimal(r['cost_usd'])==Decimal(str(a['cost']))
  assert r['source_pdf']==a['source_pdf']
+ assert [int(r['interval_lower']),int(r['interval_upper'])]==a['interval']
  for k in rubric:assert int(r[k])==a['scores'][k]
 def efficient(pts):
  return [a for a in pts if not any(b['cost']<=a['cost'] and b['score']>=a['score'] and (b['cost']<a['cost'] or b['score']>a['score']) for b in pts)]
 assert {m['model'] for m in efficient(data['full'])}=={m['model'] for m in data['fullFrontier']}
 combinations=[{'ids':[r['id'] for r in rs],'cost':sum(Decimal(str(r['cost'])) for r in rs),'score':sum(r['total'] for r in rs)} for rs in product(*[[r for r in rows if r['question']==q] for q in [1,2,3]])]
-assert len(combinations)==data['portfolioCount']==512
+assert len(combinations)==data['portfolioCount']==1000
 assert {(tuple(r['ids']),r['cost'],r['score']) for r in efficient(combinations)}=={(tuple(r['ids']),Decimal(str(r['cost'])),r['score']) for r in data['portfolioFrontier']}
 ns={'s':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
 with zipfile.ZipFile(ROOT/'results/模型评分与成本汇总.xlsx') as z:
@@ -68,4 +83,8 @@ with zipfile.ZipFile(ROOT/'results/模型评分与成本汇总.xlsx') as z:
    cells[c.attrib['r']]=value
   for r in [r for r in rows if r['question']==q]:
    for col,expected in zip('ABCD',[r['id'],r['model'],r['cost'],r['total']]):assert cells[f"{col}{r['row']}"]==expected,(r['id'],col)
-print('Verified: 27 PDF hashes; 24 adopted answers; 8 complete configurations; USD 116.842; 512 combinations; CSV and workbook match.')
+for q in [1,2,3]:
+ pts=[dict(r,score=r['total']) for r in rows if r['question']==q]
+ assert {r['id'] for r in efficient(pts)}=={r['id'] for r in data['questionFrontiers'][q-1]}
+assert min(p['cost'] for p in combinations if p['score']>=270)==Decimal('3.049')
+print('Verified: 33 PDF hashes; 30 adopted answers; 10 complete configurations; USD 125.512; 1000 combinations; frozen scores, costs, CSV and workbook match.')

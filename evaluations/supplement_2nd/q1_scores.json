@@ -1,0 +1,39 @@
+{
+  "question": 1,
+  "date": "2026-09-30",
+  "dimensions": {"definition": 15, "calibration": 30, "verification": 15, "research": 30, "calibration_of_claims": 10},
+  "answers": [
+    {
+      "id": "s2_1a", "question": 1,
+      "source_pdf": "submissions/supplement_2nd/01/s2_1a.pdf",
+      "model_name": null, "cost_usd": null, "token_usage": null,
+      "scores": {"definition": 15, "calibration": 30, "verification": 13, "research": 27, "calibration_of_claims": 10},
+      "total": 95, "interval": [92, 98],
+      "summary": "完整 n=3 核类不可解性成立；D 维积分定位具体，扩张尚未写成明确统一的共线修正关系。",
+      "strongest": "在全部八维树级零核自由度上，P2+Q2=x(1-x)[1-2x(1-x)] 非零，排除同时满足树级、全正和一个单负扇区的全部允许核。",
+      "errors": [
+        {"page": 6, "locator": "事先限定的扩张及其已证范围", "kind": "open_step", "severity": "limited_scope", "description": "有限积分基可重构四点目标，但没有进一步组织成保留 YM 共线项且附加系数明确的统一修正关系；n=4 与高点闭合未完成，正文已说明。"},
+        {"page": 7, "locator": "实际复核、文件与用量记录", "kind": "audit_limit", "severity": "minor", "description": "声称的脚本、精确结果文件与三个留出点未随本轮 PDF 提交，不能审计其实际执行历史；不认定虚构。"}
+      ],
+      "next_step": "固定代表并计算同一有限积分基的统一修正系数，依次检验三个单负位置及 n=4 多重切割。",
+      "verification_notes": ["Mathematica 15.0.1 无前端精确运算；六全正与六单负振幅表的十二残差全零。", "八参数树级核、多项式 P/Q 系数和不可解余量通过。", "完整核系统秩 9，增广秩 10；参考缺陷 (-1/9,16/9) 复现。", "单负四组积分贡献合成 (s^2+u^2)/12；单纯形矩 1/6、1/24、1/6 复现。"],
+      "anonymity_note": "正文费用附录出现型号费率文字；未据此推断身份，相关附录不参与评分。"
+    },
+    {
+      "id": "s2_1b", "question": 1,
+      "source_pdf": "submissions/supplement_2nd/01/s2_1b.pdf",
+      "model_name": null, "cost_usd": null, "token_usage": null,
+      "scores": {"definition": 15, "calibration": 30, "verification": 13, "research": 29, "calibration_of_claims": 10},
+      "total": 97, "interval": [94, 99],
+      "summary": "四行精确证书排除完整 n=3 核类；固定三角块的一维全正扩张及 n=4 MHV 校准均成立。",
+      "strongest": "四条物理必要约束满足显式左零关系，但目标收缩为 -eta*x(1-x)*(x^2+(1-x)^2) 非零；全部允许核因此不可解。",
+      "errors": [
+        {"page": 10, "locator": "式 (47) 及 7.1 节", "kind": "open_step", "severity": "limited_scope", "description": "一维修复只证明指定 n=3 代表的全正积分后恒等式；单负修正、高点闭合和 n=4 一圈分类未完成，正文边界表述准确。"},
+        {"page": 11, "locator": "复现文件与实际运行状态", "kind": "audit_limit", "severity": "minor", "description": "所列脚本、完整矩阵行标签和九组留出点未随 PDF 提交；未确认其运行历史，也未逐项重现指定行号的九阶子式。"}
+      ],
+      "next_step": "从同一作用量规则计算单负 T3，保持 c_triangle(x)=-2*(x^2+(1-x)^2)/3 固定，检验剩余式。",
+      "verification_notes": ["从振幅重新提取四条系数条件，四残差全零；左零恒等式通过。", "完整矩阵秩 9/10，三个右零向量通过。", "四个参考缺陷 (-7/108,7/54,-1/48,-25/432) 复现。", "一般自旋量变量下盒表达式、标准缺陷及三角扩张关系全零。", "n=4 九自由变量 MHV 树级代表与独立 EYM 公式差为零。"],
+      "anonymity_note": "仅按文件代号评分，未读取身份元数据或成本映射。"
+    }
+  ]
+}

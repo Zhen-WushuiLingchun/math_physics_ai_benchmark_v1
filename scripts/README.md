@@ -3,13 +3,14 @@
 从仓库根目录运行。Python 3.10+；绘图依赖列在 `requirements.txt`。
 
 ```bash
+python scripts/sync_records.py
 python scripts/check_dataset.py
 python -m pip install -r scripts/requirements.txt
 python scripts/plots.py --conclusion-only
 python scripts/write_report.py
 ```
 
-`check_dataset.py` 使用标准库检查 27 份答卷哈希、24 项评分、CSV、三题总分与成本、前沿和工作簿源单元格。它不会重新裁定数学物理结论。
+`check_dataset.py` 使用标准库检查 33 份答卷哈希、30 项评分、CSV、三题总分与成本、前沿和工作簿源单元格。它不会重新裁定数学物理结论。
 
 `plots.py --conclusion-only` 绘制最终对数／线性结论图；不带参数还绘制逐题图、预算组合图，并读取现有工作簿核对图表数据。需安装支持中文的字体，可设置 `BENCHMARK_FONT` 为字体文件路径。所有图片写入 `results/figures/`。
 
@@ -19,6 +20,8 @@ python scripts/write_report.py
 node scripts/build_workbook.mjs analyze
 node scripts/build_workbook.mjs author
 ```
+
+sync_records.py 同步采用 CSV 与 PDF 清单，保留被替代答卷的追溯记录。workbook_sections.mjs 实现工作簿各汇总区块。
 
 工作簿作者模式在现有 Excel 文件上更新三张 Task 表和综合汇总。统计公式关联 Task 表；原生散点图的横坐标为生成时的成本快照，费用变动后应重新生成图表。暂存核验输出写入被 Git 忽略的 `.work/`。
 

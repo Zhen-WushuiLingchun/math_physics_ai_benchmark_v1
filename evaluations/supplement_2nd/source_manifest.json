@@ -1,0 +1,63 @@
+{
+  "date": "2026-09-30",
+  "batch": "Supplement_2nd",
+  "purpose": "固定本轮答卷和评分标准版本；仅内容散列，不读取 PDF 身份元数据。",
+  "files": [
+    {
+      "path": "questions/01_YM_EYM_one_loop.md",
+      "bytes": 7416,
+      "sha256": "f319739ca95ff8b7159c9d2aab9fa07baa8a920cf97b207aa2d3c863fc3d0da7",
+      "hash_normalization": "CRLF to LF"
+    },
+    {
+      "path": "questions/02_Fibonacci_information_recovery.md",
+      "bytes": 7671,
+      "sha256": "b0235701283af577621b9e6fb616dd0aa7a5b1b65792fe1ff57a2b40571eab07",
+      "hash_normalization": "CRLF to LF"
+    },
+    {
+      "path": "questions/03_Ringdown_spectral_stability.md",
+      "bytes": 7154,
+      "sha256": "3e1240791ea8503a7ab9311ea006fc4e3e718349d81a5c2fb3660183a364b5bb",
+      "hash_normalization": "CRLF to LF"
+    },
+    {
+      "path": "submissions/supplement_2nd/01/s2_1a.pdf",
+      "bytes": 327770,
+      "sha256": "a10dd0688331bf9c908f1623ec2a3453d4d294ec11b0046a10b58cb8e3cc203f"
+    },
+    {
+      "path": "submissions/supplement_2nd/01/s2_1b.pdf",
+      "bytes": 263413,
+      "sha256": "0cbeb7801a8af1c5d68ff49f2831801af441279df3c82060b44e31fc2405ef2a"
+    },
+    {
+      "path": "submissions/supplement_2nd/02/s2_2a.pdf",
+      "bytes": 518210,
+      "sha256": "4e16aa3b5b3b06c223d9664ab5d9b3467b1a3915c168597cad61b1415f6abb2e"
+    },
+    {
+      "path": "submissions/supplement_2nd/02/s2_2b.pdf",
+      "bytes": 336667,
+      "sha256": "b7ce784a6ece62e77b14ac631c0b5a2422d914899aedecd24870bf3f269e6732"
+    },
+    {
+      "path": "submissions/supplement_2nd/03/s2_3a.pdf",
+      "bytes": 420491,
+      "sha256": "62851cb8e02dcceb6db252bf271294bcc2d1349277d8c3d4945d1b81cc01db26"
+    },
+    {
+      "path": "submissions/supplement_2nd/03/s2_3b.pdf",
+      "bytes": 325655,
+      "sha256": "3e45b49ce2e783b23db5581685395acbcea0998d24571315e5fb0b790453c1db"
+    },
+    {
+      "path": "questions/math_physics_ai_benchmark_rubric.md",
+      "bytes": 10322,
+      "sha256": "a5865ca495af1ef83189aff1cd414db336dba21fcf8aa365f366a50041b493c8",
+      "hash_normalization": "CRLF to LF"
+    }
+  ],
+  "path_base": "repository root",
+  "normalization_note": "评分时题面为 LF；仓库检出为 CRLF。已验证四份题面/量表解码文本完全相同，保留原评分散列，核验时仅统一行尾。PDF 按原始字节计算散列。"
+}

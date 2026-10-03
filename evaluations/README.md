@@ -5,7 +5,8 @@
 | 批次 | 第 1 题 | 第 2 题 | 第 3 题 | 机读汇总 |
 | --- | --- | --- | --- | --- |
 | 原批次 | [评阅](original/q1_assessment.md) | [评阅](original/q2_assessment.md) | [评阅](original/q3_assessment.md) | [19 份记录](original/评分明细.json) |
-| 补充批次 | [评阅](supplement/q1_assessment.md) | [评阅](supplement/q2_assessment.md) | [评阅](supplement/q3_assessment.md) | [8 份记录](supplement/补充评分明细.json) |
+| 第一轮补充 | [评阅](supplement/q1_assessment.md) | [评阅](supplement/q2_assessment.md) | [评阅](supplement/q3_assessment.md) | [8 份记录](supplement/补充评分明细.json) |
+| 第二轮补充 | [评阅](supplement_2nd/q1_assessment.md) | [评阅](supplement_2nd/q2_assessment.md) | [评阅](supplement_2nd/q3_assessment.md) | [6 份匿名记录](supplement_2nd/第二轮补充评分明细.json) |
 
 批次报告保留评分当时的叙述、排名和匿名阶段记录，不单独作为当前完整总榜。当前采用版本、模型身份与成本见[最终数据](../data/analysis_data.json)和[完整分析](../results/analysis.md)。三份 Opus 补充答卷用于最终统计，原批次仍保留以便追溯。
 
@@ -14,3 +15,5 @@
 评阅者计算保存在 `original/q2/`、`original/q3/`、`supplement/q3_work/` 及 [q1_verification_record.json](supplement/q1_verification_record.json)；这些证据不计为作答模型自行完成的验证。保留的数值结果不是所有符号工具会话的完整执行日志。
 
 `supplement/assemble_supplement.py` 是匿名批次汇总的历史脚本，会初始化该批次身份与成本字段；最终发布数据的入口是 `data/analysis_data.json`，不要用历史脚本覆盖已经整合身份的数据。
+
+第二轮补充记录保留评分冻结时的身份与费用空字段，完整采用数据库已合并参与者随后披露的 GPT-6.1 Sol xhigh / max 身份及美元成本。三份 a 答卷的正文费用附录出现型号线索，相关内容不参与评分；第 2 题保留有依据的 98 分并列。三题复核摘要见该批次的 q1/q2/q3_verification_record.json，匿名评分与最终身份映射分别存档。

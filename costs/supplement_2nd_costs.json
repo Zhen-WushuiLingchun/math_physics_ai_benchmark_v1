@@ -1,0 +1,14 @@
+{
+  "date": "2026-09-30",
+  "source": "用户在评分完成后直接披露的型号与逐题美元额度消耗",
+  "unit": "USD",
+  "token_counts": null,
+  "entries": [
+    {"id":"s2_1a","question":1,"model":"GPT-6.1 Sol xhigh","cost_usd":1.612},
+    {"id":"s2_2a","question":2,"model":"GPT-6.1 Sol xhigh","cost_usd":1.111},
+    {"id":"s2_3a","question":3,"model":"GPT-6.1 Sol xhigh","cost_usd":1.371},
+    {"id":"s2_1b","question":1,"model":"GPT-6.1 Sol max","cost_usd":1.795},
+    {"id":"s2_2b","question":2,"model":"GPT-6.1 Sol max","cost_usd":1.140},
+    {"id":"s2_3b","question":3,"model":"GPT-6.1 Sol max","cost_usd":1.641}
+  ]
+}

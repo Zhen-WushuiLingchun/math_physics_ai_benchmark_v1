@@ -1,0 +1,41 @@
+{
+  "question": 1,
+  "date": "2026-09-30",
+  "performed_by": "reviewer",
+  "tool": "headless Mathematica 15.0.1 for Windows x86-64",
+  "interpretation": "以下均为本轮评阅者实际独立执行的精确符号核验，不是答卷原始运行日志。",
+  "sources": [
+    {"url": "https://arxiv.org/pdf/hep-th/0501240", "locations": "(21)-(23), (35)"},
+    {"url": "https://arxiv.org/pdf/1803.08497", "locations": "(3.9)-(3.12), (4.30)-(4.31), Appendix A"},
+    {"url": "https://arxiv.org/pdf/1508.01116", "locations": "tree collinear relations (10)-(11)"}
+  ],
+  "first_run": {
+    "momentum_sum": [[0,0],[0,0]],
+    "mandelstam": ["k*(1-q)", "k*q", "-k"],
+    "s2_1a_plus_table_residuals": [0,0,0,0,0,0],
+    "s2_1a_minus1_table_residuals": [0,0,0,0,0,0],
+    "s2_1a_tree_residual": 0,
+    "s2_1a_P_Q_residuals": [0,0],
+    "s2_1a_certificate": "x*(1-x)*(1-2*x+2*x^2)",
+    "complete_system_ranks": [9,10],
+    "s2_1b_four_row_residuals": [0,0,0,0],
+    "s2_1b_left_null_residual": 0,
+    "s2_1b_all_three_right_null_vectors": "zero",
+    "s2_1b_cyclic_tree_box_extension_residuals": [0,0,0],
+    "s2_1b_defects_at_x_1_3_q_2_eta_1_2": ["-7/108","7/54","-1/48","-25/432"],
+    "s2_1a_defects_at_x_1_3_q_2_k_1": ["-1/9","16/9"]
+  },
+  "second_run": {
+    "s2_1b_n4_mhv_generic_nine_variable_tree_residual": 0,
+    "s2_1b_generic_box_identity_residual": 0,
+    "s2_1b_generic_cyclic_extension_residual": 0,
+    "s2_1b_generic_standard_defect_residual": 0,
+    "s2_1a_NPT_singleminus_integral_residual_s_eq_minus_t_minus_u": 0,
+    "simplex_moments": ["1/6","1/24","1/6"]
+  },
+  "limits": [
+    "答卷引用的外部脚本和原始日志未随本轮 PDF 提交。",
+    "未运行高点一圈核分类，也未声称核验所有广义切割或一般点数闭合。",
+    "s2_1b 指定行号的九阶子式未逐项核验；完整矩阵秩及四行核心证书已另行复算。"
+  ]
+}

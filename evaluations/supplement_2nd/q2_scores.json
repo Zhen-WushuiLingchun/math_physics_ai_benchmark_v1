@@ -1,0 +1,155 @@
+{
+  "question": 2,
+  "date": "2026-09-30",
+  "timezone": "Asia/Tokyo",
+  "dimensions": {
+    "definition": 15,
+    "calibration": 30,
+    "verification": 15,
+    "research": 30,
+    "calibration_of_claims": 10
+  },
+  "answers": [
+    {
+      "id": "s2_2a",
+      "question": 2,
+      "source_pdf": "../../submissions/supplement_2nd/02/s2_2a.pdf",
+      "model_name": null,
+      "cost_usd": null,
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 14,
+        "research": 29,
+        "calibration_of_claims": 10
+      },
+      "total": 98,
+      "interval": [
+        95,
+        100
+      ],
+      "research_interval": [
+        27,
+        30
+      ],
+      "summary": "精确熵和 Stiefel/标签矩完整；以部分迹算符范数浓缩及 fidelity 切平面证明所有两侧增长、k→∞、有限 Xi 序列的最优 MP 极限，并给出全域单变量普适性反例。",
+      "strongest": "第7–8页定理5.1、引理5.2及式(49)–(53)：一般增长 k 最优恢复极限；第9页命题6.1：同一 Xi 的两条合法序列具有严格不同极限。",
+      "errors": [
+        {
+          "page": 11,
+          "locator": "式 (60) 及末段；第 7 页定理 4.1 后说明",
+          "kind": "gap",
+          "severity": "minor",
+          "description": "没有证明固定 k=2 的唯一最优窗口函数或均值极限存在；给定双侧界有效但部分窗口较宽。答卷准确承认此缺口。"
+        },
+        {
+          "page": 11,
+          "locator": "表 2 及执行/文件说明",
+          "kind": "evidence_limit",
+          "severity": "minor",
+          "description": "增长 k 数值每组仅两个样本；完整程序与 JSON 记录未随本次 PDF 提交。本轮可独立核验核心结论，但不能宣称重放原运行。"
+        },
+        {
+          "page": 12,
+          "locator": "参考文献 [4]",
+          "kind": "citation_locator",
+          "severity": "minor",
+          "description": "所写 Section 5.2.3 是 sub-Gaussian 变量章节；所列 Theorem 5.31、5.32 与 Corollary 5.35 位于 Section 5.3.1。章节定位笔误不影响数学论证。"
+        }
+      ],
+      "next_step": "沿固定 k=2、固定整数 N_R-N_B 求原始/对偶最优 SDP，并构造有限参考维数的极限环境态变分问题；不直接外推增长 k 的 MP 最优公式。",
+      "verification_notes": [
+        "答卷自身提供：有限维解析推导、Beta 最优解码积分、Mathematica/SymPy 声明核验、六个切分各6000个 Stiefel/Petz 样本、两组熵/replica各8000个样本及三组每组两个增长k样本。",
+        "答卷自身明确说明固定 k 最优 SDP 未运行；所述 verify_q2.py/q2_verification.json 未随 PDF 交付。未据此认定虚构。",
+        "评阅者本轮另行验证主矩、切平面梯度、部分迹 Haar 浓缩与 Gaussian/Stiefel 连续性；新增抽样和 SDP 仅用于确认正确性，不计为答卷自己的独立验证成果。"
+      ],
+      "score_reasons": {
+        "definition": "所有对象、资源、归一化、标签与极限边界均正确。",
+        "calibration": "精确熵、次级修正、replica、Stiefel、标签和镜像最优恢复均正确完整。",
+        "verification": "多条正文内解析与数值验证成立；原始附件未提交，临界数值规模有限。",
+        "research": "一般增长k最优极限、固定k严格converse及非普适性证书强；固定k最优函数仍未闭合。",
+        "calibration_of_claims": "准确区分证明、数值、固定/增长k和顺序极限，island解释边界明确。"
+      },
+      "anonymity_exposure": {
+        "pages": [
+          12,
+          13
+        ],
+        "scope": "附录 A 与参考文献 [9] 出现具体型号的费率及模型文档字样，仅记录暴露范围，不推断实际型号。"
+      },
+      "reliability": "未发现可由本次材料直接认定的虚构计算或引用。"
+    },
+    {
+      "id": "s2_2b",
+      "question": 2,
+      "source_pdf": "../../submissions/supplement_2nd/02/s2_2b.pdf",
+      "model_name": null,
+      "cost_usd": null,
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 14,
+        "research": 29,
+        "calibration_of_claims": 10
+      },
+      "total": 98,
+      "interval": [
+        95,
+        100
+      ],
+      "research_interval": [
+        27,
+        30
+      ],
+      "summary": "精确熵、Stiefel/标签矩、Petz与对偶归一化完整；得到固定k Petz精确窗口极限及严格平均converse，在 n_a/k²→0 子类证明最优MP公式，并严格反驳全题面单变量普适性。",
+      "strongest": "第7页定理4.1及式(20)–(22)；第9页式(28)–(30)固定k Petz极限及恢复双侧界；第9–11页定理5.2–5.4增长k子类最优极限和同Xi反例。",
+      "errors": [
+        {
+          "page": 9,
+          "locator": "定理 5.2 条件 (31)；第 10 页证明；第 15 页式 (33)",
+          "kind": "scope",
+          "severity": "minor",
+          "description": "精确最优增长 k 公式限于 max_a n_a/k²→0；正文使用 Hilbert–Schmidt twirl，尚未证明条件外所有两侧增长序列的同一极限。此限制被明确标记。"
+        },
+        {
+          "page": 9,
+          "locator": "定理 5.1 式 (30)；第 15 页尚未闭合部分",
+          "kind": "gap",
+          "severity": "minor",
+          "description": "固定 k 给出有力的最优平均上下界，但未得到唯一最优窗口函数或极限分布，不能把 Petz 极限 P_k(c) 当成最优值。"
+        },
+        {
+          "page": 12,
+          "locator": "§6.2 数值核验；第 15 页附录 A",
+          "kind": "evidence_limit",
+          "severity": "minor",
+          "description": "222组恢复优化及修复间隙有具体报告，但原始程序、逐样本矩阵和日志未随本次PDF提交；本轮独立SDP只复核另抽的有限样本。"
+        }
+      ],
+      "next_step": "用部分迹谱范数浓缩替换 Hilbert–Schmidt 上界，检验能否去掉 n_a/k²→0；另沿固定 k=2 的整数切分子序列计算最优值和原始/对偶证书。",
+      "verification_notes": [
+        "答卷自身提供：Laguerre与twirl解析推导、独立指标枚举、Beta积分、六个切分各6000个Stiefel样本、216个小规模SDP及4个满维/2个确定性编码SDP、六个中等切分各80个Petz样本与增长k检查。",
+        "答卷报告82组optimal_inaccurate并说明可行性修复、最大间隙及浮点限制；完整原始附件未随PDF交付。",
+        "SymPy1.14.0未展开积分返回7/30的记录在评阅环境复现；分项积分、Mathematica和SciPy均给23/30。",
+        "评阅者新增的47组SDP、15000个小尺寸Stiefel样本、300个固定k样本和11个增长k样本只确认结论，不计作答卷自己执行的验证。"
+      ],
+      "score_reasons": {
+        "definition": "直和、neutral资源、标签完整矩阵、平方保真度及各种极限范围均正确。",
+        "calibration": "Laguerre熵、replica、Stiefel、twirl、镜像最优恢复及满维公式均正确。",
+        "verification": "正文给出多路解析与具体SDP/Petz数值，处理了CAS与求解器警告；原始证书附件未提交。",
+        "research": "固定k精确Petz极限与紧的平均converse、增长k子类最优公式和全域反例成立；一般增长序列及固定k最优函数仍缺。",
+        "calibration_of_claims": "限制条件、平均与概率极限、数值与证明、反例排除范围交代清楚。"
+      },
+      "anonymity_exposure": {
+        "pages": [],
+        "scope": "正文未发现明确型号标记。"
+      },
+      "reliability": "未发现可由本次材料直接认定的虚构计算或引用；所报告CAS异常得到独立复现。"
+    }
+  ],
+  "interval_note": "合理阅卷判断区间，不是统计置信区间。",
+  "tie_note": "a覆盖全部两侧增长的k→∞最优MP极限；b固定k界更紧且数值证书说明更完整。共同缺固定k最优窗口函数；证据不足以客观作稳健先后，保留98分并列。",
+  "report": "q2_assessment.md",
+  "verification_record": "q2_verification_record.json",
+  "cost_status": "等待用户提供token；本轮不进行成本计算或身份映射。"
+}

@@ -1,0 +1,347 @@
+{
+  "schema_version": 1,
+  "batch": "Supplement_2nd",
+  "date": "2026-09-30",
+  "timezone": "Asia/Tokyo",
+  "status": "scores_finalized_before_identity_and_usage_mapping",
+  "rubric": "math_physics_ai_benchmark_rubric.md",
+  "dimensions": {
+    "definition": 15,
+    "calibration": 30,
+    "verification": 15,
+    "research": 30,
+    "calibration_of_claims": 10
+  },
+  "interval_note": "合理复评范围，不是统计置信区间。",
+  "identity_mapping_status": "awaiting_user; cross-question letters are not assumed to identify a model",
+  "usage_status": "awaiting_user",
+  "anonymity_limit": "部分答卷正文费用附录含型号费率文字；排除评分，不据此映射身份。未读取 PDF 身份元数据。",
+  "ties_note": "第2题两份优势互补，证据不足以拉开总分；保留98分并列，不人为加小数。",
+  "reviewer_evidence_note": "独立核验记录均为评阅者本轮计算，不补计为答卷自己的成果。",
+  "reports": [
+    "evaluations/supplement_2nd/q1_assessment.md",
+    "evaluations/supplement_2nd/q2_assessment.md",
+    "evaluations/supplement_2nd/q3_assessment.md"
+  ],
+  "source_manifest": "evaluations/supplement_2nd/source_manifest.json",
+  "answers": [
+    {
+      "id": "s2_1a",
+      "question": 1,
+      "source_pdf": "submissions/supplement_2nd/01/s2_1a.pdf",
+      "model_name": null,
+      "cost_usd": null,
+      "token_usage": null,
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 13,
+        "research": 27,
+        "calibration_of_claims": 10
+      },
+      "total": 95,
+      "interval": [
+        92,
+        98
+      ],
+      "summary": "完整 n=3 核类不可解性成立；D 维积分定位具体，扩张尚未写成明确统一的共线修正关系。",
+      "strongest": "在全部八维树级零核自由度上，P2+Q2=x(1-x)[1-2x(1-x)] 非零，排除同时满足树级、全正和一个单负扇区的全部允许核。",
+      "errors": [
+        {
+          "page": 6,
+          "locator": "事先限定的扩张及其已证范围",
+          "kind": "open_step",
+          "severity": "limited_scope",
+          "description": "有限积分基可重构四点目标，但没有进一步组织成保留 YM 共线项且附加系数明确的统一修正关系；n=4 与高点闭合未完成，正文已说明。"
+        },
+        {
+          "page": 7,
+          "locator": "实际复核、文件与用量记录",
+          "kind": "audit_limit",
+          "severity": "minor",
+          "description": "声称的脚本、精确结果文件与三个留出点未随本轮 PDF 提交，不能审计其实际执行历史；不认定虚构。"
+        }
+      ],
+      "next_step": "固定代表并计算同一有限积分基的统一修正系数，依次检验三个单负位置及 n=4 多重切割。",
+      "verification_notes": [
+        "Mathematica 15.0.1 无前端精确运算；六全正与六单负振幅表的十二残差全零。",
+        "八参数树级核、多项式 P/Q 系数和不可解余量通过。",
+        "完整核系统秩 9，增广秩 10；参考缺陷 (-1/9,16/9) 复现。",
+        "单负四组积分贡献合成 (s^2+u^2)/12；单纯形矩 1/6、1/24、1/6 复现。"
+      ],
+      "anonymity_note": "正文费用附录出现型号费率文字；未据此推断身份，相关附录不参与评分。",
+      "source_sha256": "a10dd0688331bf9c908f1623ec2a3453d4d294ec11b0046a10b58cb8e3cc203f",
+      "assessment_file": "evaluations/supplement_2nd/q1_assessment.md",
+      "verification_file": "evaluations/supplement_2nd/q1_verification_record.json"
+    },
+    {
+      "id": "s2_1b",
+      "question": 1,
+      "source_pdf": "submissions/supplement_2nd/01/s2_1b.pdf",
+      "model_name": null,
+      "cost_usd": null,
+      "token_usage": null,
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 13,
+        "research": 29,
+        "calibration_of_claims": 10
+      },
+      "total": 97,
+      "interval": [
+        94,
+        99
+      ],
+      "summary": "四行精确证书排除完整 n=3 核类；固定三角块的一维全正扩张及 n=4 MHV 校准均成立。",
+      "strongest": "四条物理必要约束满足显式左零关系，但目标收缩为 -eta*x(1-x)*(x^2+(1-x)^2) 非零；全部允许核因此不可解。",
+      "errors": [
+        {
+          "page": 10,
+          "locator": "式 (47) 及 7.1 节",
+          "kind": "open_step",
+          "severity": "limited_scope",
+          "description": "一维修复只证明指定 n=3 代表的全正积分后恒等式；单负修正、高点闭合和 n=4 一圈分类未完成，正文边界表述准确。"
+        },
+        {
+          "page": 11,
+          "locator": "复现文件与实际运行状态",
+          "kind": "audit_limit",
+          "severity": "minor",
+          "description": "所列脚本、完整矩阵行标签和九组留出点未随 PDF 提交；未确认其运行历史，也未逐项重现指定行号的九阶子式。"
+        }
+      ],
+      "next_step": "从同一作用量规则计算单负 T3，保持 c_triangle(x)=-2*(x^2+(1-x)^2)/3 固定，检验剩余式。",
+      "verification_notes": [
+        "从振幅重新提取四条系数条件，四残差全零；左零恒等式通过。",
+        "完整矩阵秩 9/10，三个右零向量通过。",
+        "四个参考缺陷 (-7/108,7/54,-1/48,-25/432) 复现。",
+        "一般自旋量变量下盒表达式、标准缺陷及三角扩张关系全零。",
+        "n=4 九自由变量 MHV 树级代表与独立 EYM 公式差为零。"
+      ],
+      "anonymity_note": "仅按文件代号评分，未读取身份元数据或成本映射。",
+      "source_sha256": "0cbeb7801a8af1c5d68ff49f2831801af441279df3c82060b44e31fc2405ef2a",
+      "assessment_file": "evaluations/supplement_2nd/q1_assessment.md",
+      "verification_file": "evaluations/supplement_2nd/q1_verification_record.json"
+    },
+    {
+      "id": "s2_2a",
+      "question": 2,
+      "source_pdf": "submissions/supplement_2nd/02/s2_2a.pdf",
+      "model_name": null,
+      "cost_usd": null,
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 14,
+        "research": 29,
+        "calibration_of_claims": 10
+      },
+      "total": 98,
+      "interval": [
+        95,
+        100
+      ],
+      "research_interval": [
+        27,
+        30
+      ],
+      "summary": "精确熵和 Stiefel/标签矩完整；以部分迹算符范数浓缩及 fidelity 切平面证明所有两侧增长、k→∞、有限 Xi 序列的最优 MP 极限，并给出全域单变量普适性反例。",
+      "strongest": "第7–8页定理5.1、引理5.2及式(49)–(53)：一般增长 k 最优恢复极限；第9页命题6.1：同一 Xi 的两条合法序列具有严格不同极限。",
+      "errors": [
+        {
+          "page": 11,
+          "locator": "式 (60) 及末段；第 7 页定理 4.1 后说明",
+          "kind": "gap",
+          "severity": "minor",
+          "description": "没有证明固定 k=2 的唯一最优窗口函数或均值极限存在；给定双侧界有效但部分窗口较宽。答卷准确承认此缺口。"
+        },
+        {
+          "page": 11,
+          "locator": "表 2 及执行/文件说明",
+          "kind": "evidence_limit",
+          "severity": "minor",
+          "description": "增长 k 数值每组仅两个样本；完整程序与 JSON 记录未随本次 PDF 提交。本轮可独立核验核心结论，但不能宣称重放原运行。"
+        },
+        {
+          "page": 12,
+          "locator": "参考文献 [4]",
+          "kind": "citation_locator",
+          "severity": "minor",
+          "description": "所写 Section 5.2.3 是 sub-Gaussian 变量章节；所列 Theorem 5.31、5.32 与 Corollary 5.35 位于 Section 5.3.1。章节定位笔误不影响数学论证。"
+        }
+      ],
+      "next_step": "沿固定 k=2、固定整数 N_R-N_B 求原始/对偶最优 SDP，并构造有限参考维数的极限环境态变分问题；不直接外推增长 k 的 MP 最优公式。",
+      "verification_notes": [
+        "答卷自身提供：有限维解析推导、Beta 最优解码积分、Mathematica/SymPy 声明核验、六个切分各6000个 Stiefel/Petz 样本、两组熵/replica各8000个样本及三组每组两个增长k样本。",
+        "答卷自身明确说明固定 k 最优 SDP 未运行；所述 verify_q2.py/q2_verification.json 未随 PDF 交付。未据此认定虚构。",
+        "评阅者本轮另行验证主矩、切平面梯度、部分迹 Haar 浓缩与 Gaussian/Stiefel 连续性；新增抽样和 SDP 仅用于确认正确性，不计为答卷自己的独立验证成果。"
+      ],
+      "score_reasons": {
+        "definition": "所有对象、资源、归一化、标签与极限边界均正确。",
+        "calibration": "精确熵、次级修正、replica、Stiefel、标签和镜像最优恢复均正确完整。",
+        "verification": "多条正文内解析与数值验证成立；原始附件未提交，临界数值规模有限。",
+        "research": "一般增长k最优极限、固定k严格converse及非普适性证书强；固定k最优函数仍未闭合。",
+        "calibration_of_claims": "准确区分证明、数值、固定/增长k和顺序极限，island解释边界明确。"
+      },
+      "anonymity_exposure": {
+        "pages": [
+          12,
+          13
+        ],
+        "scope": "附录 A 与参考文献 [9] 出现具体型号的费率及模型文档字样，仅记录暴露范围，不推断实际型号。"
+      },
+      "reliability": "未发现可由本次材料直接认定的虚构计算或引用。",
+      "token_usage": null,
+      "source_sha256": "4e16aa3b5b3b06c223d9664ab5d9b3467b1a3915c168597cad61b1415f6abb2e",
+      "assessment_file": "evaluations/supplement_2nd/q2_assessment.md",
+      "verification_file": "evaluations/supplement_2nd/q2_verification_record.json"
+    },
+    {
+      "id": "s2_2b",
+      "question": 2,
+      "source_pdf": "submissions/supplement_2nd/02/s2_2b.pdf",
+      "model_name": null,
+      "cost_usd": null,
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 14,
+        "research": 29,
+        "calibration_of_claims": 10
+      },
+      "total": 98,
+      "interval": [
+        95,
+        100
+      ],
+      "research_interval": [
+        27,
+        30
+      ],
+      "summary": "精确熵、Stiefel/标签矩、Petz与对偶归一化完整；得到固定k Petz精确窗口极限及严格平均converse，在 n_a/k²→0 子类证明最优MP公式，并严格反驳全题面单变量普适性。",
+      "strongest": "第7页定理4.1及式(20)–(22)；第9页式(28)–(30)固定k Petz极限及恢复双侧界；第9–11页定理5.2–5.4增长k子类最优极限和同Xi反例。",
+      "errors": [
+        {
+          "page": 9,
+          "locator": "定理 5.2 条件 (31)；第 10 页证明；第 15 页式 (33)",
+          "kind": "scope",
+          "severity": "minor",
+          "description": "精确最优增长 k 公式限于 max_a n_a/k²→0；正文使用 Hilbert–Schmidt twirl，尚未证明条件外所有两侧增长序列的同一极限。此限制被明确标记。"
+        },
+        {
+          "page": 9,
+          "locator": "定理 5.1 式 (30)；第 15 页尚未闭合部分",
+          "kind": "gap",
+          "severity": "minor",
+          "description": "固定 k 给出有力的最优平均上下界，但未得到唯一最优窗口函数或极限分布，不能把 Petz 极限 P_k(c) 当成最优值。"
+        },
+        {
+          "page": 12,
+          "locator": "§6.2 数值核验；第 15 页附录 A",
+          "kind": "evidence_limit",
+          "severity": "minor",
+          "description": "222组恢复优化及修复间隙有具体报告，但原始程序、逐样本矩阵和日志未随本次PDF提交；本轮独立SDP只复核另抽的有限样本。"
+        }
+      ],
+      "next_step": "用部分迹谱范数浓缩替换 Hilbert–Schmidt 上界，检验能否去掉 n_a/k²→0；另沿固定 k=2 的整数切分子序列计算最优值和原始/对偶证书。",
+      "verification_notes": [
+        "答卷自身提供：Laguerre与twirl解析推导、独立指标枚举、Beta积分、六个切分各6000个Stiefel样本、216个小规模SDP及4个满维/2个确定性编码SDP、六个中等切分各80个Petz样本与增长k检查。",
+        "答卷报告82组optimal_inaccurate并说明可行性修复、最大间隙及浮点限制；完整原始附件未随PDF交付。",
+        "SymPy1.14.0未展开积分返回7/30的记录在评阅环境复现；分项积分、Mathematica和SciPy均给23/30。",
+        "评阅者新增的47组SDP、15000个小尺寸Stiefel样本、300个固定k样本和11个增长k样本只确认结论，不计作答卷自己执行的验证。"
+      ],
+      "score_reasons": {
+        "definition": "直和、neutral资源、标签完整矩阵、平方保真度及各种极限范围均正确。",
+        "calibration": "Laguerre熵、replica、Stiefel、twirl、镜像最优恢复及满维公式均正确。",
+        "verification": "正文给出多路解析与具体SDP/Petz数值，处理了CAS与求解器警告；原始证书附件未提交。",
+        "research": "固定k精确Petz极限与紧的平均converse、增长k子类最优公式和全域反例成立；一般增长序列及固定k最优函数仍缺。",
+        "calibration_of_claims": "限制条件、平均与概率极限、数值与证明、反例排除范围交代清楚。"
+      },
+      "anonymity_exposure": {
+        "pages": [],
+        "scope": "正文未发现明确型号标记。"
+      },
+      "reliability": "未发现可由本次材料直接认定的虚构计算或引用；所报告CAS异常得到独立复现。",
+      "token_usage": null,
+      "source_sha256": "b7ce784a6ece62e77b14ac631c0b5a2422d914899aedecd24870bf3f269e6732",
+      "assessment_file": "evaluations/supplement_2nd/q2_assessment.md",
+      "verification_file": "evaluations/supplement_2nd/q2_verification_record.json"
+    },
+    {
+      "id": "s2_3a",
+      "question": 3,
+      "source_pdf": "submissions/supplement_2nd/03/s2_3a.pdf",
+      "model_name": null,
+      "cost_usd": null,
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 13,
+        "research": 30,
+        "calibration_of_claims": 10
+      },
+      "total": 98,
+      "interval": [
+        94,
+        100
+      ],
+      "summary": "以外侧源的视界能量通量观测界和未扰动背景的去传播相位 H1 估计，闭合全 L、全 T 的最优线性稳定性；因果、双重极限与 mismatch 均正确。",
+      "strongest": "对题给正势垒、固定初值、x_o=10、L≥L0>12，证明 sup_L sup_T E≤C*ε、最佳 α=1、无需对数修正，并证明 sup_{L,T>9} M=O(ε²)。绝对波形主界的常数对所有 ε>0 一致。",
+      "errors": [],
+      "next_step": "展开背景频率拼接与复频传递误差的统一常数，给出 K、A*、C* 的认证数值；在固定非退化复频域数值核验根列与源—探测器留数。未给出认证数值 C* 不影响存在性定理。",
+      "verification_notes": [
+        "评阅者全文阅读11页；PDF文本部分字形映射不良，已逐页视觉复核全部科学推导关键页。未读取元数据或实名综合材料。",
+        "正文第10–11页费用附录出现具体型号/价格信息，仅记录匿名性限制，排除评分且不推断身份。",
+        "答卷自身报告双 CAS、两至三档时域网格、Richardson 比较及边界依赖锥分析，明确未求实际复频根。",
+        "独立无前端 Mathematica 15.0.1 核验静态方程、Wronskian、归一化、复 mismatch 投影项及 Lambert 展开；独立 SciPy 静态积分匹配 H0^(-1/2)g 的范数。",
+        "Donninger–Schlag–Soffer 0908.4292 原文的低能构造、符号型导数与非共振条件覆盖 (l,σ)=(2,-3)，支持其 H1_k 两区拼接；没有把原文当成远势垒 Q3c 定理。",
+        "独立两网格时域抽查支持 L=20,ε=.005,T=160 的误差/mismatch 与其收敛外推；有限分母代理量不作为无限尾部认证。",
+        "PDF 所列脚本、JSON、NPZ未随交，不能审核所有原始运行或末位数字；没有证据认定虚构。评阅者补算未计作答卷自身验证成果。",
+        "未发现推翻主定理的数学错误；紧凑技术推导可进一步展开，未提供认证数值 C* 是剩余量化工作，不是存在性缺口。"
+      ],
+      "token_usage": null,
+      "source_sha256": "62851cb8e02dcceb6db252bf271294bcc2d1349277d8c3d4945d1b81cc01db26",
+      "assessment_file": "evaluations/supplement_2nd/q3_assessment.md",
+      "verification_file": "evaluations/supplement_2nd/q3_verification_record.json"
+    },
+    {
+      "id": "s2_3b",
+      "question": 3,
+      "source_pdf": "submissions/supplement_2nd/03/s2_3b.pdf",
+      "model_name": null,
+      "cost_usd": null,
+      "scores": {
+        "definition": 15,
+        "calibration": 30,
+        "verification": 14,
+        "research": 30,
+        "calibration_of_claims": 10
+      },
+      "total": 99,
+      "interval": [
+        95,
+        100
+      ],
+      "summary": "对实频反射差作完整两区估计：超低频用 accretive 逆，其他区域用短区间传输与通量，保留 l=2 透射权重，证明最优统一 O(ε) 界及统一 O(ε²) 首阶余项。",
+      "strongest": "对固定题设、所有 L≥L0>12 与足够小 ε，证明 sup_L ||hε−h0||_{L2(0,∞)}≤B1ε，sup_L ||hε−h0−εh1||≤B2ε²，最佳 α=1、无对数修正及统一 O(ε²) mismatch；并给出非退化新 QNM 族、留数和明确延迟时间窗估计。",
+      "errors": [],
+      "next_step": "在现有频率分区基础上量化并认证 B1、B2，使用高精度或区间计算重核被双精度相消限制的超低频、大 L 传输矩阵行。未给出认证数值 C* 不影响主定理。",
+      "verification_notes": [
+        "全文阅读15页，并视觉复核公式、表格和图；未读取元数据、实名汇总、费用或原始会话。",
+        "独立重推共同左 Jost 基的 Green 差公式、Lagrange 反射差恒等式及共振留数，核对归一化与符号。",
+        "无前端 Mathematica 核验零能解和离心解，显式共轭核的导数恒等式支持正文 Volterra 核界；极低频 accretive 逆覆盖 εL≫1，transfer 通量分母覆盖 ε/k≫1。",
+        "答卷自身展示多网格/两时域方法/扩域、复射线路径改变、微扰与直接根、实频阈值/通量；明确披露较差背景波形收敛与病态数值行。",
+        "评阅者新两网格时域运行支持 L=20,50、ε=.005 的有限窗口误差与 mismatch，未认证无限分母或 tail。",
+        "评阅者独立 DOP853 复射线 Jost 打靶以两配置复现三个 (ε,L)=(.005,50) 根及未扰动根；路径差小于1e-12。小扰动位移亦相容，不认证全部末位数字或完整根集合。",
+        "独立实轴积分复现 k=1e-5 的 t0/(ik³) 数值及其接近16/15的阈值，另改右端80/k至160/k核验截断敏感性。",
+        "完整脚本与原始病态行未随交，只能核验正文可见证据和独立抽查；没有证据认定虚构，评阅者补算不算答卷新增验证。",
+        "未发现推翻主定理的数学错误。没有认证数值 C* 或严格根包络，不影响已经闭合的存在性定理；正文对这些限制标注准确。"
+      ],
+      "token_usage": null,
+      "source_sha256": "3e45b49ce2e783b23db5581685395acbcea0998d24571315e5fb0b790453c1db",
+      "assessment_file": "evaluations/supplement_2nd/q3_assessment.md",
+      "verification_file": "evaluations/supplement_2nd/q3_verification_record.json"
+    }
+  ]
+}

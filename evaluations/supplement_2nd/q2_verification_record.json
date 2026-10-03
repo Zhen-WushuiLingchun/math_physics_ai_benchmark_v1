@@ -1,0 +1,2283 @@
+{
+  "question": 2,
+  "date": "2026-09-30",
+  "timezone": "Asia/Tokyo",
+  "reviewer_seed": 2026093002,
+  "distinction": "All computations in this record were newly run by the reviewer. They check correctness and are not credited as the submitted answers own verification.",
+  "backend": {
+    "python": "3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3",
+    "sympy": "1.14.0",
+    "cvxpy": "1.9.3",
+    "installed_solvers": [
+      "CLARABEL",
+      "SCS",
+      "SCIPY",
+      "HIGHS"
+    ]
+  },
+  "exact_contractions": [
+    {
+      "NR": 2,
+      "NB": 2,
+      "k": 2,
+      "D": 2,
+      "direct": "1/4",
+      "closed": "1/4",
+      "residual": "0",
+      "label": "1/4"
+    },
+    {
+      "NR": 2,
+      "NB": 3,
+      "k": 2,
+      "D": 3,
+      "direct": "3/8",
+      "closed": "3/8",
+      "residual": "0",
+      "label": "1/8"
+    },
+    {
+      "NR": 3,
+      "NB": 2,
+      "k": 2,
+      "D": 3,
+      "direct": "1/8",
+      "closed": "1/8",
+      "residual": "0",
+      "label": "1/8"
+    },
+    {
+      "NR": 3,
+      "NB": 3,
+      "k": 2,
+      "D": 5,
+      "direct": "9/40",
+      "closed": "9/40",
+      "residual": "0",
+      "label": "1/20"
+    },
+    {
+      "NR": 4,
+      "NB": 3,
+      "k": 2,
+      "D": 8,
+      "direct": "15/112",
+      "closed": "15/112",
+      "residual": "0",
+      "label": "1/28"
+    },
+    {
+      "NR": 3,
+      "NB": 4,
+      "k": 2,
+      "D": 8,
+      "direct": "27/112",
+      "closed": "27/112",
+      "residual": "0",
+      "label": "1/28"
+    },
+    {
+      "NR": 4,
+      "NB": 4,
+      "k": 3,
+      "D": 13,
+      "direct": "20/117",
+      "closed": "20/117",
+      "residual": "0",
+      "label": "8/273"
+    },
+    {
+      "NR": 3,
+      "NB": 3,
+      "k": 5,
+      "D": 5,
+      "direct": "36/125",
+      "closed": "36/125",
+      "residual": "0",
+      "label": "8/125"
+    }
+  ],
+  "small_mc": [
+    {
+      "NR": 2,
+      "NB": 2,
+      "k": 2,
+      "samples": 2500,
+      "c2": {
+        "mean": 0.25,
+        "se": 2.2992918921190063e-18
+      },
+      "label_c2": {
+        "mean": 0.25,
+        "se": 2.2992918921190063e-18
+      },
+      "petz": {
+        "mean": 0.5,
+        "se": 2.137022741427848e-18
+      },
+      "a_lower": {
+        "mean": 0.5,
+        "se": 3.338508563388842e-18
+      },
+      "a_tangent": {
+        "mean": 0.5,
+        "se": 2.934181863344252e-18
+      },
+      "b_dual": {
+        "mean": 0.5,
+        "se": 2.5082298570137065e-18
+      },
+      "max_petz_gram_residual": 6.106226635438361e-16,
+      "max_tp_residual": 4.440892098500626e-16
+    },
+    {
+      "NR": 2,
+      "NB": 3,
+      "k": 2,
+      "samples": 2500,
+      "c2": {
+        "mean": 0.3781765471905079,
+        "se": 0.0021203799627652104
+      },
+      "label_c2": {
+        "mean": 0.12198128646621682,
+        "se": 0.0014294792167734139
+      },
+      "petz": {
+        "mean": 0.3836847612489967,
+        "se": 0.0012838261947495074
+      },
+      "a_lower": {
+        "mean": 0.31696694759465693,
+        "se": 0.0004169661736739888
+      },
+      "a_tangent": {
+        "mean": 0.4363199501449759,
+        "se": 0.001051981412584084
+      },
+      "b_dual": {
+        "mean": 0.41460157975856965,
+        "se": 0.001166705234177152
+      },
+      "max_petz_gram_residual": 4.996003610813204e-16,
+      "max_tp_residual": 4.440892098500626e-16
+    },
+    {
+      "NR": 3,
+      "NB": 2,
+      "k": 2,
+      "samples": 2500,
+      "c2": {
+        "mean": 0.1235074650942286,
+        "se": 0.0014507533228274362
+      },
+      "label_c2": {
+        "mean": 0.12350746509422861,
+        "se": 0.0014507533228274362
+      },
+      "petz": {
+        "mean": 0.7687974360218883,
+        "se": 0.0022219428647291166
+      },
+      "a_lower": {
+        "mean": 0.7379371798661825,
+        "se": 0.0016276261146980877
+      },
+      "a_tangent": {
+        "mean": 0.8267075284370787,
+        "se": 0.002562955807673109
+      },
+      "b_dual": {
+        "mean": 0.7687974360218883,
+        "se": 0.0022219428647291166
+      },
+      "max_petz_gram_residual": 4.107825191113079e-15,
+      "max_tp_residual": 4.336828838657155e-13
+    },
+    {
+      "NR": 3,
+      "NB": 3,
+      "k": 2,
+      "samples": 2500,
+      "c2": {
+        "mean": 0.22411439263438865,
+        "se": 0.0015828384703880738
+      },
+      "label_c2": {
+        "mean": 0.04998271046377785,
+        "se": 0.0008917790258797804
+      },
+      "petz": {
+        "mean": 0.5622503006704334,
+        "se": 0.0016360474866938116
+      },
+      "a_lower": {
+        "mean": 0.46497469750206694,
+        "se": 0.0004988924200801064
+      },
+      "a_tangent": {
+        "mean": 0.7153952510654783,
+        "se": 0.002463678262538451
+      },
+      "b_dual": {
+        "mean": 0.6413502276598431,
+        "se": 0.0018038148754905498
+      },
+      "max_petz_gram_residual": 1.887379141862766e-15,
+      "max_tp_residual": 6.153114945767786e-15
+    },
+    {
+      "NR": 4,
+      "NB": 3,
+      "k": 2,
+      "samples": 2500,
+      "c2": {
+        "mean": 0.1346080536102127,
+        "se": 0.0010209283574541465
+      },
+      "label_c2": {
+        "mean": 0.035528656813426825,
+        "se": 0.0005862496184975245
+      },
+      "petz": {
+        "mean": 0.7421310880235447,
+        "se": 0.0012900061925442765
+      },
+      "a_lower": {
+        "mean": 0.6695407915028416,
+        "se": 0.0009772648909434933
+      },
+      "a_tangent": {
+        "mean": 0.9104462049741101,
+        "se": 0.001717688445697996
+      },
+      "b_dual": {
+        "mean": 0.8399122429867671,
+        "se": 0.0015855335866550003
+      },
+      "max_petz_gram_residual": 4.773959005888173e-15,
+      "max_tp_residual": 2.6422819121864107e-12
+    },
+    {
+      "NR": 3,
+      "NB": 4,
+      "k": 2,
+      "samples": 2500,
+      "c2": {
+        "mean": 0.24092824177846706,
+        "se": 0.0010302658655886696
+      },
+      "label_c2": {
+        "mean": 0.034268115702429075,
+        "se": 0.000566644588959064
+      },
+      "petz": {
+        "mean": 0.442746697520373,
+        "se": 0.001239327695037145
+      },
+      "a_lower": {
+        "mean": 0.2955874289288991,
+        "se": 0.0002323144637218969
+      },
+      "a_tangent": {
+        "mean": 0.652766473920949,
+        "se": 0.002432764143646348
+      },
+      "b_dual": {
+        "mean": 0.5438445709920499,
+        "se": 0.0014419297851862628
+      },
+      "max_petz_gram_residual": 1.1657341758564144e-15,
+      "max_tp_residual": 4.272310413378638e-15
+    }
+  ],
+  "sdp": [
+    {
+      "NR": 2,
+      "NB": 2,
+      "k": 2,
+      "index": 0,
+      "lower": 0.4999999999966812,
+      "upper": 0.5000000000141365,
+      "gap": 1.74552594600641e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 2.220446049250313e-16,
+      "bounds": {
+        "c2": 0.25000000000000017,
+        "delta": 0.5000000000000002,
+        "label_c2": 0.25000000000000017,
+        "petz": 0.5,
+        "gram": 0.5000000000000001,
+        "petz_gram_residual": 1.1102230246251565e-16,
+        "tp_residual": 4.440892098500626e-16,
+        "b_lower": 0.5000000000000001,
+        "b_dual": 0.5000000000000001,
+        "b_sqrt": 0.7071067811865476,
+        "a_lower": 0.4999999999999999,
+        "a_tangent": 0.5000000000000001
+      },
+      "max_bound_violation": -3.318900709814443e-12,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 2,
+      "NB": 2,
+      "k": 2,
+      "index": 1,
+      "lower": 0.49999999999641814,
+      "upper": 0.5000000000201096,
+      "gap": 2.3691437700534834e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 0.0,
+      "bounds": {
+        "c2": 0.25,
+        "delta": 0.5,
+        "label_c2": 0.25,
+        "petz": 0.5,
+        "gram": 0.5000000000000002,
+        "petz_gram_residual": 2.220446049250313e-16,
+        "tp_residual": 0.0,
+        "b_lower": 0.5,
+        "b_dual": 0.5000000000000001,
+        "b_sqrt": 0.7071067811865476,
+        "a_lower": 0.4999999999999999,
+        "a_tangent": 0.5000000000000001
+      },
+      "max_bound_violation": -3.581968055499374e-12,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 2,
+      "NB": 2,
+      "k": 2,
+      "index": 2,
+      "lower": 0.4999999999963844,
+      "upper": 0.5000000000772086,
+      "gap": 8.082418068156016e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 2.220446049250313e-16,
+      "bounds": {
+        "c2": 0.24999999999999994,
+        "delta": 0.49999999999999994,
+        "label_c2": 0.24999999999999994,
+        "petz": 0.4999999999999999,
+        "gram": 0.4999999999999998,
+        "petz_gram_residual": 1.1102230246251565e-16,
+        "tp_residual": 2.220446049250313e-16,
+        "b_lower": 0.5,
+        "b_dual": 0.4999999999999999,
+        "b_sqrt": 0.7071067811865475,
+        "a_lower": 0.4999999999999999,
+        "a_tangent": 0.4999999999999999
+      },
+      "max_bound_violation": -3.6154967908430535e-12,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead.",
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 2,
+      "NB": 3,
+      "k": 2,
+      "index": 0,
+      "lower": 0.31543566775852583,
+      "upper": 0.3154356677825441,
+      "gap": 2.401828735898448e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 3.4694469519536126e-18,
+      "bounds": {
+        "c2": 0.5708203031497227,
+        "delta": 0.713571392397358,
+        "label_c2": 0.017127306467355094,
+        "petz": 0.28764440781249756,
+        "gram": 0.2876444078124978,
+        "petz_gram_residual": 2.220446049250313e-16,
+        "tp_residual": 1.1102230246251565e-16,
+        "b_lower": 0.28271783388627203,
+        "b_dual": 0.3154356677725442,
+        "b_sqrt": 0.5363249088122773,
+        "a_lower": 0.2790865290268451,
+        "a_tangent": 0.351143702288832
+      },
+      "max_bound_violation": -1.4018397553883233e-11,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 2,
+      "NB": 3,
+      "k": 2,
+      "index": 1,
+      "lower": 0.3559991092067898,
+      "upper": 0.3559991092366466,
+      "gap": 2.9856839223185716e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 5.551115123125783e-17,
+      "bounds": {
+        "c2": 0.4769459169692502,
+        "delta": 0.6861572813633929,
+        "label_c2": 0.04494324461877211,
+        "petz": 0.31725816596868733,
+        "gram": 0.31725816596868733,
+        "petz_gram_residual": 0.0,
+        "tp_residual": 2.220446049250313e-16,
+        "b_lower": 0.3029995546082536,
+        "b_dual": 0.35599910921650724,
+        "b_sqrt": 0.5632567495988728,
+        "a_lower": 0.3029078636561898,
+        "a_tangent": 0.3845342265817172
+      },
+      "max_bound_violation": -9.717449067636608e-12,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead.",
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 2,
+      "NB": 3,
+      "k": 2,
+      "index": 2,
+      "lower": 0.3644446026577509,
+      "upper": 0.36444460266942835,
+      "gap": 1.1677436795309859e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 1.6653345369377348e-16,
+      "bounds": {
+        "c2": 0.4590564603343667,
+        "delta": 0.6798209984696209,
+        "label_c2": 0.052390268310990834,
+        "petz": 0.32420762583542456,
+        "gram": 0.3242076258354245,
+        "petz_gram_residual": 5.551115123125783e-17,
+        "tp_residual": 2.220446049250313e-16,
+        "b_lower": 0.30722230132943734,
+        "b_dual": 0.36444460265887463,
+        "b_sqrt": 0.5693923303271871,
+        "a_lower": 0.30670592188016366,
+        "a_tangent": 0.39135703184311843
+      },
+      "max_bound_violation": -1.1237122343743522e-12,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 2,
+      "NB": 3,
+      "k": 2,
+      "index": 3,
+      "lower": 0.3459461925120487,
+      "upper": 0.34594619252317854,
+      "gap": 1.11298192884135e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 1.1102230246251565e-16,
+      "bounds": {
+        "c2": 0.4989841098915683,
+        "delta": 0.6933908822137531,
+        "label_c2": 0.036822687431103666,
+        "petz": 0.3093647372796431,
+        "gram": 0.309364737279643,
+        "petz_gram_residual": 1.1102230246251565e-16,
+        "tp_residual": 0.0,
+        "b_lower": 0.29797309625658935,
+        "b_dual": 0.3459461925131785,
+        "b_sqrt": 0.5562056609561279,
+        "a_lower": 0.2979296332622478,
+        "a_tangent": 0.3764063845585107
+      },
+      "max_bound_violation": -1.1297629498585593e-12,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 2,
+      "NB": 3,
+      "k": 2,
+      "index": 4,
+      "lower": 0.33593336183415146,
+      "upper": 0.33593336192671547,
+      "gap": 9.256401201085396e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 2.7755575615628914e-17,
+      "bounds": {
+        "c2": 0.52173808501109,
+        "delta": 0.7002905984440142,
+        "label_c2": 0.029538170761236826,
+        "petz": 0.30188377546818385,
+        "gram": 0.3018837754681837,
+        "petz_gram_residual": 1.6653345369377348e-16,
+        "tp_residual": 2.220446049250313e-16,
+        "b_lower": 0.2929666809583578,
+        "b_dual": 0.33593336191671547,
+        "b_sqrt": 0.5494395102904266,
+        "a_lower": 0.2924215221382877,
+        "a_tangent": 0.36825682216498373
+      },
+      "max_bound_violation": -8.256401118345025e-11,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 2,
+      "NB": 3,
+      "k": 2,
+      "index": 5,
+      "lower": 0.4385209867821128,
+      "upper": 0.43852098680163903,
+      "gap": 1.9526213979048634e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 2.775557561562889e-17,
+      "bounds": {
+        "c2": 0.3265976894742618,
+        "delta": 0.6095227293548624,
+        "label_c2": 0.14216064983790644,
+        "petz": 0.4013111468119187,
+        "gram": 0.40131114681191893,
+        "petz_gram_residual": 2.220446049250313e-16,
+        "tp_residual": 2.220446049250313e-16,
+        "b_lower": 0.3442604933939408,
+        "b_dual": 0.4385209867878817,
+        "b_sqrt": 0.6334912365707348,
+        "a_lower": 0.3282151883552351,
+        "a_tangent": 0.45479231090019256
+      },
+      "max_bound_violation": -5.768885369406007e-12,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 2,
+      "NB": 3,
+      "k": 2,
+      "index": 6,
+      "lower": 0.4168443831704171,
+      "upper": 0.41684438321214246,
+      "gap": 4.1725345401033564e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 1.734723475976807e-18,
+      "bounds": {
+        "c2": 0.3608150432524159,
+        "delta": 0.6336135953123159,
+        "label_c2": 0.11134819279681671,
+        "petz": 0.37520003772917454,
+        "gram": 0.3752000377291745,
+        "petz_gram_residual": 5.551115123125783e-17,
+        "tp_residual": 2.220446049250313e-16,
+        "b_lower": 0.3334221915907335,
+        "b_dual": 0.416844383181467,
+        "b_sqrt": 0.6125357440420718,
+        "a_lower": 0.32384334487947614,
+        "a_tangent": 0.43511989376169796
+      },
+      "max_bound_violation": -1.104988323064049e-11,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead.",
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 2,
+      "NB": 3,
+      "k": 2,
+      "index": 7,
+      "lower": 0.3572467263276173,
+      "upper": 0.35724672634465443,
+      "gap": 1.7037149468990265e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 1.1102230246251565e-16,
+      "bounds": {
+        "c2": 0.4742672622347471,
+        "delta": 0.6852366998615624,
+        "label_c2": 0.046007441237716794,
+        "petz": 0.31826596589085,
+        "gram": 0.31826596589085,
+        "petz_gram_residual": 0.0,
+        "tp_residual": 2.220446049250313e-16,
+        "b_lower": 0.30362336316716154,
+        "b_dual": 0.35724672633432314,
+        "b_sqrt": 0.5641506588588282,
+        "a_lower": 0.3034901585705424,
+        "a_tangent": 0.3855416680627231
+      },
+      "max_bound_violation": -6.705858091038408e-12,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 2,
+      "k": 2,
+      "index": 0,
+      "lower": 0.5866320259514897,
+      "upper": 0.5866320261806952,
+      "gap": 2.2920554343386357e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 1.6653345369377348e-16,
+      "bounds": {
+        "c2": 0.2352150906669473,
+        "delta": 0.4849897840851365,
+        "label_c2": 0.23521509066694726,
+        "petz": 0.5866320261648761,
+        "gram": 0.5866320261648761,
+        "petz_gram_residual": 0.0,
+        "tp_residual": 2.357215816115294e-15,
+        "b_lower": 0.586632026164876,
+        "b_dual": 0.5866320261648761,
+        "b_sqrt": 0.7659190728561838,
+        "a_lower": 0.5826148061485293,
+        "a_tangent": 0.6530411311299438
+      },
+      "max_bound_violation": -1.5819123788674005e-11,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 2,
+      "k": 2,
+      "index": 1,
+      "lower": 0.8263901690695681,
+      "upper": 0.8263901692059707,
+      "gap": 1.364026669392615e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 3.066488701017938e-16,
+      "bounds": {
+        "c2": 0.08233394089041077,
+        "delta": 0.2869389149111894,
+        "label_c2": 0.08233394089041077,
+        "petz": 0.8263901691908091,
+        "gram": 0.8263901691908084,
+        "petz_gram_residual": 6.661338147750939e-16,
+        "tp_residual": 4.527955623682083e-16,
+        "b_lower": 0.8263901691908091,
+        "b_dual": 0.8263901691908088,
+        "b_sqrt": 0.9090600470765444,
+        "a_lower": 0.7982168090264014,
+        "a_tangent": 0.9077772682940599
+      },
+      "max_bound_violation": -1.5161649713490988e-11,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 2,
+      "k": 2,
+      "index": 2,
+      "lower": 0.5600674304559494,
+      "upper": 0.560067432453747,
+      "gap": 1.997797594022188e-09,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -5.13760527023735e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 5.565408190834498e-16,
+      "bounds": {
+        "c2": 0.24283588056599892,
+        "delta": 0.49278380712641007,
+        "label_c2": 0.24283588056599892,
+        "petz": 0.5600674324138705,
+        "gram": 0.5600674324138704,
+        "petz_gram_residual": 1.1102230246251565e-16,
+        "tp_residual": 6.061968629918875e-15,
+        "b_lower": 0.5600674324138705,
+        "b_dual": 0.5600674324138705,
+        "b_sqrt": 0.7483765311752303,
+        "a_lower": 0.55335384199789,
+        "a_tangent": 0.6429079811357621
+      },
+      "max_bound_violation": -3.987654650927652e-11,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 2,
+      "k": 2,
+      "index": 3,
+      "lower": 0.7037351631841372,
+      "upper": 0.7037351647874528,
+      "gap": 1.6033155914030317e-09,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -6.156424775952398e-18,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 2.979737902921534e-16,
+      "bounds": {
+        "c2": 0.1738756273490132,
+        "delta": 0.41698396533801296,
+        "label_c2": 0.17387562734901324,
+        "petz": 0.7037351646893425,
+        "gram": 0.7037351646893426,
+        "petz_gram_residual": 1.1102230246251565e-16,
+        "tp_residual": 6.545960477269269e-16,
+        "b_lower": 0.7037351646893426,
+        "b_dual": 0.7037351646893426,
+        "b_sqrt": 0.8388892445903348,
+        "a_lower": 0.7026141326032112,
+        "a_tangent": 0.7225993238060913
+      },
+      "max_bound_violation": -9.811029766382262e-11,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 2,
+      "k": 2,
+      "index": 4,
+      "lower": 0.6813428933147021,
+      "upper": 0.6813428933814786,
+      "gap": 6.677647323982683e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -2.8036200085333225e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 4.509747244882437e-16,
+      "bounds": {
+        "c2": 0.18855526741225692,
+        "delta": 0.43422951006611343,
+        "label_c2": 0.18855526741225692,
+        "petz": 0.6813428933455713,
+        "gram": 0.6813428933455713,
+        "petz_gram_residual": 0.0,
+        "tp_residual": 1.8331467032462727e-16,
+        "b_lower": 0.6813428933455714,
+        "b_dual": 0.6813428933455714,
+        "b_sqrt": 0.8254349722089387,
+        "a_lower": 0.6811759092828679,
+        "a_tangent": 0.6887381853679819
+      },
+      "max_bound_violation": -3.086930711049263e-11,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead.",
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 2,
+      "k": 2,
+      "index": 5,
+      "lower": 0.5377811079556818,
+      "upper": 0.537781107989928,
+      "gap": 3.4246161462192504e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 3.0190169694476038e-16,
+      "bounds": {
+        "c2": 0.24715332578195062,
+        "delta": 0.4971451757605122,
+        "label_c2": 0.24715332578195065,
+        "petz": 0.5377811079740102,
+        "gram": 0.5377811079740102,
+        "petz_gram_residual": 0.0,
+        "tp_residual": 1.3931727427562343e-15,
+        "b_lower": 0.5377811079740102,
+        "b_dual": 0.5377811079740102,
+        "b_sqrt": 0.7333356039181586,
+        "a_lower": 0.528450885350748,
+        "a_tangent": 0.632419213184127
+      },
+      "max_bound_violation": -1.591771159326072e-11,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 2,
+      "k": 2,
+      "index": 6,
+      "lower": 0.8027466107958486,
+      "upper": 0.8027466109523372,
+      "gap": 1.5648859985617491e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": -9.141869288913613e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 6.353541660708338e-16,
+      "bounds": {
+        "c2": 0.10029190950477854,
+        "delta": 0.3166889791337528,
+        "label_c2": 0.10029190950477854,
+        "petz": 0.8027466109358187,
+        "gram": 0.8027466109358186,
+        "petz_gram_residual": 1.1102230246251565e-16,
+        "tp_residual": 6.834971512702695e-16,
+        "b_lower": 0.8027466109358181,
+        "b_dual": 0.8027466109358183,
+        "b_sqrt": 0.8959612775872731,
+        "a_lower": 0.7835473545659567,
+        "a_tangent": 0.8726753612634521
+      },
+      "max_bound_violation": -1.6518564294187854e-11,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 2,
+      "k": 2,
+      "index": 7,
+      "lower": 0.8152000165387971,
+      "upper": 0.8152000166523338,
+      "gap": 1.1353662454638425e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": -2.247217850603018e-16,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 2.938193488474812e-16,
+      "bounds": {
+        "c2": 0.0907804239564868,
+        "delta": 0.3012978990243489,
+        "label_c2": 0.09078042395648678,
+        "petz": 0.8152000166367783,
+        "gram": 0.815200016636779,
+        "petz_gram_residual": 6.661338147750939e-16,
+        "tp_residual": 5.576913214996115e-16,
+        "b_lower": 0.815200016636779,
+        "b_dual": 0.815200016636779,
+        "b_sqrt": 0.9028842764367858,
+        "a_lower": 0.7915625320630046,
+        "a_tangent": 0.8912398808032337
+      },
+      "max_bound_violation": -1.555544582032553e-11,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 3,
+      "k": 2,
+      "index": 0,
+      "lower": 0.7413111971961599,
+      "upper": 0.7413111973098809,
+      "gap": 1.1372103259077448e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -4.814797154683911e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 2.9655147291082494e-16,
+      "bounds": {
+        "c2": 0.12365921600931981,
+        "delta": 0.3881324277995848,
+        "label_c2": 0.08061354565789296,
+        "petz": 0.6760498201874338,
+        "gram": 0.6760498201874339,
+        "petz_gram_residual": 1.1102230246251565e-16,
+        "tp_residual": 1.0370125660070751e-16,
+        "b_lower": 0.4899398416006725,
+        "b_dual": 0.74442369697553,
+        "b_sqrt": 0.8222224882520751,
+        "a_lower": 0.4845827513083961,
+        "a_tangent": 0.8445321082588079
+      },
+      "max_bound_violation": -0.003112499779370115,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 3,
+      "k": 2,
+      "index": 1,
+      "lower": 0.7895194942423942,
+      "upper": 0.7895194957925158,
+      "gap": 1.550121586646469e-09,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": -8.285890474940896e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 4.841339424497426e-16,
+      "bounds": {
+        "c2": 0.10793943815862876,
+        "delta": 0.3740700967884432,
+        "label_c2": 0.0386858246333207,
+        "petz": 0.7158845483938874,
+        "gram": 0.7158845483938877,
+        "petz_gram_residual": 3.3306690738754696e-16,
+        "tp_residual": 7.351725399777559e-16,
+        "b_lower": 0.49360164064355727,
+        "b_dual": 0.7900120234997037,
+        "b_sqrt": 0.8460996090259629,
+        "a_lower": 0.49360119064606556,
+        "a_tangent": 0.9337248535139707
+      },
+      "max_bound_violation": -0.0004925292573094708,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 3,
+      "k": 2,
+      "index": 2,
+      "lower": 0.6612639293840127,
+      "upper": 0.6612639294752977,
+      "gap": 9.128497957533455e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 2.1367399641540197e-16,
+      "bounds": {
+        "c2": 0.16352840957709375,
+        "delta": 0.4400066692900868,
+        "label_c2": 0.08228184673559935,
+        "petz": 0.5844642527612669,
+        "gram": 0.5844642527612672,
+        "petz_gram_residual": 3.3306690738754696e-16,
+        "tp_residual": 3.857564219083202e-16,
+        "b_lower": 0.48815176060799537,
+        "b_dual": 0.6703647780512942,
+        "b_sqrt": 0.7645026178903948,
+        "a_lower": 0.4823518720714559,
+        "a_tangent": 0.7207382952619509
+      },
+      "max_bound_violation": -0.009100848667281558,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 3,
+      "k": 2,
+      "index": 3,
+      "lower": 0.5235409923613518,
+      "upper": 0.5235409928657541,
+      "gap": 5.044022977074292e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -2.8868375005777923e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 1.1527756336874098e-16,
+      "bounds": {
+        "c2": 0.3214052629578664,
+        "delta": 0.5728275809023013,
+        "label_c2": 0.04923260568860857,
+        "petz": 0.46333946565706735,
+        "gram": 0.46333946565706774,
+        "petz_gram_residual": 3.885780586188048e-16,
+        "tp_residual": 5.476327985509454e-16,
+        "b_lower": 0.4396754742226341,
+        "b_dual": 0.5278749274658854,
+        "b_sqrt": 0.6806904330582789,
+        "a_lower": 0.43795285659965233,
+        "a_tangent": 0.5437560016638521
+      },
+      "max_bound_violation": -0.004333935104533615,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 3,
+      "k": 2,
+      "index": 4,
+      "lower": 0.6205586813642247,
+      "upper": 0.6205586815381818,
+      "gap": 1.7395718199253452e-10,
+      "primal_status": "optimal",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -1.0031274204071614e-16,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 2.8677030638706805e-16,
+      "bounds": {
+        "c2": 0.21884360946780657,
+        "delta": 0.4610309502065716,
+        "label_c2": 0.02996262168671744,
+        "petz": 0.5376913273733532,
+        "gram": 0.5376913273733528,
+        "petz_gram_residual": 4.440892098500626e-16,
+        "tp_residual": 7.649517322512427e-16,
+        "b_lower": 0.48490135568837567,
+        "b_dual": 0.6299152589496834,
+        "b_sqrt": 0.7332743875067186,
+        "a_lower": 0.48453551524263844,
+        "a_tangent": 0.687751292916519
+      },
+      "max_bound_violation": -0.009356577585458714,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead.",
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 3,
+      "k": 2,
+      "index": 5,
+      "lower": 0.7978810495763727,
+      "upper": 0.7978810496215418,
+      "gap": 4.5169090689967106e-11,
+      "primal_status": "optimal",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 2.220446049250313e-16,
+      "bounds": {
+        "c2": 0.10067023543575476,
+        "delta": 0.360338936547292,
+        "label_c2": 0.05078652593984958,
+        "petz": 0.7398067494356567,
+        "gram": 0.7398067494356564,
+        "petz_gram_residual": 3.3306690738754696e-16,
+        "tp_residual": 8.047391339805771e-16,
+        "b_lower": 0.49129917300368925,
+        "b_dual": 0.7980399422053196,
+        "b_sqrt": 0.8601201947609745,
+        "a_lower": 0.49067121311015643,
+        "a_tangent": 0.9465099905237964
+      },
+      "max_bound_violation": -0.00015889262894686063,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 3,
+      "k": 2,
+      "index": 6,
+      "lower": 0.7356426727450553,
+      "upper": 0.7356426733609046,
+      "gap": 6.158492604768639e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 2.446882652399558e-16,
+      "bounds": {
+        "c2": 0.18245960779510376,
+        "delta": 0.42711994847244206,
+        "label_c2": 0.029377396480212484,
+        "petz": 0.651196219046582,
+        "gram": 0.6511962190465826,
+        "petz_gram_residual": 6.661338147750939e-16,
+        "tp_residual": 6.990954699208597e-16,
+        "b_lower": 0.4799971433713915,
+        "b_dual": 0.7398113985654149,
+        "b_sqrt": 0.8069672973835941,
+        "a_lower": 0.47963686073218237,
+        "a_tangent": 0.8623045050449123
+      },
+      "max_bound_violation": -0.004168725820359542,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 3,
+      "k": 2,
+      "index": 7,
+      "lower": 0.5381742110654772,
+      "upper": 0.5381742112871029,
+      "gap": 2.2162560675553777e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": -3.019987922967693e-18,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 2.575119572876052e-16,
+      "bounds": {
+        "c2": 0.20899372231662328,
+        "delta": 0.49706195675885556,
+        "label_c2": 0.028588198979202548,
+        "petz": 0.4994544211138289,
+        "gram": 0.49945442111382904,
+        "petz_gram_residual": 1.6653345369377348e-16,
+        "tp_residual": 4.823788541740547e-16,
+        "b_lower": 0.49100175961180137,
+        "b_dual": 0.5496164485607459,
+        "b_sqrt": 0.7067208933616077,
+        "a_lower": 0.49037394748172203,
+        "a_tangent": 0.5744521296689616
+      },
+      "max_bound_violation": -0.011442237495268626,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 4,
+      "NB": 3,
+      "k": 2,
+      "index": 0,
+      "lower": 0.7577931739413357,
+      "upper": 0.7577931743811235,
+      "gap": 4.397877617634549e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 6.771382933324481e-16,
+      "bounds": {
+        "c2": 0.10007763351522991,
+        "delta": 0.3567796858556741,
+        "label_c2": 0.06324236427198174,
+        "petz": 0.7386206465733005,
+        "gram": 0.7386206465733003,
+        "petz_gram_residual": 2.220446049250313e-16,
+        "tp_residual": 2.0453895837381696e-15,
+        "b_lower": 0.6614942008166893,
+        "b_dual": 0.8572478682265758,
+        "b_sqrt": 0.8594304198556743,
+        "a_lower": 0.6614931564690067,
+        "a_tangent": 0.948592217164354
+      },
+      "max_bound_violation": -0.01917252780782297,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 4,
+      "NB": 3,
+      "k": 2,
+      "index": 1,
+      "lower": 0.8517824339824616,
+      "upper": 0.8517824366811394,
+      "gap": 2.6986778367543707e-09,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 6.27832717033596e-15,
+      "bounds": {
+        "c2": 0.08006351364732264,
+        "delta": 0.3347308698926032,
+        "label_c2": 0.03301169495518329,
+        "petz": 0.8148449453740425,
+        "gram": 0.8148449453740438,
+        "petz_gram_residual": 1.3322676295501878e-15,
+        "tp_residual": 1.0271694710087337e-14,
+        "b_lower": 0.6555418824455402,
+        "b_dual": 0.9276211920398405,
+        "b_sqrt": 0.9026876233637208,
+        "a_lower": 0.6541363103915735,
+        "a_tangent": 1.0
+      },
+      "max_bound_violation": -0.03693749130709689,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 4,
+      "NB": 3,
+      "k": 2,
+      "index": 2,
+      "lower": 0.7730126741114476,
+      "upper": 0.7730126751766321,
+      "gap": 1.0651844961628854e-09,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -6.855069079174865e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 7.571715259246557e-16,
+      "bounds": {
+        "c2": 0.14387316225849314,
+        "delta": 0.3810034460205173,
+        "label_c2": 0.021529795581072538,
+        "petz": 0.7499205261152436,
+        "gram": 0.7499205261152435,
+        "petz_gram_residual": 1.1102230246251565e-16,
+        "tp_residual": 6.43870521359429e-15,
+        "b_lower": 0.6663559346807321,
+        "b_dual": 0.8725098916212175,
+        "b_sqrt": 0.8659795183000829,
+        "a_lower": 0.6661976062791309,
+        "a_tangent": 0.9736546721224888
+      },
+      "max_bound_violation": -0.023092149061388456,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 4,
+      "NB": 3,
+      "k": 2,
+      "index": 3,
+      "lower": 0.6678968400883437,
+      "upper": 0.667896847940757,
+      "gap": 7.852413275166725e-09,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 4.941169403083294e-16,
+      "bounds": {
+        "c2": 0.20964483202367165,
+        "delta": 0.4819517242377826,
+        "label_c2": 0.07396608877114545,
+        "petz": 0.6531373079181991,
+        "gram": 0.6531373079181995,
+        "petz_gram_residual": 3.3306690738754696e-16,
+        "tp_residual": 2.1322971405656264e-15,
+        "b_lower": 0.6342276349812478,
+        "b_dual": 0.720982418250091,
+        "b_sqrt": 0.8081691084904193,
+        "a_lower": 0.6231064551339699,
+        "a_tangent": 0.7756313781603885
+      },
+      "max_bound_violation": -0.01475954002255786,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 4,
+      "NB": 3,
+      "k": 2,
+      "index": 4,
+      "lower": 0.7515074145094697,
+      "upper": 0.751507416202623,
+      "gap": 1.6931532842434649e-09,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 3.263493924073004e-16,
+      "bounds": {
+        "c2": 0.15884347176601973,
+        "delta": 0.40815291365187667,
+        "label_c2": 0.04201745091306655,
+        "petz": 0.7284478606769644,
+        "gram": 0.7284478606769641,
+        "petz_gram_residual": 3.3306690738754696e-16,
+        "tp_residual": 1.1517925915420951e-15,
+        "b_lower": 0.6763916002390458,
+        "b_dual": 0.8315258341929694,
+        "b_sqrt": 0.8534915703608117,
+        "a_lower": 0.6727045074677862,
+        "a_tangent": 0.8730738435255344
+      },
+      "max_bound_violation": -0.023059555525658526,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 4,
+      "NB": 3,
+      "k": 2,
+      "index": 5,
+      "lower": 0.7363673450464212,
+      "upper": 0.7363673460872453,
+      "gap": 1.0408240935788626e-09,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 4.4309129759296394e-16,
+      "bounds": {
+        "c2": 0.13568925983552496,
+        "delta": 0.3941005826713383,
+        "label_c2": 0.08227117085375049,
+        "petz": 0.7257404137734618,
+        "gram": 0.7257404137734617,
+        "petz_gram_residual": 1.1102230246251565e-16,
+        "tp_residual": 1.2611256623860581e-15,
+        "b_lower": 0.6880450262358604,
+        "b_dual": 0.8183263885427412,
+        "b_sqrt": 0.8519039932841387,
+        "a_lower": 0.6805146606208304,
+        "a_tangent": 0.8317017816991849
+      },
+      "max_bound_violation": -0.010626932313783533,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 4,
+      "NB": 3,
+      "k": 2,
+      "index": 6,
+      "lower": 0.7764094560407644,
+      "upper": 0.7764094578019414,
+      "gap": 1.7611769820291556e-09,
+      "primal_status": "optimal",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -3.9522780430169227e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 5.173070685117378e-16,
+      "bounds": {
+        "c2": 0.11766981479446954,
+        "delta": 0.3936105157837066,
+        "label_c2": 0.058804548123913856,
+        "petz": 0.7296372317696356,
+        "gram": 0.7296372317696364,
+        "petz_gram_residual": 7.771561172376096e-16,
+        "tp_residual": 1.3083476394049947e-14,
+        "b_lower": 0.6210062281242089,
+        "b_dual": 0.8376598966637497,
+        "b_sqrt": 0.8541880541014581,
+        "a_lower": 0.6187271013357943,
+        "a_tangent": 0.9275631591728298
+      },
+      "max_bound_violation": -0.0467722260323058,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 4,
+      "NB": 3,
+      "k": 2,
+      "index": 7,
+      "lower": 0.8018239961115893,
+      "upper": 0.8018239976924327,
+      "gap": 1.5808434561392914e-09,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -2.377069211933103e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 3.3423219488251214e-16,
+      "bounds": {
+        "c2": 0.09881065403016985,
+        "delta": 0.35519375574412015,
+        "label_c2": 0.028666616050608516,
+        "petz": 0.7787292397335801,
+        "gram": 0.7787292397335803,
+        "petz_gram_residual": 2.220446049250313e-16,
+        "tp_residual": 2.260558142906772e-15,
+        "b_lower": 0.7086838843621236,
+        "b_dual": 0.8949349941142805,
+        "b_sqrt": 0.8824563670423485,
+        "a_lower": 0.70635744029618,
+        "a_tangent": 0.9590853007654996
+      },
+      "max_bound_violation": -0.02309475795885263,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 4,
+      "k": 2,
+      "index": 0,
+      "lower": 0.569686908122903,
+      "upper": 0.5696869085524008,
+      "gap": 4.294977706820191e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 6.295204242085341e-16,
+      "bounds": {
+        "c2": 0.20614112607722218,
+        "delta": 0.5804539334483367,
+        "label_c2": 0.019403135156084408,
+        "petz": 0.4541047354164507,
+        "gram": 0.4541047354164506,
+        "petz_gram_residual": 1.1102230246251565e-16,
+        "tp_residual": 2.220446049250313e-16,
+        "b_lower": 0.3129809168464289,
+        "b_dual": 0.5719877353138189,
+        "b_sqrt": 0.673872937145016,
+        "a_lower": 0.3092100085490309,
+        "a_tangent": 0.6830303995855852
+      },
+      "max_bound_violation": -0.002300827190915844,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 4,
+      "k": 2,
+      "index": 1,
+      "lower": 0.6043763436697147,
+      "upper": 0.6043763448524943,
+      "gap": 1.1827795409757869e-09,
+      "primal_status": "optimal",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 4.584923700890417e-16,
+      "bounds": {
+        "c2": 0.22095938739811158,
+        "delta": 0.5883526521200272,
+        "label_c2": 0.008493851932448986,
+        "petz": 0.4602286661478948,
+        "gram": 0.46022866614789526,
+        "petz_gram_residual": 4.440892098500626e-16,
+        "tp_residual": 5.717740708147802e-16,
+        "b_lower": 0.3169577587676025,
+        "b_dual": 0.6057163470452965,
+        "b_sqrt": 0.6784015522888305,
+        "a_lower": 0.3073443308724493,
+        "a_tangent": 0.7614657506577761
+      },
+      "max_bound_violation": -0.001340003375581822,
+      "warnings": [
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead.",
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 4,
+      "k": 2,
+      "index": 2,
+      "lower": 0.5199695981761825,
+      "upper": 0.51996959988153,
+      "gap": 1.7053475298567378e-09,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 3.070411548599881e-16,
+      "bounds": {
+        "c2": 0.23483148472070686,
+        "delta": 0.6210199523915482,
+        "label_c2": 0.012520431477850537,
+        "petz": 0.4176182442862137,
+        "gram": 0.4176182442862138,
+        "petz_gram_residual": 1.1102230246251565e-16,
+        "tp_residual": 5.003317374548215e-16,
+        "b_lower": 0.2911562549878243,
+        "b_dual": 0.5230311435876824,
+        "b_sqrt": 0.6462338928640416,
+        "a_lower": 0.28992302928268854,
+        "a_tangent": 0.625115600771083
+      },
+      "max_bound_violation": -0.003061545411499944,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 4,
+      "k": 2,
+      "index": 3,
+      "lower": 0.6581693721473943,
+      "upper": 0.6581693722894779,
+      "gap": 1.4208356713396597e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 5.11269832575674e-16,
+      "bounds": {
+        "c2": 0.2037677424834821,
+        "delta": 0.5245473504386643,
+        "label_c2": 0.025416249134891135,
+        "petz": 0.5390634649528141,
+        "gram": 0.5390634649528139,
+        "petz_gram_residual": 2.220446049250313e-16,
+        "tp_residual": 6.493671948132806e-16,
+        "b_lower": 0.31141799021040806,
+        "b_dual": 0.6624654671101119,
+        "b_sqrt": 0.7342094149170345,
+        "a_lower": 0.30474993888636703,
+        "a_tangent": 0.8498102997280336
+      },
+      "max_bound_violation": -0.004296094962717545,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 4,
+      "k": 2,
+      "index": 4,
+      "lower": 0.5107219121182305,
+      "upper": 0.5107219145141517,
+      "gap": 2.3959212391844176e-09,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -5.618153635684586e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 5.984393723881679e-16,
+      "bounds": {
+        "c2": 0.20153518622647149,
+        "delta": 0.5337910480704614,
+        "label_c2": 0.13328061417713133,
+        "petz": 0.47603128350336543,
+        "gram": 0.4760312835033655,
+        "petz_gram_residual": 5.551115123125783e-17,
+        "tp_residual": 1.0360321003609747e-15,
+        "b_lower": 0.2914197246128171,
+        "b_dual": 0.539994845933796,
+        "b_sqrt": 0.6899502036403536,
+        "a_lower": 0.28717754406918905,
+        "a_tangent": 0.7633262656198492
+      },
+      "max_bound_violation": -0.029272933815565505,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 4,
+      "k": 2,
+      "index": 5,
+      "lower": 0.4497020664674362,
+      "upper": 0.4497020697479781,
+      "gap": 3.2805418936909803e-09,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -4.71646909988538e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 1.1992511130973773e-16,
+      "bounds": {
+        "c2": 0.29956105217246887,
+        "delta": 0.64861346402343,
+        "label_c2": 0.03535125819266306,
+        "petz": 0.3660936596044656,
+        "gram": 0.3660936596044653,
+        "petz_gram_residual": 2.7755575615628914e-16,
+        "tp_residual": 5.747480837818905e-16,
+        "b_lower": 0.2936087691394099,
+        "b_dual": 0.4605892367216322,
+        "b_sqrt": 0.6050567408140046,
+        "a_lower": 0.29202681100958017,
+        "a_tangent": 0.49749336224543067
+      },
+      "max_bound_violation": -0.010887170254196,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 4,
+      "k": 2,
+      "index": 6,
+      "lower": 0.5350594202340864,
+      "upper": 0.5350594209355137,
+      "gap": 7.014273606387178e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": 0.0,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 1.6193436910998065e-16,
+      "bounds": {
+        "c2": 0.22704488964862812,
+        "delta": 0.6106151909237592,
+        "label_c2": 0.011340809637392943,
+        "petz": 0.42683225542296643,
+        "gram": 0.4268322554229669,
+        "petz_gram_residual": 4.440892098500626e-16,
+        "tp_residual": 4.587531161182841e-16,
+        "b_lower": 0.2949382202334729,
+        "b_dual": 0.5355776966450069,
+        "b_sqrt": 0.6533240049339734,
+        "a_lower": 0.29470966322566533,
+        "a_tangent": 0.6490268654093375
+      },
+      "max_bound_violation": -0.000518276410920504,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 4,
+      "k": 2,
+      "index": 7,
+      "lower": 0.44747170339108966,
+      "upper": 0.44747170418187515,
+      "gap": 7.907854926436642e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -1.209236501689264e-16,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 2.6111046004976207e-16,
+      "bounds": {
+        "c2": 0.36703743458990706,
+        "delta": 0.6576964953078345,
+        "label_c2": 0.0201903398721271,
+        "petz": 0.369368922569095,
+        "gram": 0.3693689225690949,
+        "petz_gram_residual": 5.551115123125783e-17,
+        "tp_residual": 4.255582379470986e-16,
+        "b_lower": 0.27972739565768584,
+        "b_dual": 0.4541721875256612,
+        "b_sqrt": 0.6077572891945394,
+        "a_lower": 0.2763496709451527,
+        "a_tangent": 0.501367869428852
+      },
+      "max_bound_violation": -0.006700484134571527,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 3,
+      "k": 5,
+      "index": 0,
+      "lower": 0.19999999996211565,
+      "upper": 0.20000000001373322,
+      "gap": 5.161757132832179e-11,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -4.6601009961699606e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 8.484634562545874e-17,
+      "bounds": {
+        "c2": 0.28800000000000014,
+        "delta": 0.8000000000000002,
+        "label_c2": 0.06400000000000003,
+        "petz": 0.20000000000000007,
+        "gram": 0.19999999999999998,
+        "petz_gram_residual": 8.326672684688674e-17,
+        "tp_residual": 8.028540168551256e-16,
+        "b_lower": 0.20000000000000004,
+        "b_dual": 0.2,
+        "b_sqrt": 0.44721359549995804,
+        "a_lower": 0.20000000000000004,
+        "a_tangent": 0.2000000000000001
+      },
+      "max_bound_violation": -1.3733153503281414e-11,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 3,
+      "NB": 3,
+      "k": 5,
+      "index": 1,
+      "lower": 0.19999999996211593,
+      "upper": 0.20000000001373291,
+      "gap": 5.161698846123386e-11,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -3.749773542083096e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 8.993819384616401e-17,
+      "bounds": {
+        "c2": 0.28799999999999987,
+        "delta": 0.7999999999999997,
+        "label_c2": 0.06399999999999995,
+        "petz": 0.19999999999999984,
+        "gram": 0.19999999999999984,
+        "petz_gram_residual": 0.0,
+        "tp_residual": 7.13124727974487e-16,
+        "b_lower": 0.1999999999999999,
+        "b_dual": 0.19999999999999993,
+        "b_sqrt": 0.44721359549995776,
+        "a_lower": 0.1999999999999999,
+        "a_tangent": 0.19999999999999993
+      },
+      "max_bound_violation": -1.3733014725403336e-11,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.",
+        "Initializing a Constant with a nested list is undefined behavior. Consider using a numpy array instead."
+      ]
+    },
+    {
+      "NR": 4,
+      "NB": 3,
+      "k": 8,
+      "index": 0,
+      "lower": 0.20312499975666828,
+      "upper": 0.20312500007123585,
+      "gap": 3.1456756643954975e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -2.8096924667360796e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 3.086094672983293e-16,
+      "bounds": {
+        "c2": 0.17578125,
+        "delta": 0.796875,
+        "label_c2": 0.046875000000000014,
+        "petz": 0.20312500000000003,
+        "gram": 0.20312500000000006,
+        "petz_gram_residual": 2.7755575615628914e-17,
+        "tp_residual": 4.737034015556758e-16,
+        "b_lower": 0.20312500000000003,
+        "b_dual": 0.20312500000000008,
+        "b_sqrt": 0.4506939094329987,
+        "a_lower": 0.20228363160479113,
+        "a_tangent": 0.22551078950598902
+      },
+      "max_bound_violation": -7.123582279611185e-11,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    },
+    {
+      "NR": 4,
+      "NB": 3,
+      "k": 8,
+      "index": 1,
+      "lower": 0.2031249997566738,
+      "upper": 0.20312500007123452,
+      "gap": 3.145607108123727e-10,
+      "primal_status": "optimal_inaccurate",
+      "dual_status": "optimal_inaccurate",
+      "postrepair_min_primal_eig": -6.12683065483052e-17,
+      "postrepair_min_slack_eig": 0.0,
+      "postrepair_ptr_residual": 1.0192134269624088e-16,
+      "bounds": {
+        "c2": 0.17578124999999994,
+        "delta": 0.7968749999999998,
+        "label_c2": 0.046875,
+        "petz": 0.203125,
+        "gram": 0.20312499999999994,
+        "petz_gram_residual": 5.551115123125783e-17,
+        "tp_residual": 3.561573607199118e-16,
+        "b_lower": 0.20312499999999997,
+        "b_dual": 0.203125,
+        "b_sqrt": 0.45069390943299864,
+        "a_lower": 0.20228363160479107,
+        "a_tangent": 0.22551078950598902
+      },
+      "max_bound_violation": -7.123451828405791e-11,
+      "warnings": [
+        "Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information."
+      ]
+    }
+  ],
+  "fixed_k_petz": [
+    {
+      "NR": 6,
+      "NB": 7,
+      "k": 2,
+      "samples": 100,
+      "c": 0.3090169943749474,
+      "asymptotic": 0.4634650228975578,
+      "measured": {
+        "mean": 0.4613537798105088,
+        "se": 0.0013785639193242781
+      }
+    },
+    {
+      "NR": 7,
+      "NB": 7,
+      "k": 2,
+      "samples": 100,
+      "c": 0.5,
+      "asymptotic": 0.5762930674820503,
+      "measured": {
+        "mean": 0.5752276225160097,
+        "se": 0.001206062809046736
+      }
+    },
+    {
+      "NR": 8,
+      "NB": 7,
+      "k": 2,
+      "samples": 100,
+      "c": 0.8090169943749475,
+      "asymptotic": 0.7245282759182055,
+      "measured": {
+        "mean": 0.7244603502638219,
+        "se": 0.0009398368489601314
+      }
+    }
+  ],
+  "growth_samples": [
+    {
+      "NR": 10,
+      "NB": 6,
+      "k": 8,
+      "D": 610,
+      "index": 0,
+      "c": 0.8567627457812107,
+      "mp_limit": 0.6575501409296663,
+      "c2": 0.01183831704615004,
+      "delta": 0.4417212002935639,
+      "label_c2": 0.0006137081536784809,
+      "petz": 0.6638157349851055,
+      "gram": 0.6638157349851057,
+      "petz_gram_residual": 2.220446049250313e-16,
+      "tp_residual": 7.952376571483277e-14,
+      "b_lower": 0.6583762618251232,
+      "b_dual": 0.7439758204866462,
+      "b_sqrt": 0.814748878480422,
+      "a_lower": 0.6583670406399134,
+      "a_tangent": 0.7528391606036781
+    },
+    {
+      "NR": 10,
+      "NB": 6,
+      "k": 8,
+      "D": 610,
+      "index": 1,
+      "c": 0.8567627457812107,
+      "mp_limit": 0.6575501409296663,
+      "c2": 0.011723316096564282,
+      "delta": 0.4443104055136571,
+      "label_c2": 0.0007027271900965258,
+      "petz": 0.6591499289786523,
+      "gram": 0.6591499289786524,
+      "petz_gram_residual": 1.1102230246251565e-16,
+      "tp_residual": 8.155034303483587e-14,
+      "b_lower": 0.6542015059746199,
+      "b_dual": 0.7389563235889887,
+      "b_sqrt": 0.8118804893447387,
+      "a_lower": 0.6541879939339924,
+      "a_tangent": 0.7442817165816805
+    },
+    {
+      "NR": 10,
+      "NB": 6,
+      "k": 8,
+      "D": 610,
+      "index": 2,
+      "c": 0.8567627457812107,
+      "mp_limit": 0.6575501409296663,
+      "c2": 0.011306718157013874,
+      "delta": 0.43732076004582293,
+      "label_c2": 0.0005663687594808149,
+      "petz": 0.6659202532436621,
+      "gram": 0.6659202532436621,
+      "petz_gram_residual": 0.0,
+      "tp_residual": 1.036257211443368e-13,
+      "b_lower": 0.6591379143269953,
+      "b_dual": 0.7541481259084287,
+      "b_sqrt": 0.8160393699103384,
+      "a_lower": 0.6590765550772867,
+      "a_tangent": 0.7610456586952274
+    },
+    {
+      "NR": 12,
+      "NB": 7,
+      "k": 16,
+      "D": 2584,
+      "index": 0,
+      "c": 0.6931356214843423,
+      "mp_limit": 0.5657099736483605,
+      "c2": 0.004405615295272067,
+      "delta": 0.48933182560518496,
+      "label_c2": 0.00014297925396233483,
+      "petz": 0.5681400392231263,
+      "gram": 0.5681400392231264,
+      "petz_gram_residual": 1.1102230246251565e-16,
+      "tp_residual": 2.358322384570532e-13,
+      "b_lower": 0.5665042180936476,
+      "b_dual": 0.613677993773925,
+      "b_sqrt": 0.7537506479089263,
+      "a_lower": 0.5664905094148516,
+      "a_tangent": 0.6152143593501208
+    },
+    {
+      "NR": 12,
+      "NB": 7,
+      "k": 16,
+      "D": 2584,
+      "index": 1,
+      "c": 0.6931356214843423,
+      "mp_limit": 0.5657099736483605,
+      "c2": 0.004455906186923202,
+      "delta": 0.48870312875514926,
+      "label_c2": 0.00015803195480690177,
+      "petz": 0.5682839376771918,
+      "gram": 0.5682839376771918,
+      "petz_gram_residual": 0.0,
+      "tp_residual": 1.6308556613521295e-13,
+      "b_lower": 0.5664508883236112,
+      "b_dual": 0.6166538654809024,
+      "b_sqrt": 0.7538460968110081,
+      "a_lower": 0.5664442054358659,
+      "a_tangent": 0.618566984610185
+    },
+    {
+      "NR": 9,
+      "NB": 3,
+      "k": 34,
+      "D": 89,
+      "index": 0,
+      "c": 0.5277727032352695,
+      "mp_limit": 0.45521966565575434,
+      "c2": 0.015733931796803782,
+      "delta": 0.5261944123621028,
+      "label_c2": 0.004023584538623127,
+      "petz": 0.4800827941782982,
+      "gram": 0.48008279417829836,
+      "petz_gram_residual": 1.6653345369377348e-16,
+      "tp_residual": 4.120333072409684e-14,
+      "b_lower": 0.47980596650097085,
+      "b_dual": 0.4896102474436138,
+      "b_sqrt": 0.6928800720025784,
+      "a_lower": 0.4787803202437645,
+      "a_tangent": 0.5194866206308936
+    },
+    {
+      "NR": 9,
+      "NB": 3,
+      "k": 34,
+      "D": 89,
+      "index": 1,
+      "c": 0.5277727032352695,
+      "mp_limit": 0.45521966565575434,
+      "c2": 0.01627368254530663,
+      "delta": 0.5355415687422718,
+      "label_c2": 0.003907348101828571,
+      "petz": 0.47554610790732155,
+      "gram": 0.47554610790732144,
+      "petz_gram_residual": 1.1102230246251565e-16,
+      "tp_residual": 3.5018005527940924e-14,
+      "b_lower": 0.47507184355359877,
+      "b_dual": 0.4879322584884018,
+      "b_sqrt": 0.689598512112172,
+      "a_lower": 0.4745034512711529,
+      "a_tangent": 0.5045156943712299
+    },
+    {
+      "NR": 9,
+      "NB": 3,
+      "k": 34,
+      "D": 89,
+      "index": 2,
+      "c": 0.5277727032352695,
+      "mp_limit": 0.45521966565575434,
+      "c2": 0.015915327864901022,
+      "delta": 0.5307484417628423,
+      "label_c2": 0.004006461441645272,
+      "petz": 0.4782039010225929,
+      "gram": 0.478203901022593,
+      "petz_gram_residual": 1.1102230246251565e-16,
+      "tp_residual": 3.727036959559701e-14,
+      "b_lower": 0.47787203860140515,
+      "b_dual": 0.4886468439573758,
+      "b_sqrt": 0.6915228853932406,
+      "a_lower": 0.47722343149586494,
+      "a_tangent": 0.5094074467730219
+    },
+    {
+      "NR": 9,
+      "NB": 3,
+      "k": 34,
+      "D": 89,
+      "index": 3,
+      "c": 0.5277727032352695,
+      "mp_limit": 0.45521966565575434,
+      "c2": 0.015598096251018125,
+      "delta": 0.5258099187420187,
+      "label_c2": 0.003984668340930468,
+      "petz": 0.4808616660909831,
+      "gram": 0.48086166609098324,
+      "petz_gram_residual": 1.6653345369377348e-16,
+      "tp_residual": 3.1414429066403376e-14,
+      "b_lower": 0.4808295321064401,
+      "b_dual": 0.48417087657364055,
+      "b_sqrt": 0.6934418981363781,
+      "a_lower": 0.47974562305797597,
+      "a_tangent": 0.5216573459549153
+    },
+    {
+      "NR": 12,
+      "NB": 4,
+      "k": 89,
+      "D": 610,
+      "index": 0,
+      "c": 0.5278507164466045,
+      "mp_limit": 0.4552756694443567,
+      "c2": 0.004110872144491738,
+      "delta": 0.5457527919585244,
+      "label_c2": 0.0006669943266430281,
+      "petz": 0.46364271390126044,
+      "gram": 0.46364271390126055,
+      "petz_gram_residual": 1.1102230246251565e-16,
+      "tp_residual": 2.2365344394507168e-13,
+      "b_lower": 0.46360946650836765,
+      "b_dual": 0.4682814010797609,
+      "b_sqrt": 0.6809131471056059,
+      "a_lower": 0.4634781358697239,
+      "a_tangent": 0.47362863274798905
+    },
+    {
+      "NR": 12,
+      "NB": 4,
+      "k": 89,
+      "D": 610,
+      "index": 1,
+      "c": 0.5278507164466045,
+      "mp_limit": 0.4552756694443567,
+      "c2": 0.004112630042590158,
+      "delta": 0.5468231216965415,
+      "label_c2": 0.0006948341834555137,
+      "petz": 0.4630808616580565,
+      "gram": 0.4630808616580562,
+      "petz_gram_residual": 3.3306690738754696e-16,
+      "tp_residual": 2.5138570067750136e-13,
+      "b_lower": 0.4629946078369331,
+      "b_dual": 0.46955285894962506,
+      "b_sqrt": 0.6805004494179681,
+      "a_lower": 0.4628812032100421,
+      "a_tangent": 0.47394568731304715
+    }
+  ],
+  "sympy_integral_audit": {
+    "expression": "integrate(t*(1+sqrt(1-t)), (t,0,1))",
+    "unexpanded": "7/30",
+    "separated": "23/30",
+    "scipy": 0.7666666666666668
+  },
+  "mp_values": {
+    "c0": 0.5278640450004206,
+    "f_c0": 0.45528523733373155,
+    "f_1": 0.7205061947899578,
+    "f_half": 0.4350574233094004,
+    "petz_k2_half": 0.5762930674820503,
+    "upper_k2_half": 0.7591396890441511
+  },
+  "entropy_asymptotic_checks": [
+    {
+      "t": 6,
+      "h": 0,
+      "qtr_scaled_residual": -2.9358970722995226,
+      "alg_scaled_residual": -2.378160832622659
+    },
+    {
+      "t": 6,
+      "h": 1,
+      "qtr_scaled_residual": -1.5477306535927544,
+      "alg_scaled_residual": -1.7622688499581118
+    },
+    {
+      "t": 6,
+      "h": 2,
+      "qtr_scaled_residual": -0.5651552964636017,
+      "alg_scaled_residual": -0.4834281277155135
+    },
+    {
+      "t": 8,
+      "h": 0,
+      "qtr_scaled_residual": -2.9438614908391467,
+      "alg_scaled_residual": -2.38127529273563
+    },
+    {
+      "t": 8,
+      "h": 1,
+      "qtr_scaled_residual": -1.5477416006910991,
+      "alg_scaled_residual": -1.7628486053603094
+    },
+    {
+      "t": 8,
+      "h": 2,
+      "qtr_scaled_residual": -0.5649263815763033,
+      "alg_scaled_residual": -0.4827946517714755
+    },
+    {
+      "t": 10,
+      "h": 0,
+      "qtr_scaled_residual": -2.9450787667983094,
+      "alg_scaled_residual": -2.3817866839477078
+    },
+    {
+      "t": 10,
+      "h": 1,
+      "qtr_scaled_residual": -1.547745104157425,
+      "alg_scaled_residual": -1.7629353490662236
+    },
+    {
+      "t": 10,
+      "h": 2,
+      "qtr_scaled_residual": -0.5648925034566921,
+      "alg_scaled_residual": -0.48270178567357336
+    },
+    {
+      "t": 12,
+      "h": 0,
+      "qtr_scaled_residual": -2.94525764773239,
+      "alg_scaled_residual": -2.3818626145547026
+    },
+    {
+      "t": 12,
+      "h": 1,
+      "qtr_scaled_residual": -1.5477456560863232,
+      "alg_scaled_residual": -1.7629480509679807
+    },
+    {
+      "t": 12,
+      "h": 2,
+      "qtr_scaled_residual": -0.5648875504940606,
+      "alg_scaled_residual": -0.48268822726628363
+    }
+  ],
+  "mathematica": {
+    "version": "15.0.1 for Microsoft Windows (64-bit) (July 2, 2026)",
+    "system_id": "Windows-x86-64",
+    "headless": true,
+    "installation": "C:/Program Files/Wolfram Research/Wolfram/15.0",
+    "stiefel_residual": "0",
+    "twirl_residual": "0",
+    "mirror_recoveries": [
+      "5/12",
+      "23/30"
+    ],
+    "mirror_variances": [
+      "1/288",
+      "11/900"
+    ],
+    "boundary_identity_residual": "0",
+    "method": "Local Wolfram MCP; random projection two-invariant contraction, exact algebra and Beta integrals. Wolfram Context reported missing LLMKit subscription but the local evaluator worked; no cloud computation used."
+  },
+  "proof_audit": {
+    "a_gradient": "For h(sigma)=Tr sqrt(sqrt(rho)(I/k tensor sigma)sqrt(rho)), derivative at sigma0,a=m_a/D I equals Tr_Q sqrt(rho_a)/(2k sqrt(m_a/(kD))). Concave tangent gives h<=h0/2+max_a||G_a||inf. Rank-deficient rho is handled on its support.",
+    "a_partial_trace": "For q=kn, bounded Hermitian H, h_v(U)=Tr[(I_k tensor |v><v|)UHU*]/k has Hilbert-Schmidt Lipschitz constant <=2||H||inf/sqrt(k). Meckes concentration and a complex 1/4-net of size <=9^(2n) give tail <=2 exp[(2 log9-C²/192)n] for norm threshold 2C||H||inf/k, for kn sufficiently large. No condition n/k² is needed.",
+    "a_growth": "When both Fibonacci sides grow and k phi^(NB-NR) tends to positive finite lambda, k/D=O(1/n_1²)->0. Gaussian/Stiefel purification distance is o_P(1). Condition on Wishart eigenvalues, apply Haar partial-trace concentration to sqrt(W), then combine MP trace limit with the tangent bound. This controls the optimal decoder and bounded fidelity gives mean convergence.",
+    "b_petz": "Direct Kraus composition matches F_P=k^-2 sum_a Tr[(Tr_Q sqrt(H_a* H_a))²]. Kernel completion is CPTP and has no effect on channel inputs.",
+    "b_dual": "With normalized Choi J, primal trace_Q X=I_m/k and dual objective sum Tr Y/k. Y_a=||M_a||inf sqrt(S_a)/k is feasible after whitening; nonzero Gram eigenvalues are those of M_a/k.",
+    "b_fixed_k": "Haar twirl residual exactly zero. Conditional eigenvector integration gives P_k(c)=k^-2+(1-k^-2)f(c), and F_P<=F_rec<=sqrt(F_P) gives a strict mean converse at every finite c. The other trace-distance bound closes the low endpoint at k^-2.",
+    "b_growth": "Relative squared Hilbert-Schmidt fluctuation tends to (n_a/k²)(1-f)/f. Hence n_a/k²->0 closes the explicit dual bound. The Stiefel perturbation relative error is O_P(epsilon sqrt(n_a)), not O_P(epsilon n_a); with D asymp k n_a² and epsilon=O_P(sqrt((k+logD)/D)) it vanishes.",
+    "boundary": "Full-space coding has optimal fidelity sum m_a²/D². NB=2 gives c0=sqrt5/phi³. A both-growing sequence with the same Xi reaches f(c0)<c0, with strictness from MP nonzero-spectrum duality and Jensen. Both submitted integer constructions are admissible asymptotically."
+  },
+  "sources": [
+    {
+      "title": "Collins and Śniady, Integration with respect to the Haar measure on unitary, orthogonal and symplectic group",
+      "url": "https://arxiv.org/pdf/math-ph/0402073",
+      "locator": "PDF p.5 Corollary2.4 and eq.(11); p.6 n=2 Weingarten values",
+      "checked": "web primary PDF"
+    },
+    {
+      "title": "Meckes, The Random Matrix Theory of the Classical Compact Groups, author manuscript",
+      "url": "https://case.edu/artsci/math/esmeckes/Haar_book.pdf",
+      "locator": "PDF p.141 Theorem5.5; pp.158–159 Theorems5.16–5.17",
+      "checked": "Web fetch timed out; independently read the previously saved original author-manuscript PDF body and extraction under grading/supplement/q2_temp, no metadata read."
+    },
+    {
+      "title": "Vershynin, Introduction to the non-asymptotic analysis of random matrices",
+      "url": "https://arxiv.org/pdf/1011.3027",
+      "locator": "PDF pp.20–21, Section5.3.1, Theorems5.31,5.32 and Corollary5.35; p.6 states real case with complex adjustments",
+      "checked": "web primary PDF; s2_2a reference Section5.2.3 is a minor locator error"
+    },
+    {
+      "title": "Barnum and Knill, Reversing quantum dynamics with near-optimal quantum and classical fidelity",
+      "url": "https://arxiv.org/pdf/quant-ph/0004088v1",
+      "locator": "PDF p.2 Theorem2 and Corollary3; for single input rho=I/k the commuting-ensemble hypothesis is automatic",
+      "checked": "web primary original version; current v2 also checked, p.7 Theorem3 eq.(13)"
+    }
+  ],
+  "anonymity": {
+    "metadata_read": false,
+    "model_inference_performed": false,
+    "exposures": [
+      {
+        "answer": "s2_2a",
+        "pages": [
+          12,
+          13
+        ],
+        "text_scope": "Fee appendix and bibliography model name; excluded from scoring and cost analysis"
+      }
+    ]
+  },
+  "verification_summary": {
+    "exact_contraction_cases": 8,
+    "small_stiefel_samples": 15000,
+    "sdp_samples": 47,
+    "fixed_k_petz_samples": 300,
+    "growth_samples": 11,
+    "max_sdp_repaired_gap": 7.852413275166725e-09,
+    "max_sdp_ptr_residual": 6.27832717033596e-15,
+    "max_bound_violation": -1.1237122343743522e-12,
+    "max_petz_gram_residual": 4.773959005888173e-15,
+    "max_decoder_tp_residual": 2.6422819121864107e-12,
+    "status": "All targeted checks passed. Floating point checks are not formal interval certificates."
+  },
+  "reproduction_method": {
+    "seed": 2026093002,
+    "haar": "iid complex Gaussian QR, columns multiplied by diagonal(R)/abs(diagonal(R))",
+    "contractions": "Enumerate every Q,R,B index in the four unitary Weingarten Kronecker contractions using fractions.Fraction.",
+    "sdp": "CVXPY/CLARABEL, absolute and relative gap/feasibility tolerance1e-10. Primal PSD spectral clipping followed by exact-form partial-trace congruence normalization; dual shift by negative minimum slack plus1e-11.",
+    "entropy": "70-digit mpmath harmonic values and exact Binet expression; scaled errors only assess listed finite cases.",
+    "mp_integral": "SciPy quadrature of (2/pi)*integral_0^pi sin(theta)^2/sqrt(1+y-2sqrt(y)cos(theta)) dtheta, squared; y=1/c; tolerances2e-13.",
+    "scratch": "Review scripts, extracted PDF text, rendered pages and temporary SDP libraries remain confined to tmp/pdfs/supplement_2nd_q2. Attempted cleanup was rejected by automatic approval policy, which reported blocked by policy without a more specific reason; no bypass was attempted. Formal results and methods are preserved in this record."
+  },
+  "scratch_cleanup": {
+    "attempted": true,
+    "completed": false,
+    "reason": "Automatic approval review rejected the path-checked recursive removal as blocked by policy.",
+    "retained_directory": "local-only: tmp/pdfs/supplement_2nd_q2"
+  }
+}

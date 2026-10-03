@@ -1,7 +1,7 @@
 {
   "path_base": "repository root",
-  "pdf_count": 27,
-  "adopted_count": 24,
+  "pdf_count": 33,
+  "adopted_count": 30,
   "submissions": [
     {
       "id": "1a",
@@ -245,6 +245,60 @@
       "replaced_by": null,
       "path": "submissions/supplement/03/s_3b.pdf",
       "sha256": "637970f3cb86b85390356e4ad33291d28afe8e30398b025946258b5ed39e127c"
+    },
+    {
+      "id": "s2_1a",
+      "question": 1,
+      "model": "GPT-6.1 Sol xhigh",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/supplement_2nd/01/s2_1a.pdf",
+      "sha256": "a10dd0688331bf9c908f1623ec2a3453d4d294ec11b0046a10b58cb8e3cc203f"
+    },
+    {
+      "id": "s2_1b",
+      "question": 1,
+      "model": "GPT-6.1 Sol max",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/supplement_2nd/01/s2_1b.pdf",
+      "sha256": "0cbeb7801a8af1c5d68ff49f2831801af441279df3c82060b44e31fc2405ef2a"
+    },
+    {
+      "id": "s2_2a",
+      "question": 2,
+      "model": "GPT-6.1 Sol xhigh",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/supplement_2nd/02/s2_2a.pdf",
+      "sha256": "4e16aa3b5b3b06c223d9664ab5d9b3467b1a3915c168597cad61b1415f6abb2e"
+    },
+    {
+      "id": "s2_2b",
+      "question": 2,
+      "model": "GPT-6.1 Sol max",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/supplement_2nd/02/s2_2b.pdf",
+      "sha256": "b7ce784a6ece62e77b14ac631c0b5a2422d914899aedecd24870bf3f269e6732"
+    },
+    {
+      "id": "s2_3a",
+      "question": 3,
+      "model": "GPT-6.1 Sol xhigh",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/supplement_2nd/03/s2_3a.pdf",
+      "sha256": "62851cb8e02dcceb6db252bf271294bcc2d1349277d8c3d4945d1b81cc01db26"
+    },
+    {
+      "id": "s2_3b",
+      "question": 3,
+      "model": "GPT-6.1 Sol max",
+      "adopted": true,
+      "replaced_by": null,
+      "path": "submissions/supplement_2nd/03/s2_3b.pdf",
+      "sha256": "3e45b49ce2e783b23db5581685395acbcea0998d24571315e5fb0b790453c1db"
     }
   ]
 }

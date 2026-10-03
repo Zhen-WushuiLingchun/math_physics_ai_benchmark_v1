@@ -1,6 +1,6 @@
 {
-  "answers_verified": 24,
-  "models": 8,
+  "answers_verified": 30,
+  "models": 10,
   "questions_per_model": 3,
   "sheets": [
     "Task 1",
@@ -9,11 +9,20 @@
     "综合汇总"
   ],
   "native_scatter_charts": 4,
-  "native_scatter_points": 32,
+  "native_scatter_points": 40,
   "formula_errors": [],
-  "adopted_cost_sum": 116.842,
+  "adopted_cost_sum": 125.512,
   "opus_cost_counted_once": 50.77,
-  "supplemental_added_cost": 5.617,
+  "first_supplement_added_cost": 5.617,
+  "second_supplement_added_cost": 8.67,
   "plot_pairs": 4,
-  "native_chart_x_values": "Current cost snapshot; worksheet note documents refresh requirement"
+  "native_chart_x_values": "Current cost snapshot; worksheet note documents refresh requirement",
+  "date": "2026-09-30",
+  "pdf_hashes_verified": 33,
+  "adopted_scores_match_frozen_records": true,
+  "original_24_costs_preserved": true,
+  "second_supplement_costs_match_user_disclosure": true,
+  "portfolio_candidates_verified": 1000,
+  "source_question_texts_unchanged": true,
+  "final_figures_visually_checked": true
 }

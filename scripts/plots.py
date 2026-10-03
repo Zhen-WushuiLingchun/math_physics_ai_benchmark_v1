@@ -43,13 +43,14 @@ def point(ax,r,mean=False):
 def label(ax,r,offset,ha,va,mean=False,size=8.2,short=False):
  y=r['mean'] if mean else r['total'];name=r['short'] if short else r['model']
  score=f'{y:.2f}' if mean else str(y)
- ax.annotate(f"{name}\n{score} 分 · ${r['cost']:.3f}",(r['cost'],y),xytext=offset,textcoords='offset points',fontsize=size,color=r['color'],ha=ha,va=va,linespacing=1.25,bbox={'facecolor':'white','edgecolor':'none','alpha':.93,'pad':1.0},zorder=4)
+ ax.annotate(f"{name}\n{score} 分 · ${r['cost']:.3f}",(r['cost'],y),xytext=offset,textcoords='offset points',fontsize=size,color=r['color'],ha=ha,va=va,linespacing=1.25,bbox={'facecolor':'white','edgecolor':'none','alpha':.93,'pad':1.0},arrowprops={'arrowstyle':'-','color':r['color'],'lw':.5,'alpha':.7,'shrinkA':2,'shrinkB':4} if abs(offset[1])>=10 else None,zorder=4)
 
 def conclusion_figures():
- import shutil
  positions={
+  'GPT-6.1 Sol xhigh':((-10,-13),'right','top'),
+  'GPT-6.1 Sol max':((9,12),'left','bottom'),
   'GPT-6 Astra high':((9,1),'left','center'),
-  'GPT-6 Sol max':((-9,-3),'right','top'),
+  'GPT-6 Sol max':((9,-17),'left','top'),
   'Opus 5.5 xhigh':((-9,1),'right','center'),
   'GPT-6 Sol xhigh':((-9,1),'right','center'),
   'GPT-5.6 Sol xhigh':((9,1),'left','center'),
@@ -58,13 +59,15 @@ def conclusion_figures():
   'Grok 4.7 high':((9,-2),'left','center'),
  }
  for scale,scale_name in [('log','对数坐标'),('linear','线性坐标')]:
-  fig,ax=plt.subplots(figsize=(13.4,8.6))
+  fig,ax=plt.subplots(figsize=(14.2,9.2))
   fs=data['fullFrontier']
   ax.plot([r['cost'] for r in fs],[r['mean'] for r in fs],color='#AAA0AF',lw=1.2,ls='--',zorder=1)
   for r in data['full']:
    point(ax,r,True)
    off,ha,va=positions[r['model']]
    if scale=='linear' and r['model']=='GPT-6 Sol xhigh':off,ha,va=(9,1),'left','center'
+   if scale=='linear' and r['model']=='GPT-6.1 Sol xhigh':off,ha,va=(-4,-17),'center','top'
+   if scale=='linear' and r['model']=='GPT-6 Sol max':off,ha,va=(9,-17),'left','top'
    label(ax,r,off,ha,va,True,size=8.2)
   if scale=='log':cost_axis(ax,.3,85)
   else:
@@ -72,22 +75,23 @@ def conclusion_figures():
    ax.xaxis.set_major_locator(FixedLocator([0,10,20,30,40,50]))
    ax.xaxis.set_major_formatter(FuncFormatter(lambda x,p:f'${x:g}'))
    ax.grid(axis='y',color='#E8E4EB',lw=.7,zorder=0)
-  ax.set_ylim(46,103);ax.set_yticks([50,60,70,80,90,100])
+  ax.set_ylim(46,105);ax.set_yticks([50,60,70,80,90,100])
   ax.set_xlabel(f'完成全部三题的合计参考成本（USD，{scale_name}）',labelpad=10)
   ax.set_ylabel('三题等权均分 / 100',labelpad=10)
   ax.set_title('理论物理问题测试：模型得分与成本',loc='left',fontsize=18,pad=30)
-  ax.text(0,1.025,'8 个模型配置 × 3 道理论物理问题 · 三题等权评分',transform=ax.transAxes,fontsize=10.5,color='#625A68')
-  fig.text(.075,.172,'虚线连接中心分数下的 Pareto 前沿；竖线为三题评阅范围端点的均值，非统计置信区间。',fontsize=8.5,color='#625A68')
-  fig.text(.075,.147,'成本采用本次记录的美元参考值，不代表实付金额、FLOPs 或推理时间；连线仅作视觉引导。',fontsize=8.5,color='#625A68')
-  fig.add_artist(plt.Line2D([.075,.97],[.130,.130],transform=fig.transFigure,color='#DDD7E0',linewidth=.6))
+  ax.text(0,1.025,f"{len(data['full'])} 个模型配置 × 3 道理论物理问题 · 三题等权评分 · 更新 {data['date']}",transform=ax.transAxes,fontsize=10.5,color='#625A68')
+  fig.text(.075,.195,'虚线连接中心分数下的 Pareto 前沿；竖线为三题评阅范围端点的均值，非统计置信区间。',fontsize=8.5,color='#625A68')
+  fig.text(.075,.171,'成本采用本次记录的美元参考值，不代表实付金额、FLOPs 或推理时间；连线仅作视觉引导。',fontsize=8.5,color='#625A68')
+  fig.add_artist(plt.Line2D([.075,.97],[.153,.153],transform=fig.transFigure,color='#DDD7E0',linewidth=.6))
   credits=[
    '题库与评分标准：真·无水零醇使用 GPT 6 Pro 辅助完成。',
    '问题作答：真·无水零醇和食司使用相关模型共同完成。',
    '评分：食司使用 GPT 6 Astra Max 完成。',
-   '评分采用匿名方式，向评分模型隐去作答模型的型号；但不排除同一族模型在出题和评分时存在隐性偏好。',
+   '评分按匿名编号开展，向评分模型隐去作答模型的型号；不排除同一族模型在出题和评分时存在隐性偏好。',
+   '匿名性限制：部分补充答卷的附录或元数据含型号线索；评分记录已披露，未据此调整分数。',
   ]
-  for y,t in zip([.105,.079,.053,.027],credits):fig.text(.075,y,t,fontsize=8.2,color='#655E6B')
-  fig.subplots_adjust(left=.075,right=.97,top=.87,bottom=.265)
+  for y,t in zip([.130,.105,.080,.055,.030],credits):fig.text(.075,y,t,fontsize=8.2,color='#655E6B')
+  fig.subplots_adjust(left=.075,right=.97,top=.88,bottom=.285)
   save(fig,'结果'+('对数' if scale=='log' else '线性')+'版',dpi=240)
 
 if '--conclusion-only' in sys.argv:
@@ -95,17 +99,20 @@ if '--conclusion-only' in sys.argv:
  print('Updated final logarithmic and linear cost-score figures (PNG/SVG).')
  sys.exit(0)
 
-# All 24 individual results; common y scale and direct labels beside points.
-fig,axs=plt.subplots(1,3,figsize=(19.2,6.8),sharey=True)
+# All individual results; common y scale and direct labels beside points.
+fig,axs=plt.subplots(1,3,figsize=(20,7.8),sharey=True)
 titles=['第 1 题：YM → EYM 一圈提升','第 2 题：Fibonacci 信息恢复','第 3 题：振铃稳定性']
 positions={
- 's_1b':((-7,4),'right','bottom'),'1b':((7,-3),'left','top'),'s_1a':((-7,-12),'right','top'),
+ 's2_1a':((-7,-13),'right','top'),'s2_1b':((-7,10),'right','bottom'),
+ 's2_2a':((-7,11),'right','bottom'),'s2_2b':((7,16),'left','bottom'),
+ 's2_3a':((-7,12),'right','bottom'),'s2_3b':((7,17),'left','bottom'),
+ 's_1b':((7,3),'left','bottom'),'1b':((7,-12),'left','top'),'s_1a':((7,-8),'left','top'),
  '1a':((7,0),'left','center'),'1c':((-7,-6),'right','top'),'s_1c':((7,2),'left','bottom'),
  's_1d':((7,-6),'left','top'),'1d':((7,0),'left','center'),
- '2e':((7,5),'left','bottom'),'2c':((-7,2),'right','bottom'),'s_2a':((7,-3),'left','top'),
- '2d':((7,-4),'left','top'),'2a':((-7,-7),'right','top'),'2b':((7,-4),'left','top'),
+ '2e':((7,5),'left','bottom'),'2c':((-7,-4),'right','top'),'s_2a':((7,-3),'left','top'),
+ '2d':((7,-7),'left','top'),'2a':((-7,-16),'right','top'),'2b':((7,-4),'left','top'),
  's_2b':((7,-4),'left','top'),'2f':((7,-4),'left','top'),
- '3e':((7,3),'left','bottom'),'3c':((-7,3),'right','bottom'),'3d':((-7,-3),'right','top'),
+ '3e':((7,3),'left','bottom'),'3c':((7,-4),'left','top'),'3d':((-7,-12),'right','top'),
  '3a':((-7,4),'right','bottom'),'s_3a':((7,-3),'left','top'),'3b':((7,-4),'left','top'),
  '3f':((7,-4),'left','top'),'s_3b':((7,-4),'left','top'),
 }
@@ -114,10 +121,10 @@ for q,ax in enumerate(axs):
  ax.plot([r['cost'] for r in fs],[r['total'] for r in fs],color='#B3ABB8',lw=1.1,ls='--',zorder=1)
  for r in data['questionData'][q]:
   point(ax,r);off,ha,va=positions[r['id']];label(ax,r,off,ha,va,size=7.3,short=True)
- cost_axis(ax,.1,90);ax.set_ylim(20,108);ax.set_yticks([20,40,60,80,100]);ax.set_title(titles[q],loc='left',fontsize=12,pad=16)
+ cost_axis(ax,.1,90);ax.set_ylim(20,113);ax.set_yticks([20,40,60,80,100]);ax.set_title(titles[q],loc='left',fontsize=12,pad=16)
 axs[0].set_ylabel('本题得分 / 100')
-fig.suptitle('逐题比较：8 个模型配置，各有完整三题结果',x=.055,ha='left',fontsize=17,y=.975)
-fig.text(.055,.063,'标签中的 Astra、Sol、Luna 均为 GPT-6；5.6 Sol 为 GPT-5.6；DeepSeek Flash 为 DeepSeek V4.1 Flash。',fontsize=9,color='#625A68')
+fig.suptitle(f"逐题比较：{len(data['full'])} 个模型配置，各有完整三题结果",x=.055,ha='left',fontsize=17,y=.975)
+fig.text(.055,.063,'Astra / Sol / Luna 默认指 GPT-6；带 6.1、5.6 前缀的 Sol 分别指 GPT-6.1、GPT-5.6；DeepSeek Flash 为 V4.1。',fontsize=9,color='#625A68')
 fig.text(.055,.026,'竖线为评阅判断范围，非统计置信区间；虚线连接本题成本—得分前沿，仅作视觉引导。每个点对应一份采用的回答。',fontsize=9,color='#625A68')
 fig.subplots_adjust(left=.055,right=.99,top=.865,bottom=.18,wspace=.13)
 save(fig,'逐题成本与得分')
@@ -127,22 +134,21 @@ conclusion_figures()
 
 fig,ax=plt.subplots(figsize=(12.4,7.0))
 ps=data['portfolioFrontier'];xs=[r['cost'] for r in ps];ys=[r['mean'] for r in ps]
-ax.step(xs+[15],ys+[ys[-1]],where='post',color='#7E0C6E',lw=1.8,zorder=2)
+ax.step(xs+[5.4],ys+[ys[-1]],where='post',color='#7E0C6E',lw=1.8,zorder=2)
 ax.scatter(xs,ys,c='#7E0C6E',s=24,zorder=3)
 annotations={
  .464:('三题 Luna max\n$0.464 · 71.67 分',(8,6),'left','bottom'),
- 4.404:('Sol max / Luna / Luna\n$4.404 · 85.33 分',(-8,9),'right','bottom'),
- 5.904:('Sol max / Luna / Sol xhigh\n$5.904 · 90.00 分',(-8,15),'right','bottom'),
- 7.575:('Sol max / Sol max / Sol xhigh\n$7.575 · 92.67 分',(8,-12),'left','top'),
- 8.252:('三题 Sol max\n$8.252 · 94.33 分',(-8,16),'right','bottom'),
- 12.874:('Sol max / Astra / Astra\n$12.874 · 96.33 分',(-8,13),'right','bottom'),
+ 1.898:('6.1 xhigh / Luna / Luna\n$1.898 · 85.67 分',(-8,12),'right','bottom'),
+ 3.126:('6.1 xhigh / Luna / 6.1 xhigh\n$3.126 · 93.00 分',(-8,14),'right','bottom'),
+ 4.094:('三题 6.1 Sol xhigh\n$4.094 · 97.00 分',(-8,14),'right','bottom'),
+ 4.547:('6.1 max / 6.1 xhigh / 6.1 max\n$4.547 · 98.00 分',(8,-13),'left','top'),
 }
 for r in ps:
  if r['cost'] in annotations:
   t,off,ha,va=annotations[r['cost']];ax.annotate(t,(r['cost'],r['mean']),xytext=off,textcoords='offset points',fontsize=8.0,ha=ha,va=va,linespacing=1.25,color='#4C354F',bbox={'facecolor':'white','edgecolor':'none','alpha':.95,'pad':1.1},zorder=4)
-ax.set_xlim(0,15);ax.set_ylim(68,104);ax.set_xlabel('完成三题的参考成本预算上限（USD）');ax.set_ylabel('预算内观测到的最高三题均分 / 100');ax.xaxis.set_major_formatter(FuncFormatter(lambda x,p:f'${x:g}'));ax.grid(axis='y',color='#E8E4EB',lw=.7)
+ax.set_xlim(0,5.4);ax.set_ylim(68,104);ax.set_xlabel('完成三题的参考成本预算上限（USD）');ax.set_ylabel('预算内观测到的最高三题均分 / 100');ax.xaxis.set_major_formatter(FuncFormatter(lambda x,p:f'${x:g}'));ax.grid(axis='y',color='#E8E4EB',lw=.7)
 ax.set_title('按题选择模型：预算—得分阶梯',loc='left',fontsize=17,pad=29)
-ax.text(0,1.025,'枚举 8 × 8 × 8 = 512 种组合；标签按第 1 / 2 / 3 题排列。',transform=ax.transAxes,fontsize=10,color='#625A68')
+ax.text(0,1.025,f"枚举 10 × 10 × 10 = {data['portfolioCount']} 种组合；标签按第 1 / 2 / 3 题排列，6.1 均指 Sol。",transform=ax.transAxes,fontsize=10,color='#625A68')
 fig.text(.075,.05,'此图利用已知答案得分作事后选择，不能作为未来新题的预期表现；预算小于 $0.464 时无法覆盖全部三题。',fontsize=9,color='#625A68')
 fig.subplots_adjust(left=.075,right=.98,top=.84,bottom=.17)
 save(fig,'三题预算与得分前沿')
@@ -176,18 +182,18 @@ with zipfile.ZipFile(OUT/'模型评分与成本汇总.xlsx') as z:
   for col,exp in [('H',m['score']),('I',m['mean']),('J',m['cost']),('K',m['minimum'])]:
    got=cells[3][f'{col}{i+6}'];assert got['formula'] and math.isclose(got['value'],exp,abs_tol=1e-8),(m['model'],col,got)
  assert not errors,errors
- assert math.isclose(cells[3]['E120']['value'],116.842,abs_tol=1e-8)
+ assert math.isclose(cells[3][f"E{data['workbookLayout']['cost']}"]['value'],data['totalCost'],abs_tol=1e-8)
  chart_names=[n for n in z.namelist() if '/charts/chart' in n and n.endswith('.xml')]
  assert len(chart_names)==4
  binding=json.loads((WORK/'chart_bindings.json').read_text(encoding='utf-8'))
  for name,expected in zip(chart_names,binding):
-  ch=ET.fromstring(z.read(name));series=ch.findall('.//c:ser',CN);assert len(series)==8
+  ch=ET.fromstring(z.read(name));series=ch.findall('.//c:ser',CN);assert len(series)==len(data['full'])
   for s,p in zip(series,expected['points']):
    xv=s.find('c:xVal/c:numLit/c:pt/c:v',CN);yv=s.find('c:yVal/c:numRef/c:numCache/c:pt/c:v',CN)
    assert math.isclose(float(xv.text),p['x'],abs_tol=1e-10)
    assert math.isclose(float(yv.text),p['y'],abs_tol=1e-10)
    assert s.find('c:yVal/c:numRef/c:f',CN) is not None
-qa={'answers_verified':24,'models':8,'questions_per_model':3,'sheets':names,'native_scatter_charts':4,'native_scatter_points':32,'formula_errors':errors,'adopted_cost_sum':data['totalCost'],'opus_cost_counted_once':50.77,'supplemental_added_cost':5.617,'plot_pairs':4,'native_chart_x_values':'Current cost snapshot; worksheet note documents refresh requirement'}
+qa={'answers_verified':len(data['rows']),'models':len(data['full']),'questions_per_model':3,'sheets':names,'native_scatter_charts':4,'native_scatter_points':4*len(data['full']),'formula_errors':errors,'adopted_cost_sum':data['totalCost'],'opus_cost_counted_once':50.77,'first_supplement_added_cost':5.617,'second_supplement_added_cost':8.670,'plot_pairs':4,'native_chart_x_values':'Current cost snapshot; worksheet note documents refresh requirement'}
 (ROOT/'.work').mkdir(exist_ok=True)
 (ROOT/'.work/plot_qa.json').write_text(json.dumps(qa,ensure_ascii=False,indent=2),encoding='utf-8')
 print(json.dumps(qa,ensure_ascii=False,indent=2))

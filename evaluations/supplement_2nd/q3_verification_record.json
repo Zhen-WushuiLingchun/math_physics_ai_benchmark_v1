@@ -1,0 +1,386 @@
+{
+  "question": 3,
+  "date": "2026-09-30",
+  "provenance": "All records below are independent reviewer checks, not candidate-produced evidence or additional candidate contributions.",
+  "anonymity": {
+    "read_pdf_metadata": false,
+    "read_revealed_model_cost_tables": false,
+    "read_runs_or_conversations": false,
+    "body_identity_exposure": "s2_3a PDF pages 10–11 appendix includes model/price wording; excluded from scoring; no identity inferred."
+  },
+  "backend": {
+    "symbolic": "Local Mathematica 15.0.1, Windows-x86-64, FrontEnd Null via symbolic-physics run_symbolic.py",
+    "numeric": "Python 3.13, NumPy 2.3.5, SciPy 1.16.3",
+    "bundled_runtime_limitation": "Bundled Python lacked scipy; used already-installed system Python. No installation."
+  },
+  "symbolic_checks": [
+    {
+      "name": "static Regge–Wheeler solutions",
+      "assumptions": "rho>2; dx=(1−2/rho)d/drho; p=rho³/8; q=p∫_x^∞p^(-2)",
+      "result": {
+        "H0_p": 0,
+        "H0_q": 0,
+        "Wr_pq": -1,
+        "p_q_expansion": "rho/5+1/3+4/(7rho)+1/rho²+O(rho^-3)"
+      },
+      "status": "passed"
+    },
+    {
+      "name": "centrifugal outgoing solution",
+      "formula": "Fc=exp(ikx)(1+3i/(kx)−3/(kx)²)",
+      "result": {
+        "ode_residual": 0,
+        "modulus_squared": "1+3/(kx)²+9/(kx)^4",
+        "real_log_derivative": "−(18+3k²x²)/(x(9+3k²x²+k^4x^4))"
+      },
+      "status": "passed"
+    },
+    {
+      "name": "transformed Volterra kernel derivative",
+      "assumptions": "s≥x>0,k>0; conjugate written explicitly",
+      "formula": "Ktilde=[Fc(x)conj(Fc(s))−conj(Fc(x))Fc(s)]Fc(s)/[−2ik Fc(x)]",
+      "result": "d_x Ktilde + [Fc(s)/Fc(x)]² = 0; k→0 gives (s^5−x^5)/(5s^4).",
+      "status": "passed_after_explicit_conjugate",
+      "initial_attempt": "Differentiating an unevaluated Conjugate returned unresolved derivatives. It was not treated as verified; explicit real-frequency conjugate resolved the issue."
+    },
+    {
+      "name": "complex mismatch coefficient",
+      "assumptions": "A>0; B_real,B_imag,C real; valid Gram data",
+      "result": "(A C−B_real²−B_imag²)/(2A²)",
+      "status": "passed"
+    },
+    {
+      "name": "Lambert series",
+      "formula": "i ProductLog(−2iL z)/(2L)",
+      "result": "z+2iL z²−6L² z³+O(z^4)",
+      "status": "passed"
+    },
+    {
+      "name": "normalization and low frequency source",
+      "result": {
+        "C_inverse_squared": "3.0861401014260387191207273483675",
+        "C": "0.5692357678263628818955821954518",
+        "Q_zero": "0.3730449697569944154583876333772",
+        "p_at_detector": "60.52584168480888730591649511450"
+      },
+      "method": "Mathematica NIntegrate working precision40, goals24–26; no interval certification",
+      "status": "passed"
+    }
+  ],
+  "analytic_audit": {
+    "a": "External source right of detector: retarded horizon spectral coefficient multiplied by fixed left Jost f_-(10,k), bounded by p(10). Horizon energy flux≤||F||²/2 for H0+U≥0. Background dephased p_x(k)=e^-ikx ψhat has uniform H1_k from inner/outer low-frequency matching, high-frequency regularity and no zero resonance. Plancherel plus translated time weight proves uniform L1_tL2_x source norm. Reverse Duhamel closes global ε bound with no all-L Neumann expansion.",
+    "b": "k(L+1)≤κ: real part of outgoing Robin quadratic form nonnegative, so K=wR0w is accretive and ||(1+εK)^-1||≤1 independent of εL. ||K||=O(L) is retained and source/transmission weights yield εk/L^4 and ε²k/L^3. k(L+1)>κ: finite width ODE gives A−1,B=O(ε/k), flux controls denominator by 1/(|A|+|B|); t0=O(k³) yields integrable Δr and second-order remainder even when ε/k≫1.",
+    "quantifiers": "Both proofs cover all L≥fixed L0>12 and all T≥0 for the specified source, detector and positive fixed-width bump. b additionally has uniform all-time O(ε²) Born remainder for sufficiently small ε. a absolute difference estimate holds for all ε>0.",
+    "no_certified_constant": "An explicit interval-certified numerical value for C* is not supplied and is not needed for the proved existence and optimal exponent."
+  },
+  "primary_literature": [
+    {
+      "title": "Donninger–Schlag–Soffer, A proof of Price’s law on Schwarzschild black hole manifolds for all angular momenta",
+      "url": "https://arxiv.org/pdf/0908.4292",
+      "pdf_pages": "13–18,20–25",
+      "locators": "Lemmas4.3–4.5, Proposition4.1, Lemmas5.1–5.2,6.1–6.4",
+      "finding": "Parameter (l,σ)=(2,−3) included and not in excluded resonant set; symbol bounds support the needed k-derivative and c1+/c0+ ratio. This is background input, not a theorem for the translated bump."
+    },
+    {
+      "title": "Kyutoku–Motohashi–Tanaka, Quasinormal modes of Schwarzschild black holes on the real axis",
+      "url": "https://arxiv.org/pdf/2206.00671",
+      "locators": "real-frequency scattering discussion and SectionsIII–IV",
+      "finding": "Background connection between real-frequency scattering and ringdown; not used as a substitute for Q3c."
+    }
+  ],
+  "numerical_time_and_static": {
+    "reviewer_independent": true,
+    "time_runs": [
+      {
+        "dx": 0.02,
+        "dt": 0.004,
+        "order": 4,
+        "tmax": 160,
+        "interval": [
+          -100,
+          110
+        ],
+        "C": 0.5692357678263644,
+        "energy_C1": 3.0861401014260226,
+        "background_norm": 1.003289686327423,
+        "background_norm_squared": 1.006590194690979,
+        "h0_50": 0.0005108219297132624,
+        "seconds": 21.16246339999998,
+        "cases": [
+          {
+            "kind": "difference",
+            "L": 20,
+            "epsilon": 0.005,
+            "difference_norm_over_epsilon": 0.20575763975217057,
+            "E_finite_denominator_over_epsilon": 0.20508298107334644,
+            "remainder_norm_over_epsilon_squared": 0.2919280802636566,
+            "mismatch": 5.257145714780641e-07,
+            "precursor_max_tstar_minus_one": 1.2464261458961497e-28,
+            "born_norm": 0.20544466726415728
+          },
+          {
+            "kind": "difference",
+            "L": 50,
+            "epsilon": 0.005,
+            "difference_norm_over_epsilon": 0.1993442681750264,
+            "E_finite_denominator_over_epsilon": 0.1986906382988278,
+            "remainder_norm_over_epsilon_squared": 0.21958754369380745,
+            "mismatch": 4.934742793621884e-07,
+            "precursor_max_tstar_minus_one": 1.6348522124664426e-22,
+            "born_norm": 0.19904441464327458
+          }
+        ]
+      },
+      {
+        "dx": 0.01,
+        "dt": 0.002,
+        "order": 4,
+        "tmax": 160,
+        "interval": [
+          -100,
+          110
+        ],
+        "C": 0.5692357678263644,
+        "energy_C1": 3.0861401014260226,
+        "background_norm": 1.003342775132791,
+        "background_norm_squared": 1.0066967244111706,
+        "h0_50": 0.0005140329570224892,
+        "seconds": 113.13583319999816,
+        "cases": [
+          {
+            "kind": "difference",
+            "L": 20,
+            "epsilon": 0.005,
+            "difference_norm_over_epsilon": 0.20575801225570872,
+            "E_finite_denominator_over_epsilon": 0.2050725009989501,
+            "remainder_norm_over_epsilon_squared": 0.291928280983154,
+            "mismatch": 5.256608456133e-07,
+            "precursor_max_tstar_minus_one": 1.7378673442715165e-45,
+            "born_norm": 0.20544503908916617
+          },
+          {
+            "kind": "difference",
+            "L": 50,
+            "epsilon": 0.005,
+            "difference_norm_over_epsilon": 0.1993446450253148,
+            "E_finite_denominator_over_epsilon": 0.19868050078791047,
+            "remainder_norm_over_epsilon_squared": 0.21958780123479835,
+            "mismatch": 4.934239250032785e-07,
+            "precursor_max_tstar_minus_one": 3.183659094076737e-35,
+            "born_norm": 0.1990447910140566
+          }
+        ]
+      }
+    ],
+    "static_numeric": {
+      "Hminus_half_g_squared": 0.2589924188284647,
+      "f_squared": 0.3186442548276809,
+      "K0": 1.0733988099225347
+    },
+    "limitations": "Finite T=160, denominator truncated at same T; no certified infinite-time tail or interval arithmetic."
+  },
+  "qnm": {
+    "reviewer_independent": true,
+    "method": "DOP853 Jost Wronskian; horizon z-series order 8; right complex-ray amplitude with constant far-end data; cut integration at bump ends",
+    "configs": [
+      {
+        "xh": -22,
+        "theta": 0.55,
+        "S": 120
+      },
+      {
+        "xh": -32,
+        "theta": 0.7,
+        "S": 180
+      }
+    ],
+    "rtol": 3e-11,
+    "atol": 2e-13,
+    "rows": [
+      {
+        "omega": [
+          0.37367168441840504,
+          -0.08896231568932458
+        ],
+        "residual": 9.792645392892016e-15,
+        "root_success": true,
+        "epsilon": 0.0,
+        "L": 20.0,
+        "config": 0
+      },
+      {
+        "omega": [
+          0.37367008252481854,
+          -0.08895813243114091
+        ],
+        "residual": 8.169467325330309e-13,
+        "root_success": true,
+        "epsilon": 1e-06,
+        "L": 20.0,
+        "config": 0
+      },
+      {
+        "omega": [
+          0.2950570628952671,
+          -0.04290705555712078
+        ],
+        "residual": 1.1684077470052715e-14,
+        "root_success": true,
+        "epsilon": 0.005,
+        "L": 50.0,
+        "config": 0
+      },
+      {
+        "omega": [
+          0.40086863522890576,
+          -0.04746354599131699
+        ],
+        "residual": 1.9119139715078642e-15,
+        "root_success": true,
+        "epsilon": 0.005,
+        "L": 50.0,
+        "config": 0
+      },
+      {
+        "omega": [
+          0.4539750742849107,
+          -0.05895860796185833
+        ],
+        "residual": 1.025259555530695e-14,
+        "root_success": true,
+        "epsilon": 0.005,
+        "L": 50.0,
+        "config": 0
+      },
+      {
+        "omega": [
+          0.3736716844182695,
+          -0.08896231568909063
+        ],
+        "residual": 1.4872430946317594e-14,
+        "root_success": true,
+        "epsilon": 0.0,
+        "L": 20.0,
+        "config": 1
+      },
+      {
+        "omega": [
+          0.3736700825247273,
+          -0.08895813243079886
+        ],
+        "residual": 4.116520436848555e-13,
+        "root_success": true,
+        "epsilon": 1e-06,
+        "L": 20.0,
+        "config": 1
+      },
+      {
+        "omega": [
+          0.2950570628952307,
+          -0.04290705555720522
+        ],
+        "residual": 2.3894013401276216e-14,
+        "root_success": true,
+        "epsilon": 0.005,
+        "L": 50.0,
+        "config": 1
+      },
+      {
+        "omega": [
+          0.4008686352296248,
+          -0.047463545990666024
+        ],
+        "residual": 6.115555475673867e-15,
+        "root_success": true,
+        "epsilon": 0.005,
+        "L": 50.0,
+        "config": 1
+      },
+      {
+        "omega": [
+          0.453975074284856,
+          -0.05895860796189297
+        ],
+        "residual": 4.311326371230795e-15,
+        "root_success": true,
+        "epsilon": 0.005,
+        "L": 50.0,
+        "config": 1
+      }
+    ],
+    "limitations": "Floating point cross-check, not certified root enclosure or full spectrum enumeration."
+  },
+  "low_frequency": {
+    "reviewer_independent": true,
+    "rows": [
+      {
+        "k": 1e-05,
+        "k_xright": 80.0,
+        "transmission_over_ik3": [
+          1.0667001480025289,
+          -0.00026224556916279473
+        ],
+        "left_Robin_real": 0.2847378838616985,
+        "right_Robin_real": -0.21586371752315803
+      },
+      {
+        "k": 1e-05,
+        "k_xright": 160.0,
+        "transmission_over_ik3": [
+          1.0667001499733793,
+          -0.00026235640283794474
+        ],
+        "left_Robin_real": 0.2847378838616985,
+        "right_Robin_real": -0.21586371752325761
+      },
+      {
+        "k": 0.0001,
+        "k_xright": 80.0,
+        "transmission_over_ik3": [
+          1.0670000261171602,
+          -0.00213202408870931
+        ],
+        "left_Robin_real": 0.2847378679512907,
+        "right_Robin_real": -0.2158636890053275
+      },
+      {
+        "k": 0.0001,
+        "k_xright": 160.0,
+        "transmission_over_ik3": [
+          1.0670000410721936,
+          -0.002132959433092087
+        ],
+        "left_Robin_real": 0.2847378679512907,
+        "right_Robin_real": -0.2158636890050829
+      },
+      {
+        "k": 0.001,
+        "k_xright": 80.0,
+        "transmission_over_ik3": [
+          1.0699262568693737,
+          -0.016451977250733024
+        ],
+        "left_Robin_real": 0.28473627690687375,
+        "right_Robin_real": -0.21586083716011298
+      },
+      {
+        "k": 0.001,
+        "k_xright": 160.0,
+        "transmission_over_ik3": [
+          1.0699262755707637,
+          -0.016459623976551676
+        ],
+        "left_Robin_real": 0.28473627690687375,
+        "right_Robin_real": -0.21586083715991475
+      }
+    ],
+    "limit": 1.0666666666666667,
+    "limitations": "Real-frequency far-end centrifugal data; two truncations, no interval certification."
+  },
+  "scope_limitations": [
+    "Only PDF evidence was supplied; candidate scripts and complete raw logs were not independently audited.",
+    "Finite-time waveform checks use finite denominator and do not certify the infinite tail.",
+    "QNM roots are floating point checks at selected seeds, not certified enclosures or complete spectra.",
+    "Numerical sampling alone does not establish all-L/all-T claims; their acceptance rests on the analytic proofs."
+  ]
+}
